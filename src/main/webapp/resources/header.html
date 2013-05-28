@@ -1,0 +1,128 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="./css/baguajie-theme.css">
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="./css/baguajie-base.css">  
+        <script type="text/javascript" href="./js/bootstrap.js" ></script>    
+        <title>
+            在浙里——分享你我的社交
+        </title>
+		<style>
+		.navbar .brand {
+    font-family: 华文行楷,华文楷体,方正魏碑简体,幼圆,微软雅黑,"Helvetica Neue";
+    font-weight: bold;
+	font-size: 26px;
+}
+body {
+    font-family: 华文楷体,方正魏碑简体,幼圆,微软雅黑,"Helvetica Neue";
+    font-size: 17px;
+}
+</style>
+    </head>
+    <body>
+        <div class="container">
+            <nav>
+                <div class="navbar navbar-fixed-top">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a>
+                             <a class="brand"  href="/">在浙里
+                              <span class="label label-info p-0 fs-9 va-6 lh-14 ta-c">
+                                <i class="icon-home icon-white w-15 ml-5"></i>
+                                <span ="version">Beta</span>                              
+                              </span>
+                            </a>
+                            <ul class="nav">
+                              <li id="nav-profiles">
+                                <a href="">在这里</a>
+                              </li>
+                              <li id="nav-create">
+                                <a href="">发布活动/晒活动</a>
+                              </li>
+                              <li id="nav-apps">
+                                <a href="<c:url value="/apps" />" title="八卦街移动客户端">八卦街移动客户端</a>
+                              </li>
+                            </ul>
+                            <ul class="nav pull-right">
+                                <li>
+                                    <a data-toggle="modal" href="#login">登录</a>
+                                </li>
+                                <li>
+                                    <a href="/users/add" title="Opens in a new window.">注册</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                      关于
+                                      <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                      <li><a href="#">关于八卦街</a></li>
+                                      <li><a href="#">八卦工具</a></li>
+                                      <li><a href="#">开发动态</a></li>
+                                      <li class="divider"></li>
+                                      <li><a href="#">帮助</a></li>
+                                      <li><a href="#">反馈</a></li>
+                                    </ul>
+                                  </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+<script type="text/javascript" src="<c:url value="/resources/languages/zh-cn/jquery.validationEngine.lang.js" />" ></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery.validationEngine.js" />" ></script>
+<script type="text/javascript">
+  function adjustWebWidth(){
+    var web_width = $(window).width()-50;
+    var pin_h_count = Math.max(4,Math.floor((web_width - 15)/237)); 
+    web_width = pin_h_count*237-15;
+    $('.content-wrapper').each(function(){
+      var padding_left = $(this).css('padding-left');
+      var padding_right = $(this).css('padding-right');
+      var padding = 0, pl, pr;
+      if($.trim(padding_left).length >1){
+        pl = parseFloat(padding_left.substring(0, padding_left.length-2));
+        if(!isNaN(pl)){
+          padding += pl;
+        }
+      }
+      if($.trim(padding_right).length>2){
+        pr = parseFloat(padding_right.substring(0, padding_right.length-2));
+        if(!isNaN(pr)){
+          padding += pr;
+        }
+      }
+      $(this).css('width', web_width-padding+'px');
+    });
+  }
+  function noNeedAdjustWebWidth(noNeed){
+    if(noNeed != 'true'){
+      $(document).ready(function() {
+        $(window).resize(adjustWebWidth);
+      });
+    }
+  }
+  function setHeaderTab(tab){
+    $('ul.nav li').removeClass('active');
+    $('ul.nav li#nav-' + tab).addClass('active');
+  }
+  $('#geo-city-picker a').click(function(){
+    var city = $(this).attr('title').toLowerCase();
+    op.city_picker_geo_callback(city);
+  });
+  noNeedAdjustWebWidth('${param.noNeed}')
+  setHeaderTab('${param.tab}');
+  $('.brand').find('.icon-home').hide();
+  $('.brand').mouseenter(function(){
+    $(this).find('.version').hide();
+    $(this).find('.icon-home').show();
+  });
+  $('.brand').mouseleave(function(){
+    $(this).find('.version').show();
+    $(this).find('.icon-home').hide();
+  });
+</script>
+    </body>
+</html>
