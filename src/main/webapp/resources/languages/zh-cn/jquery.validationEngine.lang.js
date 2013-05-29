@@ -6,10 +6,10 @@
 			$.validationEngineLanguage.allRules = {
 				"required" : { // Add your regex rules here, you can take telephone as an example
 					"regex" : "none",
-					"alertText" : "* 此处不可空白",
-					"alertTextCheckboxMultiple" : "* 请选择一个项目",
-					"alertTextCheckboxe" : "* 您必须钩选此栏",
-					"alertTextDateRange" : "* 日期范围不可空白"
+					"alertText" : "* 这一项必须填哦  >o<",
+					"alertTextCheckboxMultiple" : "* 要选择一个项目哦  >o<",
+					"alertTextCheckboxe" : "* 必须勾选此栏，才能前进~",
+					"alertTextDateRange" : "* 日期范围不能一片空白哦  >o<"
 				},
 				"requiredInFunction" : {
 					"func" : function(field, rules, i, options) {
@@ -19,57 +19,57 @@
 				},
 				"dateRange" : {
 					"regex" : "none",
-					"alertText" : "* 无效的 ",
+					"alertText" : "* 无效的 (￣▽￣) ",
 					"alertText2" : " 日期范围"
 				},
 				"dateTimeRange" : {
 					"regex" : "none",
-					"alertText" : "* 无效的 ",
+					"alertText" : "* 无效的 (￣▽￣) ",
 					"alertText2" : " 时间范围"
 				},
 				"minSize" : {
 					"regex" : "none",
 					"alertText" : "* 最少 ",
-					"alertText2" : " 个字符"
+					"alertText2" : " 个字符哦  >o<"
 				},
 				"maxSize" : {
 					"regex" : "none",
 					"alertText" : "* 最多 ",
-					"alertText2" : " 个字符"
+					"alertText2" : " 个字符哦  >o<"
 				},
 				"groupRequired" : {
 					"regex" : "none",
-					"alertText" : "* 你必需选填其中一个栏位"
+					"alertText" : "* 你必需选填其中一个栏位哦哦  >o<"
 				},
 				"min" : {
 					"regex" : "none",
-					"alertText" : "* 最小值為 "
+					"alertText" : "* 我的忍耐下限為 "
 				},
 				"max" : {
 					"regex" : "none",
-					"alertText" : "* 最大值为 "
+					"alertText" : "* 我的胃袋上限为 "
 				},
 				"past" : {
 					"regex" : "none",
-					"alertText" : "* 日期必需早于 "
+					"alertText" : "* 你是未来人！？ "
 				},
 				"future" : {
 					"regex" : "none",
-					"alertText" : "* 日期必需晚于 "
+					"alertText" : "*  你竟然可以穿越时空！？"
 				},
 				"maxCheckbox" : {
 					"regex" : "none",
 					"alertText" : "* 最多选取 ",
-					"alertText2" : " 个项目"
+					"alertText2" : " 个项目哦  >o<"
 				},
 				"minCheckbox" : {
 					"regex" : "none",
 					"alertText" : "* 请选择 ",
-					"alertText2" : " 个项目"
+					"alertText2" : " 个项目哦  >o<"
 				},
 				"equals" : {
 					"regex" : "none",
-					"alertText" : "* 请输入与上面相同的密码"
+					"alertText" : "* 大意了 >o<，两次密码不相同哦"
 				},
 				"creditCard" : {
 					"regex" : "none",
@@ -83,16 +83,16 @@
 				"email" : {
 					// Shamelessly lifted from Scott Gonzalez via the Bassistance Validation plugin http://projects.scottsplayground.com/email_address_validation/
 					"regex" : /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i,
-					"alertText" : "* 邮件地址无效"
+					"alertText" : "* 你骗不了我（￣︶￣），这是个不合法的邮箱地址"
 				},
 				"integer" : {
 					"regex" : /^[\-\+]?\d+$/,
-					"alertText" : "* 不是有效的整数"
+					"alertText" : "* 这一栏的心胸太窄了，只容得下数字哦"
 				},
 				"number" : {
 					// Number, including positive, negative, and floating decimal. credit: orefalo
 					"regex" : /^[\-\+]?((([0-9]{1,3})([,][0-9]{3})*)|([0-9]+))?([\.]([0-9]+))?$/,
-					"alertText" : "* 无效的数字"
+					"alertText" : "* 这一栏的心胸太窄了，只容得下数字哦 >o<"
 				},
 				"date" : {
 					"regex" : /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/,
@@ -108,7 +108,7 @@
 				},
 				"onlyNumberSp" : {
 					"regex" : /^[0-9\ ]+$/,
-					"alertText" : "* 只能填数字"
+					"alertText" : "* 这一栏的肚量太小了，只容得下数字哦 >o<"
 				},
 				"onlyLetterSp" : {
 					"regex" : /^[a-zA-Z\ \']+$/,

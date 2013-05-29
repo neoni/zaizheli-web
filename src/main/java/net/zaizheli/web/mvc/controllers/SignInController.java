@@ -80,16 +80,16 @@ public class SignInController {
 					.getSignInName());
 			if (existed == null) {
 				result.addError(new FieldError("signInCredentialVo",
-						"signInName", "注册邮箱不存在"));
+						"signInName", "邮箱不存在哦，(>_<)"));
 			} else {
 				if (!encryptUtil.match(signInCredentialVo.getSignInPassword(),
 						existed.getPassword())) {
 					result.addError(new FieldError("signInCredentialVo",
-							"signInPassword", "密码不正确"));
+							"signInPassword", "啊，密码错误了，(>_<)"));
 				}
 				if(existed.getStatus() == UserStatus.INVALID){
 					result.addError(new FieldError("signInCredentialVo",
-							"signInName", "账号暂时不能登陆"));
+							"signInName", "你干了什么坏事，被封号了。 (⊙＿⊙) "));
 				} 
 			}
 		}
@@ -118,16 +118,16 @@ public class SignInController {
 					.getSignInName());
 			if (existed == null) {
 				result.addError(new FieldError("signInCredentialVo",
-						"signInName", "注册邮箱不存在"));
+						"signInName", "邮箱不存在哦，(>_<)"));
 			} else {
 				if (!encryptUtil.match(signInCredentialVo.getSignInPassword(),
 						existed.getPassword())) {
 					result.addError(new FieldError("signInCredentialVo",
-							"signInPassword", "密码不正确"));
+							"signInPassword", "啊，密码错误了，(>_<)"));
 				}
 				if(existed.getStatus() == UserStatus.INVALID){
 					result.addError(new FieldError("signInCredentialVo",
-							"signInName", "账号暂时不能登陆"));
+							"signInName", "你干了什么坏事，被封号了 (⊙＿⊙)"));
 				}
 			}
 		}

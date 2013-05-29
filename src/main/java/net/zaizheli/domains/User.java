@@ -59,6 +59,7 @@ public class User implements Serializable {
 	
 	//待拓展
 	private String city;
+	private String address;
 	private String school;	
 	
 	public UserStatus getStatus() {
@@ -198,6 +199,12 @@ public class User implements Serializable {
 	}
 	public void setPrivateset(int privateset) {
 		this.privateset = privateset;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 	@Override

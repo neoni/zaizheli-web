@@ -50,17 +50,17 @@
 		    	<c:url value="/setting/basic" var="ub_url"/> 
 		    	<form:form id="basicInfoForm" action="${ub_url}" method="post" class="form-horizontal mt-20 mb-0">
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-25 c-888" for="name">请叫我</label>
+		    			<label class="control-label fs-15 lh-25 c-888" for="name">请叫我</label>
 		    			<div class="controls fs-16 lh-18">
 							<input id="name" class="validate[required,minSize[2]] input-xlarge" type="text" name="name" 
-								data-prompt-position="centerRight:0,-4" value="${signInUser.name}" style="height: 25px;">
+								data-prompt-position="centerRight:0,-4" value="${signInUser.name}" style="height: 25px;" >
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-30 c-888" for="gender">我是</label>
+		    			<label class="control-label fs-15 lh-30 c-888" for="gender">我是</label>
 		    			<div class="controls fs-16 lh-18">
 		    				<input id="gender" class="validate[required]" type="hidden" 
-		    					data-prompt-position="centerRight:0,-4" name="gender" value="${signInUser.gender}">
+		    					data-prompt-position="centerRight:0,-4" name="gender" value="${signInUser.gender}" >
 		    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="gender">
 		    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val="FEMALE">美女</button>
 		    					<button id="gender_target" class="btn btn-large btn-info fs-16" type="button" data-val="MALE">帅哥</button>
@@ -69,10 +69,10 @@
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-30 c-888" for="city">居住在</label>
+		    			<label class="control-label fs-15 lh-30 c-888" for="city">居住在</label>
 		    			<div class="controls fs-16 lh-18">
 		    				<input id="city" class="validate[required]" type="hidden" 
-		    					data-prompt-position="centerRight:0,-4" name="city" placeholder="" value="${signInUser.city}">
+		    					data-prompt-position="centerRight:0,-4" name="city" placeholder="" value="${signInUser.city}" >
 		    				<div class="btn-group">
 								<a id="city_target" class="btn btn-large dropdown-toggle fs-16" data-toggle="dropdown" href="#">
 									<strong>未知</strong>
@@ -85,7 +85,7 @@
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-20 c-888" for="summary">我想说</label>
+		    			<label class="control-label fs-15 lh-20 c-888" for="summary">我要说</label>
 		    			<div class="controls fs-16 lh-18">
 							<textarea id="summary" class="input-xlarge" type="text" name="summary" rows="3" >${signInUser.summary}</textarea>
 						</div>
@@ -102,25 +102,25 @@
 		    	<c:url value="/setting/specific" var="sb_url"/> 
 		    	<form:form id="specificInfoForm" action="${sb_url}" method="post" class="form-horizontal mt-20 mb-0">
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-25 c-888" for="realName">真实姓名</label>
+		    			<label class="control-label fs-15 lh-25 c-888" for="realName">我的真名</label>
 		    			<div class="controls fs-16 lh-18">
 							<input id="realName" class="input-xlarge" type="text" name="realName" 
 								   value="${signInUser.realName}" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-25 c-888" for="age">年龄</label>
+		    			<label class="control-label fs-15 lh-25 c-888" for="age">今年多少岁了</label>
 		    			<div class="controls fs-16 lh-18">
-							<input id="age" class="input-xlarge" type="text" name="age" 
+							<input id="age" class="validate[custom[integer],min[0],max[150]] input-xlarge" type="number"  name="age" 
 								   value="${signInUser.age}" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-25 c-888" for="birthday">生日</label>
+		    			<label class="control-label fs-15 lh-25 c-888" for="birthday">我的破壳日</label>
 		    			<div class="bfh-datepicker controls fs-16 lh-18" data-format="y-m-d" data-date="${(!empty signInUser.birthday)?signInUser.birthday:'1993-01-01'} ">     
 		    			<div class="input-prepend bfh-datepicker-toggle" data-toggle="bfh-datepicker" >
 		    				<span class="add-on"><i class="icon-calendar"></i></span>
-							<input id="birthday" class="input-large" type="text" name="birthday" 
+							<input id="birthday" class="validate[past[now]] input-large" type="text" name="birthday" 
 								   value="${signInUser.birthday}" style="height: 25px;" readonly>
 						</div>
 						<div class="bfh-datepicker-calendar">
@@ -148,27 +148,34 @@
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-25 c-888" for="tel">电话</label>
+		    			<label class="control-label fs-15 lh-25 c-888" for="tel">call me (电话）</label>
 		    			<div class="controls fs-16 lh-18">
-							<input id="tel" class="input-xlarge" type="text" name="tel" 
+							<input id="tel" class="input-xlarge validate[custom[integer],minSize[6],maxSize[17]]" type="number" name="tel" 
 								   value="${signInUser.tel}" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-25 c-888" for="school">学校</label>
+		    			<label class="control-label fs-15 lh-25 c-888" for="school">学校</label>
 		    			<div class="controls fs-16 lh-18">
 							<input id="school" class="input-xlarge" type="text" name="school" 
 								   value="${signInUser.school}" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-30 c-888" for="privateset">此页信息是否面向大众展示</label>
+		    			<label class="control-label fs-15 lh-25 c-888" for="address">能找到我的地址</label>
+		    			<div class="controls fs-16 lh-18">
+							<input id="address" class="input-xlarge" type="text" name="address" 
+								   value="${signInUser.address}" style="height: 25px;">
+						</div>
+		    		</div>
+		    		<div class="control-group" style="margin-bottom: 30px;">
+		    			<label class="control-label fs-15 lh-30 c-888" for="privateset">个人信息什么的才不告诉你</label>
 		    			<div class="controls fs-16 lh-18">
 		    				<input id="privateset" class="validate[required]" type="hidden" 
 		    					data-prompt-position="centerRight:0,-4" name="privateset" value="${signInUser.privateset}">
 		    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="privateset">
-		    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val=0 >否</button>
-		    					<button id="gender_target" class="btn btn-large btn-info fs-16" type="button" data-val=1>是</button>
+		    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val=0 >秘密</button>
+		    					<button id="gender_target" class="btn btn-large btn-info fs-16" type="button" data-val=1>公开</button>
 		    				</div>
 						</div>
 		    		</div>
@@ -240,21 +247,21 @@
 		    	<c:url value="/setting/changepwd" var="cp_url"/> 
 		    	<form:form id="changePwdForm" action="${cp_url}" method="post" class="form-horizontal mt-20 mb-0">
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-25 c-888" for="inputOldPwd">旧密码</label>
+		    			<label class="control-label fs-15 lh-25 c-888" for="inputOldPwd">旧密码</label>
 		    			<div class="controls fs-16 lh-18">
 							<input id="oldPwd" autocomplete="off" class="validate[required] input-xlarge" type="password" name="oldPwd" 
-								data-prompt-position="centerRight:0,-4" value="" style="height: 25px;">
+								 data-prompt-position="centerRight:0,-4" value="" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-25 c-888" for="inputNewPwd">新密码</label>
+		    			<label class="control-label fs-15 lh-25 c-888" for="inputNewPwd">新密码</label>
 		    			<div class="controls fs-16 lh-18">
 							<input id="newPwd" autocomplete="off" class="validate[required,minSize[6],maxSize[30]] input-xlarge" type="password" name="newPwd" 
 								data-prompt-position="centerRight:0,-4" value="" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-18 lh-25 c-888" for="inputNewPwdRe">确认新密码</label>
+		    			<label class="control-label fs-15 lh-25 c-888" for="inputNewPwdRe">确认新密码</label>
 		    			<div class="controls fs-16 lh-18">
 							<input id="newPwdRe" autocomplete="off" class="validate[required,equals[newPwd]] input-xlarge" type="password" name="newPwdRe" 
 								data-prompt-position="centerRight:0,-4" value="" style="height: 25px;">
@@ -272,7 +279,7 @@
 		    	<c:url value="/setting/binding" var="bw_url"/> 
 		    	<form:form id="bindingForm" action="${bw_url}" method="post" class="form-horizontal mt-10">
 		    		<div class="control-group" style="margin-bottom: 20px;">
-		    			<!-- <label class="control-label fs-18 lh-25 c-888" for="inputName">新浪微博</label>-->
+		    			<!-- <label class="control-label fs-15 lh-25 c-888" for="inputName">新浪微博</label>-->
 		    			<div class="controls fs-16 lh-18">
 							<!-- <button class="btn btn-large btn-danger" data-toggle="button" type="button">绑定新浪微博</button>-->
 							<a class="btn-3rd weibo" href="/oauth/weibo/signup/">
@@ -282,7 +289,7 @@
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 20px;">
-		    			<!-- <label class="control-label fs-18 lh-25 c-888" for="inputName">腾讯QQ</label>  -->
+		    			<!-- <label class="control-label fs-15 lh-25 c-888" for="inputName">腾讯QQ</label>  -->
 		    			<div class="controls fs-16 lh-18">
 							<!-- <button class="btn btn-large btn-info" data-toggle="button" type="button">绑定人人网</button> -->
 							<a class="btn-3rd qq" href="/oauth/weibo/signup/">
@@ -292,7 +299,7 @@
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 20px;">
-		    			<!-- <label class="control-label fs-18 lh-25 c-888" for="inputName">豆瓣</label> -->
+		    			<!-- <label class="control-label fs-15 lh-25 c-888" for="inputName">豆瓣</label> -->
 		    			<div class="controls fs-16 lh-18">
 							<!-- <button class="btn btn-large btn-success" data-toggle="button" type="button">绑定豆瓣</button>-->
 							<a class="btn-3rd douban" href="/oauth/weibo/signup/">
@@ -302,7 +309,7 @@
 						</div>
 		    		</div>
 		    		<div class="control-group">
-		    			<!-- <label class="control-label fs-18 lh-25 c-888" for="inputName">腾讯微博</label> -->
+		    			<!-- <label class="control-label fs-15 lh-25 c-888" for="inputName">腾讯微博</label> -->
 		    			<div class="controls fs-16 lh-18">
 							<!-- <button class="btn btn-large btn-primary" data-toggle="button" type="button">绑定腾讯微博</button> -->
 							<a class="btn-3rd renren" href="/oauth/weibo/signup/">

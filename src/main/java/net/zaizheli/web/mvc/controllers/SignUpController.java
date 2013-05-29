@@ -54,13 +54,13 @@ public class SignUpController {
 		if(!result.hasFieldErrors("email")){
 			existed = userRepository.getByEmail(signUpUserVo.getEmail());
 			if(existed !=null){
-				result.addError(new FieldError("signUpUserVo", "email", "这个邮箱太受欢迎了,换一个吧"));
+				result.addError(new FieldError("signUpUserVo", "email", "这个昵称太抢手了,换一个吧   (￣ω￣)"));
 			}
 		}
 		if(!result.hasFieldErrors("name")){
 			existed = userRepository.getByName(signUpUserVo.getName());
 			if(existed != null){
-				result.addError(new FieldError("signUpUserVo", "name", "这个昵称太抢手了,换一个吧"));
+				result.addError(new FieldError("signUpUserVo", "name", "这个昵称太抢手了,换一个吧   (￣ω￣)"));
 			}
 		}
 		if(result.hasErrors()){

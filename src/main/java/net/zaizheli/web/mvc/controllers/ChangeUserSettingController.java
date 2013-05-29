@@ -109,7 +109,7 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 			User user = userRepository.getByName(name);
 			if (user != null) {
 				result.addError(new FieldError("formBean", "name",
-						"这个昵称太抢手了,换一个吧"));
+						"这个昵称太抢手了,换一个吧 (￣ω￣)"));
 			}
 		}
 		if (result.hasErrors()) {
@@ -136,7 +136,8 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 		signInUser.setAge(formBean.getAge());
 		signInUser.setBirthday(formBean.getBirthday());
 		signInUser.setTel(formBean.getTel());
-		signInUser.setSchool(formBean.getSchool());		
+		signInUser.setSchool(formBean.getSchool());	
+		signInUser.setAddress(formBean.getAddress());	
 		signInUser.setPrivateset(formBean.getPrivateset());
 		userRepository.save(signInUser);
 		return new AjaxResult(AjaxResultCode.SUCCESS);
@@ -164,7 +165,7 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 		}
 		if (formBean.getOldPwd() != null
 				&& !encryptUtil.match(formBean.getOldPwd(), signInUser.getPassword())) {
-			result.addError(new FieldError("formBean", "oldPwd", "密码不正确"));
+			result.addError(new FieldError("formBean", "oldPwd", "啊，密码错误了，(>_<)"));
 		}
 		if (result.hasErrors()) {
 			return new AjaxResult(AjaxResultCode.INVALID,
@@ -182,7 +183,7 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 		User signInUser = sessionUtil.getSignInUser(session);
 		if (formBean.getOldPwd() != null
 				&& !encryptUtil.match(formBean.getOldPwd(), signInUser.getPassword())) {
-			result.addError(new FieldError("formBean", "oldPwd", "密码不正确"));
+			result.addError(new FieldError("formBean", "oldPwd", "啊，密码错误了，(>_<)"));
 		}
 		if (result.hasErrors()) {
 			return ValidationEngineError.normalize(ValidationEngineError

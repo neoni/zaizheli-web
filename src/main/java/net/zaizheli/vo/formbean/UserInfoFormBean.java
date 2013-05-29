@@ -12,6 +12,7 @@ public class UserInfoFormBean implements Serializable {
 	private String birthday;
 	private String tel;
 	private String school;
+	private String address;
 	private int privateset;
 	
 	public int getPrivateset() {
@@ -50,4 +51,11 @@ public class UserInfoFormBean implements Serializable {
 	public void setSchool(String school) {
 		this.school = school;
 	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
 }
