@@ -262,7 +262,15 @@
 			// validate each field 
 			// (- skip field ajax validation, not necessary IF we will perform an ajax form validation)
 			var r=methods._validateFields(form);
-
+			// if (r && !methods._checkAjaxStatus(options)) {
+   //              return false;
+   //          }
+           
+   //          if(options.onValidationComplete) {
+   //              options.onValidationComplete(form, r);
+   //              return false;
+   //          }
+			
 			if (r && options.ajaxFormValidation) {
 				methods._validateFormWithAjax(form, options);
 				// cancel form auto-submission - process with async call onAjaxFormComplete

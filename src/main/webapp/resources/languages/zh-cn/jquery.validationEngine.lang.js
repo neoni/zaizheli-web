@@ -55,7 +55,7 @@
 				},
 				"future" : {
 					"regex" : "none",
-					"alertText" : "*  你竟然可以穿越时空！？"
+					"alertText" : "* 时间不对吧？再仔细想想 >o<"
 				},
 				"maxCheckbox" : {
 					"regex" : "none",

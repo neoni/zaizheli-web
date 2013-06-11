@@ -50,12 +50,12 @@ public class User implements Serializable {
 	private int privateset;
 	
 	//用户动态
-	private int fansNum;
-	private int followNum;
-	private int shareNum;
-	private int circleNum;
-	private int commentNum;	
-	private int activityNum;	
+	private int fansCount;
+	private int followCount;
+	private int shareCount;
+	private int circleCount;
+	private int commentCount;	
+	private int activityCount;	
 	
 	//待拓展
 	private String city;
@@ -146,41 +146,41 @@ public class User implements Serializable {
 	public void setRegisterTime(Date registerTime) {
 		this.registerTime = registerTime;
 	}
-	public int getFansNum() {
-		return fansNum;
+	public int getFansCount() {
+		return fansCount;
 	}
-	public void setFansNum(int fansNum) {
-		this.fansNum = fansNum;
+	public void setFansCount(int fansCount) {
+		this.fansCount = fansCount;
 	}
-	public int getFollowNum() {
-		return followNum;
+	public int getFollowCount() {
+		return followCount;
 	}
-	public void setFollowNum(int followNum) {
-		this.followNum = followNum;
+	public void setFollowCount(int followCount) {
+		this.followCount = followCount;
 	}
-	public int getShareNum() {
-		return shareNum;
+	public int getShareCount() {
+		return shareCount;
 	}
-	public void setShareNum(int shareNum) {
-		this.shareNum = shareNum;
+	public void setShareCount(int shareCount) {
+		this.shareCount = shareCount;
 	}
-	public int getCircleNum() {
-		return circleNum;
+	public int getCircleCount() {
+		return circleCount;
 	}
-	public void setCircleNum(int circleNum) {
-		this.circleNum = circleNum;
+	public void setCircleCount(int circleCount) {
+		this.circleCount = circleCount;
 	}
-	public int getCommentNum() {
-		return commentNum;
+	public int getCommentCount() {
+		return commentCount;
 	}
-	public void setCommentNum(int commentNum) {
-		this.commentNum = commentNum;
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
 	}
-	public int getActivityNum() {
-		return activityNum;
+	public int getActivityCount() {
+		return activityCount;
 	}
-	public void setActivityNum(int activityNum) {
-		this.activityNum = activityNum;
+	public void setActivityCount(int activityCount) {
+		this.activityCount = activityCount;
 	}
 	public Resource getAvatarOrg() {
 		return avatarOrg;

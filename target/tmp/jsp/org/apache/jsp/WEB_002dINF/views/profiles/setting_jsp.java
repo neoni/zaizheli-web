@@ -604,7 +604,7 @@ public final class setting_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_1 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
     _jspx_th_c_url_1.setPageContext(_jspx_page_context);
     _jspx_th_c_url_1.setParent(null);
-    _jspx_th_c_url_1.setValue("/resources/css/baguajie-theme.css");
+    _jspx_th_c_url_1.setValue("/resources/css/zaizheli-theme.css");
     int _jspx_eval_c_url_1 = _jspx_th_c_url_1.doStartTag();
     if (_jspx_th_c_url_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_1);
@@ -640,7 +640,7 @@ public final class setting_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_3 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
     _jspx_th_c_url_3.setPageContext(_jspx_page_context);
     _jspx_th_c_url_3.setParent(null);
-    _jspx_th_c_url_3.setValue("/resources/css/baguajie-base.css");
+    _jspx_th_c_url_3.setValue("/resources/css/zaizheli-base.css");
     int _jspx_eval_c_url_3 = _jspx_th_c_url_3.doStartTag();
     if (_jspx_th_c_url_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_3);
@@ -748,7 +748,7 @@ public final class setting_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_9 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
     _jspx_th_c_url_9.setPageContext(_jspx_page_context);
     _jspx_th_c_url_9.setParent(null);
-    _jspx_th_c_url_9.setValue("/resources/js/baguajie.init.js");
+    _jspx_th_c_url_9.setValue("/resources/js/zaizheli.init.js");
     int _jspx_eval_c_url_9 = _jspx_th_c_url_9.doStartTag();
     if (_jspx_th_c_url_9.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_9);
@@ -766,7 +766,7 @@ public final class setting_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_10 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
     _jspx_th_c_url_10.setPageContext(_jspx_page_context);
     _jspx_th_c_url_10.setParent(null);
-    _jspx_th_c_url_10.setValue("/resources/js/baguajie.op.js");
+    _jspx_th_c_url_10.setValue("/resources/js/zaizheli.op.js");
     int _jspx_eval_c_url_10 = _jspx_th_c_url_10.doStartTag();
     if (_jspx_th_c_url_10.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_10);
@@ -859,7 +859,7 @@ public final class setting_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("\t\t    \t\t<div class=\"control-group\" style=\"margin-bottom: 30px;\">\r\n");
           out.write("\t\t    \t\t\t<label class=\"control-label fs-15 lh-20 c-888\" for=\"summary\">我要说</label>\r\n");
           out.write("\t\t    \t\t\t<div class=\"controls fs-16 lh-18\">\r\n");
-          out.write("\t\t\t\t\t\t\t<textarea id=\"summary\" class=\"input-xlarge\" type=\"text\" name=\"summary\" rows=\"3\" >");
+          out.write("\t\t\t\t\t\t\t<textarea id=\"summary\" class=\"input-xlarge validate[maxSize[40]]\" type=\"text\" name=\"summary\" rows=\"3\" >");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${signInUser.summary}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</textarea>\r\n");
           out.write("\t\t\t\t\t\t</div>\r\n");

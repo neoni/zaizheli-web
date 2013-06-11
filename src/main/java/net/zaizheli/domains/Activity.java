@@ -1,18 +1,20 @@
 package net.zaizheli.domains;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
-import net.zaizheli.constants.ActivityStatus;
-import net.zaizheli.constants.ActivityType;
-import net.zaizheli.constants.ByType;
+import net.zaizheli.vo.ActivityCreationVo;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -23,58 +25,122 @@ public class Activity implements Serializable {
 	@Id
 	private String id;
 	@NotNull
-	private ActivityType type;
+	private String type;
+	@DBRef
+	@Indexed
+	private Place place;
+	@GeoSpatialIndexed
+	private Double[] lngLat;
 	@NotNull
-	private ByType by;
+	private String city;
 	@NotNull
-	private String createdBy;
+	private Date createdAt;
+	@NotNull
+	@Indexed
+	private User createdBy;
+	private Date updatedAt;
+	@Indexed
 	@NotNull
 	private Date startedAt;
+	@Indexed
 	@NotNull
 	private Date endedAt;
-	@DBRef
+	private String addr;
+	private int fee;
+	private int apply;
+	private String title;
+	private String content;	
+	//图片		
 	@NotNull
-	private Address address;
-	
-	private String topic;
-	private String content;
-	
-	//图片和视频
-	
-	
-	
-	private ActivityStatus status;
+	@DBRef
+	private Resource image;
+	@NotNull
+	private String status;
 	
 	@NotNull
 	private int maxNum;
-	private int num;           //当前参与人数
-	private int commentNum;
-	private int shareNum;
-	private int agreeNum;
-	private int disagreeNum;
+	private int currentNum;           //当前参与人数
+	private int commentCount;
+	private int shareCount;
+	private int agreeCount;
+	private int disagreeCount;
 	
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public Place getPlace() {
+		return place;
+	}
+	public void setPlace(Place place) {
+		this.place = place;
+	}
+	public Double[] getLngLat() {
+		return lngLat;
+	}
+	public void setLngLat(Double[] lngLat) {
+		this.lngLat = lngLat;
+	}
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+	public int getFee() {
+		return fee;
+	}
+	public void setFee(int fee) {
+		this.fee = fee;
+	}
+	public int getApply() {
+		return apply;
+	}
+	public void setApply(int apply) {
+		this.apply = apply;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public Resource getImage() {
+		return image;
+	}
+	public void setImage(Resource image) {
+		this.image = image;
+	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public ActivityType getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(ActivityType type) {
+	public void setType(String type) {
 		this.type = type;
 	}
-	public ByType getBy() {
-		return by;
-	}
-	public void setBy(ByType by) {
-		this.by = by;
-	}
-	public String getCreatedBy() {
+	public User getCreatedBy() {
 		return createdBy;
 	}
-	public void setCreatedBy(String createdBy) {
+	public void setCreatedBy(User createdBy) {
 		this.createdBy = createdBy;
 	}
 	public Date getStartedAt() {
@@ -89,28 +155,16 @@ public class Activity implements Serializable {
 	public void setEndedAt(Date endedAt) {
 		this.endedAt = endedAt;
 	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	public String getTopic() {
-		return topic;
-	}
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public ActivityStatus getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(ActivityStatus status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	public int getMaxNum() {
@@ -119,35 +173,35 @@ public class Activity implements Serializable {
 	public void setMaxNum(int maxNum) {
 		this.maxNum = maxNum;
 	}
-	public int getNum() {
-		return num;
+	public int getCurrentNum() {
+		return currentNum;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setCurrentNum(int currentNum) {
+		this.currentNum = currentNum;
 	}
-	public int getCommentNum() {
-		return commentNum;
+	public int getCommentCount() {
+		return commentCount;
 	}
-	public void setCommentNum(int commentNum) {
-		this.commentNum = commentNum;
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
 	}
-	public int getShareNum() {
-		return shareNum;
+	public int getShareCount() {
+		return shareCount;
 	}
-	public void setShareNum(int shareNum) {
-		this.shareNum = shareNum;
+	public void setShareCount(int shareCount) {
+		this.shareCount = shareCount;
 	}
-	public int getAgreeNum() {
-		return agreeNum;
+	public int getAgreeCount() {
+		return agreeCount;
 	}
-	public void setAgreeNum(int agreeNum) {
-		this.agreeNum = agreeNum;
+	public void setAgreeCount(int agreeCount) {
+		this.agreeCount = agreeCount;
 	}
-	public int getDisagreeNum() {
-		return disagreeNum;
+	public int getDisagreeCount() {
+		return disagreeCount;
 	}
-	public void setDisagreeNum(int disagreeNum) {
-		this.disagreeNum = disagreeNum;
+	public void setDisagreeCount(int disagreeCount) {
+		this.disagreeCount = disagreeCount;
 	}
 	
 	@Override
@@ -174,5 +228,29 @@ public class Activity implements Serializable {
 				.append(type)
 				.append(content)
 				.toString();
+	}
+	
+	public static Activity from(ActivityCreationVo vo, User signInUser) throws ParseException {
+		if(vo==null || signInUser==null) return null;
+		Activity activity=new Activity();
+		activity.setCreatedBy(signInUser);
+		activity.setCurrentNum(1);
+		activity.setMaxNum(vo.getNum());
+		activity.setAddr(vo.getAddr());
+		activity.setApply(vo.getApply());
+		activity.setContent(vo.getEditor1());
+		activity.setCreatedAt(new Date());
+		activity.setFee(vo.getFee());
+		activity.setStatus(vo.getStatus());
+		activity.setTitle(vo.getTitle());
+		activity.setUpdatedAt(activity.getCreatedAt());
+		activity.setType(vo.getType());
+		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		String start=vo.getStartDate()+" "+vo.getStartTime();
+		activity.setStartedAt(format.parse(start));
+		String end=vo.getEndDate()+" "+vo.getEndTime();
+		activity.setEndedAt(format.parse(end));
+		return activity;		
+	
 	}
 }

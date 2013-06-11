@@ -10,7 +10,7 @@ public interface ApplicationConstants {
 	static final String HEADER_CITY = "city";
 	static final String HEADER_BY = "by";
 	
-/*	static final String NATION = "nation";
+	static final String NATION = "nation";
 	static final String PROVINCE = "province";
 	static final String CITY = "city";
 	static final String DISTRICT = "district";
@@ -32,5 +32,5 @@ public interface ApplicationConstants {
 	static final int ACTIVITY_DISABLED = 1;
 	static final int COMMENT_NORMAL = 0;
 	static final int COMMENT_DISABLED = 1;
-*/
+
 }

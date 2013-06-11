@@ -11,16 +11,16 @@
 	<title>${signInUser.name} 设置账号 在浙里——分享你我的社交</title>
 	
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-responsive.css" />" />	
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/baguajie-theme.css" />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/baguajie-base.css" />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/validationEngine.bootstrap.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery.Jcrop.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-formhelpers.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery.fileupload-ui.css" />" />
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.1.7.1.js" />" ></script>
-	<script type="text/javascript" src="<c:url value="/resources/js/baguajie.init.js" />" ></script>
-	<script type="text/javascript" src="<c:url value="/resources/js/baguajie.op.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.init.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.op.js" />" ></script>
 </head>
 <body class="front">
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
@@ -87,7 +87,7 @@
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-20 c-888" for="summary">我要说</label>
 		    			<div class="controls fs-16 lh-18">
-							<textarea id="summary" class="input-xlarge" type="text" name="summary" rows="3" >${signInUser.summary}</textarea>
+							<textarea id="summary" class="input-xlarge validate[maxSize[40]]" type="text" name="summary" rows="3" >${signInUser.summary}</textarea>
 						</div>
 		    		</div>
 		    		<div class="form-actions" style="margin-bottom: 0px;">

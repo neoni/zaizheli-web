@@ -29,8 +29,8 @@ public class Comment implements Serializable {
 	private User commenter;
 	@NotNull
 	private Date createdAt;
-	private int agreeNum;
-	private int disagreeNum;
+	private int agreeCount;
+	private int disagreeCount;
 
 	public String getId() {
 		return id;
@@ -62,17 +62,17 @@ public class Comment implements Serializable {
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	public int getAgreeNum() {
-		return agreeNum;
+	public int getAgreeCount() {
+		return agreeCount;
 	}
-	public void setAgreeNum(int agreeNum) {
-		this.agreeNum = agreeNum;
+	public void setAgreeCount(int agreeCount) {
+		this.agreeCount = agreeCount;
 	}
-	public int getDisagreeNum() {
-		return disagreeNum;
+	public int getDisagreeCount() {
+		return disagreeCount;
 	}
-	public void setDisagreeNum(int disagreeNum) {
-		this.disagreeNum = disagreeNum;
+	public void setDisagreeCount(int disagreeCount) {
+		this.disagreeCount = disagreeCount;
 	}
 	
 	@Override

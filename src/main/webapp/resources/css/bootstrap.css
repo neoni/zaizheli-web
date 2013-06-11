@@ -2693,9 +2693,9 @@ input[type="submit"].btn.btn-mini {
 }
 .nav-tabs > li > a,
 .nav-pills > li > a {
-  padding-right: 12px;
-  padding-left: 12px;
-  margin-right: 2px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: 6px;
   line-height: 14px;
 }
 .nav-tabs {
@@ -2864,20 +2864,18 @@ input[type="submit"].btn.btn-mini {
   border-bottom-color: transparent;
   border-top-color: #ddd;
 }
-.tabs-below > .nav-tabs > .active > a,
-.tabs-below > .nav-tabs > .active > a:hover {
+.tabs-below .nav-tabs .active > a, .tabs-below .nav-tabs .active > a:hover {
   border-color: transparent #ddd #ddd #ddd;
 }
-.tabs-left > .nav-tabs > li,
-.tabs-right > .nav-tabs > li {
+.tabs-left .nav-tabs > li, .tabs-right .nav-tabs > li {
   float: none;
 }
-.tabs-left > .nav-tabs > li > a,
-.tabs-right > .nav-tabs > li > a {
+.tabs-left .nav-tabs > li > a, .tabs-right .nav-tabs > li > a {
   min-width: 74px;
   margin-right: 0;
   margin-bottom: 3px;
 }
+
 .tabs-left > .nav-tabs {
   float: left;
   margin-right: 19px;
@@ -3129,9 +3127,9 @@ input[type="submit"].btn.btn-mini {
 }
 .navbar .nav .active > a,
 .navbar .nav .active > a:hover {
-  color: #4183c4;
+  color: #F9F9FE;
   text-decoration: none;
-  background-color: transparent;
+ /* background-color: transparent;*/
 }
 .navbar .divider-vertical {
   height: 40px;
@@ -4162,7 +4160,7 @@ a.badge:hover {
 .navbar .nav > li.dropdown.active > .dropdown-toggle,
 .navbar .nav > li.dropdown.open > .dropdown-toggle,
 .navbar .nav > li.dropdown.open.active > .dropdown-toggle {
-  color: #333333;
+  /*color: #333333;*/
 }
 .navbar .nav > li.active > a:hover,
 .navbar .nav > li.dropdown > .dropdown-toggle:hover,
@@ -4184,7 +4182,7 @@ a.badge:hover {
   line-height: 38px;
 }
 .navbar .nav > li > a {
-  padding: 11px 10px 9px;
+  padding: 11px 10px 15px;
   font-weight: bold;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }

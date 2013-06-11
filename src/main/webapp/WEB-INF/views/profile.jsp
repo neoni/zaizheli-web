@@ -1,46 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://zaizheli.net/functions" prefix="f" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>八哥八姐 八卦街 有图有真相</title>
+	<title>${user.name} 在浙里——分享你我的社交</title>
+	
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/baguajie-base.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/baguajie-theme.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery.pnotify.default.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery-ui-1.8.18.custom.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery.pnotify.baguajie.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/validationEngine.bootstrap.css" />" />
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.1.7.1.js" />" ></script>
-	<script type="text/javascript" src="<c:url value="/resources/js/baguajie.init.js" />" ></script>
-	<script type="text/javascript" src="<c:url value="/resources/js/baguajie.op.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.init.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.op.js" />" ></script>
 </head>
 <body class="front">
-	<jsp:include page="/WEB-INF/views/comp/header.jsp">
-		<jsp:param name="tab" value="profiles"/>
-	</jsp:include>
-	<jsp:include page="/WEB-INF/views/comp/side.nav.jsp" />
+	<c:choose>
+		<c:when test="${signInUser.id == user.id}">
+			<jsp:include page="/WEB-INF/views/comp/header.jsp">
+				<jsp:param name="tab" value="profile"/>
+			</jsp:include>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/WEB-INF/views/comp/header.jsp">
+				<jsp:param name="tab" value="none"/>
+			</jsp:include>
+		</c:otherwise>
+	</c:choose>
 	<jsp:include page="/WEB-INF/views/comp/back.top.jsp" />
-	<div id="water-fall-wrapper" class="main-wrapper">
-		<jsp:include page="/WEB-INF/views/comp/user.filter.bar.jsp" >
-			<jsp:param name="filters" value="${filters}"/>
-		</jsp:include>
-		<div id="water-fall" class="content-wrapper">
-			<c:import url="/profiles/search?${qStr}no=0"></c:import>
+	<div class="main-wrapper mt-20 mb-30">
+		<div class="main block-h-c content-wrapper row-fluid p-r">
+			<div class="span8 board">
+				<div class="pl-30 pr-30 pt-20">
+				    <ul id="profile-nav-tabs" class="nav nav-tabs fs-14" 
+				    	style="margin-left: -30px; margin-right: -30px;  margin-bottom:0px">				  
+				    		<li class="activity <c:if test="${view eq 'activity'}">active</c:if>"  style="margin-left:30px">
+				   				<a href="<c:url value="/profiles/${user.id}/activity"/>">活动( ${user.activityCount} )</a></li>
+				   			<li class="circle <c:if test="${view eq 'circle'}">active</c:if>">
+				    			<a href="<c:url value="/profiles/${user.id}/circle"/>">圈子( ${user.circleCount} )</a></li>
+				    		<li class="share <c:if test="${view eq 'share'}">active</c:if>">
+				    			<a href="<c:url value="/profiles/${user.id}/share"/>">转发( ${user.shareCount} )</a></li>
+				    		<li class="follow <c:if test="${view eq 'follow'}">active</c:if>">
+				    			<a href="<c:url value="/profiles/${user.id}/follow"/>">关注( ${user.followCount} )</a></li>
+				    		<li class="fans <c:if test="${view eq 'fans'}">active</c:if>">
+				    			<a href="<c:url value="/profiles/${user.id}/fans"/>">粉丝( ${user.fansCount} )</a></li>
+				    </ul>
+			    </div>
+			  	
+			</div>
+			<div class="span4">
+				<c:choose>
+				<c:when test="${signInUser.id == user.id}">
+					<c:import url="/profiles/${user.id}/private"></c:import>
+				</c:when>
+				<c:otherwise>
+					<c:import url="/profiles/${user.id}/public"></c:import>
+				</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
-		<script type="text/javascript">
-			adjustWebWidth();
-		</script>
 	</div>
-	<div id="page-nav">
-		<a href="<c:url value="/profiles/search?${qStr}no=0" />"></a>
-	</div>
+	<script type="text/javascript">
+		adjustWebWidth();
+	</script>
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrapx-popoverx.js" />" ></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery.timeago.js" />" ></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.8.18.custom.min.js" />" ></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery.scrollTo.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.form.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.pnotify.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.imagesloaded.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.masonry.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.infinitescroll.js" />" ></script>
@@ -48,12 +79,13 @@
 <script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" />"></script>
 <script type="text/javascript">
 	$(function(){
-		
+		$(".timeago").timeago();
 		$('.pin').each(function(){
 			op.pin_bind_event($(this));
 		});
+
 		var $wf = $('#water-fall');
-		
+			
 		$wf.masonry({
 			itemSelector : '.pin',
 		    columnWidth : 222,
@@ -62,9 +94,9 @@
 		    animationOptions: {
 		    	queue: false
 		    },
-		    isFitWidth: false
+		    isFitWidth: true
 		});
-		
+			
 		$wf.infinitescroll(
 			{
 				navSelector  : '#page-nav', // selector for the paged navigation
@@ -88,7 +120,7 @@
 					currPage: 0
 				},
 				pathParse: function() {
-			        return ['<c:url value="/profiles/search?${qStr}no=" />',''];
+			        return ['<c:url value="/profiles/${user.id}/${view}s/" />', ''];
 			    }
 			},
 			// trigger Masonry as a callback
@@ -98,6 +130,7 @@
 				$newElems.each(function(){
 					op.pin_bind_event($(this));
 				});
+				$newElems.find(".timeago").timeago();
 				// ensure that images load before adding to masonry layout
 				//$newElems.imagesLoaded(function(){
 					// show elems now they're ready

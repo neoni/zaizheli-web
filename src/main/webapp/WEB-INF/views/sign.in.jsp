@@ -9,8 +9,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>登录 在浙里——分享你我的社交</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/baguajie-theme.css" />" />
-	<link rel="stylesheet" type="text/css" href="/resources/css/baguajie-base.css" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/zaizheli-base.css" />
 </head>
 <body>
 	<div class="container">

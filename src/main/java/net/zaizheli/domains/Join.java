@@ -24,7 +24,15 @@ public class Join implements Serializable {
 	@NotNull
 	private User joiner;
 	private Date createdAt;
+	@NotNull
+	private int status;
 	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public String getId() {
 		return id;
 	}

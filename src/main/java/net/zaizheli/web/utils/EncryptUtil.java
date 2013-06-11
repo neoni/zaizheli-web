@@ -1,7 +1,6 @@
 package net.zaizheli.web.utils;
 
 
-import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Component;
 
