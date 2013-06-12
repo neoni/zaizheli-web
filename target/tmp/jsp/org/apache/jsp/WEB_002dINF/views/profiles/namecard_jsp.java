@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class private_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class namecard_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
 static private org.apache.jasper.runtime.ProtectedFunctionMapper _jspx_fnmap_0;
@@ -74,20 +74,20 @@ static {
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("<div class=\"p-15 board mb-20\">\r\n");
-      out.write("\t<div class=\"row-fluid\">\r\n");
+      out.write("<div class=\"board\" style=\"height:170px\">\r\n");
+      out.write("\t<div class=\"pl-5 pt-5 pr-5 pb-5 row-fluid\" style=\"height:90px\">\r\n");
       out.write("\t\t<a class=\"img f-l mr-10\" href=\"");
       if (_jspx_meth_c_url_0(_jspx_page_context))
         return;
       out.write("\" >\r\n");
-      out.write("\t\t\t<img width=100 height=100 src=\"");
+      out.write("\t\t\t<img width=60 height=60 src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${f:avatarUrl(user.avatar, user.gender)}", java.lang.String.class, (PageContext)_jspx_page_context, _jspx_fnmap_0));
       out.write("\" /></a>\r\n");
       out.write("\t\t<div class=\"f-l\">\r\n");
-      out.write("\t\t\t<h2 class=\"mb-7\">&nbsp;&nbsp;&nbsp;");
+      out.write("\t\t\t<h3 class=\"mb-7\">");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</h2>\r\n");
-      out.write("\t\t\t<p class=\"fs-14 c-888\">\r\n");
+      out.write("</h3>\r\n");
+      out.write("\t\t\t<p class=\"fs-14 lh-25 c-888\">\r\n");
       out.write("\t\t\t\t<a href=\"");
       if (_jspx_meth_c_url_1(_jspx_page_context))
         return;
@@ -101,7 +101,7 @@ static {
       out.write("\">\r\n");
       out.write("\t\t\t\t\t<span class=\"fw-b fs-20\">");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.followCount}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</span></a>&nbsp;个关注,&nbsp;&nbsp; \r\n");
+      out.write("</span></a>&nbsp;个关注,&nbsp;&nbsp;\r\n");
       out.write("\t\t\t\t<a href=\"");
       if (_jspx_meth_c_url_3(_jspx_page_context))
         return;
@@ -110,7 +110,7 @@ static {
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.fansCount}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</span></a>&nbsp;个粉丝\r\n");
       out.write("\t\t\t</p>\r\n");
-      out.write("\t\t\t<p class=\"fs-14 c-888\">\r\n");
+      out.write("\t\t\t<p class=\"fs-14 lh-20 c-888\">\r\n");
       out.write("\t\t\t\t");
       if (_jspx_meth_c_if_0(_jspx_page_context))
         return;
@@ -122,13 +122,27 @@ static {
       out.write("\t\t\t</p>\r\n");
       out.write("\t\t</div>\r\n");
       out.write("\t</div>\r\n");
-      out.write("\t<br>\r\n");
-      out.write("\t<p class=\"fs-14 c-888\">\r\n");
-      out.write("\t\t");
+      out.write("\t\t\t<p class=\"fs-14 lh-20 c-888\" style=\"margin-left:20px\">\r\n");
+      out.write("\t\t\t\t");
       if (_jspx_meth_c_choose_0(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("\t</p>\r\n");
+      out.write("\t\t\t</p>\r\n");
+      out.write("\t\t\r\n");
+      out.write("\t\r\n");
+      out.write("\t<div class=\"pb-5 pt-5 row-fluid bgc-gray\" >\r\n");
+      out.write("\t\t<div class=\"f-l\" style=\"margin-left:80px\">\r\n");
+      out.write("\t\t\t<p><a class=\"btn btn-success follow\" href=\"");
+      if (_jspx_meth_c_url_4(_jspx_page_context))
+        return;
+      out.write("\" \r\n");
+      out.write("\t\t\t\t\tonclick=\"op.change_follow(event.currentTarget); event.preventDefault();\" data-idr=\"#fans-idr\">\r\n");
+      out.write("\t\t\t\t\t<i class=\"icon-eye-open icon-white\"></i>&nbsp;<span>关注Ta</span></a>\r\n");
+      out.write("\t\t\t\t<a class=\"btn\" href=\"#\">\r\n");
+      out.write("\t\t\t\t\t<i class=\"icon-envelope\"></i>&nbsp;私信Ta</a>\r\n");
+      out.write("\t\t\t</p>\r\n");
+      out.write("\t\t</div>\r\n");
+      out.write("\t</div>\r\n");
       out.write("</div>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
@@ -230,7 +244,7 @@ static {
         out.write("\r\n");
         out.write("\t\t\t\t\t城市: <span class=\"c-333\">");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.city}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("</span>,&nbsp;\r\n");
+        out.write("</span>&nbsp;\r\n");
         out.write("\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -287,15 +301,15 @@ static {
     if (_jspx_eval_c_choose_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t");
+        out.write("\t\t\t\t\t");
         if (_jspx_meth_c_when_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context))
           return true;
         out.write("\r\n");
-        out.write("\t\t");
+        out.write("\t\t\t\t\t");
         if (_jspx_meth_c_otherwise_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context))
           return true;
         out.write("\r\n");
-        out.write("\t\t");
+        out.write("\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_choose_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -322,10 +336,10 @@ static {
     if (_jspx_eval_c_when_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t");
+        out.write("\t\t\t\t\t\t");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${user.summary}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\r\n");
-        out.write("\t\t");
+        out.write("\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_when_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -351,8 +365,8 @@ static {
     if (_jspx_eval_c_otherwise_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t 我很懒 什么也不想留下\r\n");
-        out.write("\t\t");
+        out.write("\t\t\t\t\t\t 这家伙很懒 什么都没留下\r\n");
+        out.write("\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_otherwise_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -363,6 +377,24 @@ static {
       return true;
     }
     _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_url_4(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:url
+    org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_4 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
+    _jspx_th_c_url_4.setPageContext(_jspx_page_context);
+    _jspx_th_c_url_4.setParent(null);
+    _jspx_th_c_url_4.setValue((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("/ops/follow/${user.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_url_4 = _jspx_th_c_url_4.doStartTag();
+    if (_jspx_th_c_url_4.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_4);
+      return true;
+    }
+    _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_4);
     return false;
   }
 }

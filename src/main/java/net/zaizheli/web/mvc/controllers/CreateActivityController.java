@@ -1,18 +1,22 @@
 package net.zaizheli.web.mvc.controllers;
 
 import java.text.ParseException;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import net.zaizheli.constants.ActionType;
 import net.zaizheli.constants.AjaxResultCode;
 import net.zaizheli.constants.ApplicationConfig;
+import net.zaizheli.domains.Action;
 import net.zaizheli.domains.Activity;
 import net.zaizheli.domains.CityMeta;
 import net.zaizheli.domains.Join;
 import net.zaizheli.domains.Place;
 import net.zaizheli.domains.Resource;
 import net.zaizheli.domains.User;
+import net.zaizheli.repositories.ActionRepository;
 import net.zaizheli.repositories.ActivityRepository;
 import net.zaizheli.repositories.CityMetaRepository;
 import net.zaizheli.repositories.JoinRepository;
@@ -45,8 +49,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class CreateActivityController {
 	
 	
-//	@Autowired
-//	SpotRepository spotRepository;
+	@Autowired
+	ActionRepository actionRepository;
 	@Autowired
 	CityMetaRepository cityMetaRepository;
 	@Autowired
@@ -153,6 +157,7 @@ public class CreateActivityController {
 		activity = activityRepository.save(activity);
 		// increase activity count
 		signInUser.setActivityCount(signInUser.getActivityCount()+1);
+		signInUser.setActivityCreationCount(signInUser.getActivityCreationCount()+1);
 		userRepository.save(signInUser);
 		Join join= new Join();
 		join.setActivity(activity);
@@ -160,15 +165,14 @@ public class CreateActivityController {
 		join.setCreatedAt(activity.getCreatedAt());
 		join.setStatus(1);
 		joinRepository.save(join);
-		
-//		// save activity
-//		Activity activity = new Activity();
-//		activity.setOwner(signInUser.getId());
-//		activity.setCreatedAt(new Date());
-//		activity.setTargetSpot(spot.getId());
-//		activity.setType(ActivityType.SPOT);
-//		activity.setBy(sessionUtil.getBy(session));
-//		activityRepository.save(activity);
+		// save action
+		Action action = new Action();
+		action.setOwner(signInUser.getId());
+		action.setCreatedAt(new Date());
+		action.setTargetSpot(activity.getId());
+		action.setType(ActionType.ACTIVITY);
+		action.setBy(sessionUtil.getBy(session));
+		actionRepository.save(action);
 		
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}

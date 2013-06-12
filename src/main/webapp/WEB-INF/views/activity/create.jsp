@@ -8,13 +8,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>我在浙里 在浙里——分享你我的社交</title>
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />	
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
+	
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/uploadify.css" />" />
 	<link rel="stylesheet" href="<c:url value="/resources/css/style_v.css" />" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/validationEngine.bootstrap.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-formhelpers.css" />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.1.7.1.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.timelinr-0.9.53.js" />"></script>
 	<script src="/ckeditor/ckeditor.js"></script>
@@ -92,7 +93,7 @@
 							<div class="control-group " >
 								<label class="control-label fs-15 lh-20 c-ffc" for="startDate">* 活动开始时间</label>
 								<div>
-									<div class="bfh-datepicker controls fs-16 lh-18" data-format="y-m-d" data-date="2013-01-01" style="float:left">
+									<div class="bfh-datepicker controls fs-16 lh-18" data-format="y-m-d" style="float:left">
 										<div class="input-prepend bfh-datepicker-toggle" data-toggle="bfh-datepicker" >
 											<span class="add-on">
 												<i class="icon-calendar"></i>
@@ -162,7 +163,7 @@
 							<div class="control-group mt-20" >
 								<label class="control-label fs-15 lh-20 c-ffc" for="endDate">* 活动结束时间</label>
 								<div>
-									<div class="bfh-datepicker controls fs-16 lh-18" data-format="y-m-d" data-date="2013-01-01" style="float:left">
+									<div class="bfh-datepicker controls fs-16 lh-18" data-format="y-m-d" style="float:left">
 										<div class="input-prepend bfh-datepicker-toggle" data-toggle="bfh-datepicker" >
 											<span class="add-on">
 												<i class="icon-calendar"></i>
@@ -233,8 +234,7 @@
 									<div class="input-prepend">
 										<span class="add-on"> <i class="icon-tint"></i>
 										</span>
-										<input id="num" class="validate[required,custom[integer],min[1]] input-xlarge" type="text" name="num" 
-              									value=1 data-prompt-position="centerRight:0,-4"  />
+										<input id="num" class="validate[required,custom[integer],min[1],max[65000]] input-xlarge" type="text" name="num" value=1 data-prompt-position="centerRight:0,-4"  />
 									</div>
 								</div>
 							</div>
@@ -307,7 +307,7 @@
 				<li id="创建活动的主页面吧" >
 					<div class="row-fluid">
 						<textarea id="editor1" name="editor1" value="${activityCreationVo.editor1}"
-						data-prompt-position="centerRight:0,-4" ></textarea>
+						data-prompt-position="centerRight:0,-4" type="text" placeholder="页面完成后回车表示输入完成"></textarea>
 						<div><form:errors path="editor1" cssClass="alert alert-error"/></div>
 						
 					</div>
@@ -315,7 +315,8 @@
 					<br>
 					<div style="float:right">
 						    
-							<button  type="submit" class=" btn btn-primary btn-large" >提交该活动</button>
+							<button  id="submit-btn" type="submit" class=" btn btn-primary btn-large" data-loading-text="创建中..." >
+								提交该活动</button>
 						
 						<a id="return-btn" class="btn btn-success btn-large ml-10" href="<c:url value="/" />">返回主页</a>
 					</div>	
@@ -359,19 +360,23 @@
 				ajaxFormValidationMethod: 'post',
 				ajaxFormValidationURL: '<c:url value="/activities/create/validate" />',
 				onBeforeAjaxFormValidation: function(form, options){
+					$(form).find('button #submit-btn').button('loading');
 				},
 				onAjaxFormComplete: function(status, form, errors, options){
+					$('#createactivity-form button #submit-btn').button('reset');
 					if(status == true){
 						form.validationEngine('detach');
 						form.ajaxSubmit({
 					        dataType:  'json', 
-					        beforeSubmit: function(formData, jqForm, options){					 
+					        beforeSubmit: function(formData, jqForm, options){
+					        	$('#createactivity-form button #submit-btn').button('loading');					 
 					        },
 					        success:  function(data){
 					        	if(!data || data.resultCode != 'SUCCESS' ) return;				      
 					        	window.location.href = $('#return-btn').attr('href');
 					        },
 					        complete: function(jqXHR, textStatus){	
+					        	$('#createactivity-form button #submit-btn').button('reset');
 					        	attachValidationForForm();			          	
 				          	}
 					    });

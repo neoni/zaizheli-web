@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 
 
-import net.zaizheli.constants.ActivityType;
+import net.zaizheli.constants.ActionType;
 import net.zaizheli.constants.ByType;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -22,7 +22,7 @@ public class Action implements Serializable {
 	@Id
 	private String id;
 	@NotNull
-	private ActivityType type;
+	private ActionType type;
 	@NotNull
 	private ByType by;
 	private String content;
@@ -42,10 +42,10 @@ public class Action implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public ActivityType getType() {
+	public ActionType getType() {
 		return type;
 	}
-	public void setType(ActivityType type) {
+	public void setType(ActionType type) {
 		this.type = type;
 	}
 	public ByType getBy() {

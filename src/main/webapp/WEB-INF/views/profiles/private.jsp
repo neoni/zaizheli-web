@@ -8,7 +8,7 @@
 		<div class="f-l">
 			<h2 class="mb-7">&nbsp;&nbsp;&nbsp;${user.name}</h2>
 			<p class="fs-14 c-888">
-				<a href="<c:url value="/profiles/${user.id}/spot" />">
+				<a href="<c:url value="/profiles/${user.id}/activity" />">
 					<span class="fw-b fs-20">${user.activityCount}</span></a>&nbsp;个活动,&nbsp;&nbsp;
 				<a href="<c:url value="/profiles/${user.id}/follow" />">
 					<span class="fw-b fs-20">${user.followCount}</span></a>&nbsp;个关注,&nbsp;&nbsp; 

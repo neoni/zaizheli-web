@@ -34,7 +34,7 @@ public class ViewProfileController {
 			return "redirect:/signin";
 		}
 		model.addAttribute("user", user);
-		return view(id, "activity", model, request, session);
+		return view(id, "c_activity", model, request, session);
 	}
 	
 	@RequestMapping(value="/{id}/{view}", method=RequestMethod.GET)
@@ -46,11 +46,11 @@ public class ViewProfileController {
 			return "redirect:/signin";
 		}
 		model.addAttribute("user", signInuser);
-		String[] validViews = new String[]{"activity", "circle", "share", "follow", "fans"};
+		String[] validViews = new String[]{"c_activity","activity", "circle", "share", "follow", "fans"};
 		if(!ArrayUtils.contains(validViews, view)){
 			return "redirect:/profiles/"+id;
 		}
-		if(ArrayUtils.indexOf(validViews, view) > 2){
+		if(ArrayUtils.indexOf(validViews, view) > 3){
 			model.addAttribute("viewUser", true);
 		}
 		User user = userRepository.findOne(id);

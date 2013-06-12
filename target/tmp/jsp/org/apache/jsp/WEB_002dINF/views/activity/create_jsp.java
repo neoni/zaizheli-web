@@ -189,7 +189,7 @@ public final class create_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t\t<div class=\"control-group \" >\r\n");
       out.write("\t\t\t\t\t\t\t\t<label class=\"control-label fs-15 lh-20 c-ffc\" for=\"startDate\">* 活动开始时间</label>\r\n");
       out.write("\t\t\t\t\t\t\t\t<div>\r\n");
-      out.write("\t\t\t\t\t\t\t\t\t<div class=\"bfh-datepicker controls fs-16 lh-18\" data-format=\"y-m-d\" data-date=\"2013-01-01\" style=\"float:left\">\r\n");
+      out.write("\t\t\t\t\t\t\t\t\t<div class=\"bfh-datepicker controls fs-16 lh-18\" data-format=\"y-m-d\" style=\"float:left\">\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t<div class=\"input-prepend bfh-datepicker-toggle\" data-toggle=\"bfh-datepicker\" >\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t\t<span class=\"add-on\">\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon-calendar\"></i>\r\n");
@@ -263,7 +263,7 @@ public final class create_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t\t<div class=\"control-group mt-20\" >\r\n");
       out.write("\t\t\t\t\t\t\t\t<label class=\"control-label fs-15 lh-20 c-ffc\" for=\"endDate\">* 活动结束时间</label>\r\n");
       out.write("\t\t\t\t\t\t\t\t<div>\r\n");
-      out.write("\t\t\t\t\t\t\t\t\t<div class=\"bfh-datepicker controls fs-16 lh-18\" data-format=\"y-m-d\" data-date=\"2013-01-01\" style=\"float:left\">\r\n");
+      out.write("\t\t\t\t\t\t\t\t\t<div class=\"bfh-datepicker controls fs-16 lh-18\" data-format=\"y-m-d\" style=\"float:left\">\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t<div class=\"input-prepend bfh-datepicker-toggle\" data-toggle=\"bfh-datepicker\" >\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t\t<span class=\"add-on\">\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon-calendar\"></i>\r\n");
@@ -338,8 +338,7 @@ public final class create_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t\t\t\t<div class=\"input-prepend\">\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t<span class=\"add-on\"> <i class=\"icon-tint\"></i>\r\n");
       out.write("\t\t\t\t\t\t\t\t\t\t</span>\r\n");
-      out.write("\t\t\t\t\t\t\t\t\t\t<input id=\"num\" class=\"validate[required,custom[integer],min[1]] input-xlarge\" type=\"text\" name=\"num\" \r\n");
-      out.write("              \t\t\t\t\t\t\t\t\tvalue=1 data-prompt-position=\"centerRight:0,-4\"  />\r\n");
+      out.write("\t\t\t\t\t\t\t\t\t\t<input id=\"num\" class=\"validate[required,custom[integer],min[1],max[65000]] input-xlarge\" type=\"text\" name=\"num\" value=1 data-prompt-position=\"centerRight:0,-4\"  />\r\n");
       out.write("\t\t\t\t\t\t\t\t\t</div>\r\n");
       out.write("\t\t\t\t\t\t\t\t</div>\r\n");
       out.write("\t\t\t\t\t\t\t</div>\r\n");
@@ -446,7 +445,7 @@ public final class create_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t<textarea id=\"editor1\" name=\"editor1\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${activityCreationVo.editor1}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\"\r\n");
-      out.write("\t\t\t\t\t\tdata-prompt-position=\"centerRight:0,-4\" ></textarea>\r\n");
+      out.write("\t\t\t\t\t\tdata-prompt-position=\"centerRight:0,-4\" type=\"text\" placeholder=\"页面完成后回车表示输入完成\"></textarea>\r\n");
       out.write("\t\t\t\t\t\t<div>");
       //  form:errors
       org.springframework.web.servlet.tags.form.ErrorsTag _jspx_th_form_errors_1 = (org.springframework.web.servlet.tags.form.ErrorsTag) _jspx_tagPool_form_errors_path_cssClass_nobody.get(org.springframework.web.servlet.tags.form.ErrorsTag.class);
@@ -475,7 +474,8 @@ public final class create_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t<br>\r\n");
       out.write("\t\t\t\t\t<div style=\"float:right\">\r\n");
       out.write("\t\t\t\t\t\t    \r\n");
-      out.write("\t\t\t\t\t\t\t<button  type=\"submit\" class=\" btn btn-primary btn-large\" >提交该活动</button>\r\n");
+      out.write("\t\t\t\t\t\t\t<button  id=\"submit-btn\" type=\"submit\" class=\" btn btn-primary btn-large\" data-loading-text=\"创建中...\" >\r\n");
+      out.write("\t\t\t\t\t\t\t\t提交该活动</button>\r\n");
       out.write("\t\t\t\t\t\t\r\n");
       out.write("\t\t\t\t\t\t<a id=\"return-btn\" class=\"btn btn-success btn-large ml-10\" href=\"");
       if (_jspx_meth_c_url_9(_jspx_page_context))
@@ -549,19 +549,23 @@ public final class create_jsp extends org.apache.jasper.runtime.HttpJspBase
         return;
       out.write("',\r\n");
       out.write("\t\t\t\tonBeforeAjaxFormValidation: function(form, options){\r\n");
+      out.write("\t\t\t\t\t$(form).find('button #submit-btn').button('loading');\r\n");
       out.write("\t\t\t\t},\r\n");
       out.write("\t\t\t\tonAjaxFormComplete: function(status, form, errors, options){\r\n");
+      out.write("\t\t\t\t\t$('#createactivity-form button #submit-btn').button('reset');\r\n");
       out.write("\t\t\t\t\tif(status == true){\r\n");
       out.write("\t\t\t\t\t\tform.validationEngine('detach');\r\n");
       out.write("\t\t\t\t\t\tform.ajaxSubmit({\r\n");
       out.write("\t\t\t\t\t        dataType:  'json', \r\n");
-      out.write("\t\t\t\t\t        beforeSubmit: function(formData, jqForm, options){\t\t\t\t\t \r\n");
+      out.write("\t\t\t\t\t        beforeSubmit: function(formData, jqForm, options){\r\n");
+      out.write("\t\t\t\t\t        \t$('#createactivity-form button #submit-btn').button('loading');\t\t\t\t\t \r\n");
       out.write("\t\t\t\t\t        },\r\n");
       out.write("\t\t\t\t\t        success:  function(data){\r\n");
       out.write("\t\t\t\t\t        \tif(!data || data.resultCode != 'SUCCESS' ) return;\t\t\t\t      \r\n");
       out.write("\t\t\t\t\t        \twindow.location.href = $('#return-btn').attr('href');\r\n");
       out.write("\t\t\t\t\t        },\r\n");
       out.write("\t\t\t\t\t        complete: function(jqXHR, textStatus){\t\r\n");
+      out.write("\t\t\t\t\t        \t$('#createactivity-form button #submit-btn').button('reset');\r\n");
       out.write("\t\t\t\t\t        \tattachValidationForForm();\t\t\t          \t\r\n");
       out.write("\t\t\t\t          \t}\r\n");
       out.write("\t\t\t\t\t    });\r\n");

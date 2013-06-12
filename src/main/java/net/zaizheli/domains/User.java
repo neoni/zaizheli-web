@@ -56,12 +56,19 @@ public class User implements Serializable {
 	private int circleCount;
 	private int commentCount;	
 	private int activityCount;	
+	private int trackCount;
+	private int activityCreationCount;
 	
-	//待拓展
 	private String city;
 	private String address;
 	private String school;	
 	
+	public int getTrackCount() {
+		return trackCount;
+	}
+	public void setTrackCount(int trackCount) {
+		this.trackCount = trackCount;
+	}
 	public UserStatus getStatus() {
 		return status;
 	}
@@ -206,6 +213,12 @@ public class User implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public int getActivityCreationCount() {
+		return activityCreationCount;
+	}
+	public void setActivityCreationCount(int activityCreationCount) {
+		this.activityCreationCount = activityCreationCount;
+	}
 	
 	@Override
 	public int hashCode() {
@@ -241,6 +254,7 @@ public class User implements Serializable {
 		user.setCity(ApplicationConfig.defaultCityPinyin);
 		return user;
 	}
+	
 	
 }
 

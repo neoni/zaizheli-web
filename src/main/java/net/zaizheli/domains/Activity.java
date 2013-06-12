@@ -35,6 +35,7 @@ public class Activity implements Serializable {
 	private String city;
 	@NotNull
 	private Date createdAt;
+	@DBRef
 	@NotNull
 	@Indexed
 	private User createdBy;
@@ -61,10 +62,17 @@ public class Activity implements Serializable {
 	private int maxNum;
 	private int currentNum;           //当前参与人数
 	private int commentCount;
+	private int trackCount;
 	private int shareCount;
 	private int agreeCount;
 	private int disagreeCount;
 	
+	public int getTrackCount() {
+		return trackCount;
+	}
+	public void setTrackCount(int trackCount) {
+		this.trackCount = trackCount;
+	}
 	public String getCity() {
 		return city;
 	}

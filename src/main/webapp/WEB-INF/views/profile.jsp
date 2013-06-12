@@ -30,26 +30,34 @@
 			</jsp:include>
 		</c:otherwise>
 	</c:choose>
-	<jsp:include page="/WEB-INF/views/comp/back.top.jsp" />
 	<div class="main-wrapper mt-20 mb-30">
 		<div class="main block-h-c content-wrapper row-fluid p-r">
 			<div class="span8 board">
 				<div class="pl-30 pr-30 pt-20">
 				    <ul id="profile-nav-tabs" class="nav nav-tabs fs-14" 
-				    	style="margin-left: -30px; margin-right: -30px;  margin-bottom:0px">				  
-				    		<li class="activity <c:if test="${view eq 'activity'}">active</c:if>"  style="margin-left:30px">
-				   				<a href="<c:url value="/profiles/${user.id}/activity"/>">活动( ${user.activityCount} )</a></li>
+				    	style="margin-left: -30px; margin-right: -30px;  margin-bottom:0px">
+				    		<li class="c_activity <c:if test="${view eq 'c_activity'}">active</c:if>"  style="margin-left:30px">
+				   				<a href="<c:url value="/profiles/${user.id}/c_activity"/>">创建de活动( ${user.activityCreationCount} )</a></li>
+				    		<li class="activity <c:if test="${view eq 'activity'}">active</c:if>"  >
+				   				<a href="<c:url value="/profiles/${user.id}/activity"/>">参与de活动( ${user.activityCount} )</a></li>
 				   			<li class="circle <c:if test="${view eq 'circle'}">active</c:if>">
 				    			<a href="<c:url value="/profiles/${user.id}/circle"/>">圈子( ${user.circleCount} )</a></li>
 				    		<li class="share <c:if test="${view eq 'share'}">active</c:if>">
 				    			<a href="<c:url value="/profiles/${user.id}/share"/>">转发( ${user.shareCount} )</a></li>
 				    		<li class="follow <c:if test="${view eq 'follow'}">active</c:if>">
-				    			<a href="<c:url value="/profiles/${user.id}/follow"/>">关注( ${user.followCount} )</a></li>
+				    			<a href="<c:url value="/profiles/${user.id}/follow"/>">关注de人( ${user.followCount} )</a></li>
 				    		<li class="fans <c:if test="${view eq 'fans'}">active</c:if>">
 				    			<a href="<c:url value="/profiles/${user.id}/fans"/>">粉丝( ${user.fansCount} )</a></li>
 				    </ul>
 			    </div>
-			  	
+			  	<div class="tab-content bg-gray p-20" id="water-fall-wrapper" >
+				    <div class="tab-pane active" id="water-fall">
+				    	<c:import url="/profiles/${user.id}/${view}s/0"></c:import>
+				    </div>
+				</div>
+			    <div id="page-nav">
+					<a href="<c:url value="/profiles/${user.id}/${view}s/1" />"></a>
+				</div>
 			</div>
 			<div class="span4">
 				<c:choose>
@@ -63,21 +71,22 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/comp/back.top.jsp" />
 	<script type="text/javascript">
 		adjustWebWidth();
 	</script>
-<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/bootstrapx-popoverx.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.timeago.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.8.18.custom.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.scrollTo.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.form.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.imagesloaded.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.masonry.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.infinitescroll.js" />" ></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=zh_cn"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" />"></script>
-<script type="text/javascript">
+	<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/bootstrapx-popoverx.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.timeago.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.8.18.custom.min.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.scrollTo.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.form.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.imagesloaded.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.masonry.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.infinitescroll.js" />" ></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=zh_cn&region=CN"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" />"></script>
+	<script type="text/javascript">
 	$(function(){
 		$(".timeago").timeago();
 		$('.pin').each(function(){
@@ -112,7 +121,7 @@
 				loading: {
 					selector: '#water-fall-wrapper',
 					finishedMsg: '没有更多了',
-					msgText: '八卦加载中...',
+					msgText: '活动加载中...',
 					img: '<c:url value="/resources/img/big-loading.gif" />',
 					speed: 0
 				},
@@ -142,7 +151,7 @@
 			}
 		);
 	});
-</script>
-<script type="text/javascript" src="<c:url value="/resources/js/ga.js" />" ></script>
+	</script>
+	<script type="text/javascript" src="<c:url value="/resources/js/ga.js" />" ></script>
 </body>
 </html>
