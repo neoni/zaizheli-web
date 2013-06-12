@@ -14,18 +14,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @SuppressWarnings("serial")
 @Document
-public class UserGroupXref implements Serializable {
+public class TrackShip implements Serializable {
+	
 	@Id
 	private String id;
 	@DBRef
 	@NotNull
-	private Group group;
+	private Activity target;
 	@DBRef
 	@NotNull
-	private User user;
+	private User tracked;
+	private int status; // 0 for normal, 1 for disabled
+	@NotNull
 	private Date createdAt;
 	private Date updatedAt;
-	private int status;   // 0: invalid  1:valid
 	
 	public String getId() {
 		return id;
@@ -33,17 +35,23 @@ public class UserGroupXref implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Group getGroup() {
-		return group;
+	public Activity getTarget() {
+		return target;
 	}
-	public void setGroup(Group group) {
-		this.group = group;
+	public void setTarget(Activity target) {
+		this.target = target;
 	}
-	public User getUser() {
-		return user;
+	public User getTracked() {
+		return tracked;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setTracked(User tracked) {
+		this.tracked = tracked;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -57,35 +65,30 @@ public class UserGroupXref implements Serializable {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
 	
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-					.append(id).toHashCode();
+				.append(id)
+				.toHashCode();
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
-		if(obj==null) {
+		if(obj == null){
 			return false;
-		} else if(!(obj instanceof Group)) {
+		}else if(!(obj instanceof TrackShip)){
 			return false;
 		}
 		return new EqualsBuilder()
-					.append(id, ((UserGroupXref)obj).getId())
-					.isEquals();
+				.append(id, ((TrackShip)obj).getId())
+				.isEquals();
 	}
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this)
-				.append(id).append(group).append(user)
+				.append(target)
+				.append("<--")
+				.append(tracked)
 				.toString();
 	}
-	
 }

@@ -25,7 +25,7 @@ public class Join implements Serializable {
 	private User joiner;
 	private Date createdAt;
 	@NotNull
-	private int status;
+	private int status;  //0:invalid    1:creator      2:joiner
 	
 	public int getStatus() {
 		return status;

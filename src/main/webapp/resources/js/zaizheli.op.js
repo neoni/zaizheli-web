@@ -223,6 +223,22 @@ var op = {
 			op.detrack(dom);
 		}
 	},
+
+	give_agreement: function(dom){
+		this.check_signin( function(){
+			var url= $(dom).attr('href');
+			$.getJSON(url, function(data){
+				if(data && data.resultCode == 'SUCCESS'){
+					$(dom).removeAttr("href");
+					$(dom).find('span').text('已赞');
+					$(dom).find('i').removeClass('icon-white');
+					op.notify_header('大大地赞了一下此活动~');
+				}
+			});
+		}, function(){
+			$('#sign-in-modal').modal('show');
+		});
+	},
 	
 	pin_bind_event: function($dom){
 		$dom.find('.op-view').mouseenter(function(){

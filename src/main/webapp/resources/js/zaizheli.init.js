@@ -13,6 +13,6 @@ $(function(){
 		$.pnotify.defaults.pnotify_delay = 5000;
 		$.pnotify.defaults.pnotify_sticker = false;
 		$.pnotify.defaults.pnotify_history = false;
-		$.pnotify.defaults.pnotify_addclass = 'baguajie';
+		$.pnotify.defaults.pnotify_addclass = 'zaizheli';
 	}
 });

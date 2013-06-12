@@ -26,11 +26,10 @@ public interface ApplicationConstants {
 	
 	static final String SUCCESS = "s";
 	
-	static final int FOLLOW_NORMAL = 0;
-	static final int FOLLOW_DISABLED = 1;
-	static final int ACTIVITY_NORMAL = 0;
-	static final int ACTIVITY_DISABLED = 1;
-	static final int COMMENT_NORMAL = 0;
-	static final int COMMENT_DISABLED = 1;
-
+	static final int FOLLOWSHIP_NORMAL = 0;
+	static final int FOLLOWSHIP_DISABLED = 1;
+	static final int TRACKSHIP_NORMAL = 0;
+	static final int TRACKSHIP_DISABLED = 1;
+	static final int FORWARDSHIP_NORMAL = 0;
+	static final int FORWARDSHIP_DISABLED = 1;
 }

@@ -45,8 +45,6 @@ public class ViewUserActivityController {
 	JoinRepository joinRepository;
 //	@Autowired
 //	TrackShipRepository trackShipRepository;
-//	@Autowired
-//	CommentRepository commentRepository;
 	@Autowired
 	ActionRepository actionRepository;
 	@Autowired
@@ -65,7 +63,7 @@ public class ViewUserActivityController {
 		Collection<PinVo> pins = new ArrayList<PinVo>();
 		if(activities!=null){
 			for(Activity activity : activities){
-				Action act = actionRepository.getByOwnerAndTargetSpotAndType(
+				Action act = actionRepository.getByOwnerAndTargetActivityAndType(
 						activity.getCreatedBy().getId(), activity.getId(), ActionType.ACTIVITY.name());
 				if(activity.getPlace()==null){
 					pins.add(PinVo.from(activity,
@@ -95,7 +93,7 @@ public class ViewUserActivityController {
 		if(joins!=null){
 			for(Join join : joins){
 				Activity ac=join.getActivity();
-				Action act = actionRepository.getByOwnerAndTargetSpotAndType(
+				Action act = actionRepository.getByOwnerAndTargetActivityAndType(
 						ac.getCreatedBy().getId(), ac.getId(), ActionType.ACTIVITY.name());
 				if(ac.getPlace()==null){
 					pins.add(PinVo.from(ac,

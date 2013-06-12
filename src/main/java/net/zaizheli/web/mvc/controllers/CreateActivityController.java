@@ -103,7 +103,7 @@ public class CreateActivityController {
 		}
 		if (result.hasErrors()) {
 			result.addError(new FieldError("vo", "err",
-					"信息有误，去仔细看看吧~"));
+					"信息有误，点击来看看吧~"));
 			return ValidationEngineError.normalize(ValidationEngineError
 					.from(result));
 		} else {
@@ -169,7 +169,7 @@ public class CreateActivityController {
 		Action action = new Action();
 		action.setOwner(signInUser.getId());
 		action.setCreatedAt(new Date());
-		action.setTargetSpot(activity.getId());
+		action.setTargetActivity(activity.getId());
 		action.setType(ActionType.ACTIVITY);
 		action.setBy(sessionUtil.getBy(session));
 		actionRepository.save(action);

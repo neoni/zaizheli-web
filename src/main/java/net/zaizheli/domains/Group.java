@@ -20,11 +20,26 @@ public class Group implements Serializable{
 	private String id;
 	@NotNull
 	private String name;
+	@NotNull
+	private int num;
 	@DBRef
 	@NotNull
 	private User createdBy;
 	private Date createdAt;
+	private String summary;
 	
+	public String getSummary() {
+		return summary;
+	}
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public String getId() {
 		return id;
 	}

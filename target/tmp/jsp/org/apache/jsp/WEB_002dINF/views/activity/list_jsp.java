@@ -159,9 +159,12 @@ public final class list_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("\t\t\t\t<i class=\"icon-share-alt icon-white\"></i>&nbsp;<span>转发(");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pin.shareCount}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write(")</span></a></li>\r\n");
-          out.write("\t\t\t<li><a class=\"btn mb-5 btn-danger\" href=\"javascript:void(0);\"\r\n");
-          out.write("\t\t\t\tstyle=\"margin-bottom:5px;\" onclick=\"op.show_comment(event.currentTarget); event.preventDefault();\">\r\n");
-          out.write("\t\t\t\t<i class=\"icon-heart icon-white\"></i>&nbsp;&nbsp;&nbsp;<span>赞(");
+          out.write("\t\t\t<li><a class=\"btn mb-5 btn-danger\" href=\"");
+          if (_jspx_meth_c_url_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+            return true;
+          out.write("\"\r\n");
+          out.write("\t\t\t\tstyle=\"margin-bottom:5px;\" onclick=\"op.give_agreement(event.currentTarget); event.preventDefault(); \">\r\n");
+          out.write("\t\t\t\t<i class=\"icon-heart icon-white\"></i>&nbsp;&nbsp;<span>赞(");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pin.agreeCount}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write(")&nbsp;</span></a></li>\r\n");
           out.write("\t\t</ul></div>\r\n");
@@ -201,7 +204,7 @@ public final class list_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("\t<div class=\"convo clear\" style=\"border-top:1px solid white; border-bottom:1px solid #EDEDED;\">\r\n");
           out.write("\t\t<p class=\"clear mb-0\">\r\n");
           out.write("\t\t\t<a class=\"img f-l mr-5 mb-5\" href=\"");
-          if (_jspx_meth_c_url_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+          if (_jspx_meth_c_url_4((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
             return true;
           out.write("\"\r\n");
           out.write("\t\t\t\tdata-id=\"");
@@ -212,14 +215,14 @@ public final class list_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pin.createdByAvatarUrl}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("\" width=30 height=30 /></a>\r\n");
           out.write("\t\t\t<a class=\"\" href=\"");
-          if (_jspx_meth_c_url_4((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+          if (_jspx_meth_c_url_5((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
             return true;
           out.write("\" >");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pin.createdByName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</a>\r\n");
           out.write("\t\t\t&nbsp;在&nbsp;\r\n");
           out.write("\t\t\t<a href=\"");
-          if (_jspx_meth_c_url_5((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+          if (_jspx_meth_c_url_6((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
             return true;
           out.write('"');
           out.write('>');
@@ -426,7 +429,7 @@ public final class list_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_3 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
     _jspx_th_c_url_3.setPageContext(_jspx_page_context);
     _jspx_th_c_url_3.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
-    _jspx_th_c_url_3.setValue((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("/profiles/${pin.createdById}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_url_3.setValue((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("/ops/agree/${pin.activityId}", java.lang.String.class, (PageContext)_jspx_page_context, null));
     int _jspx_eval_c_url_3 = _jspx_th_c_url_3.doStartTag();
     if (_jspx_th_c_url_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_3);
@@ -462,13 +465,31 @@ public final class list_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_5 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
     _jspx_th_c_url_5.setPageContext(_jspx_page_context);
     _jspx_th_c_url_5.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
-    _jspx_th_c_url_5.setValue((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("/?pinyin=quanguo&type=${pin.type}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_url_5.setValue((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("/profiles/${pin.createdById}", java.lang.String.class, (PageContext)_jspx_page_context, null));
     int _jspx_eval_c_url_5 = _jspx_th_c_url_5.doStartTag();
     if (_jspx_th_c_url_5.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_5);
       return true;
     }
     _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_5);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_url_6(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:url
+    org.apache.taglibs.standard.tag.rt.core.UrlTag _jspx_th_c_url_6 = (org.apache.taglibs.standard.tag.rt.core.UrlTag) _jspx_tagPool_c_url_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.UrlTag.class);
+    _jspx_th_c_url_6.setPageContext(_jspx_page_context);
+    _jspx_th_c_url_6.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
+    _jspx_th_c_url_6.setValue((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("/?pinyin=quanguo&type=${pin.type}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_url_6 = _jspx_th_c_url_6.doStartTag();
+    if (_jspx_th_c_url_6.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_6);
+      return true;
+    }
+    _jspx_tagPool_c_url_value_nobody.reuse(_jspx_th_c_url_6);
     return false;
   }
 

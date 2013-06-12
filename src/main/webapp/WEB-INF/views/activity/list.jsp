@@ -24,9 +24,9 @@
 			<li><a class="btn mb-5 btn-info" href="javascript:void(0);"
 				style="margin-bottom:5px;" onclick="op.show_forward(event.currentTarget); event.preventDefault();">
 				<i class="icon-share-alt icon-white"></i>&nbsp;<span>转发(${pin.shareCount})</span></a></li>
-			<li><a class="btn mb-5 btn-danger" href="javascript:void(0);"
-				style="margin-bottom:5px;" onclick="op.show_comment(event.currentTarget); event.preventDefault();">
-				<i class="icon-heart icon-white"></i>&nbsp;&nbsp;&nbsp;<span>赞(${pin.agreeCount})&nbsp;</span></a></li>
+			<li><a class="btn mb-5 btn-danger" href="<c:url value="/ops/agree/${pin.activityId}" />"
+				style="margin-bottom:5px;" onclick="op.give_agreement(event.currentTarget); event.preventDefault(); ">
+				<i class="icon-heart icon-white"></i>&nbsp;&nbsp;<span>赞(${pin.agreeCount})&nbsp;</span></a></li>
 		</ul></div>
 	</div>
 	<div class="caption">

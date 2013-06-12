@@ -14,7 +14,7 @@ public interface ActionRepository extends
 	
 	Page<Action> findByOwner(String id, Pageable pageable);
 	
-	Action getByOwnerAndTargetSpotAndType(String uid, String sid, String type);
+	Action getByOwnerAndTargetActivityAndType(String uid, String sid, String type);
 	
 	@Query("{ 'owner': {$in : ?0}, 'type': { $in : ?1 } }")
 	Page<Action> findByOwnerInAndTypeIn(List<String> uids, List<String> types, Pageable pageable);
@@ -22,8 +22,8 @@ public interface ActionRepository extends
 	@Query("{ 'owner': ?0, 'type': { $in : ?1 } }")
 	List<Action> findByOwnerAndTypeIn(String id, List<String> types);
 	
-	@Query("{ 'targetSpot': {$in : ?0}, 'type': { $in : ?1 } }")
-	Page<Action> findByTragetSpotInAndTypeIn(List<String> sids, List<String> types, Pageable pageable);
+	@Query("{ 'targetActivity': {$in : ?0}, 'type': { $in : ?1 } }")
+	Page<Action> findByTragetActivityInAndTypeIn(List<String> sids, List<String> types, Pageable pageable);
 	
 	@Query("{ 'targetUser': ?0, 'type': { $in : ?1 } }")
 	Page<Action> findByTragetUserAndTypeIn(String id, List<String> types, Pageable pageable);

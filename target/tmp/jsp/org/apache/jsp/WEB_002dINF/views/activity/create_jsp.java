@@ -73,7 +73,7 @@ public final class create_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
       if (_jspx_meth_c_url_0(_jspx_page_context))
         return;
-      out.write("\" />\r\n");
+      out.write("\" />\t\r\n");
       out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
       if (_jspx_meth_c_url_1(_jspx_page_context))
         return;
@@ -81,7 +81,7 @@ public final class create_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
       if (_jspx_meth_c_url_2(_jspx_page_context))
         return;
-      out.write("\" />\r\n");
+      out.write("\" />\t\r\n");
       out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
       if (_jspx_meth_c_url_3(_jspx_page_context))
         return;
@@ -130,7 +130,7 @@ public final class create_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t<form id=\"createactivity-form\" modelAttribute=\"activityCreationVo\" method=\"post\">\r\n");
       out.write("\t\t<div id=\"timeline\">\r\n");
       out.write("\t\t\t\r\n");
-      out.write("\t\t\t<input id=\"image-url-hid\" class=\"validate[required]\" data-prompt-position=\"centerRight:0,-4\" name=\"imageUrl\" type=\"hidden\" />\r\n");
+      out.write("\t\t\t<input id=\"image-url-hid\" data-prompt-position=\"centerRight:0,-4\" name=\"imageUrl\" type=\"hidden\" />\r\n");
       out.write("\t\t\t<input id=\"place-id-hid\" name=\"placeId\" type=\"hidden\" />\r\n");
       out.write("\t\t\t<ul id=\"dates\">\r\n");
       out.write("\t\t\t\t<li>\r\n");
@@ -442,32 +442,14 @@ public final class create_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t</li>\r\n");
       out.write("\t\t\t\t<li id=\"创建活动的主页面吧\" >\r\n");
       out.write("\t\t\t\t\t<div class=\"row-fluid\">\r\n");
-      out.write("\t\t\t\t\t\t<textarea id=\"editor1\" name=\"editor1\" value=\"");
+      out.write("\t\t\t\t\t\t<div class=\"control-group \" >\r\n");
+      out.write("\t\t\t\t\t\t\t<label class=\"control-label fs-15 lh-20 c-ffc\" for=\"title\">输入完成后记得回车一下哦</label>\r\n");
+      out.write("\t\t\t\t\t\t<div class=\"controls\">\r\n");
+      out.write("\t\t\t\t\t\t\t<textarea id=\"editor1\" name=\"editor1\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${activityCreationVo.editor1}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\"\r\n");
-      out.write("\t\t\t\t\t\tdata-prompt-position=\"centerRight:0,-4\" type=\"text\" placeholder=\"页面完成后回车表示输入完成\"></textarea>\r\n");
-      out.write("\t\t\t\t\t\t<div>");
-      //  form:errors
-      org.springframework.web.servlet.tags.form.ErrorsTag _jspx_th_form_errors_1 = (org.springframework.web.servlet.tags.form.ErrorsTag) _jspx_tagPool_form_errors_path_cssClass_nobody.get(org.springframework.web.servlet.tags.form.ErrorsTag.class);
-      _jspx_th_form_errors_1.setPageContext(_jspx_page_context);
-      _jspx_th_form_errors_1.setParent(null);
-      _jspx_th_form_errors_1.setPath("editor1");
-      _jspx_th_form_errors_1.setCssClass("alert alert-error");
-      int[] _jspx_push_body_count_form_errors_1 = new int[] { 0 };
-      try {
-        int _jspx_eval_form_errors_1 = _jspx_th_form_errors_1.doStartTag();
-        if (_jspx_th_form_errors_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-          return;
-        }
-      } catch (Throwable _jspx_exception) {
-        while (_jspx_push_body_count_form_errors_1[0]-- > 0)
-          out = _jspx_page_context.popBody();
-        _jspx_th_form_errors_1.doCatch(_jspx_exception);
-      } finally {
-        _jspx_th_form_errors_1.doFinally();
-        _jspx_tagPool_form_errors_path_cssClass_nobody.reuse(_jspx_th_form_errors_1);
-      }
-      out.write("</div>\r\n");
+      out.write("\t\t\t\t\t\t\tdata-prompt-position=\"centerRight:0,-4\" type=\"text\"></textarea>\r\n");
+      out.write("\t\t\t\t\t\t</div>\r\n");
       out.write("\t\t\t\t\t\t\r\n");
       out.write("\t\t\t\t\t</div>\r\n");
       out.write("\t\t\t\t\t<input id=\"err\" name=\"err\" data-prompt-position=\"centerRight:0,-4\" style=\"display:none\"/>\r\n");

@@ -9,13 +9,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>我在浙里 在浙里——分享你我的社交</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />	
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
-	
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />	
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/uploadify.css" />" />
 	<link rel="stylesheet" href="<c:url value="/resources/css/style_v.css" />" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/validationEngine.bootstrap.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-formhelpers.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.1.7.1.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.timelinr-0.9.53.js" />"></script>
 	<script src="/ckeditor/ckeditor.js"></script>
@@ -36,7 +35,7 @@
 	<form id="createactivity-form" modelAttribute="activityCreationVo" method="post">
 		<div id="timeline">
 			
-			<input id="image-url-hid" class="validate[required]" data-prompt-position="centerRight:0,-4" name="imageUrl" type="hidden" />
+			<input id="image-url-hid" data-prompt-position="centerRight:0,-4" name="imageUrl" type="hidden" />
 			<input id="place-id-hid" name="placeId" type="hidden" />
 			<ul id="dates">
 				<li>
@@ -306,9 +305,12 @@
 				</li>
 				<li id="创建活动的主页面吧" >
 					<div class="row-fluid">
-						<textarea id="editor1" name="editor1" value="${activityCreationVo.editor1}"
-						data-prompt-position="centerRight:0,-4" type="text" placeholder="页面完成后回车表示输入完成"></textarea>
-						<div><form:errors path="editor1" cssClass="alert alert-error"/></div>
+						<div class="control-group " >
+							<label class="control-label fs-15 lh-20 c-ffc" for="title">输入完成后记得回车一下哦</label>
+						<div class="controls">
+							<textarea id="editor1" name="editor1" value="${activityCreationVo.editor1}"
+							data-prompt-position="centerRight:0,-4" type="text"></textarea>
+						</div>
 						
 					</div>
 					<input id="err" name="err" data-prompt-position="centerRight:0,-4" style="display:none"/>

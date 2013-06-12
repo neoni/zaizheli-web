@@ -26,7 +26,7 @@ public class Action implements Serializable {
 	@NotNull
 	private ByType by;
 	private String content;
-	private String targetSpot;
+	private String targetActivity;
 	private String targetUser;
 	private String basedOn;
 	@NotNull
@@ -60,11 +60,11 @@ public class Action implements Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getTargetSpot() {
-		return targetSpot;
+	public String getTargetActivity() {
+		return targetActivity;
 	}
-	public void setTargetSpot(String targetSpot) {
-		this.targetSpot = targetSpot;
+	public void setTargetActivity(String targetActivity) {
+		this.targetActivity = targetActivity;
 	}
 	public String getTargetUser() {
 		return targetUser;
