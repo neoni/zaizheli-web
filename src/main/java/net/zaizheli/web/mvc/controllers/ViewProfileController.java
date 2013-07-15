@@ -46,13 +46,13 @@ public class ViewProfileController {
 			return "redirect:/signin";
 		}
 		model.addAttribute("user", signInuser);
-		String[] validViews = new String[]{"c_activity","activity", "circle", "share", "follow", "fans"};
+		String[] validViews = new String[]{"c_activity","activity", "circle", "follow", "fan"};
 		if(!ArrayUtils.contains(validViews, view)){
 			return "redirect:/profiles/"+id;
 		}
-		if(ArrayUtils.indexOf(validViews, view) > 3){
-			model.addAttribute("viewUser", true);
-		}
+//		if(ArrayUtils.indexOf(validViews, view) > 2){
+//			model.addAttribute("viewUser", true);
+//		}
 		User user = userRepository.findOne(id);
 		model.addAttribute("view", view);
 		model.addAttribute("user", user);

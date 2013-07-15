@@ -47,8 +47,8 @@ public class Activity implements Serializable {
 	@NotNull
 	private Date endedAt;
 	private String addr;
-	private int fee;
-	private int apply;
+	private int fee;      //0:不需要费用     1: 需要
+	private int apply;   // 0:不需要申请资料         1:需要
 	private String title;
 	private String content;	
 	//图片		

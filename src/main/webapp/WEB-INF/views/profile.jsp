@@ -40,17 +40,15 @@
 				    <ul id="profile-nav-tabs" class="nav nav-tabs fs-14" 
 				    	style="margin-left: -30px; margin-right: -30px;  margin-bottom:0px">
 				    		<li class="c_activity <c:if test="${view eq 'c_activity'}">active</c:if>"  style="margin-left:30px">
-				   				<a href="<c:url value="/profiles/${user.id}/c_activity"/>">创建de活动( ${user.activityCreationCount} )</a></li>
+				   				<a href="<c:url value="/profiles/${user.id}/c_activity"/>">创建的活动( ${user.activityCreationCount} )</a></li>
 				    		<li class="activity <c:if test="${view eq 'activity'}">active</c:if>"  >
-				   				<a href="<c:url value="/profiles/${user.id}/activity"/>">参与de活动( ${user.activityCount} )</a></li>
-				   			<li class="circle <c:if test="${view eq 'circle'}">active</c:if>">
-				    			<a href="<c:url value="/profiles/${user.id}/circle"/>">圈子( ${user.circleCount} )</a></li>
-				    		<li class="share <c:if test="${view eq 'share'}">active</c:if>">
-				    			<a href="<c:url value="/profiles/${user.id}/share"/>">转发( ${user.shareCount} )</a></li>
+				   				<a href="<c:url value="/profiles/${user.id}/activity"/>">参与的活动( ${user.activityCount} )</a></li>
+				   			<!-- <li class="circle <c:if test="${view eq 'circle'}">active</c:if>">
+				    			<a href="#">我的圈子( ${user.circleCount} )</a></li> -->
 				    		<li class="follow <c:if test="${view eq 'follow'}">active</c:if>">
-				    			<a href="<c:url value="/profiles/${user.id}/follow"/>">关注de人( ${user.followCount} )</a></li>
-				    		<li class="fans <c:if test="${view eq 'fans'}">active</c:if>">
-				    			<a href="<c:url value="/profiles/${user.id}/fans"/>">粉丝( ${user.fansCount} )</a></li>
+				    			<a href="<c:url value="/profiles/${user.id}/follow"/>">关注的人( ${user.followCount} )</a></li>
+				    		<li class="fans <c:if test="${view eq 'fan'}">active</c:if>">
+				    			<a href="<c:url value="/profiles/${user.id}/fan"/>">我的粉丝( ${user.fansCount} )</a></li>
 				    </ul>
 			    </div>
 			  	<div class="tab-content bg-gray p-20" id="water-fall-wrapper" >

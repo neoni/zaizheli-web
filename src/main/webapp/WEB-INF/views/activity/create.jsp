@@ -306,7 +306,7 @@
 				<li id="创建活动的主页面吧" >
 					<div class="row-fluid">
 						<div class="control-group " >
-							<label class="control-label fs-15 lh-20 c-ffc" for="title">输入完成后记得回车一下哦</label>
+							<label class="control-label fs-15 lh-20 c-ffc" for="title">输入完成后记得回车一下再提交哦</label>
 						<div class="controls">
 							<textarea id="editor1" name="editor1" value="${activityCreationVo.editor1}"
 							data-prompt-position="centerRight:0,-4" type="text"></textarea>

@@ -28,10 +28,10 @@
 				    <ul id="profile-nav-tabs" class="nav nav-tabs fs-14" 
 				    	style="margin-left: -30px; margin-right: -30px;  margin-bottom:0px">				  
 				    		<li class="follow active" style="margin-left:30px;">
-			    			<a data-toggle="tab" href="#follow-act-list">关注</a></li>
+			    			<a data-toggle="tab" href="#follow-act-list">好友的动态</a></li>
 			    			<li class="track">
 			    			<a data-toggle="tab" href="#track-act-list" 
-			    				data-action="<c:url value="/activities/${user.id}/track/0"/>">热门动态</a></li>
+			    				data-action="<c:url value="/activities/${user.id}/track/0"/>">关注的活动</a></li>
 				    </ul>
 			    </div>
 			    
@@ -42,6 +42,7 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/comp/back.top.jsp" />
 	<script type="text/javascript">
 		adjustWebWidth();
 	</script>
