@@ -128,10 +128,10 @@ public class CreateActivityController {
 			result.addError(new FieldError("vo", "err",
 					"图片未上传哦~"));
 		}
-		if(vo.getEditor1()==null || vo.getEditor1().equals("")) {
-			result.addError(new FieldError("vo", "err",
-					"记得创建活动的讨论页面哦"));
-		}
+//		if(vo.getEditor1()==null || vo.getEditor1().equals("")) {
+//			result.addError(new FieldError("vo", "err",
+//					"记得创建活动的讨论页面哦"));
+//		}
 		if(result.hasErrors()){
 			result.addError(new FieldError("vo", "err",
 					"前面的信息有误，去看看吧~"));

@@ -29,6 +29,9 @@ public class Activity implements Serializable {
 	@DBRef
 	@Indexed
 	private Place place;
+	@DBRef
+	@Indexed
+	private Group group;
 	@GeoSpatialIndexed
 	private Double[] lngLat;
 	@NotNull
@@ -46,6 +49,10 @@ public class Activity implements Serializable {
 	@Indexed
 	@NotNull
 	private Date endedAt;
+	private String startDate;
+	private String startTime;
+	private String endDate;
+	private String endTime;
 	private String addr;
 	private int fee;      //0:不需要费用     1: 需要
 	private int apply;   // 0:不需要申请资料         1:需要
@@ -67,6 +74,38 @@ public class Activity implements Serializable {
 	private int agreeCount;
 	private int disagreeCount;
 	
+	
+	
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+	public Group getGroup() {
+		return group;
+	}
+	public void setGroup(Group group) {
+		this.group = group;
+	}
 	public int getTrackCount() {
 		return trackCount;
 	}
@@ -253,6 +292,10 @@ public class Activity implements Serializable {
 		activity.setTitle(vo.getTitle());
 		activity.setUpdatedAt(activity.getCreatedAt());
 		activity.setType(vo.getType());
+		activity.setStartDate(vo.getStartDate());
+		activity.setStartTime(vo.getStartTime());
+		activity.setEndDate(vo.getEndDate());
+		activity.setEndTime(vo.getEndTime());		
 		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String start=vo.getStartDate()+" "+vo.getStartTime();
 		activity.setStartedAt(format.parse(start));

@@ -778,3 +778,89 @@ ul#side-nav li a {
     width: 149px;
     z-index: 11;
 }
+/*** for activity page *********/
+.outer {
+    width: 100%;
+}
+.inner {
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 20px 10px;
+    position: relative;
+}
+#header_wrap {
+   background: none repeat scroll 0px 0px #2B2B2B; width: 100%;
+}
+#header_wrap .inner {
+    padding: 10px 0 50px;
+}
+#project_title {
+    color: #FFFFFF;
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0;
+    padding-left: 100px;
+    text-shadow: 0 0 10px #111111;
+}
+#project_tagline {
+    background: none repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 300;
+    padding-left: 100px;
+    text-shadow: 0 0 10px #111111;
+    margin: 10px, 0;
+}
+
+textarea#comment {
+	margin-top: 30px;
+	margin-left: 200px;
+	width: 65%;
+	height: 140px;
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #DDDFEF;
+    border-color: -moz-use-text-color -moz-use-text-color #C8C7B4;
+    border-image: none;
+    border-radius: 5px 5px 5px 5px;
+    border-style: none none solid;
+    border-width: medium medium 1px;
+    color: #4B423A;
+    padding: 6px 2%;
+}
+
+#cmt_submit {
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #68584C;
+    border-color: -moz-use-text-color -moz-use-text-color #55473B;
+    border-image: none;
+    border-radius: 5px 5px 5px 5px;
+    border-style: none none solid;
+    border-width: medium medium 1px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+    color: #FFFFFF;
+    cursor: pointer;
+    padding: 7px 20px;
+    float: right;
+    margin-top: 8px;
+    margin-right: 150px;
+}
+
+.cmt_tool {
+	border-color: -moz-use-text-color -moz-use-text-color #55473B;
+    border-image: none;
+    border-radius: 5px 5px 5px 5px;
+    border-style: none none solid;
+    border-width: medium medium 1px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+    margin-left: 8px
+}
+
+#page {
+	margin-top: 40px;
+}

@@ -23,6 +23,16 @@
 		<jsp:include page="/WEB-INF/views/comp/header.jsp">
 			<jsp:param name="tab" value="home"/>
 		</jsp:include>
-		
+		<jsp:include page="/WEB-INF/views/comp/back.top.jsp"/> 
+		<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/bootstrapx-popoverx.js" />" ></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/jquery.form.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/jquery.pnotify.js" />" ></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/jquery.imagesloaded.js" />" ></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/jquery.masonry.js" />" ></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/jquery.infinitescroll.js" />" ></script>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=zh_cn&region=CN"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" />"></script>
+		<script type="text/javascript">
 	</body>
 </html>

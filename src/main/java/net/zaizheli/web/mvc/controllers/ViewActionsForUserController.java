@@ -103,7 +103,7 @@ public class ViewActionsForUserController {
 		model.addAttribute("actions", toActVos(acts));
 		return "dashboard/actions";
 	}
-
+	
 //	@RequestMapping(value="/{id}/tracks/{no}", method=RequestMethod.GET)
 //	public String tracks(@PathVariable String id,
 //			@PathVariable int no, Model model, 

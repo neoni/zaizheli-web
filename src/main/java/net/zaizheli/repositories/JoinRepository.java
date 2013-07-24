@@ -14,4 +14,6 @@ public interface JoinRepository extends
 	@Query("{ 'joiner': {'$ref': 'user', '$id': { '$oid': ?0 } } }")
 	Page<Join> findByJoiner(String id, Pageable pageable);
 	
+	@Query("{ 'activity': {'$ref': 'activity', '$id': { '$oid': ?0 } } }")
+	Page<Join> findByActivity(String id, Pageable pageable);
 }

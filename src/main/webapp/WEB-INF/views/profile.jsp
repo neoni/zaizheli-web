@@ -124,7 +124,7 @@
 				loading: {
 					selector: '#water-fall-wrapper',
 					finishedMsg: '没有更多了',
-					msgText: '活动加载中...',
+					msgText: '加载中...',
 					img: '<c:url value="/resources/img/big-loading.gif" />',
 					speed: 0
 				},

@@ -19,9 +19,11 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.timelinr-0.9.53.js" />"></script>
 	<script src="/ckeditor/ckeditor.js"></script>
 	<script>
-	    window.onload = function() {
+	    window.onload = function() {	     
 	        CKEDITOR.replace( 'editor1' );
-
+	        var str = $("#editor_data").text();
+	        CKEDITOR.instances.editor1.setData(str);
+	        document.getElementById("type").value="${activity.type}";		
 	    }; 
 	    function editor() {
 	   		jQuery('#editor1').val(CKEDITOR.instances.editor1.getData());
@@ -31,14 +33,13 @@
 <body>
 	
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
-		<jsp:param name="tab" value="create"/>
+		<jsp:param name="tab" value="none"/>
 	</jsp:include>
 	
 	<c:import url="../modal/upload.jsp"/>
 	<c:import url="../modal/locate.jsp"/>
 	<form id="createactivity-form" modelAttribute="activityCreationVo" method="post">
-		<div id="timeline">
-			
+		<div id="timeline">	
 			<input id="image-url-hid" data-prompt-position="centerRight:0,-4" name="imageUrl" type="hidden" />
 			<input id="place-id-hid" name="placeId" type="hidden" />
 			<ul id="dates">
@@ -56,7 +57,10 @@
 				</li>
 			</ul>
 			<ul id="issues" >
-				<li id="上传海报" class="selected time " style="margin-top: 100px; margin-left:30px;">
+				<li id="上传海报" class="selected time " style="margin-top: 60px; margin-left:30px;">
+					<h2 class="c-ffc pb-10" style="padding-left:40px">注意！！</h2>
+					<h3 class="c-ffc pb-10" style="padding-left:40px">只需编辑要修改的地方</h3>
+					<div class="upload-img p-r row-fluid">
 					<div class="upload-img p-r row-fluid">
 						<img id="spot-image" class="" alt="" width=300 src="http://placehold.it/300&text=Upload+Image">
 						<a id="upload-image-btn" class="p-a upload-btn mt-20" 
@@ -71,8 +75,8 @@
 									<div class="input-prepend">
 										<span class="add-on"> <i class="icon-leaf"></i>
 										</span>
-										<input id="title" class="validate[required] input-xlarge" type="text" name="title" 
-	              							data-prompt-position="centerRight:0,-4" value="${activityCreationVo.title}"  />
+										<input id="title" class="input-xlarge" type="text" name="title" 
+	              							data-prompt-position="centerRight:0,-4" value="${activity.title}"  />
 									</div>
 								</div>
 							</div>
@@ -80,17 +84,17 @@
 								<label class="control-label fs-15 lh-20 c-ffc" for="type">* 选择活动分类</label>
 								<div class="input-prepend controls">
 									<span class="add-on"> <i class="icon-th"></i></span>
-									<select id="type" class="validate[required] span5" name="type">
-											<option value="聚餐">聚餐</option>
-											<option value="出游">出游</option>											
-											<option value="电影">电影</option>
-											<option value="购物">逛街</option>
-											<option value="讨论">讨论</option>
-											<option value="运动">运动</option>
-											<option value="班级活动">班级活动</option>
-											<option value="社会实践">社会实践</option>
-											<option value="学习活动">学习活动</option>
-											<option value="其它">其它</option>
+									<select id="type" class="span5" name="type" value="${activity.type}">
+											<option <%if("${activity.type}"=="聚餐") {%> selected='selected'<%}%> >聚餐</option>
+											<option <%if("${activity.type}"=="出游") {%> selected='selected'<%}%> >出游</option>											
+											<option <%if("${activity.type}"=="电影") {%> selected='selected'<%}%>  >电影</option>
+											<option <%if("${activity.type}"=="逛街") {%> selected='selected'<%}%> >逛街</option>
+											<option <%if("${activity.type}"=="讨论") {%> selected='selected'<%}%> >讨论</option>
+											<option <%if("${activity.type}"=="运动") {%> selected='selected'<%}%> >运动</option>
+											<option <%if("${activity.type}"=="班级活动") {%> selected='selected'<%}%> >班级活动</option>
+											<option <%if("${activity.type}"=="社会实践") {%> selected='selected'<%}%> >社会实践</option>
+											<option <%if("${activity.type}"=="学习活动") {%> selected='selected'<%}%> >学习活动</option>
+											<option <%if("${activity.type}"=="其它") {%> selected='selected'<%}%> >其它</option>
 									</select>
 								</div>
 							</div>
@@ -104,8 +108,8 @@
 											<span class="add-on">
 												<i class="icon-calendar"></i>
 											</span>
-											<input id="startDate" class="validate[required] input-small" type="text" name="startDate" 
-	             							value="${activityCreationVo.startDate}"  readonly>
+											<input id="startDate" class=" input-small" type="text" name="startDate" 
+	             							value="${activity.startDate}"  readonly>
 	             						</div>																		
 										<div class="bfh-datepicker-calendar">
 											<table class="calendar table table-bordered">
@@ -136,11 +140,11 @@
 											</table>
 										</div>
 									</div>
-									<div class="bfh-timepicker ml-80">
+									<div class="bfh-timepicker ml-80" data-time="${activity.startTime}">
 									  <div class="input-prepend bfh-timepicker-toggle ml-80" data-toggle="bfh-timepicker">
 									    <span class="add-on"><i class="icon-time"></i></span>
-									    <input id="startTime" name="startTime" type="text" class="validate[required] input-small" 
-									    value= "${activityCreationVo.startTime}" readonly>
+									    <input id="startTime" name="startTime" type="text" class=" input-small" 
+									    value= "${activity.startTime}" readonly>
 									  </div>
 									  <div class="bfh-timepicker-popover ml-80">
 									    <table class="table">
@@ -154,7 +158,7 @@
 									          <td class="separator">:</td>
 									          <td class="minute">
 									            <a class="next" href="#"><i class="icon-chevron-up"></i></a><br>
-									            <input type="text" class="input-mini" readonly><br>
+									            <input type="text" class="input-mini" value= "${activity.startTime}" readonly><br>
 									            <a class="previous" href="#"><i class="icon-chevron-down"></i></a>
 									          </td>
 									        </tr>
@@ -174,8 +178,8 @@
 											<span class="add-on">
 												<i class="icon-calendar"></i>
 											</span>
-											<input id="endDate" class="validate[required,future[#startDate]] input-small" type="text" name="endDate" 
-	             							value="${activityCreationVo.endDate}"  readonly>
+											<input id="endDate" class="validate[future[#startDate]] input-small" type="text" name="endDate" 
+	             							value="${activity.endDate}"  readonly>
 	             						</div>																		
 										<div class="bfh-datepicker-calendar">
 											<table class="calendar table table-bordered">
@@ -206,11 +210,11 @@
 											</table>
 										</div>
 									</div>
-									<div class="bfh-timepicker ml-80">
+									<div class="bfh-timepicker ml-80" data-time="${activity.endTime}">
 									  <div class="input-prepend bfh-timepicker-toggle ml-80" data-toggle="bfh-timepicker">
 									    <span class="add-on"><i class="icon-time"></i></span>
-									    <input id="endTime" name="endTime" type="text" class="validate[required] input-small" 
-									     value= "${activityCreationVo.endTime}" readonly>
+									    <input id="endTime" name="endTime" type="text" class=" input-small" 
+									     value= "${activity.endTime}" readonly>
 									  </div>
 									  <div class="bfh-timepicker-popover ml-80">
 									    <table class="table">
@@ -224,7 +228,7 @@
 									          <td class="separator">:</td>
 									          <td class="minute">
 									            <a class="next" href="#"><i class="icon-chevron-up"></i></a><br>
-									            <input type="text" class="input-mini" readonly><br>
+									            <input type="text" class="input-mini" "${activity.endTime}" readonly><br>
 									            <a class="previous" href="#"><i class="icon-chevron-down"></i></a>
 									          </td>
 									        </tr>
@@ -235,12 +239,12 @@
 								</div>
 							</div>
 							<div class="control-group mt-20" >
-								<label class="control-label fs-15 lh-20 c-ffc" for="num">* 允许参与活动的最大人数/参加人数</label>
+								<label class="control-label fs-15 lh-20 c-ffc" for="num" >* 允许参与活动的最大人数/参加人数</label>
 								<div class="controls fs-16 lh-18">
 									<div class="input-prepend">
 										<span class="add-on"> <i class="icon-tint"></i>
 										</span>
-										<input id="num" class="validate[required,custom[integer],min[1],max[65000]] input-xlarge" type="text" name="num" value=100 data-prompt-position="centerRight:0,-4"  />
+										<input id="num" class="validate[custom[integer],min[1],max[65000]] input-xlarge" type="text" name="num" value="${activity.maxNum}" data-prompt-position="centerRight:0,-4"  />
 									</div>
 								</div>
 							</div>
@@ -248,11 +252,12 @@
 								<label class="control-label fs-15 lh-15 c-ffc" for="status">* 活动状态</label>
 								<div class="input-prepend controls">
 									<span class="add-on"> <i class="icon-heart"></i></span>
-									<select id="status" class="validate[required] span5" name="status" value="${activityCreationVo.status}">
-											<option>征集成员中</option>
-											<option>晒活动</option>
-											<option>放弃</option>
-											<option>已结束</option>
+		<input value="${activity.status}" type="hidden">
+									<select id="status" class=" span5" name="status" value="${activity.status}">
+											<option <c:if test="${activity.status eq '征集成员中'}"> selected="selected" </c:if> >征集成员中</option>								
+											<option <c:if test="${activity.status eq '晒活动'}"> selected="selected" </c:if>>晒活动</option>
+											<option <c:if test="${activity.status eq '放弃'}"> selected="selected" </c:if>>放弃</option>
+											<option <c:if test="${activity.status eq '已结束'}"> selected="selected" </c:if>>已结束</option>
 									</select>
 								</div>
 							</div>
@@ -276,21 +281,21 @@
 					    </div>
 					    <br>
 					    <div class="control-group mt-20">
-					    	<label class="control-label fs-15 lh-20 c-ffc" for="addr">地址备注</label>
+					    	<label class="control-label fs-15 lh-20 c-ffc" for="addr" >地址备注</label>
 							<div class="controls fs-16 lh-18">
 								<div class="input-prepend">
 									<span class="add-on"> <i class="icon-tint"></i>
 									</span>
 									<input id="addr" name="addr" class="input-xlarge" type="text"  
-          									data-prompt-position="centerRight:0,-4"  value="${activityCreationVo.addr}"  />
+          									data-prompt-position="centerRight:0,-4"  value="${activity.addr}"  />
 								</div>
 							</div>
 					    </div>
 					    <div class="control-group mt-20">
-					    	<label class="control-label fs-15 lh-20 c-ffc" for="fee">费用</label>
+					    	<label class="control-label fs-15 lh-20 c-ffc" for="fee" >费用</label>
 							<div class="controls fs-16 lh-18">
-		    					<input id="fee" class="validate[required]" type="hidden" 
-		    					data-prompt-position="centerRight:0,-4" name="fee" value="${activityCreationVo.fee}" >
+		    					<input id="fee" class="" type="hidden" 
+		    					data-prompt-position="centerRight:0,-4" name="fee" value="${activity.fee}" >
 			    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="fee">
 			    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val="1">是</button>
 			    					<button id="gender_target" class="btn btn-large btn-info fs-16" type="button" data-val="0">无</button>
@@ -300,8 +305,8 @@
 					    <div class="control-group mt-20">
 					    	<label class="control-label fs-15 lh-20 c-ffc" for="apply">是否需要参与者提供详细个人申请资料</label>
 							<div class="controls fs-16 lh-18">
-			    				<input id="apply" class="validate[required]" type="hidden" 
-			    					data-prompt-position="centerRight:0,-4" name="apply" value="${activityCreationVo.apply}" >
+			    				<input id="apply" class="" type="hidden" 
+			    					data-prompt-position="centerRight:0,-4" name="apply" value="${activity.apply}" >
 			    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="apply">
 			    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val="1">是</button>
 			    					<button id="gender_target" class="btn btn-large btn-info fs-16" type="button" data-val="0">否</button>
@@ -315,7 +320,7 @@
 						<div class="control-group " >
 							<label class="control-label fs-15 lh-20 c-ffc" for="title">还有什么想说的</label>
 						<div class="controls">
-							<textarea id="editor1" name="editor1" value="${activityCreationVo.editor1}"
+							<textarea id="editor1" name="editor1" value="${activity.content}"
 							data-prompt-position="centerRight:0,-4" type="text"></textarea>
 						</div>
 						
@@ -324,10 +329,10 @@
 					<br>
 					<div style="float:right">
 						    
-							<button  id="submit-btn" type="submit" class=" btn btn-primary btn-large" data-loading-text="创建中..." onclick="editor()">
+							<button  id="submit-btn" type="submit" class=" btn btn-primary btn-large" data-loading-text="更新中..." onclick="editor()">
 								提交该活动</button>
 						
-						<a id="return-btn" class="btn btn-success btn-large ml-10" href="<c:url value="/" />">返回主页</a>
+						<a id="return-btn" class="btn btn-success btn-large ml-10" href="<c:url value="/activities/${activity.id}" />">返回活动界面</a>
 					</div>	
 								
 				</li>
@@ -337,7 +342,7 @@
 			<a href="#" id="prev">-</a>
 		</div>
 	</form>	
-
+	<div id="editor_data" type="hidden"> ${activity.content} </div>
 
 <script type="text/javascript">adjustWebWidth();</script>
 
@@ -353,6 +358,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		
 		$().timelinr({
 	        orientation:  'vertical',
 	        issuesSpeed:  200,
@@ -367,7 +373,7 @@
 				autoPositionUpdate: true,
 				ajaxFormValidation: true,
 				ajaxFormValidationMethod: 'post',
-				ajaxFormValidationURL: '<c:url value="/activities/create/validate" />',
+				ajaxFormValidationURL: '<c:url value="/activity/${activity.id}/edit/validate" />',
 				onBeforeAjaxFormValidation: function(form, options){
 					$(form).find('#submit-btn').button('loading');
 				},

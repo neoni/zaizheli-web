@@ -21,7 +21,7 @@
 		<p>${pin.summary}</p>
 		<p class="fs-13 c-888">
 			<a href="<c:url value="/profiles/${pin.userId}/activity" />">
-				<span class="fw-b fs-18">${pin.activityCount}</span></a>&nbsp;个八卦,
+				<span class="fw-b fs-18">${pin.activityCount}</span></a>&nbsp;个活动,
 			<a href="<c:url value="/profiles/${pin.userId}/follow" />">
 				<span class="fw-b fs-18">${pin.followCount}</span></a>&nbsp;个关注,
 			<a href="<c:url value="/profiles/${pin.userId}/fan" />">

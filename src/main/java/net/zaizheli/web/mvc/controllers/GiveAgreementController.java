@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.zaizheli.constants.AjaxResultCode;
 import net.zaizheli.repositories.ActivityRepository;
+import net.zaizheli.repositories.CommentRepository;
 import net.zaizheli.vo.AjaxResult;
 
 @Controller
@@ -19,11 +20,20 @@ public class GiveAgreementController {
 	
 	@Autowired
 	ActivityRepository activityRepository;
+	@Autowired
+	CommentRepository commentRepository;
 	
 	@RequestMapping(value="/ops/agree/{id}", method=RequestMethod.GET)
 	public @ResponseBody AjaxResult agree(@PathVariable String id,
 			       Model model, HttpSession session) {
 		activityRepository.inc(id, "agreeCount", 1);
+		return new AjaxResult(AjaxResultCode.SUCCESS);
+	}
+	
+	@RequestMapping(value="/comment/agree/{id}", method=RequestMethod.GET)
+	public @ResponseBody AjaxResult cagree(@PathVariable String id,
+			       Model model, HttpSession session) {
+		commentRepository.inc(id, "agreeCount", 1);
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}
 

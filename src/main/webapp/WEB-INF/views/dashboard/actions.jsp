@@ -57,7 +57,7 @@
 						<dt>
 							<a href="/profiles/${action.targetActivity.createdBy.id}">@${action.targetActivity.createdBy.name}</a>&nbsp;
 							<a href="/activities/${action.targetActivity.id}">${action.targetActivity.title}&nbsp;@&nbsp;${action.targetActivity.place.fullAddr}</a><br/>
-							<!-- <span>${action.targetActivity.summary}</span> -->
+							
 						</dt>
 						<dd class="ml-0"><div class="">
 							<img class="" width="100" src="${f:imageUrl(action.targetActivity.image.resId)}">
@@ -100,7 +100,7 @@
 					<c:if test="${not empty action.targetActivity}">
 						<a href="<c:url value="/activities/${action.targetActivity.id}" /> ">${action.targetActivity.title} @ 
 								${action.targetActivity.place.fullAddr}</a><br/>
-						<!-- <span>${action.targetActivity.summary}</span> -->
+						
 					</c:if>
 					</p>
 					<p class="mb-0 row-fluid">

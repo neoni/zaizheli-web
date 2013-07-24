@@ -12,10 +12,10 @@ import org.springframework.data.mongodb.repository.Query;
 public interface CommentRepository extends 
 		AtomicOperationsRepository<Comment, String> {
 	
-	@Query("{ 'act': {'$ref': 'activity', '$id': { '$oid': ?0 } }}")
-	List<Comment> findByAct(String id);
+	@Query("{ 'activity': {'$ref': 'activity', '$id': { '$oid': ?0 } }}")
+	List<Comment> findByActivity(String id);
 	
-	@Query("{ 'act': {'$ref': 'activity', '$id': { '$oid': ?0 } }}")
-	Page<Comment> findByAct(String id, Pageable pageable);
+	@Query("{ 'activity': {'$ref': 'activity', '$id': { '$oid': ?0 } }}")
+	Page<Comment> findByActivity(String id, Pageable pageable);
 	
 }

@@ -5,6 +5,9 @@ import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
+
+import net.zaizheli.vo.CommentFormBean;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -27,13 +30,21 @@ public class Comment implements Serializable {
 	@NotNull
 	@DBRef
 	private User createdBy;
+	@DBRef
+	private User replyTo;
 	@NotNull
 	private Date createdAt;
 	@NotNull
 	private int floor;               //第几楼
 	private int agreeCount;
-	private int disagreeCount;
 
+	
+	public User getReplyTo() {
+		return replyTo;
+	}
+	public void setReplyTo(User replyTo) {
+		this.replyTo = replyTo;
+	}
 	public int getFloor() {
 		return floor;
 	}
@@ -76,12 +87,6 @@ public class Comment implements Serializable {
 	public void setAgreeCount(int agreeCount) {
 		this.agreeCount = agreeCount;
 	}
-	public int getDisagreeCount() {
-		return disagreeCount;
-	}
-	public void setDisagreeCount(int disagreeCount) {
-		this.disagreeCount = disagreeCount;
-	}
 	
 	@Override
 	public int hashCode() {
@@ -109,5 +114,30 @@ public class Comment implements Serializable {
 				.toString();
 	}
 	
+	public static Comment from(CommentFormBean formBean,
+			User signInUser){
+		if(formBean==null || signInUser==null) return null;
+		Comment cmt = new Comment();
+		String context=formBean.getContent();
+		context = turn(context);
+		cmt.setContent(context);
+		cmt.setCreatedBy(signInUser);
+		cmt.setCreatedAt(new Date());
+		cmt.setAgreeCount(0);
+		return cmt;
+	}
+	
+	public static String turn(String str) {  
+		  
+        while (str.indexOf("\n") != -1) {  
+            str = str.substring(0, str.indexOf("\n")) + "<br>"  
+                    + str.substring(str.indexOf("\n") + 1);  
+        }  
+        while (str.indexOf(" ") != -1) {  
+            str = str.substring(0, str.indexOf(" ")) + " "  
+                    + str.substring(str.indexOf(" ") + 1);  
+        }  
+        return str;  
+    }  
 	
 }
