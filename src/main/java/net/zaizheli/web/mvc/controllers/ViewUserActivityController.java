@@ -43,8 +43,6 @@ public class ViewUserActivityController {
 	ActivityRepository activityRepository;
 	@Autowired
 	JoinRepository joinRepository;
-//	@Autowired
-//	TrackShipRepository trackShipRepository;
 	@Autowired
 	ActionRepository actionRepository;
 	@Autowired
@@ -108,42 +106,5 @@ public class ViewUserActivityController {
 		return "activity/list";
 	}
 	
-//	@RequestMapping(value="/{id}/tracks/{no}", method=RequestMethod.GET)
-//	public String tracks(@PathVariable String id,
-//			@PathVariable int no, Model model, 
-//			HttpServletRequest request, HttpSession session){
-//		User user = userRepository.findOne(id);
-//		model.addAttribute("user", user);
-//		Pageable pageable = new PageRequest(no >= 0 ? no : 0, 
-//				ApplicationConfig.masonryPageSize, 
-//				new Sort(new Order(Direction.DESC, "createdAt")));
-//		Iterable<TrackShip> tss = trackShipRepository.findByTrackedAndStatus(id, 0, pageable);
-//		Collection<PinVo> pins = new ArrayList<PinVo>();
-//		if(tss!=null){
-//			pageable = new PageRequest(0, 
-//					ApplicationConfig.pinCmtPageSize, 
-//					new Sort(new Order(Direction.DESC, "createdAt")));
-//			for(TrackShip ts : tss){
-//				if(ts.getTarget()==null) continue;
-//				Spot spot = ts.getTarget();
-//				Activity act = activityRepository.getByOwnerAndTargetSpotAndType(
-//						spot.getCreatedBy().getId(), spot.getId(), ActivityType.SPOT.name());
-//				Page<Comment> cmts = null;
-//				if(act!=null){
-//					 cmts = commentRepository.findByAct(
-//							act.getId(), pageable);
-//				}
-//				if(spot.getPlace()==null){
-//					pins.add(PinVo.from(spot,
-//							cityMetaRepository.getByPinyin(StringUtils.hasText(spot.getCity())?
-//									spot.getCity():ApplicationConfig.defaultCityPinyin), act, cmts));
-//				}else{
-//					pins.add(PinVo.from(spot,null,act, cmts));
-//				}
-//			}
-//		}
-//		model.addAttribute("pins", pins);
-//		return "spots/list";
-//	}
 	
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div id="user-filter-bar" class="filter-bar subnav board row-fluid content-wrapper" style="width: 1150px; height:28px;">
-		<div class="p-5 f-l fs-16" >
+<div id="user-filter-bar" class="filter-bar subnav board row-fluid content-wrapper" style="height: 34px; padding-top: 2px; box-shadow:0 0 1px 2px rgba(255, 251, 251, 0.5);">
+		<div class="p-5 f-l fs-16" style="line-height:30px;" >
 			<span>用户搜索：</span>
 		</div>
 		<div id="bin-template" class="bin mr-5 f-l fs-14 dis-n">
@@ -40,8 +40,8 @@
 			</div>
 			</c:when>
 			<c:otherwise>
-			<div class="search-box ${filter.type} fs-14 f-l">
-				<span>${filter.typeLabel}:</span>
+			<div class="search-box ${filter.type} fs-14 f-l" style="padding-left:15px;">
+				<span>${filter.typeLabel}: &nbsp;</span>
 				<input class="search-query search-input span3" name="${filter.type}" 
 					type="text" placeholder="请输入想要搜索的关键词..." value="${filter.value}"
 					style="display:inline-block; width:200px; border-radius:8px 8px 8px 8px;">

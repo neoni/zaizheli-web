@@ -32,8 +32,8 @@
         <function-signature>java.lang.String getAvatarUrl(net.zaizheli.domains.Resource, net.zaizheli.constants.Gender)</function-signature>
     </function>
     <function>
-        <name>activity</name>
+        <name>action</name>
         <function-class>net.zaizheli.web.utils.DomainObjectUtil</function-class>
-        <function-signature>java.lang.String getActivityHtml(net.zaizheli.vo.ActivityVo)</function-signature>
+        <function-signature>java.lang.String getActionHtml(net.zaizheli.vo.ActionVo)</function-signature>
     </function>
 </taglib>

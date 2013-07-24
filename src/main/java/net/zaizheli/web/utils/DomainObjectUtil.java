@@ -5,6 +5,7 @@ package net.zaizheli.web.utils;
 import net.zaizheli.constants.ApplicationConfig;
 import net.zaizheli.constants.Gender;
 import net.zaizheli.domains.Resource;
+import net.zaizheli.vo.ActionVo;
 
 import org.springframework.stereotype.Component;
 
@@ -76,70 +77,70 @@ public class DomainObjectUtil {
 		return url.toString();
 	}
 	
-//	public static String getActivityHtml(ActivityVo activity){
-//		StringBuilder html = new StringBuilder();
-//		if(activity==null||activity.getType()==null) return html.toString();
-//		html.append("<a>").append(activity.getOwner().getName()).append("</a>");
-//		switch(activity.getType()){
-//			case SPOT:
-//				html.append("&nbsp;添加了新八卦&nbsp;")
-//					.append("<a>")
-//					.append(activity.getTargetSpot().getName());
-//				if(activity.getTargetSpot().getPlace()!=null){
-//					html.append("@")
-//						.append(activity.getTargetSpot().getPlace().getFullAddr());
-//				}
-//					html.append("</a>");
-//				break;
-//			case TRACK:
-//				html.append("&nbsp;追踪了&nbsp;")
-//					.append("<a>")
-//					.append(activity.getTargetSpot().getName());
-//				if(activity.getTargetSpot().getPlace()!=null){
-//					html.append("@")
-//						.append(activity.getTargetSpot().getPlace().getFullAddr());
-//				}
-//					html.append("</a>");
-//				break;
-//			case FORWARD:
-//				html.append("&nbsp;转发了&nbsp;")
-//					.append("<a>")
-//					.append(activity.getTargetSpot().getName());
-//				if(activity.getTargetSpot().getPlace()!=null){
-//					html.append("@")
-//						.append(activity.getTargetSpot().getPlace().getFullAddr());
-//				}
-//					html.append("</a>");
-//				break;
-//			case COMMENT:
-//				html.append("&nbsp;评论了&nbsp;");
-//				if(activity.getTargetSpot()!=null){
-//					html.append("<a>")
-//						.append(activity.getTargetSpot().getName());
-//					if(activity.getTargetSpot().getPlace()!=null){
-//						html.append("@")
-//							.append(activity.getTargetSpot().getPlace().getFullAddr());
-//					}
-//					html.append("</a>");
-//				}	
-//					html.append("&nbsp;\"")
-//						.append(activity.getContent())
-//						.append("\"");
-//				break;
-//			case FOLLOW:
-//				html.append("&nbsp;关注了&nbsp;")
-//					.append("<a>")
-//					.append(activity.getTargetUser().getName())
-//					.append("</a>");
-//				break;
-//			case SETTING:
-//				html.append("&nbsp;")
-//					.append(activity.getContent());
-//				break;
-//			default:
-//				break;
-//		}
-//		return html.toString();
-//	}
+	public static String getActionHtml(ActionVo action){
+		StringBuilder html = new StringBuilder();
+		if(action==null||action.getType()==null) return html.toString();
+		html.append("<a>").append(action.getOwner().getName()).append("</a>");
+		switch(action.getType()){
+			case ACTIVITY:
+				html.append("&nbsp;建立了新活动&nbsp;")
+					.append("<a>")
+					.append(action.getTargetActivity().getTitle());
+				if(action.getTargetActivity().getPlace()!=null){
+					html.append("&nbsp;@&nbsp;")
+						.append(action.getTargetActivity().getPlace().getFullAddr());
+				}
+					html.append("</a>");
+				break;
+			case TRACK:
+				html.append("&nbsp;追踪了&nbsp;")
+					.append("<a>")
+					.append(action.getTargetActivity().getTitle());
+				if(action.getTargetActivity().getPlace()!=null){
+					html.append("@")
+						.append(action.getTargetActivity().getPlace().getFullAddr());
+				}
+					html.append("</a>");
+				break;
+			case FORWARD:
+				html.append("&nbsp;转发了&nbsp;")
+					.append("<a>")
+					.append(action.getTargetActivity().getTitle());
+				if(action.getTargetActivity().getPlace()!=null){
+					html.append("&nbsp;@&nbsp;")
+						.append(action.getTargetActivity().getPlace().getFullAddr());
+				}
+					html.append("</a>");
+				break;
+			case COMMENT:
+				html.append("&nbsp;评论了&nbsp;");
+				if(action.getTargetActivity()!=null){
+					html.append("<a>")
+						.append(action.getTargetActivity().getTitle());
+					if(action.getTargetActivity().getPlace()!=null){
+						html.append("@")
+							.append(action.getTargetActivity().getPlace().getFullAddr());
+					}
+					html.append("</a>");
+				}	
+					html.append("&nbsp;\"")
+						.append(action.getContent())
+						.append("\"");
+				break;
+			case FOLLOW:
+				html.append("&nbsp;关注了&nbsp;")
+					.append("<a>")
+					.append(action.getTargetUser().getName())
+					.append("</a>");
+				break;
+			case SETTING:
+				html.append("&nbsp;")
+					.append(action.getContent());
+				break;
+			default:
+				break;
+		}
+		return html.toString();
+	}
 	
 }

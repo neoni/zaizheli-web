@@ -68,7 +68,8 @@
 				<c:otherwise>
 					<c:import url="/profiles/${user.id}/public"></c:import>
 				</c:otherwise>
-				</c:choose>
+				</c:choose><c:import url="/profiles/action/${user.id}/0"></c:import>
+				
 			</div>
 		</div>
 	</div>

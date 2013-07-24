@@ -30,12 +30,24 @@
 			    			<a data-toggle="tab" href="#cmt-me-act-list">评论我的</a></li>
 			    		<li class="my-cmt">
 			    			<a data-toggle="tab" href="#my-cmt-act-list" 
-			    				data-action="<c:url value="/activities/${user.id}/cmtfrom/0"/>">我的评论</a></li>
+			    				data-action="<c:url value="/messages/${user.id}/cmtfrom/0"/>">我的评论</a></li>
 				    </ul>
 			    </div>
 			    <div id="act-list-wrapper"  class="tab-content bg-white p-20" >
 				    <div id="cmt-me-act-list" class="tab-pane active">
-				</div> 
+				    	<c:import url="/messages/${user.id}/cmtbased/0"></c:import>
+				    </div>
+				    <div id="my-cmt-act-list" class="tab-pane">
+				    	<div class="p-8 lh-16 ta-c loading-box">
+				    		<a href="" class="bg-h-loading pl-85 c-888" >加载中...</a>
+				    	</div>
+				    </div>
+				</div>
+			    <div id="cmt-me-page-nav">
+					<a href="<c:url value="/messages/${user.id}/cmtbased/1" />"></a>
+				</div>
+				<div id="my-cmt-page-nav">
+					<a href="<c:url value="/messages/${user.id}/cmtfrom/1" />"></a>
 				</div>   
 			</div>
 			<div class="span4">
@@ -58,114 +70,114 @@
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.masonry.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.infinitescroll.js" />" ></script>
 <script type="text/javascript">
-	// $(function(){
-	// 	$(".timeago").timeago();
-	// 	$('.act-list').each(function(){
-	// 		op.act_bind_event($(this));
-	// 	});
+	$(function(){
+		$(".timeago").timeago();
+		$('.act-list').each(function(){
+			op.act_bind_event($(this));
+		});
 		
-	// 	$('#profile-nav-tabs .my-cmt a').click(function(){
-	// 		var $this = $(this);
-	// 		if(! $(this).data('first-load')){
-	// 			var data_action = $(this).attr('data-action');
-	// 			var c = $('#my-cmt-act-list');
-	// 			var loading_box = c.find('.loading-box');
-	// 			$.ajax({
-	// 				url: data_action,
-	// 				beforeSend: function(){
-	// 					loading_box.show();
-	// 				},
-	// 				success: function(data) {
-	// 					if($.trim(data)){
-	// 						var act = $(data).prependTo(c);
-	// 						act.each(function(){
-	// 							op.act_bind_event($(this));
-	// 						});
-	// 						act.find('.timeago').timeago();
-	// 					}
-	// 				},
-	// 				complete: function(){
-	// 					loading_box.hide();
-	// 					$this.data('first-load', true);
-	// 				}
-	// 			});
-	// 		}
-	// 	});
+		$('#profile-nav-tabs .my-cmt a').click(function(){
+			var $this = $(this);
+			if(! $(this).data('first-load')){
+				var data_action = $(this).attr('data-action');
+				var c = $('#my-cmt-act-list');
+				var loading_box = c.find('.loading-box');
+				$.ajax({
+					url: data_action,
+					beforeSend: function(){
+						loading_box.show();
+					},
+					success: function(data) {
+						if($.trim(data)){
+							var act = $(data).prependTo(c);
+							act.each(function(){
+								op.act_bind_event($(this));
+							});
+							act.find('.timeago').timeago();
+						}
+					},
+					complete: function(){
+						loading_box.hide();
+						$this.data('first-load', true);
+					}
+				});
+			}
+		});
 			
-	// 	var $cmal = $('#cmt-me-act-list');
-	// 	var $mcal = $('#my-cmt-act-list');
+		var $cmal = $('#cmt-me-act-list');
+		var $mcal = $('#my-cmt-act-list');
 		
-	// 	$cmal.infinitescroll(
-	// 		{
-	// 			navSelector  : '#cmt-me-page-nav', // selector for the paged navigation
-	// 			nextSelector : '#cmt-me-page-nav a', // selector for the NEXT link (to page 2)
-	// 			itemSelector : '.act-list', // selector for all items you'll retrieve
-	// 			debug        : false,
-	// 			animate	 	 : false,
-	// 			animationOptions: {
-	// 			    duration: 750,
-	// 			    easing: 'linear',
-	// 			    queue: false
-	// 			},
-	// 			loading: {
-	// 				selector: '#act-list-wrapper',
-	// 				finishedMsg: '没有更多了',
-	// 				msgText: '动态加载中...',
-	// 				img: '<c:url value="/resources/img/big-loading.gif" />',
-	// 				speed: 0
-	// 			},
-	// 			state : {
-	// 				currPage: 0
-	// 			},
-	// 			pathParse: function() {
-	// 		        return ['<c:url value="/activities/${user.id}/cmtbased/" />', ''];
-	// 		    }
-	// 		},
-	// 		function( newElements ) {
-	// 			var $newElems = $( newElements );
-	// 			$newElems.find(".timeago").timeago();
-	// 			$newElems.each(function(){
-	// 				op.act_bind_event($(this));
-	// 			});
-	// 			$fal.append( $newElems );
-	// 		}
-	// 	);
-	// 	$mcal.infinitescroll(
-	// 			{
-	// 				navSelector  : '#my-cmt-page-nav', // selector for the paged navigation
-	// 				nextSelector : '#my-cmt-page-nav a', // selector for the NEXT link (to page 2)
-	// 				itemSelector : '.act-list', // selector for all items you'll retrieve
-	// 				debug        : false,
-	// 				animate	 	 : false,
-	// 				animationOptions: {
-	// 				    duration: 750,
-	// 				    easing: 'linear',
-	// 				    queue: false
-	// 				},
-	// 				loading: {
-	// 					selector: '#act-list-wrapper',
-	// 					finishedMsg: '没有更多了',
-	// 					msgText: '动态加载中...',
-	// 					img: '<c:url value="/resources/img/big-loading.gif" />',
-	// 					speed: 0
-	// 				},
-	// 				state : {
-	// 					currPage: 0
-	// 				},
-	// 				pathParse: function() {
-	// 			        return ['<c:url value="/activities/${user.id}/cmtfrom/" />', ''];
-	// 			    }
-	// 			},
-	// 			function( newElements ) {
-	// 				var $newElems = $( newElements );
-	// 				$newElems.find(".timeago").timeago();
-	// 				$newElems.each(function(){
-	// 					op.act_bind_event($(this));
-	// 				});
-	// 				$tal.append( $newElems );
-	// 			}
-	// 		);
-	// });
+		$cmal.infinitescroll(
+			{
+				navSelector  : '#cmt-me-page-nav', // selector for the paged navigation
+				nextSelector : '#cmt-me-page-nav a', // selector for the NEXT link (to page 2)
+				itemSelector : '.act-list', // selector for all items you'll retrieve
+				debug        : false,
+				animate	 	 : false,
+				animationOptions: {
+				    duration: 750,
+				    easing: 'linear',
+				    queue: false
+				},
+				loading: {
+					selector: '#act-list-wrapper',
+					finishedMsg: '没有更多了',
+					msgText: '动态加载中...',
+					img: '<c:url value="/resources/img/big-loading.gif" />',
+					speed: 0
+				},
+				state : {
+					currPage: 0
+				},
+				pathParse: function() {
+			        return ['<c:url value="/messages/${user.id}/cmtbased/" />', ''];
+			    }
+			},
+			function( newElements ) {
+				var $newElems = $( newElements );
+				$newElems.find(".timeago").timeago();
+				$newElems.each(function(){
+					op.act_bind_event($(this));
+				});
+				$fal.append( $newElems );
+			}
+		);
+		$mcal.infinitescroll(
+				{
+					navSelector  : '#my-cmt-page-nav', // selector for the paged navigation
+					nextSelector : '#my-cmt-page-nav a', // selector for the NEXT link (to page 2)
+					itemSelector : '.act-list', // selector for all items you'll retrieve
+					debug        : false,
+					animate	 	 : false,
+					animationOptions: {
+					    duration: 750,
+					    easing: 'linear',
+					    queue: false
+					},
+					loading: {
+						selector: '#act-list-wrapper',
+						finishedMsg: '没有更多了',
+						msgText: '动态加载中...',
+						img: '<c:url value="/resources/img/big-loading.gif" />',
+						speed: 0
+					},
+					state : {
+						currPage: 0
+					},
+					pathParse: function() {
+				        return ['<c:url value="/messages/${user.id}/cmtfrom/" />', ''];
+				    }
+				},
+				function( newElements ) {
+					var $newElems = $( newElements );
+					$newElems.find(".timeago").timeago();
+					$newElems.each(function(){
+						op.act_bind_event($(this));
+					});
+					$tal.append( $newElems );
+				}
+			);
+	});
 </script>
 <script type="text/javascript" src="<c:url value="/resources/js/ga.js" />" ></script>
 </body>

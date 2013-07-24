@@ -57,6 +57,9 @@ public class ChangeFollowShipController {
 		if(target==null){
 			throw new RuntimeException("Invalid user id : " + targetId);
 		}
+		if (targetId.equals(signInUser.getId())) {
+			return new AjaxResult(AjaxResultCode.SUCCESS);
+		}
 		FollowShip fs = followShipRepository.getByTargetAndFollowed(targetId, signInUser.getId());
 		boolean followed = false;
 		if(fs!=null && fs.getStatus() == ApplicationConstants.FOLLOWSHIP_DISABLED){

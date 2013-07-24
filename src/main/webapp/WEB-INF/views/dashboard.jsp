@@ -31,14 +31,29 @@
 			    			<a data-toggle="tab" href="#follow-act-list">好友的动态</a></li>
 			    			<li class="track">
 			    			<a data-toggle="tab" href="#track-act-list" 
-			    				data-action="<c:url value="/activities/${user.id}/track/0"/>">关注的活动</a></li>
+			    				data-action="<c:url value="/actions/${user.id}/track/0"/>">活动追踪</a></li>
 				    </ul>
 			    </div>
-			    
-			    
+			    <div id="act-list-wrapper"  class="tab-content bg-white p-20" >
+				    <div id="follow-act-list" class="tab-pane active">
+				    	<c:import url="/actions/${user.id}/follow/0"></c:import>
+				    </div>
+				    <div id="track-act-list" class="tab-pane">
+				    	<div class="p-8 lh-16 ta-c loading-box">
+				    		<a href="" class="bg-h-loading pl-85 c-888" >加载中...</a>
+				    	</div>
+				    </div>
+				</div>
+			    <div id="follow-page-nav">
+					<a href="<c:url value="/actions/${user.id}/follow/1" />"></a>
+				</div>
+				<div id="track-page-nav">
+					<a href="<c:url value="/actions/${user.id}/track/1" />"></a>
+				</div>			    
 			</div>
 			<div class="span4">
 				<c:import url="/profiles/${user.id}/private"></c:import>
+				<jsp:include page="/WEB-INF/views/dashboard/nav.jsp"/>
 			</div>
 		</div>
 	</div>
@@ -116,7 +131,7 @@
 					currPage: 0
 				},
 				pathParse: function() {
-			        return ['<c:url value="/activities/${user.id}/follow/" />', ''];
+			        return ['<c:url value="/actions/${user.id}/follow/" />', ''];
 			    }
 			},
 			function( newElements ) {
@@ -151,7 +166,7 @@
 						currPage: 0
 					},
 					pathParse: function() {
-				        return ['<c:url value="/activities/${user.id}/track/" />', ''];
+				        return ['<c:url value="/actions/${user.id}/track/" />', ''];
 				    }
 				},
 				function( newElements ) {

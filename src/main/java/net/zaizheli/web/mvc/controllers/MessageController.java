@@ -63,5 +63,29 @@ public class MessageController {
 		model.addAttribute("user", user);
 		return "message/atme";
 	}
+	
+	@RequestMapping(value="/message/atme", method=RequestMethod.POST)
+	public String atmeP(Model model, 
+			HttpServletRequest request, HttpSession session){
+		return atme(model, request, session);	
+	}
+	
+	@RequestMapping(value="/message/cmt", method=RequestMethod.POST)
+	public String cmtP(Model model, 
+			HttpServletRequest request, HttpSession session){
+		return cmt(model, request, session);	
+	}
+	
+	@RequestMapping(value="/message/pm", method=RequestMethod.POST)
+	public String pmP(Model model, 
+			HttpServletRequest request, HttpSession session){
+		return pm(model, request, session);	
+	}
+	
+	@RequestMapping(value="/message/inform", method=RequestMethod.POST)
+	public String informP(Model model, 
+			HttpServletRequest request, HttpSession session){
+		return inform(model, request, session);	
+	}
 
 }

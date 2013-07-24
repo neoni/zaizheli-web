@@ -31,7 +31,7 @@
 	<div class="convo row-fluid">
 		<c:forEach var="thumb" items="${pin.activities}" varStatus="stat">
 			<a class="img f-l w-60 h-60 of-h <c:if test="${stat.count%3!=0}">mr-6</c:if> mb-6 bgc-white" 
-				href="<c:url value="/spots/${thumb.id}" />">
+				href="<c:url value="/activities/${thumb.id}" />">
 				<img width=60 src="${f:imageUrl(thumb.image.resId)}" />
 			</a>
 		</c:forEach>

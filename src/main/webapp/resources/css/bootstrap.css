@@ -4273,7 +4273,7 @@ div.subnav .nav > li.dropdown.open > .dropdown-toggle:hover {
 }
 .btn {
   background-color: #f1f1f1;
-  background-image: -moz-linear-gradient(top, #f4f4f4, #ececec);
+  background-image: -moz-linear-gradient(center top , #FFFFFF, #E6E6E6);
   background-image: -ms-linear-gradient(top, #f4f4f4, #ececec);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
   background-image: -webkit-linear-gradient(top, #f4f4f4, #ececec);

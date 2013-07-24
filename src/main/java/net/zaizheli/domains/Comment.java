@@ -26,12 +26,20 @@ public class Comment implements Serializable {
 	private Activity activity;
 	@NotNull
 	@DBRef
-	private User commenter;
+	private User createdBy;
 	@NotNull
 	private Date createdAt;
+	@NotNull
+	private int floor;               //第几楼
 	private int agreeCount;
 	private int disagreeCount;
 
+	public int getFloor() {
+		return floor;
+	}
+	public void setFloor(int floor) {
+		this.floor = floor;
+	}
 	public String getId() {
 		return id;
 	}
@@ -50,11 +58,11 @@ public class Comment implements Serializable {
 	public void setActivity(Activity activity) {
 		this.activity = activity;
 	}
-	public User getCommenter() {
-		return commenter;
+	public User getCreatedBy() {
+		return createdBy;
 	}
-	public void setCommenter(User commenter) {
-		this.commenter = commenter;
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -96,7 +104,7 @@ public class Comment implements Serializable {
 	public String toString() {
 		return new ToStringBuilder(this)
 				.append(activity)
-				.append(commenter)
+				.append(createdBy)
 				.append(createdAt)
 				.toString();
 	}

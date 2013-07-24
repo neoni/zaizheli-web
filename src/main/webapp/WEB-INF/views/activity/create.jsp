@@ -21,7 +21,11 @@
 	<script>
 	    window.onload = function() {
 	        CKEDITOR.replace( 'editor1' );
-	    };
+
+	    }; 
+	    function editor() {
+	   		jQuery('#editor1').val(CKEDITOR.instances.editor1.getData());
+	   	}
 	</script>
 </head>
 <body>
@@ -306,7 +310,7 @@
 				<li id="创建活动的主页面吧" >
 					<div class="row-fluid">
 						<div class="control-group " >
-							<label class="control-label fs-15 lh-20 c-ffc" for="title">输入完成后记得回车一下再提交哦</label>
+							<label class="control-label fs-15 lh-20 c-ffc" for="title">此活动的主页面正在由你创建哦</label>
 						<div class="controls">
 							<textarea id="editor1" name="editor1" value="${activityCreationVo.editor1}"
 							data-prompt-position="centerRight:0,-4" type="text"></textarea>
@@ -317,7 +321,7 @@
 					<br>
 					<div style="float:right">
 						    
-							<button  id="submit-btn" type="submit" class=" btn btn-primary btn-large" data-loading-text="创建中..." >
+							<button  id="submit-btn" type="submit" class=" btn btn-primary btn-large" data-loading-text="创建中..." onclick="editor()">
 								提交该活动</button>
 						
 						<a id="return-btn" class="btn btn-success btn-large ml-10" href="<c:url value="/" />">返回主页</a>
@@ -362,23 +366,23 @@
 				ajaxFormValidationMethod: 'post',
 				ajaxFormValidationURL: '<c:url value="/activities/create/validate" />',
 				onBeforeAjaxFormValidation: function(form, options){
-					$(form).find('button #submit-btn').button('loading');
+					$(form).find('#submit-btn').button('loading');
 				},
 				onAjaxFormComplete: function(status, form, errors, options){
-					$('#createactivity-form button #submit-btn').button('reset');
+					// $('#submit-btn').button('reset');
 					if(status == true){
 						form.validationEngine('detach');
 						form.ajaxSubmit({
 					        dataType:  'json', 
 					        beforeSubmit: function(formData, jqForm, options){
-					        	$('#createactivity-form button #submit-btn').button('loading');					 
+					        	$('submit-btn').button('loading');					 
 					        },
 					        success:  function(data){
 					        	if(!data || data.resultCode != 'SUCCESS' ) return;				      
 					        	window.location.href = $('#return-btn').attr('href');
 					        },
 					        complete: function(jqXHR, textStatus){	
-					        	$('#createactivity-form button #submit-btn').button('reset');
+					        	$('#submit-btn').button('reset');
 					        	attachValidationForForm();			          	
 				          	}
 					    });

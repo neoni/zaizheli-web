@@ -1,7 +1,7 @@
 var op = {
 	/* variables */
 	_signin_ts: null,
-	_signin_timeout: 30*60*1000,
+	_signin_timeout: 45*60*1000,
 		
 	/* functions */
 	calc_utctime: function(date){

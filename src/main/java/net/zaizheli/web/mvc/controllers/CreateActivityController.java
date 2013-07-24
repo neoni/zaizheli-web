@@ -97,10 +97,10 @@ public class CreateActivityController {
 			result.addError(new FieldError("vo", "err",
 					"图片未上传哦~"));
 		}
-		if(vo.getEditor1()==null || vo.getEditor1().equals("")) {
-			result.addError(new FieldError("vo", "err",
-					"记得创建活动的讨论页面哦"));
-		}
+//		if(vo.getEditor1()==null || vo.getEditor1().equals("")) {
+//			result.addError(new FieldError("vo", "err",
+//					"记得创建活动的讨论页面哦"));
+//		}
 		if (result.hasErrors()) {
 			result.addError(new FieldError("vo", "err",
 					"信息有误，点击来看看吧~"));
@@ -115,10 +115,23 @@ public class CreateActivityController {
 	public @ResponseBody AjaxResult create(@Valid ActivityCreationVo vo, 
 			BindingResult result, ModelAndView mav, HttpSession session) throws ParseException{
 		User signInUser = sessionUtil.getSignInUser(session);
+		String start=vo.getStartDate()+vo.getStartTime();
+		String end=vo.getEndDate()+vo.getEndTime();
 		if(signInUser==null){
 			return new AjaxResult(AjaxResultCode.NEED_SIGNIN);
 		}
-		
+		if(start.compareTo(end)>0) {
+			result.addError(new FieldError("vo", "endTime",
+					"时间不对吧，再仔细想想吧~"));
+		}
+		if(vo.getImageUrl()==null || vo.getImageUrl().equalsIgnoreCase("http://placehold.it/300&text=Upload+Image")) {
+			result.addError(new FieldError("vo", "err",
+					"图片未上传哦~"));
+		}
+		if(vo.getEditor1()==null || vo.getEditor1().equals("")) {
+			result.addError(new FieldError("vo", "err",
+					"记得创建活动的讨论页面哦"));
+		}
 		if(result.hasErrors()){
 			result.addError(new FieldError("vo", "err",
 					"前面的信息有误，去看看吧~"));
