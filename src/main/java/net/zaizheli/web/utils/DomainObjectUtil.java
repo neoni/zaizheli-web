@@ -97,7 +97,7 @@ public class DomainObjectUtil {
 					.append("<a>")
 					.append(action.getTargetActivity().getTitle());
 				if(action.getTargetActivity().getPlace()!=null){
-					html.append("@")
+					html.append("&nbsp;@&nbsp;")
 						.append(action.getTargetActivity().getPlace().getFullAddr());
 				}
 					html.append("</a>");
@@ -113,19 +113,22 @@ public class DomainObjectUtil {
 					html.append("</a>");
 				break;
 			case COMMENT:
+				if(action.getTargetUser()!=null){
+				}
+				else {
 				html.append("&nbsp;评论了&nbsp;");
-				if(action.getTargetActivity()!=null){
-					html.append("<a>")
-						.append(action.getTargetActivity().getTitle());
-					if(action.getTargetActivity().getPlace()!=null){
-						html.append("@")
-							.append(action.getTargetActivity().getPlace().getFullAddr());
+					if(action.getTargetActivity()!=null){
+						html.append("<a>")
+							.append(action.getTargetActivity().getTitle());
+						if(action.getTargetActivity().getPlace()!=null){
+							html.append("&nbsp;@&nbsp;")
+								.append(action.getTargetActivity().getPlace().getFullAddr());
+						}
+						html.append("</a><br>");
 					}
-					html.append("</a>");
-				}	
-					html.append("&nbsp;\"")
-						.append(action.getContent())
-						.append("\"");
+				}
+				html.append("&nbsp;")
+					.append(action.getContent());
 				break;
 			case FOLLOW:
 				html.append("&nbsp;关注了&nbsp;")
@@ -134,9 +137,25 @@ public class DomainObjectUtil {
 					.append("</a>");
 				break;
 			case SETTING:
-				html.append("&nbsp;")
-					.append(action.getContent());
+				html.append("&nbsp;更新了&nbsp;")
+					.append("<a>")
+					.append(action.getTargetActivity().getTitle());
+				if(action.getTargetActivity().getPlace()!=null){
+					html.append("&nbsp;@&nbsp;")
+						.append(action.getTargetActivity().getPlace().getFullAddr());
+				}
+					html.append("</a>");
 				break;
+			case JOIN:
+				html.append("&nbsp;加入了&nbsp;")
+				.append("<a>")
+				.append(action.getTargetActivity().getTitle());
+				if(action.getTargetActivity().getPlace()!=null){
+					html.append("&nbsp;@&nbsp;")
+						.append(action.getTargetActivity().getPlace().getFullAddr());
+				}
+				html.append("</a>");
+			break;
 			default:
 				break;
 		}

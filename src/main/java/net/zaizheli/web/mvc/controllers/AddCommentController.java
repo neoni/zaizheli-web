@@ -67,14 +67,22 @@ public class AddCommentController {
 		}
 		// save comment
 		Comment cmt = Comment.from(bean, signInUser);
-		cmt.setActivity(activity);
-		cmt.setFloor(activity.getCommentCount()+1);
-		
+		Comment baseCmt = commentRepository.findOne(bean.getCmtId());
 		User user = userRepository.findOne(bean.getReplyToId());
-		if(user!=null) {
+		if(baseCmt!=null  && user!=null && bean.getContent().indexOf("回复 "+user.getName()+":")==0) {
 			cmt.setReplyTo(user);
-		}
-		cmt = commentRepository.save(cmt);	
+			String context = cmt.getContent();
+			int index = context.indexOf(":");
+			String content = "<a href=\"#" + baseCmt.getId() + "\">" + context.substring(0,index)
+					+ " (第" + baseCmt.getFloor() + "层):</a><br>";
+			if(context.substring(index+1,index+2) == "\n")
+					content = content + context.substring(index+2);
+			else content = content + context.substring(index+1);
+			cmt.setContent(content);			
+		}	
+		cmt.setActivity(activity);
+		cmt.setFloor(activity.getCommentCount()+1);	
+			
 		// inc commented count of orignal activity
 		activityRepository.inc(activity.getId(), "commentCount", 1);
 		// incr comment count of sign in user
@@ -84,18 +92,17 @@ public class AddCommentController {
 		action.setOwner(signInUser.getId());
 		action.setCreatedAt(new Date());
 		action.setTargetActivity(activity.getId());
-		if (user != null) {
-			action.setTargetUser(user.getId());
-		}
-		else {
-			action.setTargetUser(activity.getCreatedBy().getId());
+		if (baseCmt!=null && user != null && bean.getContent().indexOf("回复 "+user.getName()+":")==0 ) {
+			action.setTargetUser(user.getId());	
 		}
 		action.setContent(bean.getContent());
 		action.setType(ActionType.COMMENT);
 		action.setBy(sessionUtil.getBy(session));
 		actionRepository.save(action);
+		cmt = commentRepository.save(cmt);
 		StringBuilder url = new StringBuilder();
 		url.append("/activities/").append(activity.getId());
+		url.append("#").append(cmt.getId());
 		return "redirect:" + url.toString();
 	}
 }

@@ -4,11 +4,12 @@
 <%@ taglib uri="http://zaizheli.net/functions" prefix="f" %>
 <c:if test="${not empty comments}">
 <c:forEach var="comment" items="${comments}">
+<div id="${comment.id}">
 <c:if test="${comment.floor != 1}" >
  	<div style="border-bottom:2px dashed #F9DBB4; margin:3em 6em 3em; width:68em; color:#325D72"></div>
  </c:if>
-<li> 
-	<div class="number"> 
+<li class="num"> 
+	<div class="number" > 
           <span>${comment.floor}</span> 
     </div> 
 	<a class="img f-l" href="<c:url value="/profiles/${comment.createdBy.id}" />">
@@ -23,8 +24,24 @@
 	<p style="padding-left:100px;">${comment.content}</p> 
 </li> 
 <p class="f-r"> 
-	<a href="<c:url value="/comment/agree/${comment.id}" />" onclick="op.give_cagreement(event.currentTarget); event.preventDefault(); " class="cmt_tool btn-info btn-mini" ><i class="icon-heart icon-white"></i>&nbsp;&nbsp;<span>赞(${comment.agreeCount})&nbsp;</span></a>
-	<a id="toReply" href="#comment" user-id="${comment.createdBy.id}" class="cmt_tool btn-info btn-mini" style="padding-left:5px;"><i class="icon-comment icon-white"></i>&nbsp;<span>&nbsp;回复&nbsp;</span></a> 
+	<a href="#" act="<c:url value="/comment/agree/${comment.id}" />" onclick="op.give_cagreement(event.currentTarget); event.preventDefault(); " class="cmt_tool btn-info btn-mini" ><i class="icon-heart icon-white"></i>&nbsp;&nbsp;<span>赞(${comment.agreeCount})&nbsp;</span></a>
+	<a  href="#comment" user-id="${comment.createdBy.id}" class="reply cmt_tool btn-info btn-mini" style="padding-left:5px;" onclick="op.replyto('${comment.createdBy.id}','${comment.createdBy.name}','${comment.id}');"><i class="icon-comment icon-white"></i>&nbsp;<span>&nbsp;回复&nbsp;</span></a> 
 </p>
+</div>
 </c:forEach>
 </c:if>
+</ol>
+<div id="cmt_page"></div>
+
+<script type="text/javascript">
+	var options = {
+		currentPage: '${pageVo.number}',
+		totalPages: '${pageVo.totalPages}',
+		numberOfPages: 5,
+		alignment: 'center',
+		pageUrl: function(type, page, current){
+                return '<c:url value="/activities/${activity.id}/" />' + page + '#why-work';
+            }		
+		}
+	$('#cmt_page').bootstrapPaginator(options);	
+</script>

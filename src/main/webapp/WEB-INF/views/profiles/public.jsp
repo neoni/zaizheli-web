@@ -23,7 +23,7 @@
 					性别: <span class="c-333">${f:gender(user.gender)}</span>
 				</c:if>
 			</p>
-			<p> <a class="btn btn-success follow" href="<c:url value="/ops/follow/${user.id}" />" 
+			<p> <a class="btn btn-success follow" act="<c:url value="/ops/follow/${user.id}" />" 
 					onclick="op.change_follow(event.currentTarget); event.preventDefault();" data-idr="#fans-idr">
 					<i class="icon-eye-open icon-white"></i>&nbsp;<span>关注Ta</span></a>&nbsp;&nbsp;
 				<a class="btn" href="#">

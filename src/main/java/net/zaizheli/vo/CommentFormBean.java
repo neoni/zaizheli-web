@@ -11,9 +11,15 @@ public class CommentFormBean implements Serializable {
 	private String actId;
 	@NotEmpty
 	private String content;
-	@NotEmpty
 	private String replyToId;
+	private String cmtId;
 	
+	public String getCmtId() {
+		return cmtId;
+	}
+	public void setCmtId(String cmtId) {
+		this.cmtId = cmtId;
+	}
 	public String getReplyToId() {
 		return replyToId;
 	}

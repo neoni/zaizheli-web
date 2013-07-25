@@ -9,7 +9,7 @@
 			href="<c:url value="/profiles/${pin.userId}" />">
 			<img alt="${pin.name}" width=192 height=192 src="${pin.avatarUrl}"></a>
 		<div class="op-list p-a dis-n " style="top:8px; right: 2px"><ul class="ls-n ta-r">
-			<li><a class="btn mb-5 btn-success follow" style="margin-bottom:5px;" href="<c:url value="/ops/follow/${pin.userId}" />"
+			<li><a class="btn mb-5 btn-success follow" style="margin-bottom:5px;" act="<c:url value="/ops/follow/${pin.userId}" />"
 				onclick="op.change_follow(event.currentTarget); event.preventDefault();">
 				<i class="icon-heart icon-white" ></i>&nbsp;<span>关注Ta</span></a></li>
 			<li><a class="btn" href="#" style="margin-bottom:5px;">

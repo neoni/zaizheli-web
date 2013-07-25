@@ -34,8 +34,7 @@
 							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>" href="">转发(${action.targetActivity.shareCount})</a>
 							   	<i class="mr-5 ml-5 c-aaa">|</i>
 							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>">评论(${action.targetActivity.commentCount})</a>
-							</span>
-						</dd>	
+							</span>	
 						<!-- <span class="f-r">
 							<a onclick="op.toggle_fwd_dashboard(event.currentTarget); event.preventDefault();">
 								转发(${action.forwardedCount})</a>
@@ -88,21 +87,35 @@
 						</span>
 					</p> -->
 				</c:when>
-				<c:when test="${action.type == 'COMMENT'}">
-					<p>
-						<a href="<c:url value="/profiles/${action.owner.id}" />">
-							${action.owner.name}</a>
-						评论: ${action.content}</p>
-					<p><c:if test="${not empty action.basedOn}">
-						<a href="<c:url value="/profiles/${action.basedOn.owner.id}" /> ">@${action.basedOn.owner.name}</a>:
-						<span>${action.basedOn.content}</span>
-					</c:if>
-					<c:if test="${not empty action.targetActivity}">
-						<a href="<c:url value="/activities/${action.targetActivity.id}" /> ">${action.targetActivity.title} @ 
-								${action.targetActivity.place.fullAddr}</a><br/>
-						
-					</c:if>
-					</p>
+				<c:when test="${action.type == 'COMMENT'}"> 
+                    <c:choose>
+                    <c:when test="${not empty action.targetUser}">
+						<p><a href="<c:url value="/profiles/${action.owner.id}" />">
+								${action.owner.name}</a>在&nbsp;
+								<c:if test="${not empty action.targetActivity}">
+								<a href="<c:url value="/activities/${action.targetActivity.id}" /> ">${action.targetActivity.title} @ 
+										${action.targetActivity.place.fullAddr}</a><br/>
+								</c:if>	
+							   <p>${action.content}</p>						
+					</c:when>
+					<c:otherwise>
+					<p><a href="<c:url value="/profiles/${action.owner.id}" />">
+								${action.owner.name}</a>
+							评论了</p>
+							<p>
+							<c:if test="${not empty action.basedOn}">
+							<a href="<c:url value="/profiles/${action.basedOn.owner.id}" /> ">@${action.basedOn.owner.name}</a>:
+							<span>${action.basedOn.content}</span>
+							</c:if>
+							<c:if test="${not empty action.targetActivity}">
+								<a href="<c:url value="/activities/${action.targetActivity.id}" /> ">${action.targetActivity.title} @ 
+										${action.targetActivity.place.fullAddr}</a><br/>
+								
+							</c:if>
+							</p>
+							<p>${action.content}</p>	
+					</c:otherwise>
+					</c:choose>	
 					<p class="mb-0 row-fluid">
 						<span class="timeago f-l" 
 							title="<fmt:formatDate value="${action.createdAt}" pattern="yyyy-MM-dd HH:mm:ss Z"/>"></span>
@@ -112,6 +125,120 @@
 								回复</a>
 						</span>
 						</c:if> -->
+					</p>
+				</c:when>
+				<c:when test="${action.type == 'JOIN'}">
+					<p class="">
+						<a href="<c:url value="/profiles/${action.owner.id}" />">
+							${action.owner.name}</a>
+						参加了活动:&nbsp;
+						<a href="<c:url value="/activities/${action.targetActivity.id}" />">
+							${action.targetActivity.title}&nbsp;@&nbsp;${action.targetActivity.place.fullAddr}</a></p>
+					
+					<p class="">
+						<img class="" width="100" src="${f:imageUrl(action.targetActivity.image.resId)}">
+					</p>
+					<p class="mb-0 row-fluid">
+						<span class="timeago f-l" 
+							title="<fmt:formatDate value="${action.createdAt}" pattern="yyyy-MM-dd HH:mm:ss Z"/>"></span>
+							<span class="f-r">
+								<a href="<c:url value="/activities/${action.targetActivity.id}"/>">追踪(${action.targetActivity.trackCount})</a>
+								<i class="mr-5 ml-5 c-aaa">|</i>
+							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>" href="">转发(${action.targetActivity.shareCount})</a>
+							   	<i class="mr-5 ml-5 c-aaa">|</i>
+							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>">评论(${action.targetActivity.commentCount})</a>
+							</span>
+						</dd>	
+						<!-- <span class="f-r">
+							<a onclick="op.toggle_fwd_dashboard(event.currentTarget); event.preventDefault();">
+								转发(${action.forwardedCount})</a>
+						   	<i class="mr-5 ml-5 c-aaa">|</i>
+						   	<a onclick="op.toggle_cmt_dashboard(event.currentTarget); event.preventDefault();">
+						   		评论(${action.commentedCount})</a>
+						</span> -->
+					</p>
+				</c:when>
+				<c:when test="${action.type == 'TRACK'}">
+					<p class="">
+						<a href="<c:url value="/profiles/${action.owner.id}" />">
+							${action.owner.name}</a>
+						追踪了活动:&nbsp;
+						<a href="<c:url value="/activities/${action.targetActivity.id}" />">
+							${action.targetActivity.title}&nbsp;@&nbsp;${action.targetActivity.place.fullAddr}</a></p>
+					
+					<p class="">
+						<img class="" width="100" src="${f:imageUrl(action.targetActivity.image.resId)}">
+					</p>
+					<p class="mb-0 row-fluid">
+						<span class="timeago f-l" 
+							title="<fmt:formatDate value="${action.createdAt}" pattern="yyyy-MM-dd HH:mm:ss Z"/>"></span>
+							<span class="f-r">
+								<a href="<c:url value="/activities/${action.targetActivity.id}"/>">追踪(${action.targetActivity.trackCount})</a>
+								<i class="mr-5 ml-5 c-aaa">|</i>
+							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>" href="">转发(${action.targetActivity.shareCount})</a>
+							   	<i class="mr-5 ml-5 c-aaa">|</i>
+							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>">评论(${action.targetActivity.commentCount})</a>
+							</span>
+							
+						<!-- <span class="f-r">
+							<a onclick="op.toggle_fwd_dashboard(event.currentTarget); event.preventDefault();">
+								转发(${action.forwardedCount})</a>
+						   	<i class="mr-5 ml-5 c-aaa">|</i>
+						   	<a onclick="op.toggle_cmt_dashboard(event.currentTarget); event.preventDefault();">
+						   		评论(${action.commentedCount})</a>
+						</span> -->
+					</p>
+				</c:when>
+				<c:when test="${action.type == 'SETTING'}">
+					<p class="">
+						<a href="<c:url value="/profiles/${action.owner.id}" />">
+							${action.owner.name}</a>
+						更新了活动:&nbsp;
+						<a href="<c:url value="/activities/${action.targetActivity.id}" />">
+							${action.targetActivity.title}&nbsp;@&nbsp;${action.targetActivity.place.fullAddr}</a></p>
+					
+					<p class="">
+						<img class="" width="100" src="${f:imageUrl(action.targetActivity.image.resId)}">
+					</p>
+					<p class="mb-0 row-fluid">
+						<span class="timeago f-l" 
+							title="<fmt:formatDate value="${action.createdAt}" pattern="yyyy-MM-dd HH:mm:ss Z"/>"></span>
+							<span class="f-r">
+								<a href="<c:url value="/activities/${action.targetActivity.id}"/>">追踪(${action.targetActivity.trackCount})</a>
+								<i class="mr-5 ml-5 c-aaa">|</i>
+							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>" href="">转发(${action.targetActivity.shareCount})</a>
+							   	<i class="mr-5 ml-5 c-aaa">|</i>
+							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>">评论(${action.targetActivity.commentCount})</a>
+							</span>
+						</dd>	
+						<!-- <span class="f-r">
+							<a onclick="op.toggle_fwd_dashboard(event.currentTarget); event.preventDefault();">
+								转发(${action.forwardedCount})</a>
+						   	<i class="mr-5 ml-5 c-aaa">|</i>
+						   	<a onclick="op.toggle_cmt_dashboard(event.currentTarget); event.preventDefault();">
+						   		评论(${action.commentedCount})</a>
+						</span> -->
+					</p>
+				</c:when>
+				<c:when test="${action.type == 'FOLLOW'}">
+					<p class="">
+						<a href="<c:url value="/profiles/${action.owner.id}" />">
+							${action.owner.name}</a>
+						关注了:&nbsp;
+						<a href="<c:url value="/profiles/${action.targetUser.id}" />">
+							${action.targetUser.name}</a></p>
+					
+					<p class="">
+						<img class="" width="100" src="${f:avatarUrl(action.targetUser.avatar, action.targetUser.gender)}">
+					</p>
+						
+						<!-- <span class="f-r">
+							<a onclick="op.toggle_fwd_dashboard(event.currentTarget); event.preventDefault();">
+								转发(${action.forwardedCount})</a>
+						   	<i class="mr-5 ml-5 c-aaa">|</i>
+						   	<a onclick="op.toggle_cmt_dashboard(event.currentTarget); event.preventDefault();">
+						   		评论(${action.commentedCount})</a>
+						</span> -->
 					</p>
 				</c:when>
 				</c:choose>

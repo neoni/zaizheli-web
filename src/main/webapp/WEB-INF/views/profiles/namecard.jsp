@@ -39,7 +39,7 @@
 	
 	<div class="pb-5 pt-5 row-fluid bgc-gray" >
 		<div class="f-l" style="margin-left:80px">
-			<p><a class="btn btn-success follow" href="<c:url value="/ops/follow/${user.id}" />" 
+			<p><a class="btn btn-success follow" act="<c:url value="/ops/follow/${user.id}" />" 
 					onclick="op.change_follow(event.currentTarget); event.preventDefault();" data-idr="#fans-idr">
 					<i class="icon-eye-open icon-white"></i>&nbsp;<span>关注Ta</span></a>
 				<a class="btn" href="#">

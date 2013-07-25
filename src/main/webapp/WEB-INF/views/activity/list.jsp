@@ -18,13 +18,13 @@
 		</c:otherwise>
 		</c:choose>
 		<div class="op-list p-a dis-n " style="top:8px; right: 2px"><ul class="ls-n ta-r">
-			<li><a class="btn mb-5 btn-success track" href="<c:url value="/ops/track/${pin.activityId}" />"
+			<li><a class="btn mb-5 btn-success track" act="<c:url value="/ops/track/${pin.activityId}" />"
 				style="margin-bottom:5px;" onclick="op.change_track(event.currentTarget); event.preventDefault();">
 				<i class="icon-star icon-white"></i>&nbsp;<span>追踪(${pin.trackCount})</span></a></li>
-			<li><a class="btn mb-5 btn-info" href="<c:url value="/ops/share/${activity.id}" />"
+			<li><a class="btn mb-5 btn-info" act="<c:url value="/ops/share/${activity.id}" />"
 				style="margin-bottom:5px;" onclick="op.show_forward(event.currentTarget); event.preventDefault();">
 				<i class="icon-share-alt icon-white"></i>&nbsp;<span>转发(${pin.shareCount})</span></a></li>
-			<li><a class="btn mb-5 btn-danger" href="<c:url value="/ops/agree/${pin.activityId}" />"
+			<li><a class="btn mb-5 btn-danger" act="<c:url value="/ops/agree/${pin.activityId}" />"
 				style="margin-bottom:5px;" onclick="op.give_agreement(event.currentTarget); event.preventDefault(); ">
 				<i class="icon-heart icon-white"></i>&nbsp;&nbsp;<span>赞(${pin.agreeCount})&nbsp;</span></a></li>
 		</ul></div>

@@ -47,12 +47,12 @@ var op = {
 	},
 	
 	follow: function(dom){
-		var url= $(dom).attr('href');
+		var url= $(dom).attr('act');
 		$.getJSON(url, function(data){
 			if(data && data.resultCode == 'SUCCESS'){
 				$(dom).removeClass('follow').removeClass('btn-success')
 					.addClass('defollow')
-					.attr('href', url.replace('/follow/', '/defollow/'))
+					.attr('act', url.replace('/follow/', '/defollow/'))
 					.find('span').text('取消关注');
 				$(dom).find('i').removeClass('icon-white');
 				var idr_str = $(dom).attr('data-idr');
@@ -65,12 +65,12 @@ var op = {
 	},
 	
 	defollow: function(dom){
-		var url= $(dom).attr('href');
+		var url= $(dom).attr('act');
 		$.getJSON(url, function(data){
 			if(data && data.resultCode == 'SUCCESS'){
 				$(dom).removeClass('defollow')
 					.addClass('follow').addClass('btn-success')
-					.attr('href', url.replace('/defollow/', '/follow/'))
+					.attr('act', url.replace('/defollow/', '/follow/'))
 					.find('span').text('关注Ta');
 				$(dom).find('i').addClass('icon-white');
 				var idr_str = $(dom).attr('data-idr');
@@ -92,12 +92,12 @@ var op = {
 	
 	track: function(dom){
 		this.check_signin( function(){
-			var url= $(dom).attr('href');
+			var url= $(dom).attr('act');
 			$.getJSON(url, function(data){
 				if(data && data.resultCode == 'SUCCESS'){
 					$(dom).removeClass('track').removeClass('btn-success')
 						.addClass('detrack')
-						.attr('href', url.replace('/track/', '/detrack/'))
+						.attr('act', url.replace('/track/', '/detrack/'))
 						.find('span').text('取消追踪');
 					$(dom).find('i').removeClass('icon-white');
 					var idr_str = $(dom).attr('data-idr');
@@ -114,12 +114,12 @@ var op = {
 	},
 	
 	detrack: function(dom){
-		var url= $(dom).attr('href');
+		var url= $(dom).attr('act');
 		$.getJSON(url, function(data){
 			if(data && data.resultCode == 'SUCCESS'){
 				$(dom).removeClass('detrack')
 					.addClass('track').addClass('btn-success')
-					.attr('href', url.replace('/detrack/', '/track/'))
+					.attr('act', url.replace('/detrack/', '/track/'))
 					.find('span').text('追踪');
 				$(dom).find('i').addClass('icon-white');
 				var idr_str = $(dom).attr('data-idr');
@@ -229,10 +229,10 @@ var op = {
 
 	give_agreement: function(dom){
 		this.check_signin( function(){
-			var url= $(dom).attr('href');
+			var url= $(dom).attr('act');
 			$.getJSON(url, function(data){
 				if(data && data.resultCode == 'SUCCESS'){
-					$(dom).removeAttr("href");
+					$(dom).removeAttr("act");
 					$(dom).find('span').text('已赞');
 					$(dom).find('i').removeClass('icon-white');
 					op.notify_header('大大地赞了一下此活动~');
@@ -246,10 +246,10 @@ var op = {
 
 	give_cagreement: function(dom){
 		this.check_signin( function(){
-			var url= $(dom).attr('href');
+			var url= $(dom).attr('act');
 			$.getJSON(url, function(data){
 				if(data && data.resultCode == 'SUCCESS'){
-					$(dom).removeAttr("href");
+					$(dom).removeAttr("act");
 					$(dom).find('span').text('已赞');
 					$(dom).find('i').removeClass('icon-white');
 					op.notify_header('对此评论一赞~');
@@ -259,6 +259,13 @@ var op = {
 			window.location.href= web_context + "/signin";
 			$('#sign-in-modal').modal('show');
 		});
+	},
+
+	replyto: function(id,name,cid){
+		var str="回复 "+ name + ":\n";
+			$('textarea').val(str);
+			$('#replyToId').val(id);
+			$('#cmtId').val(cid);
 	},
 	
 	pin_bind_event: function($dom){

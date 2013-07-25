@@ -30,6 +30,17 @@ public class ViewSingleActivityController {
 		
 		Activity activity = activityRepository.findOne(id);
 		model.addAttribute("activity", activity);
+		model.addAttribute("no", 1);
+		return "activity/single";	
+	}
+	
+	@RequestMapping(value="/{id}/{no}", method=RequestMethod.GET)
+	public String viewP(@PathVariable String id, @PathVariable int no ,Model model, 
+			HttpServletRequest request, HttpSession session){
+		
+		Activity activity = activityRepository.findOne(id);
+		model.addAttribute("activity", activity);
+		model.addAttribute("no", no);
 		return "activity/single";
 	}
 	

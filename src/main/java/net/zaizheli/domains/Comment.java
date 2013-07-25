@@ -127,15 +127,25 @@ public class Comment implements Serializable {
 		return cmt;
 	}
 	
-	public static String turn(String str) {  
-		  
-        while (str.indexOf("\n") != -1) {  
-            str = str.substring(0, str.indexOf("\n")) + "<br>"  
-                    + str.substring(str.indexOf("\n") + 1);  
+	public static String turn(String str) { 
+		int index;
+        while ((index = str.indexOf("\n")) != -1) {
+        	if(index < (str.length()-1)) {
+	            str = str.substring(0, index) + "<br>"  
+	                    + str.substring(index + 1);
+        	}
+        	else {
+        		str = str.substring(0, index) + "<br>";
+        	}
         }  
-        while (str.indexOf(" ") != -1) {  
-            str = str.substring(0, str.indexOf(" ")) + " "  
-                    + str.substring(str.indexOf(" ") + 1);  
+        while ((index = str.indexOf(" ")) != -1) {  
+        	if(index < (str.length()-1)) {
+	            str = str.substring(0, index) + "&nbsp;&nbsp;"  
+	                    + str.substring(index + 1);
+        	}
+        	else {
+        		str = str.substring(0, index) + "&nbsp;&nbsp;";
+        	}
         }  
         return str;  
     }  

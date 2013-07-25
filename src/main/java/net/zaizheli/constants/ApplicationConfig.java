@@ -22,6 +22,7 @@ public class ApplicationConfig {
 	public static int mapPageSize = 15;
 	public static int listPageSize = 15;
 	public static int pinCmtPageSize = 6;
+	public static int cmtPageSize = 8;
 	public static int masonryThumbPageSize = 9;
 	public static int categoryThumbPageSize = 12;
 	public static String[] defaultCategories = new String[]{

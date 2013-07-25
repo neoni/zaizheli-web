@@ -8,6 +8,7 @@ import net.zaizheli.constants.ApplicationConfig;
 import net.zaizheli.domains.Comment;
 import net.zaizheli.repositories.ActivityRepository;
 import net.zaizheli.repositories.CommentRepository;
+import net.zaizheli.vo.PageVo;
 import net.zaizheli.web.utils.SessionUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +34,27 @@ public class ViewActivityComment {
 	@Autowired
 	CommentRepository commentRepository;
 	
-	@RequestMapping(value="/{id}/comments", method=RequestMethod.GET)
-	public String view(@PathVariable String id, Model model, 
+	@RequestMapping(value="/{id}/comments/{no}", method=RequestMethod.GET)
+	public String view(@PathVariable String id, @PathVariable int no, Model model, 
 			HttpServletRequest request, HttpSession session){
-		Pageable pageable = new PageRequest(0, 
-				ApplicationConfig.masonryPageSize, 
+		Pageable pageable = new PageRequest(Math.max(no-1, 0), 
+				ApplicationConfig.cmtPageSize, 
 				new Sort(new Order(Direction.ASC, "floor")));
 		Page<Comment> comments = commentRepository.findByActivity(id, pageable);
+		int size = commentRepository.findByActivity(id).size();
+		int total = 0 ;
+		if (size % ApplicationConfig.cmtPageSize == 0)
+	      total = (int)(size/ ApplicationConfig.cmtPageSize);
+		else {
+			total = (int)(size/ ApplicationConfig.cmtPageSize)+1;
+		}
+		PageVo pageVo = new PageVo();
+		pageVo.setSize(ApplicationConfig.cmtPageSize);
+		pageVo.setNumber(no);
+		pageVo.setTotalPages(total);
+		pageVo.setContent(comments.getContent());
 		model.addAttribute("comments", comments.getContent());
+		model.addAttribute("pageVo",pageVo);
 		return "activity/single_comment";
 	}
 

@@ -22,7 +22,14 @@ public class Resource implements Serializable {
 	private String ext;
 	private Integer[] orgSize;
 	private String tmpUrl;
+	private String actId;
 	
+	public String getActId() {
+		return actId;
+	}
+	public void setActId(String actId) {
+		this.actId = actId;
+	}
 	public String getId() {
 		return id;
 	}
