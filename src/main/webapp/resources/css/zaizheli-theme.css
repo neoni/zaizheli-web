@@ -865,4 +865,63 @@ textarea#comment {
 	margin-top: 40px;
 }
 
+/*------------- gallery ------------------*/
 
+#Gallery_container{	/* the main container div */
+    width:1000px;
+    margin:20px auto;
+}
+
+#Gallery_heading{	/* the header and the footer share some of their style rules */
+	line-height: 1.5;
+    text-align:center;
+    padding-bottom: 10px;
+    margin-bottom:20px;
+}
+
+div.nomargin{	/* our special nomargin class */
+    margin-right:0px;
+}
+
+.Gallery_pic{	/* divs that hold all the pictures in the gallery */
+    float:left;
+    margin:0 15px 15px 0;
+    border:5px solid white;
+    width:100px;
+    height:100px;
+}
+
+.Gallery_pic a{	/* in every .pic container there is a hyperlink exactly the size of the container */
+    width:200px;
+    height:250px;
+    text-indent:-99999px;
+    display:block;	/* don't forget that widths and heights of hyperlinks are useless without display:block */
+}
+
+.btn_blue {
+	border: medium none;
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.75em 1.5em 0.75em;
+    text-decoration: none;
+    background-color: #93D0EA;
+    box-shadow: 0 0 5px #8FCDE7 inset, 0 1px 1px #EEEEEE;
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+.upimage {
+	background: url("https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper-texture-78e81f14f426b1043da12ae2e3894487.jpg") repeat scroll 0 0 transparent;
+    border: 1px solid #EAEAEA;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.05);
+    margin-left: -10em;
+    margin-top: -60px;
+    min-height: 50px;
+    width:142px;
+    font-size: 10px;
+}

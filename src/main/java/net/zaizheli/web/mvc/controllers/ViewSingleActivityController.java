@@ -36,8 +36,7 @@ public class ViewSingleActivityController {
 	
 	@RequestMapping(value="/{id}/{no}", method=RequestMethod.GET)
 	public String viewP(@PathVariable String id, @PathVariable int no ,Model model, 
-			HttpServletRequest request, HttpSession session){
-		
+			HttpServletRequest request, HttpSession session){		
 		Activity activity = activityRepository.findOne(id);
 		model.addAttribute("activity", activity);
 		model.addAttribute("no", no);

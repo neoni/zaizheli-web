@@ -73,9 +73,28 @@ public class Activity implements Serializable {
 	private int shareCount;
 	private int agreeCount;
 	private int disagreeCount;
+	private int galleryCount;
+	private int applicationCount;
+	private int inJudgingCount;   //未处理的申请请求
 	
-	
-	
+	public int getGalleryCount() {
+		return galleryCount;
+	}
+	public void setGalleryCount(int galleryCount) {
+		this.galleryCount = galleryCount;
+	}
+	public int getApplicationCount() {
+		return applicationCount;
+	}
+	public void setApplicationCount(int applicationCount) {
+		this.applicationCount = applicationCount;
+	}
+	public int getInJudgingCount() {
+		return inJudgingCount;
+	}
+	public void setInJudgingCount(int inJudgingCount) {
+		this.inJudgingCount = inJudgingCount;
+	}
 	public String getStartDate() {
 		return startDate;
 	}

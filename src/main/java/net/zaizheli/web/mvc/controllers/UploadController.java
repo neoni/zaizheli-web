@@ -5,32 +5,50 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
 
 import net.zaizheli.constants.AjaxResultCode;
 import net.zaizheli.constants.ApplicationConfig;
+import net.zaizheli.repositories.ResourceRepository;
+import net.zaizheli.services.ImageService;
 import net.zaizheli.vo.AjaxResult;
+import net.zaizheli.web.utils.WebImageUtil;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+
+
 
 @Controller
 public class UploadController implements ApplicationContextAware {
-
+	
+	@Autowired
+	ImageService imageService;
+	@Autowired
+	WebImageUtil webImageUtil;
+	@Autowired
+	ResourceRepository resourceRepository;
+	
 	private ApplicationContext ac;
 
 	@ModelAttribute("tempRepositories")
@@ -115,6 +133,43 @@ public class UploadController implements ApplicationContextAware {
 		response.setHeader("Cache-Control", "no-cache");
 		return result;
 	}
+	
+    @RequestMapping(value = "/gallery/upload", method = RequestMethod.POST)
+    public 
+    String executeMultiple( HttpServletRequest request, @RequestParam("actId") String id,
+			@ModelAttribute("tempRepositories") String tempRepositories,
+            HttpServletResponse response, ModelMap model) throws Exception
+    {
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+        for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet())
+        {
+            // 获取MulipartFile对象
+            MultipartFile imageFile = entity.getValue();
+            String orgName = imageFile.getOriginalFilename();
+    		String newName = new StringBuilder().append(System.currentTimeMillis())
+    				.append(orgName.substring(orgName.lastIndexOf('.'))).toString();
+    		String ext = orgName.substring(orgName.lastIndexOf('.'));
+    		Resource res = ac.getResource(tempRepositories);
+    		File file = res.getFile();
+    		if (file.isDirectory()) {
+    			file = new File(file.getPath() + File.separator + newName);
+    		}
+    		imageFile.transferTo(file);
+    		
+    		BufferedImage orgImg = ImageIO.read(file);
+    		String resId = imageService.put(file);
+    		net.zaizheli.domains.Resource re = new net.zaizheli.domains.Resource();
+    		re.setResId(resId);
+    		re.setOrgSize(new Integer[]{ orgImg.getHeight(), orgImg.getWidth() });
+    		re.setExt(ext);
+    		re.setActId(id);
+    		re.setTmpUrl(ApplicationConfig.uploadTempRepository + "/"+file.getName());
+    		resourceRepository.save(re); 
+        }
+        return "activity/gallery";
+    }
+
 
 //	@Override
 	public void setApplicationContext(ApplicationContext ac)

@@ -234,7 +234,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 	content: "Hide Application"
 }
 
-.jobs-top .job-panel .job-panel-footer .apply,.jobs-top .job-panel .job-panel-footer .learn-more {
+.jobs-top .job-panel .job-panel-footer .apply ,.jobs-top .job-panel .job-panel-footer .learn-more {
 	margin: 0 auto 15px auto;
 	background: #358cce;
 	display: block;
@@ -3230,3 +3230,21 @@ a.launch-editor {
 	width: 100%
 }
 
+
+.img_select {
+	float: right;
+	background: #358cce;
+	display: block;
+	width: 320px;
+	padding: 6px;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 1.8em;
+	letter-spacing: 0.3em;
+	text-align: center;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px
+}

@@ -15,7 +15,6 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery.pnotify.default.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery-ui-1.8.18.custom.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery.pnotify.zaizheli.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/validationEngine.bootstrap.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/activity1.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/activity2.css" />" />
 	<script type="text/javascript" src="<c:url value="/resources/js/ga.js" />" ></script>
@@ -36,6 +35,7 @@
 				<li><a href="<c:url value="/activities/${activity.id}"/>" >活动主页</a></li>
 				<c:if test="${signInUser.id == activity.createdBy.id}">
 				<li><a href="<c:url value="/activity/${activity.id}/edit"/>" >活动编辑</a></li>
+				<li><a href="<c:url value="/activity/${activity.id}/applications"/>" >申请处理</a></li>
 				</c:if>
 				<li><a href="<c:url value="/activity/${activity.id}/joiners"/>" >参加人员</a></li>
 				<li><a href="<c:url value="/activity/${activity.id}/gallery"/>" >活动图库</a></li>

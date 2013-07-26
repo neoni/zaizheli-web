@@ -15,7 +15,6 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery.pnotify.default.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery-ui-1.8.18.custom.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery.pnotify.zaizheli.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/validationEngine.bootstrap.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/activity1.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/activity2.css" />" />
 	<script type="text/javascript" src="<c:url value="/resources/js/ga.js" />" ></script>
@@ -24,8 +23,40 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.op.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/bootstrap-paginator.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.uploadify.min.js" />" ></script>
+
+    <script type="text/javascript">
+	    $(function() {
+	        $('#image_upload').uploadify({
+	            height        : 30,
+	            swf   	      : '<c:url value="/resources/js/uploadify.swf" />',
+		   		uploader   	  : '<c:url value="/gallery/upload" />',
+		        width         : 200,
+		        buttonClass   : 'track apply noauth record-exit img_select',
+		        buttonText    : '上传活动图片',
+		        uploadLimit   : 50,
+		        fileTypeDesc  : 'Image Files',
+			    fileTypeExts  : '*.gif; *.jpg; *.png; *.jped; *.bmp',
+			    fileSizeLimit : '10000KB',
+			    progressData  : 'percentage',
+			    formData      : {'actId' : '${activity.id}'},
+			    onUploadStart : function(file) {
+            		$("#image__upload").uploadify("settings", "actId", '${activity.id}');
+        		} ,
+			    onUploadError : function(file, errorCode, errorMsg, errorString) {
+			    	op.notify_header('啊啊，上传失败了 >o<');
+        		},
+        		onUploadSuccess : function(file) {
+        			op.notify_header('上传成功！ o@o');
+           	    }  
+			    
+		    }); 
+
+	    });
+	    </script> 
 </head>
 <body class="front" style="padding-top:46px;">
+	
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
@@ -38,8 +69,9 @@
 				<li><a href="<c:url value="/activities/${activity.id}"/>" >活动主页</a></li>
 				<c:if test="${signInUser.id == activity.createdBy.id}">
 				<li><a href="<c:url value="/activity/${activity.id}/edit"/>" >活动编辑</a></li>
+				<li><a href="<c:url value="/activity/${activity.id}/applications"/>" >申请处理</a></li>
 				</c:if>
-				<li><a href="<c:url value="/activity/${activity.id}/joiners"/>" >参加人员</a></li>
+				<li><a href="<c:url value="/activity/${activity.id}/joiners"/>" >参与人员</a></li>
 				<li><a href="<c:url value="/activity/${activity.id}/gallery"/>" >活动图库</a></li>
 			  </ul>
 		  </span>
@@ -71,15 +103,15 @@
                         	<a  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">此 活 动 已 被 放 弃 </a> 
                         </c:when>
                         <c:when test="${signInUser.id == activity.createdBy.id}">
-					       <a href="<c:url value="/activity/${activity.id}/upload"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">上 传 活 动 图 片 </a> 	         
+					       <input type="file" id="image_upload" name="image_upload">    
 					     </c:when>
 				      	<c:when test="${activity.status eq '已结束'}">
-                        	<a  data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">已 结 束 </a> 
+                        	<a  data-action="view job application" class="track apply noauth record-exit" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">已 结 束 </a> 
                         </c:when>
                         <c:when test="${activity.status eq '晒活动'}">
                         	<a href="<c:url value="/activity/${activity.id}/gallery"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">晒 活 动 中 </a> 
                         </c:when>                        
-                        <c:when test="${activity.status eq '征集成员中'}">
+                        <c:when test="${activity.status eq '征集成员中'}">                       
 					       <a href="<c:url value="/activity/${activity.id}/join"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">加 入 Join </a> 
 		                   <c:if test="${activity.apply==1}">
 					       		<a class="other-jobs">加入该活动需要填写申请表</a> 
@@ -116,7 +148,7 @@
 		     </header> 
 		     <div class="join-us-banner"> 
 		      <p> <span> </span>一 起 来 吧&nbsp;&nbsp;&nbsp;&nbsp;  
-		      	<a class="view-jobs" href="<c:url value="/activity/${activity.id}/joiners"/>" >查看参加人员</a>
+		      	<a class="view-jobs" href="<c:url value="/activity/${activity.id}/joiners"/>" >查看参与人员</a>
 		      	<a class="view-jobs" href="#comment">去评论吧</a> </p>
 		      	 </p> 
 	     	</div>  
@@ -206,11 +238,8 @@
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrapx-popoverx.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.timeago.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.8.18.custom.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.scrollTo.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.form.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.imagesloaded.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.masonry.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.infinitescroll.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.pnotify.js" />" ></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=zh_cn&region=CN"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" />"></script>
