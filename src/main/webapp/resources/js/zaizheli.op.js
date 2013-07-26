@@ -24,9 +24,9 @@ var op = {
 	},
 	
 	check_signin: function(callback, unsigninhandler, force){
-		if(!force && (!this._signin_ts || this._signin_ts == -1)){
-			unsigninhandler? unsigninhandler() : this.redirect_to_signin();
-		}
+		// if(!force && (!this._signin_ts || this._signin_ts == -1)){
+		// 	unsigninhandler? unsigninhandler() : this.redirect_to_signin();
+		// }
 		if(!force && (this.calc_utctime(new Date()) - this._signin_ts 
 				< this._signin_timeout)){
 			callback? callback(): null;
@@ -256,6 +256,26 @@ var op = {
 				}
 			});
 		}, function(){
+			window.location.href= web_context + "/signin";
+			$('#sign-in-modal').modal('show');
+		});
+	},
+
+	apply: function(dom){ 
+		this.check_signin( function(){
+		 	var url= $(dom).attr('act');
+		 	$.getJSON(url, function(data){
+				if(data && data.resultCode == 'SUCCESS'){
+					op.notify_header('已发送加入申请，等待创建人同意中...');
+				}
+				if(data && data.resultCode == 'INVALID'){
+					op.notify_header(data.exceptionMsg);
+				}
+				if(data && data.resultCode == 'NEED_APP'){
+					window.location.href= web_context + "/activity" + data.exceptionMsg + "/application";
+				}
+			});
+	 	}, function(){
 			window.location.href= web_context + "/signin";
 			$('#sign-in-modal').modal('show');
 		});

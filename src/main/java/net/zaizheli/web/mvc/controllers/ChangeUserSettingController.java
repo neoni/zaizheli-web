@@ -241,14 +241,7 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 			res.setExt(ext);
 			res.setTmpUrl(ApplicationConfig.uploadTempRepository + "/"+file.getName());
 			resourceRepository.save(res);
-			if(signInUser.getAvatar()!=null) {
-				imageService.delete(signInUser.getAvatar().getResId());
-				resourceRepository.delete(signInUser.getAvatar());
-				org.springframework.core.io.Resource r = ac
-						.getResource(signInUser.getAvatar().getTmpUrl());
-				File f=r.getFile();
-				if(f!=null) f.delete();
-			}
+			
 			signInUser.setAvatar(res);
 			userRepository.save(signInUser);			
 		} catch (Exception e) {

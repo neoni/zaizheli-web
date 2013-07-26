@@ -17,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-formhelpers.css" />" />
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.1.7.1.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.timelinr-0.9.53.js" />"></script>
-	<script src="/ckeditor/ckeditor.js"></script>
+	<script src="<c:url value="/ckeditor/ckeditor.js"/>"></script>
 	<script>
 	    window.onload = function() {
 	        CKEDITOR.replace( 'editor1' );

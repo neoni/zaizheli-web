@@ -45,7 +45,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#image-file-input').uploadify({
-		    uploader  	: '<c:url value="/resources/js/uploadify.swf" />',
+		    uploader  	: '<c:url value="/resources/js/uploadify1.swf" />',
 		    script   	: '<c:url value="/spots/upload" />',
 		    scriptData  : { 'session': '${pageContext.session.id}'},
 		    cancelImg 	: '<c:url value="/resources/img/cancel.png" />',

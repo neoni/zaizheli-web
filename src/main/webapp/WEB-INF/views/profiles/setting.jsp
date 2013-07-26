@@ -169,7 +169,7 @@
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-15 lh-30 c-888" for="privateset">个人信息什么的才不告诉你</label>
+		    			<label class="control-label fs-15 lh-30 c-888" for="privateset">当参与活动需要提交申请表时，是否允许别人查看</label>
 		    			<div class="controls fs-16 lh-18">
 		    				<input id="privateset" class="validate[required]" type="hidden" 
 		    					data-prompt-position="centerRight:0,-4" name="privateset" value="${signInUser.privateset}">
