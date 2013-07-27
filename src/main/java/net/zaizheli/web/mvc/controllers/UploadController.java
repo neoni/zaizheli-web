@@ -5,19 +5,26 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 
+import net.zaizheli.constants.ActionType;
 import net.zaizheli.constants.AjaxResultCode;
 import net.zaizheli.constants.ApplicationConfig;
+import net.zaizheli.domains.Action;
+import net.zaizheli.repositories.ActionRepository;
+import net.zaizheli.repositories.ActivityRepository;
 import net.zaizheli.repositories.ResourceRepository;
 import net.zaizheli.services.ImageService;
 import net.zaizheli.vo.AjaxResult;
+import net.zaizheli.web.utils.SessionUtil;
 import net.zaizheli.web.utils.WebImageUtil;
 
 import org.springframework.beans.BeansException;
@@ -48,6 +55,12 @@ public class UploadController implements ApplicationContextAware {
 	WebImageUtil webImageUtil;
 	@Autowired
 	ResourceRepository resourceRepository;
+	@Autowired
+	ActivityRepository activityRepository;
+	@Autowired
+	ActionRepository actionRepository;
+	@Autowired 
+	SessionUtil sessionUtil;
 	
 	private ApplicationContext ac;
 
@@ -137,8 +150,9 @@ public class UploadController implements ApplicationContextAware {
     @RequestMapping(value = "/gallery/upload", method = RequestMethod.POST)
     public 
     String executeMultiple( HttpServletRequest request, @RequestParam("actId") String id,
+    		@RequestParam("userId") String uid,
 			@ModelAttribute("tempRepositories") String tempRepositories,
-            HttpServletResponse response, ModelMap model) throws Exception
+            HttpServletResponse response, ModelMap model, HttpSession session) throws Exception
     {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
@@ -166,7 +180,16 @@ public class UploadController implements ApplicationContextAware {
     		re.setActId(id);
     		re.setTmpUrl(ApplicationConfig.uploadTempRepository + "/"+file.getName());
     		resourceRepository.save(re); 
-        }
+    		activityRepository.inc(id, "galleryCount", 1);
+    		Action action = new Action();
+            action.setOwner(uid);
+    		action.setCreatedAt(new Date());
+    		action.setTargetActivity(id);
+    		action.setType(ActionType.UPLOAD);
+    		action.setBy(sessionUtil.getBy(session));
+    		action.setPicId(resId);
+    		actionRepository.save(action);
+        }      
         return "activity/gallery";
     }
 

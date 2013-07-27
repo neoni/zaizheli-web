@@ -54,7 +54,7 @@ public class SignUpController {
 		if(!result.hasFieldErrors("email")){
 			existed = userRepository.getByEmail(signUpUserVo.getEmail());
 			if(existed !=null){
-				result.addError(new FieldError("signUpUserVo", "email", "这个昵称太抢手了,换一个吧   (￣ω￣)"));
+				result.addError(new FieldError("signUpUserVo", "email", "这个邮箱已经用过了,换一个吧   (￣ω￣)"));
 			}
 		}
 		if(!result.hasFieldErrors("name")){

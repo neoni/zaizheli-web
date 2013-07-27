@@ -48,18 +48,26 @@
 		    <section class="jobs-top" id="jobs"> 
 			     <article class="job-panel" style="width:1000px;"> 
 				      <header class="job-panel-header cf"> 
-				       	<h2 class="job-title">加 入 的 成 员 ( 一 共 ${activity.currentNum} 位 )</h2> 
+				      		<ul id="profile-nav-tabs" class="nav nav-tabs" >
+				    		<li >
+			    			 	<a class="app_tab" data-toggle="tab " href="#in-list">申请中( ${ activity.inJudgingCount} )</a></li>
+			    			<li >
+			    			<a class="app_tab" data-toggle="tab" href="#agree-list" >已申请加入( ${activity.currentNum-1} )</a></li>
+			    			<li >
+			    			<a class="app_tab" data-toggle="tab" href="#refuse-list" >已拒绝( ${activity.applicationCount-activity.inJudgingCount-activity.currentNum+1})</a></li>
+				    	</ul>
+				       
 				      </header> 
-				      <div class="content cf" style="padding:0px;"> 
+				     <div class="content cf" style="padding:0px;"> 
 				       <div class="tab-content bg-gray p-20" id="water-fall-wrapper" style="background:#DDDFEF;">
 						    <div class="tab-pane active" id="water-fall">
 						    	<c:import url="/activity/${activity.id}/getJoiners"></c:import>
 						    </div>
 						</div>
 					    <div id="page-nav">
-							<a href="<c:url value="/activity/${activity.id}/getApplications" />"></a>
+							<a href="<c:url value="/activity/${activity.id}/getJoiners" />"></a>
 						</div>
-				      </div> 
+				      </div>
 				      <footer class="job-panel-footer cf">
 				      <c:choose>
 				      	<c:when test="${activity.status eq '放弃'}">

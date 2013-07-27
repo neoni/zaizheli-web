@@ -35,7 +35,15 @@ public class Action implements Serializable {
 	private Date createdAt;
 	private int commentedCount;
 	private int forwardedCount;
+	private String picId;
 	
+	
+	public String getPicId() {
+		return picId;
+	}
+	public void setPicId(String picId) {
+		this.picId = picId;
+	}
 	public String getId() {
 		return id;
 	}

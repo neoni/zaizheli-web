@@ -5,11 +5,14 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import net.zaizheli.constants.ActionType;
 import net.zaizheli.constants.AjaxResultCode;
 import net.zaizheli.constants.ApplicationStatus;
+import net.zaizheli.domains.Action;
 import net.zaizheli.domains.Activity;
 import net.zaizheli.domains.Application;
 import net.zaizheli.domains.User;
+import net.zaizheli.repositories.ActionRepository;
 import net.zaizheli.repositories.ActivityRepository;
 import net.zaizheli.repositories.ApplicationRepository;
 import net.zaizheli.repositories.JoinRepository;
@@ -36,6 +39,8 @@ public class JoinActivityController {
 	JoinRepository joinRepository;
 	@Autowired
 	ApplicationRepository applicationRepository;
+	@Autowired
+	ActionRepository actionRepository;
 		
 	@RequestMapping(value="/{id}/join", method=RequestMethod.GET)
 	public @ResponseBody AjaxResult view(@PathVariable String id, Model model, 
@@ -53,7 +58,10 @@ public class JoinActivityController {
 		Activity activity=activityRepository.findOne(id);
 		if(activity.getApply()==1) {
 			return new AjaxResult(AjaxResultCode.NEED_APP,id);
-		}      
+		}    
+		if(activity.getCurrentNum() >= activity.getMaxNum()) {
+			return new AjaxResult(AjaxResultCode.INVALID, "抱歉，活动已经满员了  >o<");
+		}
 		Application application = new Application();
 		application.setActivity(activity);
 		application.setApplicant(user);
@@ -61,6 +69,15 @@ public class JoinActivityController {
 		application.setCreatedAt(new Date());
 		application.setUpdatedAt(application.getCreatedAt());
 		applicationRepository.save(application);
+		activityRepository.inc(id, "ApplicationCount", 1);
+		activityRepository.inc(id, "inJudgingCount", 1);
+		Action action = new Action();
+		action.setOwner(user.getId());
+		action.setTargetActivity(id);
+		action.setCreatedAt(new Date());
+		action.setType(ActionType.APPLY);
+		action.setBy(sessionUtil.getBy(session));
+		actionRepository.save(action);
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}
 	

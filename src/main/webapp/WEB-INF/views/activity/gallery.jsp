@@ -37,9 +37,10 @@
 			    fileTypeExts  : '*.gif; *.jpg; *.png; *.jped; *.bmp',
 			    fileSizeLimit : '10000KB',
 			    progressData  : 'percentage',
-			    formData      : {'actId' : '${activity.id}'},
+			    formData      : {'actId' : '${activity.id}', 'userId': '${signInUser.id}'},
 			    onUploadStart : function(file) {
             		$("#image__upload").uploadify("settings", "actId", '${activity.id}');
+            		$("#image__upload").uploadify("settings", "userId", '${signInUser.id}');
         		} ,
 			    onUploadError : function(file, errorCode, errorMsg, errorString) {
 			    	op.notify_header('啊啊，上传失败了 >o<');

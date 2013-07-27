@@ -21,6 +21,37 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.1.7.1.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.init.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.op.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.uploadify.min.js" />" ></script>
+
+    <script type="text/javascript">
+	    $(function() {
+	        $('#image_upload').uploadify({
+	            height        : 30,
+	            swf   	      : '<c:url value="/resources/js/uploadify.swf" />',
+		   		uploader   	  : '<c:url value="/gallery/upload" />',
+		        width         : 200,
+		        buttonClass   : 'track apply noauth record-exit img_select',
+		        buttonText    : '上传活动图片',
+		        uploadLimit   : 50,
+		        fileTypeDesc  : 'Image Files',
+			    fileTypeExts  : '*.gif; *.jpg; *.png; *.jped; *.bmp',
+			    fileSizeLimit : '10000KB',
+			    progressData  : 'percentage',
+			    formData      : {'actId' : '${activity.id}'},
+			    onUploadStart : function(file) {
+            		$("#image__upload").uploadify("settings", "actId", '${activity.id}');
+        		} ,
+			    onUploadError : function(file, errorCode, errorMsg, errorString) {
+			    	op.notify_header('啊啊，上传失败了 >o<');
+        		},
+        		onUploadSuccess : function(file) {
+        			op.notify_header('上传成功！ o@o');
+           	    }  
+			    
+		    }); 
+
+	    });
+	    </script> 
 </head>
 <body class="front" style="padding-top:46px;">
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
@@ -66,7 +97,7 @@
                         	<a  href="<c:url value="/activities/${activity.id}"/>"  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">此 活 动 已 被 放 弃 </a> 
                         </c:when>
                         <c:when test="${signInUser.id == activity.createdBy.id}">
-					       <a href="<c:url value="/activity/${activity.id}/upload"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">上 传 活 动 图 片 </a> 	         
+					       <input type="file" id="image_upload" name="image_upload">    
 					     </c:when>
 				      	<c:when test="${activity.status eq '已结束'}">
                         	<a  href="<c:url value="/activities/${activity.id}"/>" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">已 结 束 </a> 

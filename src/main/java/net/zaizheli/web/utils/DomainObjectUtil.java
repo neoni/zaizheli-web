@@ -155,6 +155,25 @@ public class DomainObjectUtil {
 						.append(action.getTargetActivity().getPlace().getFullAddr());
 				}
 				html.append("</a>");
+			case UPLOAD:
+				html.append("&nbsp;上传了图片到&nbsp;")
+				.append("<a>")
+				.append(action.getTargetActivity().getTitle());
+				if(action.getTargetActivity().getPlace()!=null){
+					html.append("&nbsp;@&nbsp;")
+						.append(action.getTargetActivity().getPlace().getFullAddr());
+				}
+				html.append("</a>");
+			case APPLY:
+				html.append("&nbsp;申请加入&nbsp;")
+				.append("<a>")
+				.append(action.getTargetActivity().getTitle());
+				if(action.getTargetActivity().getPlace()!=null){
+					html.append("&nbsp;@&nbsp;")
+						.append(action.getTargetActivity().getPlace().getFullAddr());
+				}
+				html.append("</a>");	
+			
 			break;
 			default:
 				break;

@@ -209,8 +209,7 @@
 							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>" href="">转发(${action.targetActivity.shareCount})</a>
 							   	<i class="mr-5 ml-5 c-aaa">|</i>
 							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>">评论(${action.targetActivity.commentCount})</a>
-							</span>
-						</dd>	
+							</span>	
 						<!-- <span class="f-r">
 							<a onclick="op.toggle_fwd_dashboard(event.currentTarget); event.preventDefault();">
 								转发(${action.forwardedCount})</a>
@@ -231,6 +230,69 @@
 					<p class="">
 						<img class="" width="100" src="${f:avatarUrl(action.targetUser.avatar, action.targetUser.gender)}">
 					</p>
+						
+						<!-- <span class="f-r">
+							<a onclick="op.toggle_fwd_dashboard(event.currentTarget); event.preventDefault();">
+								转发(${action.forwardedCount})</a>
+						   	<i class="mr-5 ml-5 c-aaa">|</i>
+						   	<a onclick="op.toggle_cmt_dashboard(event.currentTarget); event.preventDefault();">
+						   		评论(${action.commentedCount})</a>
+						</span> -->
+					</p>
+				</c:when>
+				<c:when test="${action.type == 'UPLOAD'}">
+					<p class="">
+						<a href="<c:url value="/profiles/${action.owner.id}" />">
+							${action.owner.name}</a>
+						上传了图片到:&nbsp;
+						<a href="<c:url value="/activities/${action.targetActivity.id}" />">
+							${action.targetActivity.title}&nbsp;@&nbsp;${action.targetActivity.place.fullAddr}</a></p>
+					
+					<p class="">
+						<img class="" width="100" src="${f:imageUrl(action.picId)}">
+					</p>
+					<p class="mb-0 row-fluid">
+						<span class="timeago f-l" 
+							title="<fmt:formatDate value="${action.createdAt}" pattern="yyyy-MM-dd HH:mm:ss Z"/>"></span>
+							<span class="f-r">
+								<a href="<c:url value="/activities/${action.targetActivity.id}"/>">追踪(${action.targetActivity.trackCount})</a>
+								<i class="mr-5 ml-5 c-aaa">|</i>
+							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>" href="">转发(${action.targetActivity.shareCount})</a>
+							   	<i class="mr-5 ml-5 c-aaa">|</i>
+							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>">评论(${action.targetActivity.commentCount})</a>
+							</span>
+			
+						
+						<!-- <span class="f-r">
+							<a onclick="op.toggle_fwd_dashboard(event.currentTarget); event.preventDefault();">
+								转发(${action.forwardedCount})</a>
+						   	<i class="mr-5 ml-5 c-aaa">|</i>
+						   	<a onclick="op.toggle_cmt_dashboard(event.currentTarget); event.preventDefault();">
+						   		评论(${action.commentedCount})</a>
+						</span> -->
+					</p>
+				</c:when>
+				<c:when test="${action.type == 'APPLY'}">
+					<p class="">
+						<a href="<c:url value="/profiles/${action.owner.id}" />">
+							${action.owner.name}</a>
+						申请加入:&nbsp;
+						<a href="<c:url value="/activities/${action.targetActivity.id}" />">
+							${action.targetActivity.title}&nbsp;@&nbsp;${action.targetActivity.place.fullAddr}</a></p>
+					
+					<p class="">
+						<img class="" width="100" src="${f:imageUrl(action.targetActivity.image.resId)}">
+					</p>
+					<p class="mb-0 row-fluid">
+						<span class="timeago f-l" 
+							title="<fmt:formatDate value="${action.createdAt}" pattern="yyyy-MM-dd HH:mm:ss Z"/>"></span>
+							<span class="f-r">
+								<a href="<c:url value="/activities/${action.targetActivity.id}"/>">追踪(${action.targetActivity.trackCount})</a>
+								<i class="mr-5 ml-5 c-aaa">|</i>
+							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>" href="">转发(${action.targetActivity.shareCount})</a>
+							   	<i class="mr-5 ml-5 c-aaa">|</i>
+							   	<a href="<c:url value="/activities/${action.targetActivity.id}"/>">评论(${action.targetActivity.commentCount})</a>
+							</span>
 						
 						<!-- <span class="f-r">
 							<a onclick="op.toggle_fwd_dashboard(event.currentTarget); event.preventDefault();">

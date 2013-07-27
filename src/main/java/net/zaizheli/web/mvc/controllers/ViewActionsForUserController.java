@@ -75,6 +75,8 @@ public class ViewActionsForUserController {
 		types.add(ActionType.TRACK.name());
 		types.add(ActionType.SETTING.name());
 		types.add(ActionType.FOLLOW.name());
+		types.add(ActionType.APPLY.name());
+		types.add(ActionType.UPLOAD.name());
 		Pageable pageable = new PageRequest(Math.max(no, 0), 
 				ApplicationConfig.listPageSize, 
 				new Sort(new Order(Direction.DESC, "createdAt")));
@@ -101,6 +103,8 @@ public class ViewActionsForUserController {
 		types.add(ActionType.COMMENT.name());
 		types.add(ActionType.SETTING.name());
 		types.add(ActionType.JOIN.name());
+		types.add(ActionType.APPLY.name());
+		types.add(ActionType.UPLOAD.name());
 		Pageable pageable = new PageRequest(Math.max(no, 0), 
 				ApplicationConfig.listPageSize, 
 				new Sort(new Order(Direction.DESC, "createdAt")));
