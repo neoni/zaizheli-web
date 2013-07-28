@@ -37,9 +37,10 @@
 			    fileTypeExts  : '*.gif; *.jpg; *.png; *.jped; *.bmp',
 			    fileSizeLimit : '10000KB',
 			    progressData  : 'percentage',
-			    formData      : {'actId' : '${activity.id}'},
+			    formData      : {'actId' : '${activity.id}', 'userId': '${signInUser.id}'},
 			    onUploadStart : function(file) {
             		$("#image__upload").uploadify("settings", "actId", '${activity.id}');
+            		$("#image__upload").uploadify("settings", "userId", '${signInUser.id}');
         		} ,
 			    onUploadError : function(file, errorCode, errorMsg, errorString) {
 			    	op.notify_header('啊啊，上传失败了 >o<');
@@ -64,11 +65,15 @@
 	      <span id="act_nav">
 			  <ul>
 				<li><a href="<c:url value="/activities/${activity.id}"/>" >活动主页</a></li>
-				<c:if test="${signInUser.id == activity.createdBy.id}">
+				<c:choose>
+				<c:when test="${signInUser.id == activity.createdBy.id}">
 				<li><a href="<c:url value="/activity/${activity.id}/edit"/>" >活动编辑</a></li>
 				<li><a href="<c:url value="/activity/${activity.id}/applications"/>" >申请处理</a></li>
-				</c:if>
-				<li><a href="<c:url value="/activity/${activity.id}/joiners"/>" >参加人员</a></li>
+				</c:when>
+				<c:otherwise>
+				<li><a href="<c:url value="/activity/${activity.id}/joiners"/>" >参加人员</a></li>		
+				</c:otherwise>
+				</c:choose>
 				<li><a href="<c:url value="/activity/${activity.id}/gallery"/>" >活动图库</a></li>
 			  </ul>
 		  </span>

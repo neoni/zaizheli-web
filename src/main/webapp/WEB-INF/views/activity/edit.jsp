@@ -313,7 +313,42 @@
 			    				</div>
 							</div>
 					    </div>
-					</div>
+					
+					<div class="control-group mt-20">
+					    	<label class="control-label fs-15 lh-20 c-ffc" for="apply_req">若需申请表,请选择需要的信息（邮箱、昵称、性别默认个人基本信息）：</label><br>
+							<div class="controls fs-16 lh-18" style="color:#FFCC66 ">
+			    				<label class="checkbox inline">
+								<input <c:if test="${activity.realNameReq == true}"> checked </c:if> type="checkbox" id="realNameReq" name="realNameReq" value=true >
+									真实姓名
+								</label>
+								<label class="checkbox inline">
+								<input <c:if test="${activity.ageReq == true}"> checked </c:if> type="checkbox" id="ageReq" name="ageReq" value=true >
+									年龄
+								</label>
+									<label class="checkbox inline">
+								<input <c:if test="${activity.birthdayReq == true}"> checked </c:if> type="checkbox" id="birthdayReq" name="birthdayReq"  value=true >
+									生日
+								</label>
+									<label class="checkbox inline">
+								<input <c:if test="${activity.telReq == true}"> checked </c:if> type="checkbox" id="telReq" name="telReq" value=true >
+									电话
+								</label>
+									<label class="checkbox inline">
+								<input <c:if test="${activity.schoolReq == true}"> checked </c:if> type="checkbox" id="schoolReq" name="schoolReq" value=true >
+									学校
+								</label>
+									<label class="checkbox inline">
+								<input <c:if test="${activity.addressReq == true}"> checked </c:if> type="checkbox" id="addressReq" name="addressReq" value=true >
+									联系地址
+								</label>
+								<label class="checkbox inline">
+								<input <c:if test="${activity.noteReq == true}"> checked </c:if> type="checkbox" id="noteReq" name="noteReq" value=true >
+									申请理由(想说的话)
+								</label>
+
+							</div>
+					 </div>
+				</div>
 				</li>
 				<li id="活动的补充要点" >
 					<div class="row-fluid">
@@ -326,8 +361,7 @@
 						
 					</div>
 					<input id="err" name="err" data-prompt-position="centerRight:0,-4" style="display:none"/>
-					<br>
-					<div style="float:right">
+					<div style="float:right; margin-top:5px;">
 						    
 							<button  id="submit-btn" type="submit" class=" btn btn-primary btn-large" data-loading-text="更新中..." onclick="editor()">
 								提交该活动</button>

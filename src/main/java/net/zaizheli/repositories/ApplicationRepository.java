@@ -1,5 +1,6 @@
 package net.zaizheli.repositories;
 
+import net.zaizheli.constants.ApplicationStatus;
 import net.zaizheli.domains.Application;
 
 import org.springframework.data.domain.Page;
@@ -12,6 +13,9 @@ public interface ApplicationRepository extends
 	
 	@Query("{ 'activity': {'$ref': 'activity', '$id': { '$oid': ?0 } } }")
 	Page<Application> findByActivity(String id, Pageable pageable);
+	
+	@Query("{ 'activity': {'$ref': 'activity', '$id': { '$oid': ?0 } }, 'status': ?1 }")
+	Page<Application> findByActivityAndstatus(String id, ApplicationStatus status, Pageable pageable);
 	
 	@Query("{ 'activity': {'$ref': 'activity', '$id': { '$oid': ?0 } }, 'applicant': {'$ref': 'user', '$id': { '$oid': ?1} } }")
 	Application findByActivityAndapplicant(String id, String uid);

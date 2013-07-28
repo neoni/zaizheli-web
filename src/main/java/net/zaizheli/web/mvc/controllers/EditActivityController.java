@@ -209,6 +209,13 @@ public class EditActivityController {
 			activity.setApply(vo.getApply());	
 			activity.setContent(vo.getEditor1());
 			activity.setUpdatedAt(new Date());
+			activity.setAddressReq(vo.isAddressReq());
+			activity.setRealNameReq(vo.isRealNameReq());
+			activity.setBirthdayReq(vo.isBirthdayReq());
+			activity.setAgeReq(vo.isAgeReq());
+			activity.setSchoolReq(vo.isSchoolReq());
+			activity.setTelReq(vo.isTelReq());
+			activity.setNoteReq(vo.isNoteReq());
 			activityRepository.save(activity);
 			// save action
 			Action action = new Action();

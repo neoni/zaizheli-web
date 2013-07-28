@@ -1,5 +1,7 @@
 package net.zaizheli.web.mvc.controllers;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -29,6 +31,11 @@ public class ViewSingleActivityController {
 			HttpServletRequest request, HttpSession session){
 		
 		Activity activity = activityRepository.findOne(id);
+		Date date = new Date();		
+		if(activity.getEndedAt().getTime() <= date.getTime() && activity.getStatus() == "征集成员中") {
+			activity.setStatus("已结束");
+			activityRepository.save(activity);
+		}
 		model.addAttribute("activity", activity);
 		model.addAttribute("no", 1);
 		return "activity/single";	
@@ -38,6 +45,11 @@ public class ViewSingleActivityController {
 	public String viewP(@PathVariable String id, @PathVariable int no ,Model model, 
 			HttpServletRequest request, HttpSession session){		
 		Activity activity = activityRepository.findOne(id);
+		Date date = new Date();	
+		if(activity.getEndedAt().getTime() <= date.getTime() && activity.getStatus() == "征集成员中") {
+			activity.setStatus("已结束");
+			activityRepository.save(activity);
+		}
 		model.addAttribute("activity", activity);
 		model.addAttribute("no", no);
 		return "activity/single";

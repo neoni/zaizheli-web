@@ -1,5 +1,5 @@
 package net.zaizheli.web.mvc.controllers;
 
-public class CreateApplicationController {
+public class CreateApplicationController {  
 
 }

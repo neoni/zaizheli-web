@@ -77,6 +77,57 @@ public class Activity implements Serializable {
 	private int applicationCount;
 	private int inJudgingCount;   //未处理的申请请求
 	
+	private boolean realNameReq;	
+	private boolean ageReq;
+	private boolean birthdayReq;
+	private boolean telReq;
+	private boolean addressReq;
+	private boolean schoolReq;	
+	private boolean noteReq;
+	
+	
+	public boolean isRealNameReq() {
+		return realNameReq;
+	}
+	public void setRealNameReq(boolean realNameReq) {
+		this.realNameReq = realNameReq;
+	}
+	public boolean isAgeReq() {
+		return ageReq;
+	}
+	public void setAgeReq(boolean ageReq) {
+		this.ageReq = ageReq;
+	}
+	public boolean isBirthdayReq() {
+		return birthdayReq;
+	}
+	public void setBirthdayReq(boolean birthdayReq) {
+		this.birthdayReq = birthdayReq;
+	}
+	public boolean isTelReq() {
+		return telReq;
+	}
+	public void setTelReq(boolean telReq) {
+		this.telReq = telReq;
+	}
+	public boolean isAddressReq() {
+		return addressReq;
+	}
+	public void setAddressReq(boolean addressReq) {
+		this.addressReq = addressReq;
+	}
+	public boolean isSchoolReq() {
+		return schoolReq;
+	}
+	public void setSchoolReq(boolean schoolReq) {
+		this.schoolReq = schoolReq;
+	}
+	public boolean isNoteReq() {
+		return noteReq;
+	}
+	public void setNoteReq(boolean noteReq) {
+		this.noteReq = noteReq;
+	}
 	public int getGalleryCount() {
 		return galleryCount;
 	}
@@ -320,6 +371,17 @@ public class Activity implements Serializable {
 		activity.setStartedAt(format.parse(start));
 		String end=vo.getEndDate()+" "+vo.getEndTime();
 		activity.setEndedAt(format.parse(end));
+		activity.setAddressReq(vo.isAddressReq());
+		activity.setRealNameReq(vo.isRealNameReq());
+		activity.setBirthdayReq(vo.isBirthdayReq());
+		activity.setAgeReq(vo.isAgeReq());
+		activity.setSchoolReq(vo.isSchoolReq());
+		activity.setTelReq(vo.isTelReq());
+		activity.setNoteReq(vo.isNoteReq());
+		Date date = new Date();	
+		if(activity.getEndedAt().getTime() <= date.getTime() && activity.getStatus() == "征集成员中") {
+			activity.setStatus("已结束");
+		}
 		return activity;		
 	
 	}

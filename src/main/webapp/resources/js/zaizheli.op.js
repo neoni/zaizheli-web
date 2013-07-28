@@ -281,6 +281,60 @@ var op = {
 		});
 	},
 
+	apply_agree: function(dom){ 
+		this.check_signin( function(){
+		 	var url= $(dom).attr('act');
+		 	$.getJSON(url, function(data){
+				if(data && data.resultCode == 'SUCCESS'){
+					op.notify_header('已将此人加为成员了 >o<');
+					
+				}
+				if(data && data.resultCode == 'INVALID'){
+					op.notify_header(data.exceptionMsg);
+				}
+			});
+	 	}, function(){
+			window.location.href= web_context + "/signin";
+			$('#sign-in-modal').modal('show');
+		});
+	},
+
+	apply_refuse: function(dom){ 
+		this.check_signin( function(){
+		 	var url= $(dom).attr('act');
+		 	$.getJSON(url, function(data){
+				if(data && data.resultCode == 'SUCCESS'){
+					op.notify_header('已拒绝此人...');
+				}
+					
+				if(data && data.resultCode == 'INVALID'){
+					op.notify_header(data.exceptionMsg);
+				}
+			});
+	 	}, function(){
+			window.location.href= web_context + "/signin";
+			$('#sign-in-modal').modal('show');
+		});
+	},
+
+	apply_kickout: function(dom){ 
+		this.check_signin( function(){
+		 	var url= $(dom).attr('act');
+		 	$.getJSON(url, function(data){
+				if(data && data.resultCode == 'SUCCESS'){
+					op.notify_header('已将此人踢出活动了...');
+					
+				}
+				if(data && data.resultCode == 'INVALID'){
+					op.notify_header(data.exceptionMsg);
+				}
+			});
+	 	}, function(){
+			window.location.href= web_context + "/signin";
+			$('#sign-in-modal').modal('show');
+		});
+	},
+
 	replyto: function(id,name,cid){
 		var str="回复 "+ name + ":\n";
 			$('textarea').val(str);

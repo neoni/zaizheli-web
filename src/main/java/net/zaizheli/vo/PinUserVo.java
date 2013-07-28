@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.zaizheli.constants.Gender;
 import net.zaizheli.domains.Activity;
+import net.zaizheli.domains.Application;
 import net.zaizheli.domains.User;
 import net.zaizheli.web.utils.DomainObjectUtil;
 
@@ -22,7 +23,14 @@ public class PinUserVo implements Serializable {
 	private int activityCount;
 	private String summary;
 	private List<Activity> activities; 
+	private Application application;
 	
+	public Application getApplication() {
+		return application;
+	}
+	public void setApplication(Application application) {
+		this.application = application;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -111,4 +119,5 @@ public class PinUserVo implements Serializable {
 		}
 		return vo;
 	}
+	
 }

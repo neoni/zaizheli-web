@@ -31,9 +31,58 @@ public class ActivityCreationVo implements Serializable {
 	private String addr;   //地址备注
 	private int fee;
 	private int apply;
+	private boolean realNameReq;	
+	private boolean ageReq;
+	private boolean birthdayReq;
+	private boolean telReq;
+	private boolean addressReq;
+	private boolean schoolReq;	
+	private boolean noteReq;
 	@NotNull
 	private String editor1;
 	
+	public boolean isRealNameReq() {
+		return realNameReq;
+	}
+	public void setRealNameReq(boolean realNameReq) {
+		this.realNameReq = realNameReq;
+	}
+	public boolean isAgeReq() {
+		return ageReq;
+	}
+	public void setAgeReq(boolean ageReq) {
+		this.ageReq = ageReq;
+	}
+	public boolean isBirthdayReq() {
+		return birthdayReq;
+	}
+	public void setBirthdayReq(boolean birthdayReq) {
+		this.birthdayReq = birthdayReq;
+	}
+	public boolean isTelReq() {
+		return telReq;
+	}
+	public void setTelReq(boolean telReq) {
+		this.telReq = telReq;
+	}
+	public boolean isAddressReq() {
+		return addressReq;
+	}
+	public void setAddressReq(boolean addressReq) {
+		this.addressReq = addressReq;
+	}
+	public boolean isSchoolReq() {
+		return schoolReq;
+	}
+	public void setSchoolReq(boolean schoolReq) {
+		this.schoolReq = schoolReq;
+	}
+	public boolean isNoteReq() {
+		return noteReq;
+	}
+	public void setNoteReq(boolean noteReq) {
+		this.noteReq = noteReq;
+	}
 	public String getImageUrl() {
 		return imageUrl;
 	}

@@ -169,13 +169,13 @@
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-15 lh-30 c-888" for="privateset">当参与活动需要提交申请表时，是否允许别人查看</label>
+		    			<label class="control-label fs-15 lh-30 c-888" for="privateset">参与活动提交申请表时，是否使用此页信息</label>
 		    			<div class="controls fs-16 lh-18">
 		    				<input id="privateset" class="validate[required]" type="hidden" 
 		    					data-prompt-position="centerRight:0,-4" name="privateset" value="${signInUser.privateset}">
 		    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="privateset">
-		    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val=0 >秘密</button>
-		    					<button id="gender_target" class="btn btn-large btn-info fs-16" type="button" data-val=1>公开</button>
+		    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val=0 >是</button>
+		    					<button id="gender_target" class="btn btn-large btn-info fs-16" type="button" data-val=1>否</button>
 		    				</div>
 						</div>
 		    		</div>

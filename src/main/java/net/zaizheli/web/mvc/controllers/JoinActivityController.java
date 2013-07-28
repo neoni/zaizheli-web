@@ -69,7 +69,7 @@ public class JoinActivityController {
 		application.setCreatedAt(new Date());
 		application.setUpdatedAt(application.getCreatedAt());
 		applicationRepository.save(application);
-		activityRepository.inc(id, "ApplicationCount", 1);
+		activityRepository.inc(id, "applicationCount", 1);
 		activityRepository.inc(id, "inJudgingCount", 1);
 		Action action = new Action();
 		action.setOwner(user.getId());

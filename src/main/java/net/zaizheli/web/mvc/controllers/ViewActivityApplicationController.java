@@ -7,7 +7,6 @@ import net.zaizheli.domains.Activity;
 import net.zaizheli.domains.User;
 import net.zaizheli.repositories.ActivityRepository;
 import net.zaizheli.repositories.ApplicationRepository;
-import net.zaizheli.repositories.JoinRepository;
 import net.zaizheli.web.utils.SessionUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +24,6 @@ public class ViewActivityApplicationController {
 	ActivityRepository activityRepository;
 	@Autowired 
 	SessionUtil sessionUtil;
-	@Autowired
-	JoinRepository joinRepository;
 	@Autowired
 	ApplicationRepository applicationRepository;
 	
