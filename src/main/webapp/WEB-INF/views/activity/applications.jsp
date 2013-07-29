@@ -52,42 +52,24 @@
 		    <section class="jobs-top" id="jobs"> 
 			     <article class="job-panel" style="width:1000px;"> 
 				      <header class="job-panel-header cf"> 
-				      		<ul id="profile-nav-tabs" class="nav nav-tabs" >
-				    		<li class="active in">
-			    			 	<a class="app_tab" data-toggle="tab " href="#in-list">申请中( ${ activity.inJudgingCount} )</a></li>
-			    			<li class="agree">
-			    			<a class="app_tab" data-toggle="tab" href="#agree-list" 
-			    			data-action="<c:url value="/activity/${activity.id}/applications/1"/>">已申请加入( ${activity.currentNum-1} )</a></li>
-			    			<li class="refuse">
-			    			<a class="app_tab" data-toggle="tab" href="#refuse-list" 
-			    			data-action="<c:url value="/activity/${activity.id}/applications/2"/>">已拒绝( ${activity.applicationCount-activity.inJudgingCount-activity.currentNum + 1})</a></li>
-				    	</ul>
-				      </header> 
-				     <div class="content cf" style="padding:0px;"> 
+				      		<ul id="profile-nav-tabs" class="nav nav-tabs " >
+				    		<li class="in_app <c:if test="${view eq 'in'}">active</c:if>"  style="margin-left:30px">
+				   				<a class="app_tab" href="<c:url value="/activity/${activity.id}/applications/in"/>">申请中( ${ activity.inJudgingCount} )</a></li>
+				    		<li class="agree <c:if test="${view eq 'agree'}">active</c:if>"  >
+				   				<a class="app_tab" href="<c:url value="/activity/${activity.id}/applications/agree"/>">已申请加入( ${activity.currentNum-1} )</a></li>				  
+				    		<li class="refuse <c:if test="${view eq 'refuse'}">active</c:if>">
+				    			<a class="app_tab" href="<c:url value="/activity/${activity.id}/applications/refuse"/>">已拒绝( ${activity.applicationCount-activity.inJudgingCount-activity.currentNum + 1})</a></li>
+				    		</ul>
+				     </header> 
+				     <div class="content cf" style="padding:0px;">   	
 				       <div class="tab-content bg-gray p-20" id="water-fall-wrapper" style="background:#DDDFEF;-moz-transition: left 0.5s ease-in-out 0s, top 0.5s ease-in-out 0s;">	
-						    <div id="in-list" class="tab-pane active"  style="margin: 0 auto;">
-						    	<c:import url="/activity/${activity.id}/applications/0" ></c:import>
+						    <div class="tab-pane active" id="water-fall">
+						    	<c:import url="/activity/${activity.id}/applications/${view}s/0"></c:import>
 						    </div>
-						    <div id="agree-list" class="tab-pane">
-						    	<div class="p-8 lh-16 ta-c loading-box">
-						    		<a href="" class="bg-h-loading pl-85 c-888" >加载中...</a>
-						    	</div>
-						    </div>
-						    <div id="refuse-list" class="tab-pane">
-						    	<div class="p-8 lh-16 ta-c loading-box">
-						    		<a href="" class="bg-h-loading pl-85 c-888" >加载中...</a>
-						    	</div>
-						    </div>
-						</div>	
-					    <div id="in-page-nav">
-							<a href="<c:url value="/activity/${activity.id}/applications/0" />"></a>
 						</div>
-						<div id="agree-page-nav">
-							<a href="<c:url value="/activity/${activity.id}/applications/1" />"></a>
-						</div>	
-						<div id="refuse-page-nav">
-							<a href="<c:url value="/activity/${activity.id}/applications/2" />"></a>
-						</div>
+					    <div id="page-nav">
+							<a href="<c:url value="/activity/${activity.id}/applications/${view}s/1" />"></a>
+						</div>    
 				      </div>
 				 
 				      
@@ -117,81 +99,23 @@
 			op.pin_bind_event($(this));
 		});
 
-		$('#profile-nav-tabs .in a').click(function (e) {
-		    e.preventDefault();
-		    $(this).tab('show');
-	    })
-		$('#profile-nav-tabs .agree a').click(function(){
-			var $this = $(this);
-			if(! $(this).data('first-load')){
-				var data_action = $(this).attr('data-action');
-				var c = $('#agree-list');
-				var loading_box = c.find('.loading-box');
-				$.ajax({
-					url: data_action,
-					beforeSend: function(){
-						loading_box.show();
-					},
-					success: function(data) {
-						if($.trim(data)){
-							var act = $(data).prependTo(c);
-							act.each(function(){
-								op.act_bind_event($(this));
-							});
-						}
-					},
-					complete: function(){
-						loading_box.hide();
-						$this.data('first-load', true);
-					}
-				});
-			}
-		});
-		$('#profile-nav-tabs .refuse a').click(function(){
-			var $this = $(this);
-			if(! $(this).data('first-load')){
-				var data_action = $(this).attr('data-action');
-				var c = $('#refuse-list');
-				var loading_box = c.find('.loading-box');
-				$.ajax({
-					url: data_action,
-					beforeSend: function(){
-						loading_box.show();
-					},
-					success: function(data) {
-						if($.trim(data)){
-							var act = $(data).prependTo(c);
-							act.each(function(){
-								op.act_bind_event($(this));
-							});
-						}
-					},
-					complete: function(){
-						loading_box.hide();
-						$this.data('first-load', true);
-					}
-				});
-			}
+		var $wf = $('#water-fall');
+			
+		$wf.masonry({
+			itemSelector : '.pin',
+		    columnWidth : 222,
+		    gutterWidth: 15,
+		    isAnimated: false,
+		    animationOptions: {
+		    	queue: false
+		    },
+		    isFitWidth: true
 		});
 			
-		var $ial = $('#in-list');
-		var $aal = $('#agree-list');
-		var $ral = $('#refuse-list');	
-		$ial.masonry({
-			itemSelector : '.pin',
-		    columnWidth : 222,
-		    gutterWidth: 15,
-		    isAnimated: false,
-		    animationOptions: {
-		    	queue: false
-		    },
-		    isFitWidth: false
-		});
-		
-		$ial.infinitescroll(
+		$wf.infinitescroll(
 			{
-				navSelector  : '#in-page-nav', // selector for the paged navigation
-				nextSelector : '#in-page-nav a', // selector for the NEXT link (to page 2)
+				navSelector  : '#page-nav', // selector for the paged navigation
+				nextSelector : '#page-nav a', // selector for the NEXT link (to page 2)
 				itemSelector : '.pin', // selector for all items you'll retrieve
 				debug        : false,
 				animate	 	 : false,
@@ -211,117 +135,7 @@
 					currPage: 0
 				},
 				pathParse: function() {
-			        return ['<c:url value="/activity/${activity.id}/applications/0" />',''];
-			    }
-			},
-			// trigger Masonry as a callback
-			function( newElements ) {
-				// hide new items while they are loading
-				var $newElems = $( newElements ).hide();
-				$newElems.each(function(){
-					op.pin_bind_event($(this));
-				});
-				$newElems.find(".timeago").timeago();
-				// ensure that images load before adding to masonry layout
-				//$newElems.imagesLoaded(function(){
-					// show elems now they're ready
-					$wf.append( $newElems ).masonry( 'appended', 
-							$newElems, false, function(){
-						$newElems.fadeIn('slow');
-					});
-				//}); 
-			}
-		);
-		$ral.masonry({
-			itemSelector : '.pin',
-		    columnWidth : 222,
-		    gutterWidth: 15,
-		    isAnimated: false,
-		    animationOptions: {
-		    	queue: false
-		    },
-		    isFitWidth: false
-		});
-		
-		$ral.infinitescroll(
-			{
-				navSelector  : '#refuse-page-nav', // selector for the paged navigation
-				nextSelector : '#refuse-page-nav a', // selector for the NEXT link (to page 2)
-				itemSelector : '.pin', // selector for all items you'll retrieve
-				debug        : false,
-				animate	 	 : false,
-				animationOptions: {
-				    duration: 750,
-				    easing: 'linear',
-				    queue: false
-				},
-				loading: {
-					selector: '#water-fall-wrapper',
-					finishedMsg: '没有更多了',
-					msgText: '加载中...',
-					img: '<c:url value="/resources/img/big-loading.gif" />',
-					speed: 0
-				},
-				state : {
-					currPage: 0
-				},
-				pathParse: function() {
-			        return ['<c:url value="/activity/${activity.id}/applications/2" />',''];
-			    }
-			},
-			// trigger Masonry as a callback
-			function( newElements ) {
-				// hide new items while they are loading
-				var $newElems = $( newElements ).hide();
-				$newElems.each(function(){
-					op.pin_bind_event($(this));
-				});
-				$newElems.find(".timeago").timeago();
-				// ensure that images load before adding to masonry layout
-				//$newElems.imagesLoaded(function(){
-					// show elems now they're ready
-					$wf.append( $newElems ).masonry( 'appended', 
-							$newElems, false, function(){
-						$newElems.fadeIn('slow');
-					});
-				//}); 
-			}
-		);
-		$aal.masonry({
-			itemSelector : '.pin',
-		    columnWidth : 222,
-		    gutterWidth: 15,
-		    isAnimated: false,
-		    animationOptions: {
-		    	queue: false
-		    },
-		    isFitWidth: false
-		});
-		
-		$aal.infinitescroll(
-			{
-				navSelector  : '#agree-page-nav', // selector for the paged navigation
-				nextSelector : '#agree-page-nav a', // selector for the NEXT link (to page 2)
-				itemSelector : '.pin', // selector for all items you'll retrieve
-				debug        : false,
-				animate	 	 : false,
-				animationOptions: {
-				    duration: 750,
-				    easing: 'linear',
-				    queue: false
-				},
-				loading: {
-					selector: '#water-fall-wrapper',
-					finishedMsg: '没有更多了',
-					msgText: '加载中...',
-					img: '<c:url value="/resources/img/big-loading.gif" />',
-					speed: 0
-				},
-				state : {
-					currPage: 0
-				},
-				pathParse: function() {
-			        return ['<c:url value="/activity/${activity.id}/applications/1" />',''];
+			        return ['<c:url value="/activity/${activity.id}/applications/${view}s/" />', ''];
 			    }
 			},
 			// trigger Masonry as a callback

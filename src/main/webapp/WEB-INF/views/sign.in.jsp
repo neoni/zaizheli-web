@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
-<html>
+<html id="login_html">
 <head>
 	<meta charset=utf-8>
     <title>登陆 在浙里 分享你我的社交</title>
@@ -22,14 +22,14 @@
 		<div class="row mt-30" >
 			<div class="span8 offset2 mt-20">
 				<div class="hero-unit board-2">
-					<form:form id="signInForm" cssClass="sign-in mt-30" modelAttribute="signInCredentialVo" method="post">
+					<form:form id="signInForm"  cssClass="sign-in" modelAttribute="signInCredentialVo" method="post">
 					<img src="<c:url value="/resources/img/zaizheli-icon.png" />" /><hr>					
 						<div class="row-fluid">
 						<div class="control-group">
 							<div class="controls">
 								<div class="input-prepend">
 									<span class="add-on"><i class="icon-envelope"></i></span>
-									<div class="f-l"><input id="user-name" class="validate[required,custom[email]] input-xlarge" name="signInName" type="email" placeholder="在浙里注册邮箱" autocomplete="off" value="<c:out value="${signInCredentialVo.signInName}" />"/></div>
+									<input id="user-name" class="validate[required,custom[email]] input-xlarge" name="signInName" type="email" placeholder="在浙里注册邮箱" autocomplete="off" value="<c:out value="${signInCredentialVo.signInName}" />"/>
 									<div class="f-l hint"><form:errors path="signInName" cssClass="alert alert-error" /></div>
 								</div>
 							</div>
@@ -40,7 +40,7 @@
 							<div class="controls">
 								<div class="input-prepend">
 									<span class="add-on"><i class="icon-lock"></i></span>
-									<div class="f-l"><input id="user-pwd" class="validate[required] input-xlarge" name="signInPassword" type="password" maxlength="64" placeholder="密码" autocomplete="off" value="<c:out value="${signInCredentialVo.signInPassword}" />" /></div>
+									<input id="user-pwd" class="validate[required] input-xlarge" name="signInPassword" type="password" maxlength="64" placeholder="密码" autocomplete="off" value="<c:out value="${signInCredentialVo.signInPassword}" />" />
 									<div class="f-l hint"><form:errors path="signInPassword" cssClass="alert alert-error" />
 								</div>
 							</div>

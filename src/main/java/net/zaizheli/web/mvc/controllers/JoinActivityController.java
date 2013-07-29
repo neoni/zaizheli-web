@@ -1,6 +1,8 @@
 package net.zaizheli.web.mvc.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -46,7 +48,10 @@ public class JoinActivityController {
 	public @ResponseBody AjaxResult view(@PathVariable String id, Model model, 
 			HttpServletRequest request, HttpSession session){
 		User user = sessionUtil.getSignInUser(session);
-        Application app = applicationRepository.findByActivityAndapplicant(id, user.getId());
+		List<String> types = new ArrayList<String>();
+		types.add(ApplicationStatus.已加入.name());
+		types.add(ApplicationStatus.申请中.name());
+        Application app = applicationRepository.findByActivityAndapplicant(id, user.getId(), types);
         if (app!=null) {
         	if(app.getStatus()==ApplicationStatus.申请中) {
         	     return new AjaxResult(AjaxResultCode.INVALID, "之前提交过了吧，申请正在等待活动创始人同意中哦 >o<");

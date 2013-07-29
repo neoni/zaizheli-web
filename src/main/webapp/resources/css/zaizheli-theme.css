@@ -1,4 +1,8 @@
 html {
+	background: url("../img/bg.png") repeat scroll 0 0 #F7F5F5;
+}
+
+#login_html {
 	background: url("../img/bg.jpg") repeat scroll 0 0 #F7F5F5;
 }
 
@@ -927,6 +931,18 @@ div.nomargin{	/* our special nomargin class */
 }
 
 /* 登陆注册界面的的board*/
+.board-1{
+	border-width : 4px;
+	border-color : #00C4FC;
+	border-style : inset;
+	background-image : url("../img/border.jpg");
+	filter:alpha(opacity=90); /*IE滤镜，透明度50%*/
+	-moz-opacity:0.9; /*Firefox私有，透明度50%*/
+	opacity:0.9;/*其他，透明度50%*/
+	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+	behavior: url(PIE.htc);	
+	padding-bottom: 10px;
+}
 
 .board-2 {
 	border-width : 4px;
@@ -937,8 +953,10 @@ div.nomargin{	/* our special nomargin class */
 	-moz-opacity:0.9; /*Firefox私有，透明度50%*/
 	opacity:0.9;/*其他，透明度50%*/
 	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-	behavior: url(PIE.htc);
+	behavior: url(PIE.htc);	
 }
+
+
 
 .board-3 {
 	border-width : 4px;
@@ -949,6 +967,8 @@ div.nomargin{	/* our special nomargin class */
 	opacity:0.9;/*其他，透明度50%*/
 	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
 	behavior: url(PIE.htc);
+	width: 800px;
+
 }
 
 .app_tab {

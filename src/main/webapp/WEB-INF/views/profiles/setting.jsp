@@ -169,7 +169,7 @@
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-15 lh-30 c-888" for="privateset">参与活动提交申请表时，是否使用此页信息</label>
+		    			<label class="control-label fs-15 lh-30 c-888" for="privateset">提交活动申请表时，是否使用此页信息</label>
 		    			<div class="controls fs-16 lh-18">
 		    				<input id="privateset" class="validate[required]" type="hidden" 
 		    					data-prompt-position="centerRight:0,-4" name="privateset" value="${signInUser.privateset}">

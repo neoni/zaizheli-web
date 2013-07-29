@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
-<html>
+<html id="login_html">
 <head>
 	<meta charset=utf-8>
     <title>注册 在浙里 分享你我的社交</title>
@@ -21,15 +21,15 @@
     <div class="container">
 		<div class="row mt-30" >
 			<div class="span8 offset2 mt-20">
-				<div class="hero-unit board-2">
-					<form:form id="signUpForm" cssClass="sign-in mt-30" modelAttribute="signUpUserVo" method="post">
+				<div class="hero-unit board-1">
+					<form:form id="signUpForm" cssClass="sign-in" modelAttribute="signUpUserVo" method="post">
 					<img src="<c:url value="/resources/img/zaizheli-icon.png" />" /><hr>					
 						<div class="row-fluid ">
 						<div class="control-group">
 							<div class="controls">
 								<div class="input-prepend">
 									<span class="add-on"><i class="icon-envelope"></i></span>
-									<div class="f-l"><input id="email" class="validate[required,custom[email]] input-xlarge" name="email" type="text" placeholder="输入在浙里注册邮箱" autocomplete="off" value="<c:out value="${signUpUserVo.email}" />" /></div>
+									<input id="email" class="validate[required,custom[email]] input-xlarge" name="email" type="text" placeholder="输入在浙里注册邮箱" autocomplete="off" value="<c:out value="${signUpUserVo.email}" />" />
 									<div class="f-l hint"><form:errors path="email" cssClass="alert alert-error" /></div>
 								</div>
 							</div>
@@ -40,7 +40,7 @@
 							<div class="controls">
 								<div class="input-prepend">
 									<span class="add-on"><i class="icon-user"></i></span>
-									<div class="f-l"><input id="name" class="validate[required,minSize[2]] input-xlarge" name="name" type="text" maxlength="64" placeholder="给自己取个昵称" autocomplete="off" value="<c:out value="${signUpUserVo.name}" />" /></div>
+									<input id="name" class="validate[required,minSize[2]] input-xlarge" name="name" type="text" maxlength="64" placeholder="给自己取个昵称" autocomplete="off" value="<c:out value="${signUpUserVo.name}" />" />
 									<div class="f-l hint"><form:errors path="name" cssClass="alert alert-error"/></div>
 								</div>
 							</div>
@@ -51,7 +51,7 @@
 							<div class="controls">
 								<div class="input-prepend">
 									<span class="add-on"><i class="icon-lock"></i></span>
-									<div class="f-l"><input id="password" class="validate[required,minSize[6],maxSize[30]] input-xlarge" name="password" type="password" maxlength="64" placeholder="输入密码" autocomplete="off" value="<c:out value="${signUpUserVo.password}" />" /></div>
+									<input id="password" class="validate[required,minSize[6],maxSize[30]] input-xlarge" name="password" type="password" maxlength="64" placeholder="输入密码" autocomplete="off" value="<c:out value="${signUpUserVo.password}" />" />
 									<div class="f-l hint"><form:errors path="password" cssClass="alert alert-error"/></div>
 								</div>
 							</div>
@@ -62,7 +62,7 @@
 							<div class="controls">
 								<div class="input-prepend">
 									<span class="add-on"><i class="icon-lock"></i></span>
-									<div class="f-l"><input id="password-re" class="validate[required,equals[password]] input-xlarge" name="passwordRe" type="password" placeholder="再次输入密码" autocomplete="off" value="<c:out value="${signUpUserVo.passwordRe}" />" /></div>
+									<input id="password-re" class="validate[required,equals[password]] input-xlarge" name="passwordRe" type="password" placeholder="再次输入密码" autocomplete="off" value="<c:out value="${signUpUserVo.passwordRe}" />" />
 								</div>
 							</div>
 						</div>							

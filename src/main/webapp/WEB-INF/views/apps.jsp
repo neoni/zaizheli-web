@@ -22,7 +22,7 @@
 				padding:0;
 			}
 			body{
-				background:url(resources/img/bg.png);
+				
 				color:white;
 				padding-bottom:20px;
 			}
