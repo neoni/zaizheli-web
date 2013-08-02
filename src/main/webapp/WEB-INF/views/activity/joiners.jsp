@@ -111,10 +111,20 @@
                         	<a href="<c:url value="/activity/${activity.id}/gallery"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">晒 活 动 中 </a> 
                         </c:when>                        
                         <c:when test="${activity.status eq '征集成员中'}">
-					       <a href="<c:url value="/activity/${activity.id}/join"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">加 入 我 们 吧 Join </a> 
-		                   <c:if test="${activity.apply==1}">
-					       		<a class="other-jobs">加入该活动需要填写申请表</a> 
-					       </c:if>
+					       <c:choose>
+                        	<c:when test="${status eq 0}">                                         
+	                        	<a act="<c:url value="/activity/${activity.id}/join"/>" onclick="op.apply(event.currentTarget); event.preventDefault();"  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>加 入 活 动</span> </a> 					   
+			                   <c:if test="${activity.apply==1}">
+						       		<a class="other-jobs">加入该活动需要填写申请表</a> 
+						       </c:if>
+						    </c:when>
+						    <c:when test="${status eq 1}"> 
+						    	<a  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>等待审核中</span> </a> 
+						    </c:when>
+						    <c:otherwise>					   
+			                 	<a  act="<c:url value="/activity/${activity.id}/quit"/>" onclick="op.apply_quit(event.currentTarget); event.preventDefault();" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>退 出 活 动</span> </a> 
+			                </c:otherwise>
+			            	</c:choose>
 					     </c:when>
 					    </c:choose>
 				      </footer> 

@@ -69,7 +69,7 @@
 	</beans:bean>
 	
 	
-	<!--interceptors>
+	<interceptors>
 		<interceptor>
 			<mapping path="/**"/>
 			<beans:bean class="net.zaizheli.web.mvc.interceptors.SignInTsInterceptor" />
@@ -86,7 +86,7 @@
 			<mapping path="/**"/>
 			<beans:bean class="net.zaizheli.web.mvc.interceptors.PreferenceInterceptor" />
 		</interceptor>
-	</interceptors-->
+	</interceptors>
   
 
 	<!-- Only needed because we require fileupload in the org.springframework.samples.mvc.fileupload package -->

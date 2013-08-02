@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 
 import net.zaizheli.constants.ApplicationStatus;
+import net.zaizheli.vo.ApplicationVo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -32,7 +33,6 @@ public class Application implements Serializable {
 	private int age;
 	private String birthday;
 	private String tel;
-	private String reason;
 	private String city;
 	private String address;
 	private String school;	
@@ -98,12 +98,6 @@ public class Application implements Serializable {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public String getReason() {
-		return reason;
-	}
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
 	public String getCity() {
 		return city;
 	}
@@ -127,6 +121,22 @@ public class Application implements Serializable {
 	}
 	public void setNote(String note) {
 		this.note = note;
+	}
+	
+	public static Application from(ApplicationVo vo) {
+		if (vo == null) return null;
+		Application app = new Application();
+		app.setAddress(vo.getAddress());
+		app.setAge(app.getAge());
+		app.setBirthday(vo.getBirthday());
+		app.setCity(vo.getCity());
+		app.setCreatedAt(new Date());
+		app.setNote(vo.getNote());
+		app.setNote(vo.getRealName());
+		app.setSchool(vo.getSchool());
+		app.setTel(vo.getTel());
+		app.setUpdatedAt(app.getCreatedAt());
+		return app;
 	}
 	
 	

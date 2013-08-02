@@ -168,16 +168,16 @@
 								   value="${signInUser.address}" style="height: 25px;">
 						</div>
 		    		</div>
-		    		<div class="control-group" style="margin-bottom: 30px;">
-		    			<label class="control-label fs-15 lh-30 c-888" for="privateset">提交活动申请表时，是否使用此页信息</label>
-		    			<div class="controls fs-16 lh-18">
+		    		<div class="" style="margin-bottom: 30px;">
+		    			<label class="fs-14 lh-30 c-888" style="margin-left:160px">提示： 此页信息可用作活动申请表</label>
+		    			<!-- <div class="controls fs-16 lh-18">
 		    				<input id="privateset" class="validate[required]" type="hidden" 
 		    					data-prompt-position="centerRight:0,-4" name="privateset" value="${signInUser.privateset}">
 		    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="privateset">
 		    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val=0 >是</button>
 		    					<button id="gender_target" class="btn btn-large btn-info fs-16" type="button" data-val=1>否</button>
 		    				</div>
-						</div>
+						</div> -->
 		    		</div>
 		    		<div class="form-actions" style="margin-bottom: 0px;">
 		    			<div class="dis-i">

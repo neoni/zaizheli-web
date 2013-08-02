@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import net.zaizheli.constants.ActionType;
+import net.zaizheli.constants.ActivityLocation;
 import net.zaizheli.constants.AjaxResultCode;
 import net.zaizheli.constants.ApplicationConfig;
 import net.zaizheli.domains.Action;
@@ -161,11 +162,26 @@ public class CreateActivityController {
 				if(city!=null){
 					activity.setCity(city.getPinyin());
 				}
-				activity.setLngLat(place.getLngLat());
+				activity.setLngLat(place.getLngLat());				
+				if(place.getNation() != "中国") {
+					activity.setLocation(ActivityLocation.国外);
+				}
+				else {
+					if(place.getProvince() != "浙江省") {
+						activity.setLocation(ActivityLocation.国内_除浙江);
+					}
+					else {
+						if(place.getCity()!="杭州市") {
+							activity.setLocation(ActivityLocation.浙江省_除杭州);
+						}
+						else activity.setLocation(ActivityLocation.杭州);
+					}
+				}
 				activity.setPlace(place);
 			}
 		}else if(!StringUtils.hasText(activity.getCity())){
 			activity.setCity(ApplicationConfig.defaultCityPinyin);
+			activity.setLocation(ActivityLocation.杭州);
 		}
 		activity = activityRepository.save(activity);
 		// increase activity count

@@ -8,14 +8,18 @@ import javax.servlet.http.HttpSession;
 import net.zaizheli.constants.ActionType;
 import net.zaizheli.constants.AjaxResultCode;
 import net.zaizheli.constants.ApplicationStatus;
+import net.zaizheli.constants.MessageType;
 import net.zaizheli.domains.Action;
 import net.zaizheli.domains.Activity;
 import net.zaizheli.domains.Application;
 import net.zaizheli.domains.Join;
+import net.zaizheli.domains.Message;
+import net.zaizheli.domains.User;
 import net.zaizheli.repositories.ActionRepository;
 import net.zaizheli.repositories.ActivityRepository;
 import net.zaizheli.repositories.ApplicationRepository;
 import net.zaizheli.repositories.JoinRepository;
+import net.zaizheli.repositories.MessageRepository;
 import net.zaizheli.vo.AjaxResult;
 import net.zaizheli.web.utils.SessionUtil;
 
@@ -41,6 +45,8 @@ public class DealWithApplicationController {
 	ApplicationRepository applicationRepository;
 	@Autowired
 	ActionRepository actionRepository;
+	@Autowired
+	MessageRepository messageRepository;
 	
 	@RequestMapping(value="/{id}/agree", method=RequestMethod.GET)
 	public @ResponseBody AjaxResult agree(@PathVariable String id, Model model, 
@@ -69,6 +75,15 @@ public class DealWithApplicationController {
 			action.setType(ActionType.JOIN);
 			action.setBy(sessionUtil.getBy(session));
 			actionRepository.save(action);
+			User user = sessionUtil.getSignInUser(session);
+			Message message = new Message();
+			message.setFrom(user);
+			User applicant = application.getApplicant();
+			message.setTo(applicant);
+			message.setContent("恭喜您，加入了活动"+activity.getTitle());
+			message.setStatus(0);
+			message.setType(MessageType.INFORM);
+			messageRepository.save(message);
 			return new AjaxResult(AjaxResultCode.SUCCESS,activity.getId());
 		}
 		else {
@@ -85,6 +100,15 @@ public class DealWithApplicationController {
 			activityRepository.inc(activity.getId(),"inJudgingCount",-1);
 			application.setStatus(ApplicationStatus.拒绝);
 			applicationRepository.save(application);
+			User user = sessionUtil.getSignInUser(session);
+			Message message = new Message();
+			message.setFrom(user);
+			User applicant = application.getApplicant();
+			message.setTo(applicant);
+			message.setContent("您被拒绝加入活动"+activity.getTitle());
+			message.setStatus(0);
+			message.setType(MessageType.INFORM);
+			messageRepository.save(message);
 			return new AjaxResult(AjaxResultCode.SUCCESS, activity.getId());
 		}
 		else {
@@ -103,6 +127,15 @@ public class DealWithApplicationController {
 			Join join = joinRepository.findByActivityAndjoiner(activity.getId(),application.getApplicant().getId());
 			joinRepository.delete(join);
 			applicationRepository.delete(application);
+			User user = sessionUtil.getSignInUser(session);
+			Message message = new Message();
+			message.setFrom(user);
+			User applicant = application.getApplicant();
+			message.setTo(applicant);
+			message.setContent("您被踢出了活动"+activity.getTitle());
+			message.setStatus(0);
+			message.setType(MessageType.INFORM);
+			messageRepository.save(message);
 			return new AjaxResult(AjaxResultCode.SUCCESS, activity.getId());
 		}
 		else {

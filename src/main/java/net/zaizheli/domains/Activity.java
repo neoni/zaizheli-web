@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
+import net.zaizheli.constants.ActivityLocation;
 import net.zaizheli.vo.ActivityCreationVo;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -64,6 +65,7 @@ public class Activity implements Serializable {
 	private Resource image;
 	@NotNull
 	private String status;
+	private ActivityLocation location;
 	
 	@NotNull
 	private int maxNum;
@@ -86,6 +88,12 @@ public class Activity implements Serializable {
 	private boolean noteReq;
 	
 	
+	public ActivityLocation getLocation() {
+		return location;
+	}
+	public void setLocation(ActivityLocation location) {
+		this.location = location;
+	}
 	public boolean isRealNameReq() {
 		return realNameReq;
 	}

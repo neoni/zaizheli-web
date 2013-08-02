@@ -26,7 +26,14 @@ public class Message implements Serializable{
 	private User to;	
 	private String content;
 	private MessageType type;
+	private int status;          //0:未读             1:已读 
 	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public String getId() {
 		return id;
 	}

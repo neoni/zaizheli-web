@@ -24,9 +24,9 @@ var op = {
 	},
 	
 	check_signin: function(callback, unsigninhandler, force){
-		// if(!force && (!this._signin_ts || this._signin_ts == -1)){
-		// 	unsigninhandler? unsigninhandler() : this.redirect_to_signin();
-		// }
+		if(!force && (!this._signin_ts || this._signin_ts == -1)){
+			unsigninhandler? unsigninhandler() : this.redirect_to_signin();
+		}
 		if(!force && (this.calc_utctime(new Date()) - this._signin_ts 
 				< this._signin_timeout)){
 			callback? callback(): null;
@@ -267,6 +267,8 @@ var op = {
 		 	$.getJSON(url, function(data){
 				if(data && data.resultCode == 'SUCCESS'){
 					op.notify_header('已发送加入申请，等待创建人同意中...');
+					$(dom).removeAttr("act");
+					$(dom).find('span').text('等待审核中');
 				}
 				if(data && data.resultCode == 'INVALID'){
 					op.notify_header(data.exceptionMsg);
@@ -281,13 +283,33 @@ var op = {
 		});
 	},
 
+	apply_quit: function(dom){ 
+		this.check_signin( function(){
+		 	var url= $(dom).attr('act');
+		 	$.getJSON(url, function(data){
+				if(data && data.resultCode == 'SUCCESS'){
+					op.notify_header('已退出此活动了 >o<');	
+					$(dom).attr('act', url.replace('quit', 'join'));
+					$(dom).attr('onclick', 'op.apply(event.currentTarget); event.preventDefault();');
+					$(dom).find('span').text('加 入 活 动');						
+				}
+				if(data && data.resultCode == 'INVALID'){
+					op.notify_header(data.exceptionMsg);
+				}
+			});
+	 	}, function(){
+			window.location.href= web_context + "/signin";
+			$('#sign-in-modal').modal('show');
+		});
+	},
+
 	apply_agree: function(dom){ 
 		this.check_signin( function(){
 		 	var url= $(dom).attr('act');
 		 	$.getJSON(url, function(data){
 				if(data && data.resultCode == 'SUCCESS'){
 					op.notify_header('已将此人加为成员了 >o<');
-					
+										
 				}
 				if(data && data.resultCode == 'INVALID'){
 					op.notify_header(data.exceptionMsg);

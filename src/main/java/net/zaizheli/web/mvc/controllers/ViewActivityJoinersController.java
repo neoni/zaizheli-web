@@ -2,16 +2,20 @@ package net.zaizheli.web.mvc.controllers;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
 import net.zaizheli.constants.ApplicationConfig;
+import net.zaizheli.constants.ApplicationStatus;
 import net.zaizheli.domains.Activity;
+import net.zaizheli.domains.Application;
 import net.zaizheli.domains.Join;
 import net.zaizheli.domains.User;
 import net.zaizheli.repositories.ActivityRepository;
+import net.zaizheli.repositories.ApplicationRepository;
 import net.zaizheli.repositories.JoinRepository;
 import net.zaizheli.vo.PinUserVo;
 import net.zaizheli.web.utils.SessionUtil;
@@ -39,6 +43,8 @@ public class ViewActivityJoinersController {
 	SessionUtil sessionUtil;
 	@Autowired
 	JoinRepository joinRepository;
+	@Autowired
+	ApplicationRepository applicationRepository;
 	
 	@RequestMapping(value="/{id}/joiners", method=RequestMethod.GET)
 	public String view(@PathVariable String id, Model model, 
@@ -47,7 +53,18 @@ public class ViewActivityJoinersController {
 		if(user == null){
 			return "redirect:/signin";
 		}
+		int status = 0;
+		List<String> types = new ArrayList<String>();
+		types.add(ApplicationStatus.已加入.name());
+		types.add(ApplicationStatus.申请中.name());
+		Application app = applicationRepository.findByActivityAndapplicant(id, user.getId(), types);
+		if (app != null) {
+			if(app.getStatus() == ApplicationStatus.已加入)
+				status = 2;
+			else status = 1;
+		}
 		Activity activity=activityRepository.findOne(id);
+		model.addAttribute("status",status);
 		model.addAttribute("activity", activity);
 		return "activity/joiners";
 	}
