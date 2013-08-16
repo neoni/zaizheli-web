@@ -3,6 +3,7 @@ package net.zaizheli.web.mvc.controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import net.zaizheli.domains.Activity;
 import net.zaizheli.domains.Application;
 import net.zaizheli.domains.User;
 import net.zaizheli.repositories.ActivityRepository;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/application")
+@RequestMapping("/activity")
 public class ViewUserApplicationController {
 	
 	@Autowired
@@ -27,15 +28,17 @@ public class ViewUserApplicationController {
 	@Autowired
 	ApplicationRepository applicationRepository;
 	
-	@RequestMapping(value="/{id}/view", method=RequestMethod.GET)
-	public String view(@PathVariable String id, 
-			@PathVariable String view, Model model, 
+	@RequestMapping(value="/{aid}/application/{id}/view", method=RequestMethod.GET)
+	public String view(@PathVariable String aid, @PathVariable String id, Model model, 
 			HttpServletRequest request, HttpSession session){
 		User signInuser=sessionUtil.getSignInUser(session);
 		if(signInuser==null) {
 			return "redirect:/signin";
 		}
 		Application application = applicationRepository.findOne(id);
+		Activity activity = activityRepository.findOne(aid);
+		model.addAttribute("activity",activity);
+		model.addAttribute("user",signInuser);
 		model.addAttribute("application", application);
 		return "application/application";
 	}

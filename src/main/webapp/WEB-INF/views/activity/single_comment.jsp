@@ -45,3 +45,4 @@
 		}
 	$('#cmt_page').bootstrapPaginator(options);	
 </script>
+

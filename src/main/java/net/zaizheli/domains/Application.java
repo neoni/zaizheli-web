@@ -126,13 +126,13 @@ public class Application implements Serializable {
 	public static Application from(ApplicationVo vo) {
 		if (vo == null) return null;
 		Application app = new Application();
+		app.setRealName(vo.getRealName());
 		app.setAddress(vo.getAddress());
 		app.setAge(app.getAge());
 		app.setBirthday(vo.getBirthday());
 		app.setCity(vo.getCity());
 		app.setCreatedAt(new Date());
 		app.setNote(vo.getNote());
-		app.setNote(vo.getRealName());
 		app.setSchool(vo.getSchool());
 		app.setTel(vo.getTel());
 		app.setUpdatedAt(app.getCreatedAt());

@@ -9,13 +9,16 @@ import javax.validation.Valid;
 import net.zaizheli.constants.ActionType;
 import net.zaizheli.constants.ApplicationConfig;
 import net.zaizheli.constants.ApplicationConstants;
+import net.zaizheli.constants.MessageType;
 import net.zaizheli.domains.Action;
 import net.zaizheli.domains.Activity;
 import net.zaizheli.domains.Comment;
+import net.zaizheli.domains.Message;
 import net.zaizheli.domains.User;
 import net.zaizheli.repositories.ActionRepository;
 import net.zaizheli.repositories.ActivityRepository;
 import net.zaizheli.repositories.CommentRepository;
+import net.zaizheli.repositories.MessageRepository;
 import net.zaizheli.repositories.UserRepository;
 import net.zaizheli.vo.CommentFormBean;
 import net.zaizheli.web.utils.AjaxUtil;
@@ -50,6 +53,8 @@ public class AddCommentController {
 	private AjaxUtil ajaxUtil;
 	@Autowired
 	private TextUtil textUtil;
+	@Autowired
+	MessageRepository messageRepository;
 	
 	@ModelAttribute("cmtFormBean")
 	public CommentFormBean creatFormBean() {
@@ -86,27 +91,14 @@ public class AddCommentController {
 			if(context.substring(index+1,index+2) == "\n")
 					content = content + context.substring(index+2);
 			else content = content + context.substring(index+1);
-			cmt.setContent(content);			
+			cmt.setContent(content);	
 		}	
 		cmt.setActivity(activity);
-		cmt.setFloor(activity.getCommentCount()+1);	
-			
+		cmt.setFloor(activity.getCommentCount()+1);				
 		// inc commented count of orignal activity
 		activityRepository.inc(activity.getId(), "commentCount", 1);
 		// incr comment count of sign in user
-		userRepository.inc(signInUser.getId(), "commentCount", 1);		
-		// save cmt activity
-		Action action= new Action();
-		action.setOwner(signInUser.getId());
-		action.setCreatedAt(new Date());
-		action.setTargetActivity(activity.getId());
-		if (baseCmt!=null && user != null && bean.getContent().indexOf("回复 "+user.getName()+":")==0 ) {
-			action.setTargetUser(user.getId());	
-		}
-		action.setContent(con);
-		action.setType(ActionType.COMMENT);
-		action.setBy(sessionUtil.getBy(session));
-		actionRepository.save(action);
+		userRepository.inc(signInUser.getId(), "commentCount", 1);	
 		cmt = commentRepository.save(cmt);
 		int size = commentRepository.findByActivity(activity.getId()).size();
 		int total = 0 ;
@@ -118,6 +110,27 @@ public class AddCommentController {
 		StringBuilder url = new StringBuilder();
 		url.append("/activities/").append(activity.getId());
 		url.append("/").append(total).append("#").append(cmt.getId());
+		// save cmt activity
+		Action action= new Action();
+		action.setOwner(signInUser.getId());
+		action.setCreatedAt(new Date());
+		action.setTargetActivity(activity.getId());
+		if (baseCmt!=null && user != null && bean.getContent().indexOf("回复 "+user.getName()+":")==0 ) {
+			action.setTargetUser(user.getId());	
+			Message message = new Message();
+			message.setFrom(signInUser);
+			message.setTo(user);
+			message.setContent(signInUser.getName()+"在活动 "+activity.getTitle()+" 中回复了您");
+			message.setStatus(0);
+			message.setType(MessageType.INFORM);
+			message.setActivity(activity);
+			message.setCreatedAt(new Date());
+			messageRepository.save(message);
+		}
+		action.setContent(con);
+		action.setType(ActionType.COMMENT);
+		action.setBy(sessionUtil.getBy(session));
+		actionRepository.save(action);
 		return "redirect:" + url.toString();
 	}
 }

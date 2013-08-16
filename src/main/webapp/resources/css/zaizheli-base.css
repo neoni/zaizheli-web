@@ -266,7 +266,9 @@
 	color: #eee;
 }
 .c-theme-link{
-	color: #0088CC
+	/*color: #0088CC*/
+	color:#FFA71E;
+	text-decoration: none;
 }
 .lh-45{
 	line-height: 40px;

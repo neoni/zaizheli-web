@@ -33,6 +33,7 @@
 			</jsp:include>
 		</c:otherwise>
 	</c:choose>
+	<c:import url="./modal/sendPM.jsp"/>
 	<div class="main-wrapper mt-20 mb-30">
 		<div class="main block-h-c content-wrapper row-fluid p-r">
 			<div class="span8 board">
@@ -68,7 +69,8 @@
 				<c:otherwise>
 					<c:import url="/profiles/${user.id}/public"></c:import>
 				</c:otherwise>
-				</c:choose><c:import url="/profiles/action/${user.id}/0"></c:import>
+				</c:choose>
+				<c:import url="/profiles/action/${user.id}/0"></c:import>
 				
 			</div>
 		</div>

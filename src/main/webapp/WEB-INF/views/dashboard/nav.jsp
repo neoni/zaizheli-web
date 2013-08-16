@@ -4,9 +4,6 @@
 	<li class="active">
 		<a href="<c:url value="/dashboard" />">动&nbsp;态</a>
 	</li>
-	<li id="cmt" class="">
-		<a href="<c:url value="/message/cmt" />">评&nbsp;论</a>
-	</li>
 	<li id="pm" class="">
 		<a href="<c:url value="/message/pm" />">私&nbsp;信</a>
 	</li>

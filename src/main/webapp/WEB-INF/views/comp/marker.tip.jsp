@@ -4,7 +4,7 @@
 	<div class="content"><div class="row-fluid">
 		<a id="mt_img_a" class="img f-l w-90 h-90 of-h mr-8 mb-8" 
 				href="">
-			<img id="mt_img" src="">
+			<img  id="mt_img" src="">
 		</a>
 		<p id="mt_name"></p>
 		<p class="c-theme-link">

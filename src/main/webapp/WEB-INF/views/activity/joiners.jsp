@@ -58,6 +58,7 @@
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
+	<c:import url="../modal/sendPM.jsp"/>
 	<div class="outer" id="header_wrap">
         <header class="inner" >
           <h1 id="project_title" class="pb-20">${activity.title}</h1>
@@ -122,7 +123,7 @@
 						    	<a  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>等待审核中</span> </a> 
 						    </c:when>
 						    <c:otherwise>					   
-			                 	<a  act="<c:url value="/activity/${activity.id}/quit"/>" onclick="op.apply_quit(event.currentTarget); event.preventDefault();" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>退 出 活 动</span> </a> 
+			                 	<a  id="quit_act" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>退 出 活 动</span> </a>   
 			                </c:otherwise>
 			            	</c:choose>
 					     </c:when>
@@ -138,6 +139,20 @@
 	<script type="text/javascript">
 		adjustWebWidth();
 	</script>
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h3 id="myModalLabel">提 醒</h3>
+	</div>
+	<div class="modal-body">
+	<p id="modal_text">确定要退出此活动？</p>
+	</div>
+	<div class="modal-footer">
+	<a id="sure" class="btn" act="<c:url value="/activity/${activity.id}/quit"/>"  >确定</a>
+	<a  data-dismiss="modal"  class="btn btn-primary">取消</a>
+		</div>
+	</div>
+	
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrapx-popoverx.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.form.js" />"></script>
@@ -153,6 +168,14 @@
 		$('.pin').each(function(){
 			op.pin_bind_event($(this));
 		});
+		$('#quit_act').click(function(){
+		 	$('#myModal').modal('toggle');
+		 });
+		 $('#sure').click(function(){
+		 	op.apply_quit(event.currentTarget);
+		 	event.preventDefault(); 
+		 	setTimeout(function(){window.location.reload();}, 1500);
+		 });
 		var $wf = $('#water-fall');
 		
 		$wf.masonry({

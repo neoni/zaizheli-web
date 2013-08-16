@@ -71,6 +71,8 @@ public class ViewActivityApplicationController {
 			HttpServletRequest request, HttpSession session){
 		Activity activity=activityRepository.findOne(id);
 		model.addAttribute("activity", activity);
+		User signInuser=sessionUtil.getSignInUser(session);
+		model.addAttribute("user",signInuser);
 		return "application/apply";
 	}
 

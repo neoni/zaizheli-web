@@ -6,9 +6,7 @@
 	<c:forEach var="action" varStatus="stat" items="${actions}">
 		<dl class="act-list row-fluid">
 			<dt class="face">
-				<a class="img f-l w-60 h-60 of-h"
-					title = "${action.owner.name}" 
-					href="<c:url value="/profiles/${action.owner.id}"/>" >
+				<a class="img f-l w-60 h-60 of-h" title = "${action.owner.name}" href="<c:url value="/profiles/${action.owner.id}"/>" data-id="${action.owner.id}" data-type="namecard" data-original-title="用户信息" data-html="true" data-trigger="manual" data-toggle="popoverx">
 					<img width=60 src="${f:avatarUrl(action.owner.avatar, action.owner.gender)}" />
 				</a>
 			</dt>
@@ -21,10 +19,10 @@
 						建立了新活动:&nbsp;
 						<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 							${action.targetActivity.title}&nbsp;@&nbsp;${action.targetActivity.place.fullAddr}</a></p>
-					
+					<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 					<p class="">
 						<img class="" width="100" src="${f:imageUrl(action.targetActivity.image.resId)}">
-					</p>
+					</p></a>
 					<p class="mb-0 row-fluid">
 						<span class="timeago f-l" 
 							title="<fmt:formatDate value="${action.createdAt}" pattern="yyyy-MM-dd HH:mm:ss Z"/>"></span>
@@ -134,10 +132,10 @@
 						参加了活动:&nbsp;
 						<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 							${action.targetActivity.title}&nbsp;@&nbsp;${action.targetActivity.place.fullAddr}</a></p>
-					
+					<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 					<p class="">
 						<img class="" width="100" src="${f:imageUrl(action.targetActivity.image.resId)}">
-					</p>
+					</p></a>
 					<p class="mb-0 row-fluid">
 						<span class="timeago f-l" 
 							title="<fmt:formatDate value="${action.createdAt}" pattern="yyyy-MM-dd HH:mm:ss Z"/>"></span>
@@ -165,10 +163,10 @@
 						追踪了活动:&nbsp;
 						<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 							${action.targetActivity.title}&nbsp;@&nbsp;${action.targetActivity.place.fullAddr}</a></p>
-					
+					<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 					<p class="">
 						<img class="" width="100" src="${f:imageUrl(action.targetActivity.image.resId)}">
-					</p>
+					</p></a>
 					<p class="mb-0 row-fluid">
 						<span class="timeago f-l" 
 							title="<fmt:formatDate value="${action.createdAt}" pattern="yyyy-MM-dd HH:mm:ss Z"/>"></span>
@@ -196,10 +194,10 @@
 						更新了活动:&nbsp;
 						<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 							${action.targetActivity.title}&nbsp;@&nbsp;${action.targetActivity.place.fullAddr}</a></p>
-					
+					<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 					<p class="">
 						<img class="" width="100" src="${f:imageUrl(action.targetActivity.image.resId)}">
-					</p>
+					</p>,</a>
 					<p class="mb-0 row-fluid">
 						<span class="timeago f-l" 
 							title="<fmt:formatDate value="${action.createdAt}" pattern="yyyy-MM-dd HH:mm:ss Z"/>"></span>
@@ -226,10 +224,10 @@
 						关注了:&nbsp;
 						<a href="<c:url value="/profiles/${action.targetUser.id}" />">
 							${action.targetUser.name}</a></p>
-					
+					<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 					<p class="">
 						<img class="" width="100" src="${f:avatarUrl(action.targetUser.avatar, action.targetUser.gender)}">
-					</p>
+					</p></a>
 						
 						<!-- <span class="f-r">
 							<a onclick="op.toggle_fwd_dashboard(event.currentTarget); event.preventDefault();">
@@ -247,10 +245,10 @@
 						上传了图片到:&nbsp;
 						<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 							${action.targetActivity.title}&nbsp;@&nbsp;${action.targetActivity.place.fullAddr}</a></p>
-					
+					<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 					<p class="">
 						<img class="" width="100" src="${f:imageUrl(action.picId)}">
-					</p>
+					</p></a>
 					<p class="mb-0 row-fluid">
 						<span class="timeago f-l" 
 							title="<fmt:formatDate value="${action.createdAt}" pattern="yyyy-MM-dd HH:mm:ss Z"/>"></span>
@@ -279,10 +277,10 @@
 						申请加入:&nbsp;
 						<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 							${action.targetActivity.title}&nbsp;@&nbsp;${action.targetActivity.place.fullAddr}</a></p>
-					
+					<a href="<c:url value="/activities/${action.targetActivity.id}" />">
 					<p class="">
 						<img class="" width="100" src="${f:imageUrl(action.targetActivity.image.resId)}">
-					</p>
+					</p></a>
 					<p class="mb-0 row-fluid">
 						<span class="timeago f-l" 
 							title="<fmt:formatDate value="${action.createdAt}" pattern="yyyy-MM-dd HH:mm:ss Z"/>"></span>

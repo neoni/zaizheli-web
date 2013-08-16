@@ -32,7 +32,6 @@ public class ViewProfileInfoController {
 	@RequestMapping(value="/{id}/public", method=RequestMethod.GET)
 	public String viewPublic(@PathVariable String id, Model model, 
 			HttpServletRequest request, HttpSession session){
-		
 		User user = userRepository.findOne(id);
 		model.addAttribute("user", user);
 		return "profiles/public";

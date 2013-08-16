@@ -44,16 +44,16 @@
 			<input id="place-id-hid" name="placeId" type="hidden" />
 			<ul id="dates">
 				<li>
-					<a href="#上传海报" class="selected time">上传活动封面</a>
+					<a href="#上传海报" class="selected time">上传活动封面(15%)</a>
 				</li>
 				<li>
-					<a href="#活动细节" >活动细节</a>
+					<a href="#活动细节" >活动细节(45%)</a>
 				</li>
 				<li>
-					<a href="#活动规划" >活动规划</a>
+					<a href="#活动规划" >活动规划(75%)</a>
 				</li>
 				<li>
-					<a href="#活动的补充要点" >活动的补充要点</a>
+					<a href="#活动的补充要点" >补充要点(100%)</a>
 				</li>
 			</ul>
 			<ul id="issues" >
@@ -75,7 +75,7 @@
 									<div class="input-prepend">
 										<span class="add-on"> <i class="icon-leaf"></i>
 										</span>
-										<input id="title" class="input-xlarge" type="text" name="title" 
+										<input id="title" class="validate[maxSize[15]] input-xlarge" type="text" name="title" 
 	              							data-prompt-position="centerRight:0,-4" value="${activity.title}"  />
 									</div>
 								</div>
@@ -84,7 +84,7 @@
 								<label class="control-label fs-15 lh-20 c-ffc" for="type">* 选择活动分类</label>
 								<div class="input-prepend controls">
 									<span class="add-on"> <i class="icon-th"></i></span>
-									<select id="type" class="span5" name="type" value="${activity.type}">
+									<select id="type" class="span5" name="type" value="${activity.type}" style="width:280px">
 											<option <%if("${activity.type}"=="聚餐") {%> selected='selected'<%}%> >聚餐</option>
 											<option <%if("${activity.type}"=="出游") {%> selected='selected'<%}%> >出游</option>											
 											<option <%if("${activity.type}"=="电影") {%> selected='selected'<%}%>  >电影</option>
@@ -140,13 +140,13 @@
 											</table>
 										</div>
 									</div>
-									<div class="bfh-timepicker ml-80" data-time="${activity.startTime}">
-									  <div class="input-prepend bfh-timepicker-toggle ml-80" data-toggle="bfh-timepicker">
+									<div class="bfh-timepicker ml-90" data-time="${activity.startTime}">
+									  <div class="input-prepend bfh-timepicker-toggle ml-90" data-toggle="bfh-timepicker">
 									    <span class="add-on"><i class="icon-time"></i></span>
 									    <input id="startTime" name="startTime" type="text" class=" input-small" 
 									    value= "${activity.startTime}" readonly>
 									  </div>
-									  <div class="bfh-timepicker-popover ml-80">
+									  <div class="bfh-timepicker-popover ml-90">
 									    <table class="table">
 									      <tbody>
 									        <tr>
@@ -210,13 +210,13 @@
 											</table>
 										</div>
 									</div>
-									<div class="bfh-timepicker ml-80" data-time="${activity.endTime}">
-									  <div class="input-prepend bfh-timepicker-toggle ml-80" data-toggle="bfh-timepicker">
+									<div class="bfh-timepicker ml-90" data-time="${activity.endTime}">
+									  <div class="input-prepend bfh-timepicker-toggle ml-90" data-toggle="bfh-timepicker">
 									    <span class="add-on"><i class="icon-time"></i></span>
 									    <input id="endTime" name="endTime" type="text" class=" input-small" 
 									     value= "${activity.endTime}" readonly>
 									  </div>
-									  <div class="bfh-timepicker-popover ml-80">
+									  <div class="bfh-timepicker-popover ml-90">
 									    <table class="table">
 									      <tbody>
 									        <tr>
@@ -253,7 +253,7 @@
 								<div class="input-prepend controls">
 									<span class="add-on"> <i class="icon-heart"></i></span>
 		<input value="${activity.status}" type="hidden">
-									<select id="status" class=" span5" name="status" value="${activity.status}">
+									<select id="status" class=" span5" name="status" value="${activity.status}" style="width:280px">
 											<option <c:if test="${activity.status eq '征集成员中'}"> selected="selected" </c:if> >征集成员中</option>								
 											<option <c:if test="${activity.status eq '晒活动'}"> selected="selected" </c:if>>晒活动</option>
 											<option <c:if test="${activity.status eq '放弃'}"> selected="selected" </c:if>>放弃</option>

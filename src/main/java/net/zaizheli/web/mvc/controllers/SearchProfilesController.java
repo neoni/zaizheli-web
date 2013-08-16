@@ -46,16 +46,16 @@ public class SearchProfilesController {
 	@RequestMapping(value="/search", method=RequestMethod.GET)
 	public String search(Model model, HttpServletRequest request, 
 			HttpSession session){
-		String city = request.getParameter("city");
+//		String city = request.getParameter("city");
 		String gender = request.getParameter("gender");
 		String nameLike = request.getParameter("keyword");
 		int no = Integer.parseInt(request.getParameter("no"));
 		Pageable pageable = new PageRequest(Math.max(no, 0), 
 				ApplicationConfig.masonryPageSize, 
 				new Sort(new Order(Direction.DESC, "createdAt")));
-		if(ApplicationConfig.defaultCityPinyin.equals(city)){
-			city = "";
-		}
+//		if(ApplicationConfig.defaultCityPinyin.equals(city)){
+//			city = "";
+//		}
 		if(StringUtils.hasText(gender)){
 			gender = gender.toUpperCase();
 			try{
@@ -84,7 +84,7 @@ public class SearchProfilesController {
 //		}else{
 //			users = userRepository.findAll(pageable);
 //		}
-		users = userRepository.search(StringUtils.trimWhitespace(city), 
+		users = userRepository.search(
 				StringUtils.trimWhitespace(gender), 
 				StringUtils.trimWhitespace(nameLike), pageable);
 		

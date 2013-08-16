@@ -1,6 +1,7 @@
 package net.zaizheli.domains;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
@@ -24,10 +25,41 @@ public class Message implements Serializable{
 	@DBRef
 	@NotNull
 	private User to;	
+	@DBRef
+	private Activity activity; 
+	@DBRef
+	private Message base;
 	private String content;
+	private String title;
 	private MessageType type;
 	private int status;          //0:未读             1:已读 
+	@NotNull
+	private Date createdAt;
 	
+	public Message getBase() {
+		return base;
+	}
+	public void setBase(Message base) {
+		this.base = base;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public Activity getActivity() {
+		return activity;
+	}
+	public void setActivity(Activity activity) {
+		this.activity = activity;
+	}
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
 	public int getStatus() {
 		return status;
 	}

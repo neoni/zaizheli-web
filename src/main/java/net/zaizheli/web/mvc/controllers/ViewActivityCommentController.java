@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/activity")
-public class ViewActivityComment {
+public class ViewActivityCommentController {
 	@Autowired
 	ActivityRepository activityRepository;
 	@Autowired 

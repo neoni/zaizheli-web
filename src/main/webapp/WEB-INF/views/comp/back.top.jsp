@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 	
 <div style="display: none;" id="rocket-to-top">
-<div style="opacity: 0; display: block;" class="level-2"></div><div class="level-3">
+<div style="opacity: 0; display: block;" class="level-2"></div><div class="level-3"></div></div>
 
 
 <script>

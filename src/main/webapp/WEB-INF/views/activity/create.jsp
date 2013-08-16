@@ -38,23 +38,23 @@
 	<c:import url="../modal/locate.jsp"/>
 	<form id="createactivity-form" modelAttribute="activityCreationVo" method="post">
 		<div id="timeline">
-			
-			<input id="image-url-hid" data-prompt-position="centerRight:0,-4" name="imageUrl" type="hidden" />
-			<input id="place-id-hid" name="placeId" type="hidden" />
 			<ul id="dates">
 				<li>
-					<a href="#上传海报" class="selected time">上传活动封面</a>
+					<a href="#上传海报" class="selected time">上传活动封面(15%)</a>
 				</li>
 				<li>
-					<a href="#活动细节" >活动细节</a>
+					<a href="#活动细节" >活动细节(45%)</a>
 				</li>
 				<li>
-					<a href="#活动规划" >活动规划</a>
+					<a href="#活动规划" >活动规划(75%)</a>
 				</li>
 				<li>
-					<a href="#活动的补充要点" >活动的补充要点</a>
+					<a href="#活动的补充要点" >补充要点(100%)</a>
 				</li>
 			</ul>
+			<input id="image-url-hid" data-prompt-position="centerRight:0,-4" name="imageUrl" type="hidden" />
+			<input id="place-id-hid" name="placeId" type="hidden" />
+			
 			<ul id="issues" >
 				<li id="上传海报" class="selected time " style="margin-top: 100px; margin-left:30px;">
 					<div class="upload-img p-r row-fluid">
@@ -71,7 +71,7 @@
 									<div class="input-prepend">
 										<span class="add-on"> <i class="icon-leaf"></i>
 										</span>
-										<input id="title" class="validate[required] input-xlarge" type="text" name="title" 
+										<input id="title" class="validate[required,maxSize[15]] input-xlarge" type="text" name="title" 
 	              							data-prompt-position="centerRight:0,-4" value="${activityCreationVo.title}"  />
 									</div>
 								</div>
@@ -80,7 +80,7 @@
 								<label class="control-label fs-15 lh-20 c-ffc" for="type">* 选择活动分类</label>
 								<div class="input-prepend controls">
 									<span class="add-on"> <i class="icon-th"></i></span>
-									<select id="type" class="validate[required] span5" name="type">
+									<select id="type" class="validate[required] span5" name="type" style="width:280px">
 											<option value="聚餐">聚餐</option>
 											<option value="出游">出游</option>											
 											<option value="电影">电影</option>
@@ -136,13 +136,13 @@
 											</table>
 										</div>
 									</div>
-									<div class="bfh-timepicker ml-80">
-									  <div class="input-prepend bfh-timepicker-toggle ml-80" data-toggle="bfh-timepicker">
+									<div class="bfh-timepicker ml-90">
+									  <div class="input-prepend bfh-timepicker-toggle ml-90" data-toggle="bfh-timepicker">
 									    <span class="add-on"><i class="icon-time"></i></span>
 									    <input id="startTime" name="startTime" type="text" class="validate[required] input-small" 
 									    value= "${activityCreationVo.startTime}" readonly>
 									  </div>
-									  <div class="bfh-timepicker-popover ml-80">
+									  <div class="bfh-timepicker-popover ml-90">
 									    <table class="table">
 									      <tbody>
 									        <tr>
@@ -206,13 +206,13 @@
 											</table>
 										</div>
 									</div>
-									<div class="bfh-timepicker ml-80">
-									  <div class="input-prepend bfh-timepicker-toggle ml-80" data-toggle="bfh-timepicker">
+									<div class="bfh-timepicker ml-90">
+									  <div class="input-prepend bfh-timepicker-toggle ml-90" data-toggle="bfh-timepicker">
 									    <span class="add-on"><i class="icon-time"></i></span>
 									    <input id="endTime" name="endTime" type="text" class="validate[required] input-small" 
 									     value= "${activityCreationVo.endTime}" readonly>
 									  </div>
-									  <div class="bfh-timepicker-popover ml-80">
+									  <div class="bfh-timepicker-popover ml-90">
 									    <table class="table">
 									      <tbody>
 									        <tr>
@@ -248,7 +248,7 @@
 								<label class="control-label fs-15 lh-15 c-ffc" for="status">* 活动状态</label>
 								<div class="input-prepend controls">
 									<span class="add-on"> <i class="icon-heart"></i></span>
-									<select id="status" class="validate[required] span5" name="status" value="${activityCreationVo.status}">
+									<select id="status" class="validate[required] span5" name="status" value="${activityCreationVo.status}" style="width:280px">
 											<option>征集成员中</option>
 											<option>晒活动</option>
 											<option>放弃</option>

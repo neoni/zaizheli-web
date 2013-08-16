@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div id="user-filter-bar" class="filter-bar subnav board row-fluid content-wrapper" style="height: 34px; padding-top: 2px; box-shadow:0 0 1px 2px rgba(255, 251, 251, 0.5);">
+<div id="user-filter-bar" class="filter-bar subnav board row-fluid content-wrapper" style="height: 34px; padding-top: 2px; box-shadow:0 0 1px 2px rgba(255, 251, 251, 0.5); margin-top:10px;">
 		<div class="p-5 f-l fs-16" style="line-height:30px;" >
 			<span>用户搜索：</span>
 		</div>
@@ -11,19 +11,6 @@
 		<form id="profile-search" class="navbar-search mt-0" action="">
 		<c:forEach var="filter" items="${filters}">
 			<c:choose>
-			<c:when test="${filter.type eq 'city'}">
-			<div class="btn-group ${filter.type} bin fs-14 mr-10 f-l">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					<span class="c-666">${filter.typeLabel}:</span>
-					<strong>${filter.label}</strong>
-					<input type="hidden" name="${filter.type}" value="${filter.value}"></input>
-					<b class="caret"></b>
-				</a>
-				<jsp:include page="/WEB-INF/views/comp/city.picker.jsp">
-					<jsp:param name="domId" value="user-filter-city-picker"/>
-				</jsp:include>
-			</div>
-			</c:when>
 			<c:when test="${filter.type eq 'gender'}">
 			<div class="btn-group ${filter.type} bin fs-14 mr-10 f-l">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">

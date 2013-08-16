@@ -16,9 +16,9 @@ public interface UserRepository extends
 	
 	//search api......................................................
 	
-	@Query("{ '$where': 'function() { return this.status != \"INVALID\" && (?0 ? this.city== ?0 : true) && " +
-			" (?1 ? this.gender== ?1 : true) && (?2 ? (this.name? this.name.indexOf(?2)!=-1 : false) : true); } ' }")
-	Page<User> search(String city, String gender, String nameLike, Pageable pageable);
+	@Query("{ '$where': 'function() { return this.status != \"INVALID\" && " +
+			" (?0 ? this.gender== ?0 : true) && (?1 ? (this.name? this.name.indexOf(?1)!=-1 : false) : true); } ' }")
+	Page<User> search(String gender, String nameLike, Pageable pageable);
 	
 	Page<User> findByCityAndGenderAndNameLike(String city, Gender gender, String keyword,
 			Pageable pageable);

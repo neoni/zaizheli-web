@@ -39,14 +39,16 @@ public class ViewSingleActivityController {
 			HttpServletRequest request, HttpSession session){
 		int status = 0;
 		User user = sessionUtil.getSignInUser(session);
-		List<String> types = new ArrayList<String>();
-		types.add(ApplicationStatus.已加入.name());
-		types.add(ApplicationStatus.申请中.name());
-		Application app = applicationRepository.findByActivityAndapplicant(id, user.getId(), types);
-		if (app != null) {
-			if(app.getStatus() == ApplicationStatus.已加入)
-				status = 2;
-			else status = 1;
+		if (user != null) {
+			List<String> types = new ArrayList<String>();
+			types.add(ApplicationStatus.已加入.name());
+			types.add(ApplicationStatus.申请中.name());
+			Application app = applicationRepository.findByActivityAndapplicant(id, user.getId(), types);		
+			if (app != null) {
+				if(app.getStatus() == ApplicationStatus.已加入)
+					status = 2;
+				else status = 1;
+			}
 		}
 		Activity activity = activityRepository.findOne(id);
 		Date date = new Date();		
@@ -65,14 +67,16 @@ public class ViewSingleActivityController {
 			HttpServletRequest request, HttpSession session){	
 		int status = 0;
 		User user = sessionUtil.getSignInUser(session);
-		List<String> types = new ArrayList<String>();
-		types.add(ApplicationStatus.已加入.name());
-		types.add(ApplicationStatus.申请中.name());
-		Application app = applicationRepository.findByActivityAndapplicant(id, user.getId(), types);
-		if (app != null) {
-			if(app.getStatus() == ApplicationStatus.已加入)
-				status = 2;
-			else status = 1;
+		if(user != null) {
+			List<String> types = new ArrayList<String>();
+			types.add(ApplicationStatus.已加入.name());
+			types.add(ApplicationStatus.申请中.name());
+			Application app = applicationRepository.findByActivityAndapplicant(id, user.getId(), types);
+			if (app != null) {
+				if(app.getStatus() == ApplicationStatus.已加入)
+					status = 2;
+				else status = 1;
+			}
 		}
 		Activity activity = activityRepository.findOne(id);
 		Date date = new Date();	

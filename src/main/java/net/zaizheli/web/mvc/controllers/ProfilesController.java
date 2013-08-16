@@ -7,10 +7,8 @@ import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import net.zaizheli.constants.ApplicationConfig;
 import net.zaizheli.constants.ApplicationConstants;
 import net.zaizheli.constants.Gender;
-import net.zaizheli.domains.CityMeta;
 import net.zaizheli.repositories.CityMetaRepository;
 import net.zaizheli.vo.FilterElementVo;
 import net.zaizheli.web.utils.DomainObjectUtil;
@@ -40,20 +38,11 @@ public class ProfilesController {
 	@RequestMapping(value = "/profiles", method = RequestMethod.GET)
 	public String profiles(Model model, HttpServletRequest request,
 			HttpSession session) {
-		CityMeta city = sessionUtil.getGeoCityMeta(session);
-		String pinyin = ApplicationConfig.defaultCityPinyin;
-		if (city != null) {
-			pinyin = city.getPinyin();
-		}
-		return toProfiles(pinyin, model, request, session);
+		return toProfiles(model, request, session);
 	}
 
-	private String toProfiles(String cityPinyin, Model model,
+	private String toProfiles( Model model,
 			HttpServletRequest request, HttpSession session) {
-		String city = request.getParameter("city");
-		if (!StringUtils.hasText(city)) {
-			city = cityPinyin;
-		}
 		String gender = null;
 		try {
 			if (request.getParameter("gender") != null) {
@@ -76,26 +65,26 @@ public class ProfilesController {
 		StringBuilder sb = new StringBuilder();
 		FilterElementVo filter = null;
 		// add city filter
-		filter = new FilterElementVo();
-		filter.setType("city");
-		filter.setTypeLabel("城市");
-		filter.setValue("");
-		filter.setLabel("全国");
-		if (StringUtils.hasText(city)) {
-			CityMeta cityMeta = cityMetaRepository.getByPinyin(city
-					.toLowerCase());
-			if (cityMeta == null) {
-				cityMeta = cityMetaRepository
-						.getByPinyin(ApplicationConfig.defaultCityPinyin);
-			}
-			if (cityMeta != null) {
-				filter.setLabel(cityMeta.getName());
-				filter.setValue(cityMeta.getPinyin());
-			}
-		}
-		filters.add(filter);
-		sb.append(filter.getType()).append("=").append(filter.getValue())
-				.append("&");
+//		filter = new FilterElementVo();
+//		filter.setType("city");
+//		filter.setTypeLabel("城市");
+//		filter.setValue("");
+//		filter.setLabel("全国");
+//		if (StringUtils.hasText(city)) {
+//			CityMeta cityMeta = cityMetaRepository.getByPinyin(city
+//					.toLowerCase());
+//			if (cityMeta == null) {
+//				cityMeta = cityMetaRepository
+//						.getByPinyin(ApplicationConfig.defaultCityPinyin);
+//			}
+//			if (cityMeta != null) {
+//				filter.setLabel(cityMeta.getName());
+//				filter.setValue(cityMeta.getPinyin());
+//			}
+//		}
+//		filters.add(filter);
+//		sb.append(filter.getType()).append("=").append(filter.getValue())
+//				.append("&");
 
 		// add gender filter
 		filter = new FilterElementVo();

@@ -41,8 +41,7 @@
                                       <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                      <li><a href="#">在浙里</a></li>
-                                      <li><a href="#">开发动态</a></li>
+                                      <li><a href="#">在浙里</a></li>                          
                                       <li class="divider"></li>
                                       <li><a href="#">建议</a></li>
                                     <li><a href="#">Bug反馈</a></li>
@@ -58,15 +57,14 @@
                                 <li id="nav-profile">
                                   <a href="<c:url value="/profiles/${signInUser.id}" />">在这里的我</a></li>
                                 <li class="dropdown">
-                                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    消息
+                                  <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
+                                    消息<span id="messages" act="<c:url value="/message/get" />" ></span>
                                     <b class="caret"></b>
                                   </a>
-                                  <ul class="dropdown-menu">
-                                    <li><a href="<c:url value="/message/cmt" />">查看评论</a></li>
-                                    <li><a href="<c:url value="/message/pm" />">查看私信</a></li>
-                                    <li><a href="<c:url value="/message/inform" />">查看通知</a></li>
-                                    <li><a href="<c:url value="/message/atme" />">查看@我</a></li>
+                                  <ul class="dropdown-menu">                   
+                                    <li><a href="<c:url value="/message/pm" />">查看私信<span id="messages_p" act="<c:url value="/message/pm/get" />" class="pts_b"></span></a></li>
+                                    <li><a href="<c:url value="/message/inform" />">查看通知<span id="messages_i" act="<c:url value="/message/inform/get" />" class="pts_b"></span></a></li>
+                                    <li><a href="<c:url value="/message/atme" />">查看@我<span id="messages_a" act="<c:url value="/message/at/get" />" class="pts_b"></span></a></li>
                                   </ul>
                                 </li>
                                 <li class="dropdown">
@@ -86,8 +84,7 @@
                                     <b class="caret"></b>
                                   </a>
                                   <ul class="dropdown-menu">
-                                    <li><a href="#">关于在浙里</a></li>
-                                    <li><a href="#">开发动态</a></li>
+                                    <li><a href="#">在浙里</a></li>
                                     <li class="divider"></li>
                                     <li><a href="#">建议</a></li>
                                     <li><a href="#">Bug反馈</a></li>
@@ -155,4 +152,68 @@
     $(this).find('.version').show();
     $(this).find('.icon-home').hide();
   });
+  $(function () {  
+      SetMessages();
+      SetMessagesP();
+      SetMessagesI();
+      SetMessagesA();
+      setInterval("SetMessages()", 3000); //每隔3秒刷新消息数
+      setInterval("SetMessagesP()", 3000); //每隔3秒刷新消息数  
+      setInterval("SetMessagesI()", 3000); //每隔3秒刷新消息数  
+      setInterval("SetMessagesA()", 3000); //每隔3秒刷新消息数  
+  });  
+  function SetMessages(mes_url) { //获取最新消息数   
+       var mes_url = $('#messages').attr('act');    
+      $.getJSON(mes_url, function(data){
+        if(data && data.resultCode == 'SUCCESS'){
+          if(data.exceptionMsg == '0') {
+            $('#messages').removeClass('pts');
+            $('#messages').text(''); 
+          }
+          else {
+            $('#messages').addClass('pts');
+            $('#messages').text(data.exceptionMsg); 
+          }
+        } 
+      });     
+  } 
+  function SetMessagesP(p_url) { //获取最新消息数   
+      var p_url = $('#messages_p').attr('act');    
+      $.getJSON(p_url, function(data){
+        if(data && data.resultCode == 'SUCCESS'){
+          if(data.exceptionMsg == '0') {
+            $('#messages_p').text(''); 
+          }
+          else {
+            $('#messages_p').text(data.exceptionMsg); 
+          }
+        } 
+      });     
+  }
+  function SetMessagesI(i_url) { //获取最新消息数 
+      var i_url = $('#messages_i').attr('act');      
+      $.getJSON(i_url, function(data){
+        if(data && data.resultCode == 'SUCCESS'){
+          if(data.exceptionMsg == '0') {
+            $('#messages_i').text(''); 
+          }
+          else {
+            $('#messages_i').text(data.exceptionMsg); 
+          }
+        } 
+      });     
+  }
+  function SetMessagesA(a_url) { //获取最新消息数       
+      var i_url = $('#messages_i').attr('act');   
+      $.getJSON(a_url, function(data){
+        if(data && data.resultCode == 'SUCCESS'){
+          if(data.exceptionMsg == '0') {
+            $('#messages_a').text(''); 
+          }
+          else {
+            $('#messages_a').text(data.exceptionMsg); 
+          }
+        } 
+      });     
+  } 
 </script>

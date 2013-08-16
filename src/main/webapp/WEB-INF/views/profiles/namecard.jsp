@@ -42,7 +42,7 @@
 			<p><a class="btn btn-success follow" act="<c:url value="/ops/follow/${user.id}" />" 
 					onclick="op.change_follow(event.currentTarget); event.preventDefault();" data-idr="#fans-idr">
 					<i class="icon-eye-open icon-white"></i>&nbsp;<span>关注Ta</span></a>
-				<a class="btn" href="#">
+				<a class="btn" onclick="op.pm('${user.id}','${user.name}'); event.preventDefault();" >
 					<i class="icon-envelope"></i>&nbsp;私信Ta</a>
 			</p>
 		</div>

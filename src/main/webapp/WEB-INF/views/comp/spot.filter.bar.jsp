@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div id="spot-filter-bar" class="filter-bar subnav board row-fluid content-wrapper" style="width: 1150px">
+<div id="spot-filter-bar" class="filter-bar subnav board row-fluid content-wrapper" style="height: 34px; padding-top: 2px; box-shadow:0 0 1px 2px rgba(255, 251, 251, 0.5); margin-top:10px;">
 	<div class="span10 row-fluid">
-		<div class="p-5 f-l fs-16">
-			<span>八卦搜索：</span>
+		<div class="p-5 f-l fs-16" style="line-height:30px;" >
+			<span>活动搜索：</span>
 		</div>
 		<form id="spot-search" class="navbar-search mt-0" action="">
 		<c:forEach var="filter" items="${filters}">
@@ -41,9 +41,10 @@
 			</c:when>
 			<c:otherwise>
 			<div class="search-box fs-14 f-l">
-				<span>${filter.typeLabel}:</span>
+				<span>${filter.typeLabel}: &nbsp;</span>
 				<input class="search-query search-input span3" name="${filter.type}" 
-					type="text" placeholder="请输入想要搜索的关键词..." value="${filter.value}">
+					type="text" placeholder="请输入想要搜索的关键词..." value="${filter.value}"
+					style="display:inline-block; width:200px; border-radius:8px 8px 8px 8px;">
 				<i class="icon-search p-a" style="right: 5px; top: 7px;"></i>
 			</div>
 			</c:otherwise>
@@ -51,8 +52,9 @@
 		</c:forEach>
 		</form>
 	</div>
-	<div class="span2 view-t">
+	<div class="span2 view-t" style="margin-top:5px;">
 		<div class="btn-group f-r" data-toggle="buttons-radio">
+			<button class="btn mv <c:if test="${param.viewType eq 'rm'}">active</c:if>" data-href="<c:url value="/hot" />" data-original-title="热门活动" rel="tooltip"><i class="icon-star-empty"></i></button>
 			<button class="btn wf <c:if test="${param.viewType eq 'wf'}">active</c:if>" data-href="<c:url value="/" />" data-original-title="瀑布布局" rel="tooltip" ><i class="icon-th"></i></button>
 			<button class="btn mv <c:if test="${param.viewType eq 'mv'}">active</c:if>" data-href="<c:url value="/map" />" data-original-title="地图布局" rel="tooltip"><i class="icon-map-marker"></i></button>
 		</div>

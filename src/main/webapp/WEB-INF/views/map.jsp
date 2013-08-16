@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>八卦街 有图有真相</title>	
+	<title>地图布局 在浙里——分享你我的社交</title>	
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
@@ -47,7 +47,7 @@
 	</div>
 <script type="text/javascript" src="<c:url value="/resources/js/zaizheli.op.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=zh_cn"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=zh_cn&region=CN"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/marker.overlay.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/marker.overlay.manager.js" />"></script>

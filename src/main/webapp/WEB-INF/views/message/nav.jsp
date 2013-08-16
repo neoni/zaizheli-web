@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <ul id="dash-nav" class="nav nav-tabs nav-stacked mb-20 ta-c bgc-white fs-14" >
-	<li id="cmt" class="">
+<!-- 	<li id="cmt" class="">
 		<a href="<c:url value="/message/cmt" />">评&nbsp;论</a>
-	</li>
+	</li> -->
 	<li id="pm" class="">
 		<a href="<c:url value="/message/pm" />">私&nbsp;信</a>
 	</li>

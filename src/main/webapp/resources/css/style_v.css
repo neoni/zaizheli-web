@@ -15,6 +15,7 @@ a {
 	a:hover,
 	a.selected {
 		color: #ffcc00;
+		text-decoration: none;
 	}
 
 

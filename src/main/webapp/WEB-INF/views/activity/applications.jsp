@@ -26,6 +26,7 @@
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
+	<c:import url="../modal/sendPM.jsp"/>
 	<div class="outer" id="header_wrap">
         <header class="inner" >
           <h1 id="project_title" class="pb-20">${activity.title}</h1>

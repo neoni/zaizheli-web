@@ -1,7 +1,9 @@
 package net.zaizheli.web.mvc.controllers;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -64,19 +66,41 @@ public class CreateApplicationController {
 		if (sessionUtil.getSignInUser(session) == null) {
 			return "redirect:/signin";
 		}
+		Activity activity=activityRepository.findOne(id);
+		model.addAttribute("activity", activity);
+		User signInuser=sessionUtil.getSignInUser(session);
+		model.addAttribute("user",signInuser);
 		return "application/apply";
 	}
 		
 	@RequestMapping(value="/{id}/create", method=RequestMethod.POST)
 	public @ResponseBody AjaxResult create(@PathVariable String id, @Valid ApplicationVo vo, 
 			BindingResult result, ModelAndView mav, HttpSession session) throws ParseException{
-		User signInUser = sessionUtil.getSignInUser(session);
+		User user = sessionUtil.getSignInUser(session);
+		List<String> types = new ArrayList<String>();
+		types.add(ApplicationStatus.已加入.name());
+		types.add(ApplicationStatus.申请中.name());
+        Application ap = applicationRepository.findByActivityAndapplicant(id, user.getId(), types);
+        if (ap!=null) {
+        	if(ap.getStatus()==ApplicationStatus.申请中) {
+        	     return new AjaxResult(AjaxResultCode.INVALID, "之前提交过了吧，申请正在等待活动创始人同意中哦 >o<");
+        	}
+        	if(ap.getStatus()==ApplicationStatus.已加入) {
+        		return new AjaxResult(AjaxResultCode.INVALID, "不用提交申请了，你已经是成员了哦 >o<");
+        	}
+        }       
+		Activity act=activityRepository.findOne(id);
+		if(act.getCurrentNum() >= act.getMaxNum()) {
+			return new AjaxResult(AjaxResultCode.INVALID, "抱歉，活动已经满员了  >o<");
+		}
 		//remove html
 		vo.setAddress(textUtil.removeHtml(vo.getAddress()));
 		vo.setRealName(textUtil.removeHtml(vo.getRealName()));
 		vo.setSchool(textUtil.removeHtml(vo.getSchool()));
+	    String note = textUtil.removeHtml(vo.getNote());
+	    vo.setNote(textUtil.turn(note));
 		Application app = Application.from(vo);
-        app.setApplicant(signInUser);
+        app.setApplicant(user);
         Activity activity = activityRepository.findOne(id);
         app.setActivity(activity);
         app.setStatus(ApplicationStatus.申请中);
@@ -84,7 +108,7 @@ public class CreateApplicationController {
 		activityRepository.inc(id, "applicationCount", 1);
 		activityRepository.inc(id, "inJudgingCount", 1);
 		Action action = new Action();
-		action.setOwner(signInUser.getId());
+		action.setOwner(user.getId());
 		action.setTargetActivity(id);
 		action.setCreatedAt(new Date());
 		action.setType(ActionType.APPLY);

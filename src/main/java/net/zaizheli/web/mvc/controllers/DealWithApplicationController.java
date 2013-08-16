@@ -83,6 +83,8 @@ public class DealWithApplicationController {
 			message.setContent("恭喜您，加入了活动"+activity.getTitle());
 			message.setStatus(0);
 			message.setType(MessageType.INFORM);
+			message.setActivity(activity);
+			message.setCreatedAt(new Date());
 			messageRepository.save(message);
 			return new AjaxResult(AjaxResultCode.SUCCESS,activity.getId());
 		}
@@ -108,6 +110,8 @@ public class DealWithApplicationController {
 			message.setContent("您被拒绝加入活动"+activity.getTitle());
 			message.setStatus(0);
 			message.setType(MessageType.INFORM);
+			message.setCreatedAt(new Date());
+			message.setActivity(activity);
 			messageRepository.save(message);
 			return new AjaxResult(AjaxResultCode.SUCCESS, activity.getId());
 		}
@@ -135,6 +139,8 @@ public class DealWithApplicationController {
 			message.setContent("您被踢出了活动"+activity.getTitle());
 			message.setStatus(0);
 			message.setType(MessageType.INFORM);
+			message.setCreatedAt(new Date());
+			message.setActivity(activity);
 			messageRepository.save(message);
 			return new AjaxResult(AjaxResultCode.SUCCESS, activity.getId());
 		}

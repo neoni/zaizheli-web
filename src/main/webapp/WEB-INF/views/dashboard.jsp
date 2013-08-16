@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/validationEngine.bootstrap.css" />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery-ui-1.8.18.custom.css" />" />
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.1.7.1.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.init.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.op.js" />" ></script>
@@ -21,6 +22,7 @@
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
 		<jsp:param name="tab" value="dashboard"/>
 	</jsp:include>
+	<c:import url="./modal/sendPM.jsp"/>
 	<div class="main-wrapper ml-10 mt-20 mb-30">
 		<div class="main block-h-c content-wrapper row-fluid p-r">
 			<div class="span8 board">
@@ -62,6 +64,7 @@
 		adjustWebWidth();
 	</script>
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
+<script type="text/javascript" src="<c:url value="/resources/js/bootstrapx-popoverx.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.timeago.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.pnotify.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.8.18.custom.min.js" />" ></script>

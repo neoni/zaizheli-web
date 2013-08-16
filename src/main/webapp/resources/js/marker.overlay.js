@@ -44,7 +44,7 @@ else{
 		//set up the content of popup div
 		_MinfoPanel.style.display="block";
 		$('#'+_M.infoPanel.imgId).attr('src', this.crtMarker.imageUrl);
-		$('#'+_M.infoPanel.imgWrapId).attr('href', web_context+'/spots/'+
+		$('#'+_M.infoPanel.imgWrapId).attr('href', web_context+'/activities/'+
 					this.crtMarker.spotId);
 		$('#'+_M.infoPanel.nameId).html(this.crtMarker.name);
 		$('#'+_M.infoPanel.addressId).html(this.crtMarker.placeAddr);

@@ -1,171 +1,228 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib uri="http://zaizheli.net/functions" prefix="f" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE>
-<html>
+<html  class="app_back">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>在浙里 在浙里——分享你我的社交</title>
-	
+	<title>活动申请 在浙里——分享你我的社交</title>
+
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/validationEngine.bootstrap.css" />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-formhelpers.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery.pnotify.default.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery-ui-1.8.18.custom.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery.pnotify.zaizheli.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/activity1.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/activity2.css" />" />
-	<script type="text/javascript" src="<c:url value="/resources/js/ga.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.1.7.1.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/languages/zh-cn/jquery.validationEngine.lang.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.validationEngine.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/bootstrap-formhelpers-datepicker.en_US.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/bootstrap-formhelpers-datepicker.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.form.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery.pnotify.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.init.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.op.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/bootstrapx-popoverx.js" />" ></script>
+<style type="text/css">
+.offset4 {
+  margin-left: 300px;
+}
+input.span4 {
+  margin-left: 20px;
+  width: 330px;
+}
+
+input.span5 {
+  margin-left: 20px;
+  width: 330px;
+  height: 80px;
+}
+
+input,
+textarea,
+.uneditable-input {
+  width: 330px;
+}
+
+
+input[type=text], input[type=password], input[type=datetime], input[type=datetime-local], input[type=date], input[type=month], input[type=time], input[type=week], input[type=number], input[type=email], input[type=url], input[type=search], input[type=tel], input[type=color], .uneditable-input {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+     -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+       -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+          transition: border linear 0.2s, box-shadow linear 0.2s;
+    color: #555555;
+    display: inline-block;
+    font-size: 13px;
+    height: 30px;
+    line-height: 18px;
+    margin-bottom: 9px;
+    padding: 4px;
+}
+
+textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=datetime]:focus, input[type=datetime-local]:focus, input[type=date]:focus, input[type=month]:focus, input[type=time]:focus, input[type=week]:focus, input[type=number]:focus, input[type=email]:focus, input[type=url]:focus, input[type=search]:focus, input[type=tel]:focus, input[type=color]:focus, .uneditable-input:focus {
+  border-color: #f39c12;
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+</style>	
+	
 </head>
-<body class="front" style="padding-top:46px;">
+
+<body class="app_back">
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
-	<div class="outer" id="header_wrap">
-        <header class="inner" >
-          <h1 id="project_title" class="pb-20">${activity.title}</h1>
-		  <h2 id="project_tagline">在 这 里 的 我 们 —— 在 这 里 的 流 年</h2>
-	      <span id="act_nav">
-			  <ul>
-				<li><a href="<c:url value="/activities/${activity.id}"/>" >活动主页</a></li>
-				<c:if test="${signInUser.id == activity.createdBy.id}">
-				<li><a href="<c:url value="/activity/${activity.id}/edit"/>" >活动编辑</a></li>
-				<li><a href="<c:url value="/activity/${activity.id}/applications"/>" >申请处理</a></li>
-				</c:if>
-				<li><a href="<c:url value="/activity/${activity.id}/joiners"/>" >参加人员</a></li>
-				<li><a href="<c:url value="/activity/${activity.id}/gallery"/>" >活动图库</a></li>
-			  </ul>
-		  </span>
- 		</header> 
-    </div>
-    <div id="main-content"> 
-	   <div class="inside-main-content cf">
-		    <section class="jobs-top" id="jobs"> 
-			     <article class="job-panel" style="width:1000px;"> 
-				      <header class="job-panel-header cf"> 
-				       	<h2 class="job-title">加 入 的 成 员 ( 一 共 ${activity.currentNum} 位 )</h2> 
-				      </header> 
-				      <div class="content cf" style="padding:0px;"> 
-				       <div class="tab-content bg-gray p-20" id="water-fall-wrapper" style="background:#DDDFEF;">
-						    <div class="tab-pane active" id="water-fall">
-						    	<c:import url="/activity/${activity.id}/getJoiners"></c:import>
-						    </div>
+    <div class="container" style="height: 756px">
+		<div class="row mt-30" style="margin-top: 262px;" >
+			<div class="span8 offset4 mt-20" style="width: 569px">
+				<c:url value="/application/${activity.id}/create" var="url"/> 
+				<form id="requestForm"  modelAttribute="ApplicationVo" method="post" action="${url}">
+				    <c:if test="${activity.realNameReq eq true}">
+						<div class="control-group" style="margin-bottom: 10px;">
+						真实姓名
+						<input id="realName" name="realName" type="text" value="${user.realName}" class="span4 validate[required]" >
 						</div>
-					    <div id="page-nav">
-							<a href="<c:url value="/activity/${activity.id}/getJoiners" />"></a>
+					</c:if>
+					<c:if test="${activity.ageReq eq true}" >
+						<div class="control-group" style="margin-bottom: 10px;">
+						您的年龄
+						<input id="age" name="age" type="text" value="${user.age}" class="span4 validate[required,custom[integer],min[0],max[150]]">
 						</div>
-				      </div> 
-				      <footer class="job-panel-footer cf">
-				      <c:choose>
-				      	<c:when test="${activity.status eq '放弃'}">
-                        	<a  href="<c:url value="/activities/${activity.id}"/>"  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">此 活 动 已 被 放 弃 </a> 
-                        </c:when>
-                        <c:when test="${signInUser.id == activity.createdBy.id}">
-					       <a href="<c:url value="/activity/${activity.id}/upload"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">上 传 活 动 图 片 </a> 	         
-					     </c:when>
-				      	<c:when test="${activity.status eq '已结束'}">
-                        	<a  href="<c:url value="/activities/${activity.id}"/>" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">已 结 束 </a> 
-                        </c:when>
-                        <c:when test="${activity.status eq '晒活动'}">
-                        	<a href="<c:url value="/activity/${activity.id}/gallery"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">晒 活 动 中 </a> 
-                        </c:when>                        
-                        <c:when test="${activity.status eq '征集成员中'}">
-					       <a href="<c:url value="/activity/${activity.id}/join"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">加 入 我 们 吧 Join </a> 
-		                   <c:if test="${activity.apply==1}">
-					       		<a class="other-jobs">加入该活动需要填写申请表</a> 
-					       </c:if>
-					     </c:when>
-					    </c:choose>
-				      </footer> 
-			    </article> 
-			      
-		    </section> 
-		 </div>
+					</c:if>
+					<c:if test="${activity.birthdayReq eq true}">
+						<div class="control-group" style="margin-bottom: 10px;">
+						您的生日
+						<div class="bfh-datepicker controls" data-format="y-m-d" data-date="${(!empty user.birthday)?user.birthday:'1993-01-01'} " style="margin-left:80px">     
+			    			<div class="input-prepend bfh-datepicker-toggle" data-toggle="bfh-datepicker" >
+			    				<span class="add-on" style="margin:-5px 0 2px 0px; padding:5px;"><i class="icon-calendar"></i></span>
+								<input id="birthday" class="validate[required,past[now]] " type="text" name="birthday" 
+									   value="${user.birthday}"  style="width:290px" readonly>
+							</div>
+							<div class="bfh-datepicker-calendar">
+							    <table class="calendar table table-bordered">
+							      <thead>
+							        <tr class="months-header">
+							          <th class="month" colspan="4">
+							            <a class="previous" href="#"><i class="icon-chevron-left"></i></a>
+							            <span></span>
+							            <a class="next" href="#"><i class="icon-chevron-right"></i></a>
+							          </th>
+							          <th class="year" colspan="3">
+							            <a class="previous" href="#"><i class="icon-chevron-left"></i></a>
+							            <span></span>
+							            <a class="next" href="#"><i class="icon-chevron-right"></i></a>
+							          </th>
+							        </tr>
+							        <tr class="days-header">
+							        </tr>
+							      </thead>
+							      <tbody>
+							      </tbody>
+							    </table>
+							  </div>
+							</div>
+						</div>
+					
+					</c:if>
+					<c:if test="${activity.telReq eq true}">
+						<div class="control-group" style="margin-bottom: 10px;">
+						联系电话<input  id="tel" name="tel" type="text" placeholder="长号或短号均可" value="${user.tel}" class="span4 validate[required,custom[integer],minSize[6],maxSize[17]]">
+						</div>
+					</c:if>
+					<c:if test="${activity.schoolReq eq true}">					
+						<div class="control-group" style="margin-bottom: 10px;">
+						您的学校<input id="school" name="school" type="text" value="${user.school}" placeholder="浙大/玉泉" class="span4">
+						</div>
+					</c:if>
+					<c:if test="${activity.addressReq eq true}">
+						<div class="control-group" style="margin-bottom: 10px;">
+						联系地址<input id="address" name="address" type="text" value="${user.address}" placeholder="浙江大学玉泉校区xx舍xx室" class="span4">
+						</div>
+					</c:if>
+					<c:if test="${activity.noteReq eq true}">
+						<div class="control-group" style="margin-bottom: 10px;">
+						说点什么
+						<textarea class=" validate[required,maxSize[200]]" placeholder="限200字以内" rows="3" cols="20" type="text" name="note" id="note" style="margin-left:16px;">		
+						</textarea>
+						</div>
+					</c:if>
+					<div class="control-group" style="margin-left: 75px; margin-top: 20px;">
+					<button id="go" type="submit" class="btn btn-info">提交</button>
+							 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="btn" href="<c:url value="/activities/${activity.id}" />">返回</a>
+							
+					</div>
+			
+				</form>
+			</div>
+	    </div>
 	</div>
-		    
-	<jsp:include page="/WEB-INF/views/comp/back.top.jsp" />
-	<script type="text/javascript">
-		adjustWebWidth();
-	</script>
-<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/bootstrapx-popoverx.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.form.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.pnotify.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.imagesloaded.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.masonry.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.infinitescroll.js" />" ></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=zh_cn&region=CN"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" />"></script>
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h3 id="myModalLabel">提 示</h3>
+	</div>
+	<div class="modal-body">
+	<p>已成功提交了申请表 >o< </p>
+	</div>
+	<div class="modal-footer">
+	<a class="btn" href="<c:url value="/activities/${activity.id}" />">确定</a>
+	</div>
+	</div>
+
+	<div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h3 id="myModalLabel">提 示</h3>
+	</div>
+	<div class="modal-body">
+	<p id="modal_text"></p>
+	</div>
+	<div class="modal-footer">
+	<a class="btn" href="<c:url value="/activities/${activity.id}" />">确定</a>
+	</div>
+	</div>
+					
+<script type="text/javascript" src="/resources/js/ga.js" ></script>
 <script type="text/javascript">
+    adjustWebWidth();
+	$("#requestForm").validationEngine('attach', {
+		promptPosition : "centerRight", 
+		scroll: false	
+	});
 	$(function(){
-		
-		$('.pin').each(function(){
-			op.pin_bind_event($(this));
-		});
-		var $wf = $('#water-fall');
-		
-		$wf.masonry({
-			itemSelector : '.pin',
-		    columnWidth : 222,
-		    gutterWidth: 15,
-		    isAnimated: false,
-		    animationOptions: {
-		    	queue: false
-		    },
-		    isFitWidth: false
-		});
-		
-		$wf.infinitescroll(
-			{
-				navSelector  : '#page-nav', // selector for the paged navigation
-				nextSelector : '#page-nav a', // selector for the NEXT link (to page 2)
-				itemSelector : '.pin', // selector for all items you'll retrieve
-				debug        : false,
-				animate	 	 : false,
-				animationOptions: {
-				    duration: 750,
-				    easing: 'linear',
-				    queue: false
-				},
-				loading: {
-					selector: '#water-fall-wrapper',
-					finishedMsg: '没有更多了',
-					msgText: '加载中...',
-					img: '<c:url value="/resources/img/big-loading.gif" />',
-					speed: 0
-				},
-				state : {
-					currPage: 0
-				},
-				pathParse: function() {
-			        return ['<c:url value="/activity/${activity.id}/getJoiners" />',''];
-			    }
-			},
-			// trigger Masonry as a callback
-			function( newElements ) {
-				// hide new items while they are loading
-				var $newElems = $( newElements ).hide();
-				$newElems.each(function(){
-					op.pin_bind_event($(this));
-				});
-				$newElems.find(".timeago").timeago();
-				// ensure that images load before adding to masonry layout
-				//$newElems.imagesLoaded(function(){
-					// show elems now they're ready
-					$wf.append( $newElems ).masonry( 'appended', 
-							$newElems, false, function(){
-						$newElems.fadeIn('slow');
-					});
-				//}); 
-			}
-		);
+	    $('#go').click(function(){
+	    	$('#requestForm').ajaxForm({ 
+	        	dataType:  'json', 
+	        	success: function(data){
+						  if(!data) return;
+						  if(data && data.resultCode == 'INVALID'){
+						  	    $('#modal_text').text(data.exceptionMsg);	  	
+								$('#myModal2').modal('show');
+						  }
+						  if(data && data.resultCode == 'SUCCESS'){
+						   		$('#myModal').modal('show');
+						  }
+				}
+	    	}); 	 
+	    })
 	});
 </script>
-<script type="text/javascript" src="<c:url value="/resources/js/ga.js" />" ></script>
 </body>
 </html>

@@ -45,22 +45,51 @@ var op = {
 	redirect_to_signin: function(){
 		window.location.href= web_context + "/signin";
 	},
+
+	pm: function(id,name){
+		this.check_signin( function(){
+			$('#pmModal').modal('show');
+			$('#to').val(id);
+			$('#sendto').text(name);
+		}, function(){
+			window.location.href= web_context + "/signin";
+			$('#sign-in-modal').modal('show');
+		});
+	},
+
+	pmTo: function(id,name,title,bid){
+		this.check_signin( function(){
+			$('#pmModal').modal('show');
+			$('#to').val(id);
+			$('#title').val('Re:'+title);
+			$('#base').val(bid);
+			$('#sendto').text(name);
+		}, function(){
+			window.location.href= web_context + "/signin";
+			$('#sign-in-modal').modal('show');
+		});
+	},
 	
 	follow: function(dom){
-		var url= $(dom).attr('act');
-		$.getJSON(url, function(data){
-			if(data && data.resultCode == 'SUCCESS'){
-				$(dom).removeClass('follow').removeClass('btn-success')
-					.addClass('defollow')
-					.attr('act', url.replace('/follow/', '/defollow/'))
-					.find('span').text('取消关注');
-				$(dom).find('i').removeClass('icon-white');
-				var idr_str = $(dom).attr('data-idr');
-				if($.trim(idr_str)){
-					$(idr_str).text(parseFloat($(idr_str).text())+1+'');
+		this.check_signin( function(){
+			var url= $(dom).attr('act');
+			$.getJSON(url, function(data){
+				if(data && data.resultCode == 'SUCCESS'){
+					$(dom).removeClass('follow').removeClass('btn-success')
+						.addClass('defollow')
+						.attr('act', url.replace('/follow/', '/defollow/'))
+						.find('span').text('取消关注');
+					$(dom).find('i').removeClass('icon-white');
+					var idr_str = $(dom).attr('data-idr');
+					if($.trim(idr_str)){
+						$(idr_str).text(parseFloat($(idr_str).text())+1+'');
+					}
+					op.notify_header('已关注');
 				}
-				op.notify_header('已关注');
-			}
+			});
+		}, function(){
+			window.location.href= web_context + "/signin";
+			$('#sign-in-modal').modal('show');
 		});
 	},
 	
@@ -274,7 +303,7 @@ var op = {
 					op.notify_header(data.exceptionMsg);
 				}
 				if(data && data.resultCode == 'NEED_APP'){
-					window.location.href= web_context + "/activity" + data.exceptionMsg + "/application";
+					window.location.href= web_context + "/activity/" + data.exceptionMsg + "/application";
 				}
 			});
 	 	}, function(){
@@ -309,7 +338,8 @@ var op = {
 		 	$.getJSON(url, function(data){
 				if(data && data.resultCode == 'SUCCESS'){
 					op.notify_header('已将此人加为成员了 >o<');
-										
+					var u = $(dom).attr('re');
+					setTimeout(function(){window.location.reload();}, 1500);						
 				}
 				if(data && data.resultCode == 'INVALID'){
 					op.notify_header(data.exceptionMsg);
@@ -327,6 +357,8 @@ var op = {
 		 	$.getJSON(url, function(data){
 				if(data && data.resultCode == 'SUCCESS'){
 					op.notify_header('已拒绝此人...');
+					var u = $(dom).attr('re');
+					setTimeout(function(){window.location.reload();}, 1500);	
 				}
 					
 				if(data && data.resultCode == 'INVALID'){
@@ -345,7 +377,66 @@ var op = {
 		 	$.getJSON(url, function(data){
 				if(data && data.resultCode == 'SUCCESS'){
 					op.notify_header('已将此人踢出活动了...');
+					var u = $(dom).attr('re');
+					setTimeout(function(){window.location.reload();}, 1500);	
+				}
+				if(data && data.resultCode == 'INVALID'){
+					op.notify_header(data.exceptionMsg);
+				}
+			});
+	 	}, function(){
+			window.location.href= web_context + "/signin";
+			$('#sign-in-modal').modal('show');
+		});
+	},
+
+	application_agree: function(dom){ 
+		this.check_signin( function(){
+		 	var url= $(dom).attr('act');
+		 	$.getJSON(url, function(data){
+				if(data && data.resultCode == 'SUCCESS'){
+					op.notify_header('已将此人加为成员了 >o<');
+					var u = $(dom).attr('re');
+					setTimeout(function(){window.location.href= web_context + u;}, 1500);					
+				}
+				if(data && data.resultCode == 'INVALID'){
+					op.notify_header(data.exceptionMsg);
+				}
+			});
+	 	}, function(){
+			window.location.href= web_context + "/signin";
+			$('#sign-in-modal').modal('show');
+		});
+	},
+
+	application_refuse: function(dom){ 
+		this.check_signin( function(){
+		 	var url= $(dom).attr('act');
+		 	$.getJSON(url, function(data){
+				if(data && data.resultCode == 'SUCCESS'){
+					op.notify_header('已拒绝此人...');
+					var u = $(dom).attr('re');
+					setTimeout(function(){window.location.href= web_context + u;}, 1500);
+				}
 					
+				if(data && data.resultCode == 'INVALID'){
+					op.notify_header(data.exceptionMsg);
+				}
+			});
+	 	}, function(){
+			window.location.href= web_context + "/signin";
+			$('#sign-in-modal').modal('show');
+		});
+	},
+
+	application_kickout: function(dom){ 
+		this.check_signin( function(){
+		 	var url= $(dom).attr('act');
+		 	$.getJSON(url, function(data){
+				if(data && data.resultCode == 'SUCCESS'){
+					op.notify_header('已将此人踢出活动了...');	
+					var u = $(dom).attr('re');
+					setTimeout(function(){window.location.href= web_context + u;}, 1500);				
 				}
 				if(data && data.resultCode == 'INVALID'){
 					op.notify_header(data.exceptionMsg);
@@ -362,6 +453,20 @@ var op = {
 			$('textarea').val(str);
 			$('#replyToId').val(id);
 			$('#cmtId').val(cid);
+	},
+
+	setRead: function(id,dom){ 
+		this.check_signin( function(){
+		 	var url= "/message/inform/" + id + "/set" ;
+		 	$.getJSON(url, function(data){
+				if(data && data.resultCode == 'SUCCESS'){
+					$(dom).remove();			
+				}
+			});
+	 	}, function(){
+			window.location.href= web_context + "/signin";
+			$('#sign-in-modal').modal('show');
+		});
 	},
 	
 	pin_bind_event: function($dom){

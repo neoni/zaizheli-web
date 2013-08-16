@@ -21,7 +21,7 @@
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
 		<jsp:param name="tab" value="profiles"/>
 	</jsp:include>
-	
+	<c:import url="./modal/sendPM.jsp"/>
 	<div id="water-fall-wrapper" class="main-wrapper">
 		<jsp:include page="/WEB-INF/views/comp/user.filter.bar.jsp" >
 			<jsp:param name="filters" value="${filters}"/>
