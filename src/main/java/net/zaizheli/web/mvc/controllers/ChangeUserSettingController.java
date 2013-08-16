@@ -26,6 +26,7 @@ import net.zaizheli.vo.formbean.UserInfoFormBean;
 import net.zaizheli.vo.formbean.UserPwdChangeFormBean;
 import net.zaizheli.web.utils.EncryptUtil;
 import net.zaizheli.web.utils.SessionUtil;
+import net.zaizheli.web.utils.TextUtil;
 
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
@@ -61,6 +62,8 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 	private ResourceRepository resourceRepository;
 	@Autowired
 	private EncryptUtil encryptUtil;
+	@Autowired
+	private TextUtil textUtil;
 
 	@RequestMapping(value = "/setting", method = RequestMethod.GET)
 	public String setting(Model model, HttpSession session) {
@@ -83,7 +86,7 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 			return new AjaxResult(AjaxResultCode.INVALID,
 					BindingErrors.from(result));
 		}
-		signInUser.setName(formBean.getName());
+		signInUser.setName(textUtil.removeHtml(formBean.getName()));
 		signInUser.setCity(formBean.getCity());
 		Gender gender = Gender.UNKNOWN;
 		try {
@@ -93,7 +96,8 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 					+ "\" for user" + signInUser.getName());
 		}
 		signInUser.setGender(gender);
-		signInUser.setSummary(formBean.getSummary());
+		formBean.setSummary(textUtil.removeHtml(formBean.getSummary()));
+		signInUser.setSummary(textUtil.turn(formBean.getSummary()));
 		userRepository.save(signInUser);
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}
@@ -132,13 +136,15 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 			return new AjaxResult(AjaxResultCode.INVALID,
 					BindingErrors.from(result));
 		}
+		formBean.setAddress(textUtil.removeHtml(formBean.getAddress()));
+		formBean.setRealName(textUtil.removeHtml(formBean.getRealName()));
+		formBean.setSchool(textUtil.removeHtml(formBean.getSchool()));
 		signInUser.setRealName(formBean.getRealName());
 		signInUser.setAge(formBean.getAge());
 		signInUser.setBirthday(formBean.getBirthday());
 		signInUser.setTel(formBean.getTel());
 		signInUser.setSchool(formBean.getSchool());	
 		signInUser.setAddress(formBean.getAddress());	
-		signInUser.setPrivateset(formBean.getPrivateset());
 		userRepository.save(signInUser);
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import net.zaizheli.constants.ActionType;
+import net.zaizheli.constants.ApplicationConfig;
 import net.zaizheli.constants.ApplicationConstants;
 import net.zaizheli.domains.Action;
 import net.zaizheli.domains.Activity;
@@ -19,6 +20,7 @@ import net.zaizheli.repositories.UserRepository;
 import net.zaizheli.vo.CommentFormBean;
 import net.zaizheli.web.utils.AjaxUtil;
 import net.zaizheli.web.utils.SessionUtil;
+import net.zaizheli.web.utils.TextUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,6 +48,8 @@ public class AddCommentController {
 	SessionUtil sessionUtil;
 	@Autowired
 	private AjaxUtil ajaxUtil;
+	@Autowired
+	private TextUtil textUtil;
 	
 	@ModelAttribute("cmtFormBean")
 	public CommentFormBean creatFormBean() {
@@ -67,6 +71,10 @@ public class AddCommentController {
 		}
 		// save comment
 		Comment cmt = Comment.from(bean, signInUser);
+		String con=bean.getContent();		
+		con = textUtil.removeHtml(con);
+		con = textUtil.turn(con);
+		cmt.setContent(con);
 		Comment baseCmt = commentRepository.findOne(bean.getCmtId());
 		User user = userRepository.findOne(bean.getReplyToId());
 		if(baseCmt!=null  && user!=null && bean.getContent().indexOf("回复 "+user.getName()+":")==0) {
@@ -95,14 +103,21 @@ public class AddCommentController {
 		if (baseCmt!=null && user != null && bean.getContent().indexOf("回复 "+user.getName()+":")==0 ) {
 			action.setTargetUser(user.getId());	
 		}
-		action.setContent(bean.getContent());
+		action.setContent(con);
 		action.setType(ActionType.COMMENT);
 		action.setBy(sessionUtil.getBy(session));
 		actionRepository.save(action);
 		cmt = commentRepository.save(cmt);
+		int size = commentRepository.findByActivity(activity.getId()).size();
+		int total = 0 ;
+		if (size % ApplicationConfig.cmtPageSize == 0)
+	      total = (int)(size/ ApplicationConfig.cmtPageSize);
+		else {
+			total = (int)(size/ ApplicationConfig.cmtPageSize)+1;
+		}
 		StringBuilder url = new StringBuilder();
 		url.append("/activities/").append(activity.getId());
-		url.append("#").append(cmt.getId());
+		url.append("/").append(total).append("#").append(cmt.getId());
 		return "redirect:" + url.toString();
 	}
 }

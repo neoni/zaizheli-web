@@ -13,14 +13,8 @@ public class UserInfoFormBean implements Serializable {
 	private String tel;
 	private String school;
 	private String address;
-	private int privateset;
 	
-	public int getPrivateset() {
-		return privateset;
-	}
-	public void setPrivateset(int privateset) {
-		this.privateset = privateset;
-	}
+	
 	public String getRealName() {
 		return realName;
 	}

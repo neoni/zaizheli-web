@@ -46,8 +46,11 @@
 			    	op.notify_header('啊啊，上传失败了 >o<');
         		},
         		onUploadSuccess : function(file) {
-        			op.notify_header('上传成功！ o@o');
-           	    }  
+        			op.notify_header('上传成功！ o@o');		
+           	    },  
+           	    onQueueComplete : function(queueData) {
+            		window.location.reload();
+        		} 
 			    
 		    }); 
 

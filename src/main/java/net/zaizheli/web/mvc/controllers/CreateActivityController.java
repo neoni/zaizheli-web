@@ -31,6 +31,7 @@ import net.zaizheli.vo.BindingErrors;
 import net.zaizheli.vo.ImageReadyVo;
 import net.zaizheli.vo.ValidationEngineError;
 import net.zaizheli.web.utils.SessionUtil;
+import net.zaizheli.web.utils.TextUtil;
 import net.zaizheli.web.utils.WebImageUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,8 @@ public class CreateActivityController {
 	WebImageUtil webImageUtil;
 	@Autowired
 	SessionUtil sessionUtil;
+	@Autowired
+	TextUtil textUtil;
 	
 	@ModelAttribute("activityCreationVo")
 	public ActivityCreationVo creatActivityCreationVo() {
@@ -140,6 +143,8 @@ public class CreateActivityController {
 					BindingErrors.from(result));
 		}
 		// save activity
+		vo.setAddr(textUtil.removeHtml(vo.getAddr()));
+		vo.setTitle(textUtil.removeHtml(vo.getTitle()));
 		Activity activity=Activity.from(vo,signInUser);
 		try {
 			// get image

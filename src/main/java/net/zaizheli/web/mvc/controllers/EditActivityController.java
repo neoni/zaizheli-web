@@ -28,6 +28,7 @@ import net.zaizheli.vo.BindingErrors;
 import net.zaizheli.vo.ImageReadyVo;
 import net.zaizheli.vo.ValidationEngineError;
 import net.zaizheli.web.utils.SessionUtil;
+import net.zaizheli.web.utils.TextUtil;
 import net.zaizheli.web.utils.WebImageUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,8 @@ public class EditActivityController {
 		WebImageUtil webImageUtil;
 		@Autowired
 		SessionUtil sessionUtil;
+		@Autowired
+		TextUtil textUtil;
 		
 		@ModelAttribute("activityCreationVo")
 		public ActivityCreationVo creatActivityCreationVo() {
@@ -212,14 +215,14 @@ public class EditActivityController {
 				}
 			}
 			if(vo.getTitle()!=null && !vo.getTitle().equals("")) {
-				activity.setTitle(vo.getTitle());
+				activity.setTitle(textUtil.removeHtml(vo.getTitle()));
 			}
 			if(vo.getType()!=null && !vo.getType().equals("")) {
 				activity.setType(vo.getType());
 			}
 			activity.setMaxNum(vo.getNum());
 			activity.setStatus(vo.getStatus());	
-			activity.setAddr(vo.getAddr());	
+			activity.setAddr(textUtil.removeHtml(vo.getAddr()));	
 			activity.setFee(vo.getFee());	
 			activity.setApply(vo.getApply());	
 			activity.setContent(vo.getEditor1());

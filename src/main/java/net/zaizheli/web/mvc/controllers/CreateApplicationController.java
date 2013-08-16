@@ -21,6 +21,7 @@ import net.zaizheli.repositories.UserRepository;
 import net.zaizheli.vo.AjaxResult;
 import net.zaizheli.vo.ApplicationVo;
 import net.zaizheli.web.utils.SessionUtil;
+import net.zaizheli.web.utils.TextUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,6 +50,8 @@ public class CreateApplicationController {
 	ApplicationRepository applicationRepository;
 	@Autowired
 	ActionRepository actionRepository;
+	@Autowired 
+	TextUtil textUtil;
 	
 	@ModelAttribute("ApplicationVo")
 	public ApplicationVo creatApplicationVo() {
@@ -68,6 +71,10 @@ public class CreateApplicationController {
 	public @ResponseBody AjaxResult create(@PathVariable String id, @Valid ApplicationVo vo, 
 			BindingResult result, ModelAndView mav, HttpSession session) throws ParseException{
 		User signInUser = sessionUtil.getSignInUser(session);
+		//remove html
+		vo.setAddress(textUtil.removeHtml(vo.getAddress()));
+		vo.setRealName(textUtil.removeHtml(vo.getRealName()));
+		vo.setSchool(textUtil.removeHtml(vo.getSchool()));
 		Application app = Application.from(vo);
         app.setApplicant(signInUser);
         Activity activity = activityRepository.findOne(id);
