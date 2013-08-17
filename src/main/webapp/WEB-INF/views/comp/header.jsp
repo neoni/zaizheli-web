@@ -41,7 +41,7 @@
                                       <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                      <li><a href="#">在浙里</a></li>                          
+                                      <li><a href="<c:url value="/about" />">在浙里</a></li>                          
                                       <li class="divider"></li>
                                       <li><a href="#">建议</a></li>
                                     <li><a href="#">Bug反馈</a></li>
@@ -83,7 +83,7 @@
                                     <b class="caret"></b>
                                   </a>
                                   <ul class="dropdown-menu">
-                                    <li><a href="#">在浙里</a></li>
+                                    <li><a href="<c:url value="/about" />">在浙里</a></li>
                                     <li class="divider"></li>
                                     <li><a href="#">建议</a></li>
                                     <li><a href="#">Bug反馈</a></li>
@@ -161,7 +161,7 @@
       setInterval("SetMessagesI()", 3000); //每隔3秒刷新消息数  
       setInterval("SetMessagesA()", 3000); //每隔3秒刷新消息数  
   });  
-  function SetMessages(mes_url) { //获取最新消息数   
+  function SetMessages() { //获取最新消息数   
        var mes_url = $('#messages').attr('act');    
       $.getJSON(mes_url, function(data){
         if(data && data.resultCode == 'SUCCESS'){
@@ -176,7 +176,7 @@
         } 
       });     
   } 
-  function SetMessagesP(p_url) { //获取最新消息数   
+  function SetMessagesP() { //获取最新消息数   
       var p_url = $('#messages_p').attr('act');    
       $.getJSON(p_url, function(data){
         if(data && data.resultCode == 'SUCCESS'){
@@ -189,7 +189,7 @@
         } 
       });     
   }
-  function SetMessagesI(i_url) { //获取最新消息数 
+  function SetMessagesI() { //获取最新消息数 
       var i_url = $('#messages_i').attr('act');      
       $.getJSON(i_url, function(data){
         if(data && data.resultCode == 'SUCCESS'){
@@ -202,8 +202,8 @@
         } 
       });     
   }
-  function SetMessagesA(a_url) { //获取最新消息数       
-      var i_url = $('#messages_i').attr('act');   
+  function SetMessagesA() { //获取最新消息数       
+      var a_url = $('#messages_a').attr('act');   
       $.getJSON(a_url, function(data){
         if(data && data.resultCode == 'SUCCESS'){
           if(data.exceptionMsg == '0') {

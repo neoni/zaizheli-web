@@ -20,7 +20,7 @@
 </head>
 <body class="front">
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
-		<jsp:param name="tab" value="dashboard"/>
+		<jsp:param name="tab" value="none"/>
 	</jsp:include>
 	<c:import url="./modal/sendPM.jsp"/>
 	<div class="main-wrapper ml-10 mt-20 mb-30">

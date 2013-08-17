@@ -24,7 +24,7 @@
 	<c:choose>
 		<c:when test="${signInUser.id == user.id}">
 			<jsp:include page="/WEB-INF/views/comp/header.jsp">
-				<jsp:param name="tab" value="profile"/>
+				<jsp:param name="tab" value="none"/>
 			</jsp:include>
 		</c:when>
 		<c:otherwise>

@@ -11,9 +11,11 @@ import javax.servlet.http.HttpSession;
 import net.zaizheli.constants.ApplicationStatus;
 import net.zaizheli.domains.Activity;
 import net.zaizheli.domains.Application;
+import net.zaizheli.domains.FollowShip;
 import net.zaizheli.domains.User;
 import net.zaizheli.repositories.ActivityRepository;
 import net.zaizheli.repositories.ApplicationRepository;
+import net.zaizheli.repositories.FollowShipRepository;
 import net.zaizheli.web.utils.SessionUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +35,15 @@ public class ViewSingleActivityController {
 	SessionUtil sessionUtil;
 	@Autowired
 	ApplicationRepository applicationRepository;
+	@Autowired
+	FollowShipRepository followShipRepository;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public String view(@PathVariable String id, Model model, 
 			HttpServletRequest request, HttpSession session){
 		int status = 0;
 		User user = sessionUtil.getSignInUser(session);
+		List<String> myUsers = new ArrayList<String> ();
 		if (user != null) {
 			List<String> types = new ArrayList<String>();
 			types.add(ApplicationStatus.已加入.name());
@@ -49,6 +54,14 @@ public class ViewSingleActivityController {
 					status = 2;
 				else status = 1;
 			}
+			List<FollowShip> fss = followShipRepository.findByFollowedAndStatus(user.getId(), 0);
+			if(fss!=null){
+				for(FollowShip fs : fss){
+					if(fs.getTarget()==null) continue;
+					String name = "\"" + fs.getTarget().getName() + "\"";
+					myUsers.add(name);
+				}
+			}	
 		}
 		Activity activity = activityRepository.findOne(id);
 		Date date = new Date();		
@@ -56,6 +69,7 @@ public class ViewSingleActivityController {
 			activity.setStatus("已结束");
 			activityRepository.save(activity);
 		}
+		model.addAttribute("myUsers",myUsers);
 		model.addAttribute("status",status);
 		model.addAttribute("activity", activity);
 		model.addAttribute("no", 1);
@@ -67,6 +81,7 @@ public class ViewSingleActivityController {
 			HttpServletRequest request, HttpSession session){	
 		int status = 0;
 		User user = sessionUtil.getSignInUser(session);
+		List<String> myUsers = new ArrayList<String> ();
 		if(user != null) {
 			List<String> types = new ArrayList<String>();
 			types.add(ApplicationStatus.已加入.name());
@@ -77,6 +92,15 @@ public class ViewSingleActivityController {
 					status = 2;
 				else status = 1;
 			}
+			List<FollowShip> fss = followShipRepository.findByFollowedAndStatus(user.getId(), 0);		
+			if(fss!=null){
+				for(FollowShip fs : fss){
+					if(fs.getTarget()==null) continue;
+					String name = "\"" + fs.getTarget().getName() + "\"";
+					myUsers.add(name);
+				}
+			}
+			
 		}
 		Activity activity = activityRepository.findOne(id);
 		Date date = new Date();	
@@ -84,6 +108,7 @@ public class ViewSingleActivityController {
 			activity.setStatus("已结束");
 			activityRepository.save(activity);
 		}
+		model.addAttribute("myUsers",myUsers);
 		model.addAttribute("status",status);
 		model.addAttribute("activity", activity);
 		model.addAttribute("no", no);

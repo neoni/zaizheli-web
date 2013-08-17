@@ -78,7 +78,9 @@ public class AddCommentController {
 		Comment cmt = Comment.from(bean, signInUser);
 		String con=bean.getContent();		
 		con = textUtil.removeHtml(con);
+		con = At(con, signInUser, activity);
 		con = textUtil.turn(con);
+		con = link(con);
 		cmt.setContent(con);
 		Comment baseCmt = commentRepository.findOne(bean.getCmtId());
 		User user = userRepository.findOne(bean.getReplyToId());
@@ -123,7 +125,8 @@ public class AddCommentController {
 			Message message = new Message();
 			message.setFrom(signInUser);
 			message.setTo(user);
-			message.setContent(signInUser.getName()+"在活动 "+activity.getTitle()+" 中回复了您");
+			message.setContent(signInUser.getName()+"在活动  <a href='/activities/" + activity.getId() 
+					+ "'>" + activity.getTitle()+"</a> 中回复了您");
 			message.setStatus(0);
 			message.setType(MessageType.INFORM);
 			message.setActivity(activity);
@@ -135,5 +138,39 @@ public class AddCommentController {
 		action.setBy(sessionUtil.getBy(session));
 		actionRepository.save(action);
 		return "redirect:" + url.toString();
+	}
+	
+	public String At(String content, User signInUser, Activity activity) {
+		int start=0, end;
+        while ((start = content.indexOf("@", start)) != -1) {
+        	end = content.indexOf(" ", start);
+        	String name = content.substring(start+1, end);
+        	User user = userRepository.getByName(name);
+        	if( user != null) {
+        		String html = content.substring(0, start) + "<ahref='/profiles/" + user.getId() 
+    					+ "'>";
+        		int index = start;
+        		start = html.length();
+        		content = html + content.substring(index,end) + 
+        				  "</a>" + content.substring(end);
+        		Message message = new Message();
+        		message.setFrom(signInUser);
+    			message.setTo(user);
+    			message.setContent(signInUser.getName()+" 在活动 <a href='/activities/" + activity.getId() 
+    					+ "'>" + activity.getTitle()+"</a> 中@了您");
+    			message.setStatus(0);
+    			message.setType(MessageType.AT);
+    			message.setActivity(activity);
+    			message.setCreatedAt(new Date());
+        		messageRepository.save(message);
+        	}
+        	start += 1;
+        }       
+        return content;  
+	}
+	
+	public String link(String content) {
+		content = content.replaceAll("<ahref='/profiles/", "<a href='/profiles/");    
+        return content;		
 	}
 }

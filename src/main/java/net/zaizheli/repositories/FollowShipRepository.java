@@ -27,4 +27,5 @@ public interface FollowShipRepository extends
 	@Query("{ 'followed': {'$ref': 'user', '$id': { '$oid': ?0 } } , " +
 			" 'status':  ?1 }")
 	List<FollowShip> findByFollowedAndStatus(String targetId, int status);
+	
 }

@@ -17,13 +17,14 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery.pnotify.zaizheli.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/activity1.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/activity2.css" />" />
-	<script type="text/javascript" src="<c:url value="/resources/js/ga.js" />" ></script>
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jquery.atwho.css" />"/>
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.1.7.1.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.init.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.op.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/bootstrap-paginator.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.uploadify.min.js" />" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js//jquery.atwho.js"  />" ></script>
 
     <script type="text/javascript">
 	    $(function() {
@@ -257,10 +258,18 @@
 <script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" />"></script>
 <script type="text/javascript">
 	$(function(){
+		var names = $.map(${myUsers},function(value,i) {
+           return {'name':value};
+         });
 		 $(".timeago").timeago();
 		 $('#main-content').each(function(){
 			op.pin_bind_event($(this));
 		});	
+		 $('#comment')
+		  .atwho({
+		    at: "@",
+		    data: names
+		  });
 		 $('#quit_act').click(function(){
 		 	$('#myModal').modal('toggle');
 		 });
