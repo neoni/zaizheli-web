@@ -87,7 +87,15 @@ public class Activity implements Serializable {
 	private boolean schoolReq;	
 	private boolean noteReq;
 	
+	private double hot;           //活动热门程度
 	
+	
+	public double getHot() {
+		return hot;
+	}
+	public void setHot(double hot) {
+		this.hot = hot;
+	}
 	public ActivityLocation getLocation() {
 		return location;
 	}
@@ -355,6 +363,12 @@ public class Activity implements Serializable {
 				.toString();
 	}
 	
+	public void updateHot() {
+		hot = agreeCount * 0.1 + commentCount  + shareCount + trackCount +
+			       currentNum / maxNum * 100 * 1.5 + galleryCount * 0.1 +
+			       applicationCount * 0.3 ;
+	}
+	
 	public static Activity from(ActivityCreationVo vo, User signInUser) throws ParseException {
 		if(vo==null || signInUser==null) return null;
 		Activity activity=new Activity();
@@ -390,6 +404,9 @@ public class Activity implements Serializable {
 		if(activity.getEndedAt().getTime() <= date.getTime() && activity.getStatus() == "征集成员中") {
 			activity.setStatus("已结束");
 		}
+		activity.hot = activity.agreeCount * 0.1 + activity.commentCount  + activity.shareCount + activity.trackCount +
+				       activity.currentNum / activity.maxNum * 100 * 1.5 + activity.galleryCount * 0.1 +
+				       activity.applicationCount * 0.3 ;
 		return activity;		
 	
 	}

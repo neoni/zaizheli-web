@@ -1,20 +1,16 @@
 package net.zaizheli.web.mvc.controllers;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import net.zaizheli.constants.ApplicationConfig;
-import net.zaizheli.domains.CityMeta;
 import net.zaizheli.repositories.CityMetaRepository;
 import net.zaizheli.vo.FilterElementVo;
 import net.zaizheli.web.utils.SessionUtil;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,48 +20,36 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
-	private static Logger logger = LoggerFactory
-			.getLogger(HomeController.class);
+
 	@Autowired
 	private CityMetaRepository cityMetaRepository;
 	@Autowired
 	private SessionUtil sessionUtil;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model, HttpServletRequest request,
-			HttpSession session) {
-		CityMeta city = sessionUtil.getGeoCityMeta(session);
-		String pinyin = ApplicationConfig.defaultCityPinyin;
-		if (city != null) {
-			pinyin = city.getPinyin();
-		}
-		return toHome(pinyin, model, request, session);
-	}
-
-	private String toHome(String cityPinyin, Model model,
+	private String toHome(Model model,
 			HttpServletRequest request, HttpSession session) {
-		String city = request.getParameter("city");
-		if (!StringUtils.hasText(city)) {
-			city = cityPinyin;
+		String city= null;
+		if (request.getParameter("city") != null) {
+			city = new String(request.getParameter("city"));
 		}
 		String category = null;
-		try {
-			if (request.getParameter("category") != null) {
-				category = new String(request.getParameter("category")
-						.getBytes("ISO-8859-1"), "UTF-8");
-			}
-		} catch (UnsupportedEncodingException e) {
-			logger.warn(e.getMessage(), e);
+		if (request.getParameter("category") != null) {
+			category = new String(request.getParameter("category"));
+		}	
+		String startTime = null;
+		if (request.getParameter("startTime") != null) {
+			startTime = new String(request.getParameter("startTime"));
+		}
+		String endTime = null;
+		if (request.getParameter("endTime") != null) {
+			endTime = new String(request.getParameter("endTime"));
 		}
 		String keyword = null;
-		try {
-			if (request.getParameter("keyword") != null) {
-				keyword = new String(request.getParameter("keyword").getBytes(
-						"ISO-8859-1"), "UTF-8");
-			}
-		} catch (UnsupportedEncodingException e) {
-			logger.warn(e.getMessage(), e);
+		if (request.getParameter("keyword") != null) {
+			keyword = new String(request.getParameter("keyword"));
 		}
+	
 		Collection<FilterElementVo> filters = new ArrayList<FilterElementVo>();
 		StringBuilder sb = new StringBuilder();
 		FilterElementVo filter = null;
@@ -73,20 +57,12 @@ public class HomeController {
 		// set city filter
 		filter = new FilterElementVo();
 		filter.setType("city");
-		filter.setTypeLabel("城市");
+		filter.setTypeLabel("在哪里");
 		filter.setValue("");
-		filter.setLabel("全国");
+		filter.setLabel("无所谓");
 		if (StringUtils.hasText(city)) {
-			CityMeta cityMeta = cityMetaRepository.getByPinyin(city
-					.toLowerCase());
-			if (cityMeta == null) {
-				cityMeta = cityMetaRepository
-						.getByPinyin(ApplicationConfig.defaultCityPinyin);
-			}
-			if (cityMeta != null) {
-				filter.setLabel(cityMeta.getName());
-				filter.setValue(cityMeta.getPinyin());
-			}
+			filter.setLabel(city);
+			filter.setValue(city);
 		}
 		filters.add(filter);
 		sb.append("city=").append(filter.getValue()).append("&");
@@ -103,6 +79,32 @@ public class HomeController {
 		}
 		filters.add(filter);
 		sb.append("category=").append(filter.getValue()).append("&");
+		
+		//set startTime filter
+		filter = new FilterElementVo();
+		filter.setType("startTime");
+		filter.setTypeLabel("起始时间");
+		filter.setValue("");
+		filter.setLabel("");
+		if (StringUtils.hasText(startTime)) {
+			filter.setLabel(startTime);
+			filter.setValue(startTime);
+		}
+		filters.add(filter);
+		sb.append("startTime=").append(filter.getValue()).append("&");
+		
+		//set endTime filter
+		filter = new FilterElementVo();
+		filter.setType("endTime");
+		filter.setTypeLabel("终止时间");
+		filter.setValue("");
+		filter.setLabel("");
+		if (StringUtils.hasText(endTime)) {
+			filter.setLabel(endTime);
+			filter.setValue(endTime);
+		}
+		filters.add(filter);
+		sb.append("endTime=").append(filter.getValue()).append("&");
 
 		// set keyword filter
 		filter = new FilterElementVo();

@@ -27,6 +27,7 @@ public class GiveAgreementController {
 	public @ResponseBody AjaxResult agree(@PathVariable String id,
 			       Model model, HttpSession session) {
 		activityRepository.inc(id, "agreeCount", 1);
+		activityRepository.inc(id, "hot", 0.1);
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}
 	

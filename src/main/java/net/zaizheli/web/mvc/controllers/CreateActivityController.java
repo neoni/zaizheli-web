@@ -168,18 +168,32 @@ public class CreateActivityController {
 					activity.setCity(city.getPinyin());
 				}
 				activity.setLngLat(place.getLngLat());				
-				if(place.getNation() != "中国") {
-					activity.setLocation(ActivityLocation.国外);
+//				if(place.getNation() == "中国") {
+//					activity.setLocation(ActivityLocation.国外);
+//				}
+//				else {
+//					if(place.getProvince() != "浙江省") {
+//						activity.setLocation(ActivityLocation.国内_除浙江);
+//					}
+//					else {
+//						if(place.getCity()!="杭州市") {
+//							activity.setLocation(ActivityLocation.浙江省_除杭州);
+//						}
+//						else activity.setLocation(ActivityLocation.杭州);
+//					}
+//				}
+				if( place.getFullAddr().indexOf("杭州")!= -1) {
+					activity.setLocation(ActivityLocation.杭州);
 				}
 				else {
-					if(place.getProvince() != "浙江省") {
-						activity.setLocation(ActivityLocation.国内_除浙江);
+					if( place.getFullAddr().indexOf("浙江")!= -1) {
+						activity.setLocation(ActivityLocation.浙江省_除杭州);
 					}
 					else {
-						if(place.getCity()!="杭州市") {
-							activity.setLocation(ActivityLocation.浙江省_除杭州);
+						if( place.getFullAddr().indexOf("中国")!= -1) {
+							activity.setLocation(ActivityLocation.国内_除浙江);
 						}
-						else activity.setLocation(ActivityLocation.杭州);
+						else activity.setLocation(ActivityLocation.国外);
 					}
 				}
 				activity.setPlace(place);

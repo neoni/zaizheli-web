@@ -107,6 +107,7 @@ public class CreateApplicationController {
         applicationRepository.save(app);
 		activityRepository.inc(id, "applicationCount", 1);
 		activityRepository.inc(id, "inJudgingCount", 1);
+		activityRepository.inc(id, "hot", 0.3);
 		Action action = new Action();
 		action.setOwner(user.getId());
 		action.setTargetActivity(id);

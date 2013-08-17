@@ -68,6 +68,7 @@ public class ChangeTrackShipController {
 			ts.setUpdatedAt(new Date());
 			userRepository.inc(signInUser.getId(), "trackCount", 1);
 			activityRepository.inc(target.getId(), "trackCount", 1);
+			activityRepository.inc(target.getId(), "hot", 1);
 			trackShipRepository.save(ts);
 		}else if(ts==null){
 			tracked = true;
@@ -79,6 +80,7 @@ public class ChangeTrackShipController {
 			ts.setStatus(ApplicationConstants.TRACKSHIP_NORMAL);
 			userRepository.inc(signInUser.getId(), "trackCount", 1);
 			activityRepository.inc(target.getId(), "trackCount", 1);
+			activityRepository.inc(target.getId(), "hot", 1);
 			trackShipRepository.save(ts);
 		}
 		if(tracked){
@@ -113,6 +115,7 @@ public class ChangeTrackShipController {
 			ts.setUpdatedAt(new Date());
 			userRepository.inc(signInUser.getId(), "trackCount", -1);
 			activityRepository.inc(target.getId(), "trackCount", -1);
+			activityRepository.inc(target.getId(), "hot", -1);
 			trackShipRepository.save(ts);
 		}
 		return new AjaxResult(AjaxResultCode.SUCCESS);

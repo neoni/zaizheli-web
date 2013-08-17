@@ -21,6 +21,7 @@ public class ApplicationConfig {
 	public static int masonryPageSize = 15;
 	public static int mapPageSize = 15;
 	public static int listPageSize = 15;
+	public static int hotActivitySize = 6;
 	public static int pinCmtPageSize = 6;
 	public static int cmtPageSize = 8;
 	public static int messagePageSize = 8;

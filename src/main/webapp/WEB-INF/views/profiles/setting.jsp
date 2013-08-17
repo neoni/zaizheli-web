@@ -92,7 +92,7 @@
 		    		</div>
 		    		<div class="form-actions" style="margin-bottom: 0px;">
 		    			<div class="dis-i">
-						    <button type="submit" class="btn btn-large btn-primary" data-loading-text="更新中...">保存修改</button>
+						    <button type="submit" class="btn-orange btn-large" data-loading-text="更新中...">保存修改</button>
 					    	<i class="icon-ok ml-10" style="display:none;"></i>
 				    	</div>
 				    </div>
@@ -181,7 +181,7 @@
 		    		</div>
 		    		<div class="form-actions" style="margin-bottom: 0px;">
 		    			<div class="dis-i">
-						    <button type="submit" class="btn btn-large btn-primary" data-loading-text="更新中...">保存修改</button>
+						    <button type="submit" class="btn-orange btn-large" data-loading-text="更新中...">保存修改</button>
 					    	<i class="icon-ok ml-10" style="display:none;"></i>
 				    	</div>
 				    </div>
@@ -237,7 +237,7 @@
 					<input type="hidden" id="h" name="h" />
 		    		<div class="form-actions" style="margin-bottom: 0px;">
 		    			<div class="dis-i">
-						    <button type="submit" class="btn btn-large btn-primary" data-loading-text="更新中...">保存修改</button>
+						    <button type="submit" class="btn-orange btn-large" data-loading-text="更新中...">保存修改</button>
 					    	<i class="icon-ok ml-10" style="display:none;"></i>
 				    	</div>
 				    </div>
@@ -269,7 +269,7 @@
 		    		</div>
 		    		<div class="form-actions" style="margin-bottom: 0px;">
 		    			<div class="dis-i">
-						    <button type="submit" class="btn btn-large btn-primary" data-loading-text="更新中...">保存修改</button>
+						    <button type="submit" class="btn-orange btn-large" data-loading-text="更新中...">保存修改</button>
 					    	<i class="icon-ok ml-10" style="display:none;"></i>
 				    	</div>
 				    </div>

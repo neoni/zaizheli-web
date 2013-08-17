@@ -20,7 +20,7 @@
                                 <a href="<c:url value="/profiles" />">在这里的人们</a>
                               </li>
                               <li id="nav-create">
-                                <a href="<c:url value="/activities/create" />">发布活动/晒活动</a>
+                                <a href="<c:url value="/activities/create" />">晒活动</a>
                               </li>
                               <li id="nav-apps">
                                 <a href="<c:url value="/apps" />" title="在浙里移动客户端">在浙里移动客户端</a>
@@ -52,10 +52,7 @@
                             <c:otherwise>
                               <ul class="nav pull-right">
                                 <li class="divider-vertical"></li>
-                                <li id="nav-dashboard">
-                                  <a href="<c:url value="/dashboard" />">我的关注</a></li>
-                                <li id="nav-profile">
-                                  <a href="<c:url value="/profiles/${signInUser.id}" />">在这里的我</a></li>
+                                
                                 <li class="dropdown">
                                   <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
                                     消息<span id="messages" act="<c:url value="/message/get" />" ></span>
@@ -73,6 +70,8 @@
                                     <b class="caret"></b>
                                   </a>
                                   <ul class="dropdown-menu">
+                                    <li><a href="<c:url value="/dashboard" />">我的关注</a></li>
+                                    <li><a href="<c:url value="/profiles/${signInUser.id}" />">在这里的我</a></li>
                                     <li><a href="<c:url value="/setting" />">账号设置</a></li>
                                     <li class="divider"></li>
                                     <li><a href="<c:url value="/signout" />">退出登录</a></li>

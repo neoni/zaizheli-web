@@ -61,6 +61,7 @@
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
+	<jsp:include page="/WEB-INF/views/comp/side.nav.jsp" />
 	<div id="Gallery_container">
 		<div id="blueimp-gallery" class="blueimp-gallery">
 		    <div class="slides"></div>

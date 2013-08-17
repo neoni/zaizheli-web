@@ -58,28 +58,8 @@
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
+	<jsp:include page="/WEB-INF/views/comp/side.nav.jsp" />
 	<c:import url="../modal/sendPM.jsp"/>
-	<div class="outer" id="header_wrap">
-        <header class="inner" >
-          <h1 id="project_title" class="pb-20">${activity.title}</h1>
-		  <h2 id="project_tagline">在 这 里 的 我 们 —— 在 这 里 的 流 年</h2>
-	      <span id="act_nav">
-			  <ul>
-				<li><a href="<c:url value="/activities/${activity.id}"/>" >活动主页</a></li>
-				<c:choose>
-				<c:when test="${signInUser.id == activity.createdBy.id}">
-				<li><a href="<c:url value="/activity/${activity.id}/edit"/>" >活动编辑</a></li>
-				<li><a href="<c:url value="/activity/${activity.id}/applications"/>" >申请处理</a></li>
-				</c:when>
-				<c:otherwise>
-				<li><a href="<c:url value="/activity/${activity.id}/joiners"/>" >参加人员</a></li>		
-				</c:otherwise>
-				</c:choose>
-				<li><a href="<c:url value="/activity/${activity.id}/gallery"/>" >活动图库</a></li>
-			  </ul>
-		  </span>
- 		</header> 
-    </div>
     <div id="main-content"> 
 	   <div class="inside-main-content cf">
 		    <section class="jobs-top" id="jobs"> 

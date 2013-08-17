@@ -59,6 +59,8 @@ public class DealWithApplicationController {
 			}
 			activityRepository.inc(activity.getId(),"inJudgingCount",-1);
 			activityRepository.inc(activity.getId(),"currentNum",1);
+			activity.updateHot();
+			activityRepository.save(activity);
 			application.setStatus(ApplicationStatus.已加入);
 			applicationRepository.save(application);
 			Join join = new Join();
@@ -100,6 +102,8 @@ public class DealWithApplicationController {
 		Activity activity = application.getActivity();
 		if(application.getStatus() == ApplicationStatus.申请中) {
 			activityRepository.inc(activity.getId(),"inJudgingCount",-1);
+			activity.updateHot();
+			activityRepository.save(activity);
 			application.setStatus(ApplicationStatus.拒绝);
 			applicationRepository.save(application);
 			User user = sessionUtil.getSignInUser(session);
@@ -128,6 +132,8 @@ public class DealWithApplicationController {
 		if(application.getStatus() == ApplicationStatus.已加入) {
 			activityRepository.inc(activity.getId(),"applicationCount",-1);
 			activityRepository.inc(activity.getId(),"currentNum",-1);
+			activity.updateHot();
+			activityRepository.save(activity);
 			Join join = joinRepository.findByActivityAndjoiner(activity.getId(),application.getApplicant().getId());
 			joinRepository.delete(join);
 			applicationRepository.delete(application);

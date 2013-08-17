@@ -97,9 +97,11 @@ public class AddCommentController {
 		cmt.setFloor(activity.getCommentCount()+1);				
 		// inc commented count of orignal activity
 		activityRepository.inc(activity.getId(), "commentCount", 1);
+		activityRepository.inc(activity.getId(), "hot", 1);
 		// incr comment count of sign in user
 		userRepository.inc(signInUser.getId(), "commentCount", 1);	
 		cmt = commentRepository.save(cmt);
+		
 		int size = commentRepository.findByActivity(activity.getId()).size();
 		int total = 0 ;
 		if (size % ApplicationConfig.cmtPageSize == 0)
@@ -110,6 +112,7 @@ public class AddCommentController {
 		StringBuilder url = new StringBuilder();
 		url.append("/activities/").append(activity.getId());
 		url.append("/").append(total).append("#").append(cmt.getId());
+		
 		// save cmt activity
 		Action action= new Action();
 		action.setOwner(signInUser.getId());

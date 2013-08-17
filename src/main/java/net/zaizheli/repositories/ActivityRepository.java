@@ -12,14 +12,16 @@ public interface ActivityRepository extends
 	
 	//search api......................................................
 	
-	@Query("{ '$where': 'function() { return (?0 ? this.city== ?0 : true) && " +
-			" (?1 ? this.type== ?1 : true) && (?2 ? (this.content? this.content.indexOf(?2)!=-1 : false) : true); } ' }")
-	Page<Activity> search(String city, String type,
+	@Query("{ '$where': 'function() { return this.status != \"INVALID\" && (?0 ? this.location== ?0 : true) && " +
+			" (?1 ? this.type== ?1 : true) && (?2 ? this.startDate>= ?2 : true) && (?3 ? this.endDate<= ?3 : true) && " +
+			"(?4 ? (this.title? this.title.indexOf(?4)!=-1 : false) : true); } ' }")
+	Page<Activity> search(String city, String type, String startTime, String endTime,
 			String contentLike, Pageable pageable);
 	
-	@Query("{ '$where': 'function() { return this.status != \"INVALID\" && this.lngLat && (?0 ? this.city== ?0 : true) && " +
-			" (?1 ? this.type== ?1 : true) && (?2 ? (this.content? this.content.indexOf(?2)!=-1 : false) : true); } ' }")
-	Page<Activity> searchMarker(String city, String type,
+	@Query("{ '$where': 'function() { return this.status != \"INVALID\" && (?0 ? this.location== ?0 : true) && " +
+			" (?1 ? this.type== ?1 : true) && (?2 ? this.startDate>= ?2 : true) && (?3 ? this.endDate<= ?3 : true) && " +
+			"(?4 ? (this.title? this.title.indexOf(?4)!=-1 : false) : true); } ' }")
+	Page<Activity> searchMarker(String city, String type, String startTime, String endTime,
 			String contentLike, Pageable pageable);
 	
 	//..............................................................
@@ -36,4 +38,5 @@ public interface ActivityRepository extends
 			Pageable pageable);
 	
 	Page<Activity> findByCity(String city, Pageable pageable);
+	
 }

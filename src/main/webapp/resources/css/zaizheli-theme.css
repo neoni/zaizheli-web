@@ -1,9 +1,9 @@
 html {
-	background: url("../img/bg.png") repeat scroll 0 0 #F7F5F5;
+	background: url("../img/bg_grid.png") repeat scroll 0 0 #F7F5F5;
 }
 
 #login_html {
-	background: url("../img/bg.jpg") repeat scroll 0 0 #F7F5F5;
+	background: url("../img/bg_grid.png") repeat scroll 0 0 #F7F5F5;
 }
 
 body {
@@ -355,10 +355,10 @@ a.img img:hover,a.img img:active {
 }
 
 .navbar .nav .active>a,.navbar .nav .active>a:hover {
-	background-color:  rgb(70, 146, 230);;
+	background-color:  #FFA71E;
 	font-family:  Helvetica;
 	font-size: 13px;
-	background-image: -moz-linear-gradient(center bottom, #08AFEB, #0066CC);
+	background-image: -moz-linear-gradient(center bottom, #F1A600, #FE9200);
 }
 
 .btn-follow {
@@ -503,7 +503,7 @@ input,textarea,select {
 }
 
 #dash-nav>.active>a,#dash-nav>.active>a:hover {
-	background-color: #0088CC;
+	background-color: #FFAF1E;
 	color: #FFFFFF;
 }
 
@@ -825,7 +825,7 @@ textarea#comment {
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    background: none repeat scroll 0 0 #DDDFEF;
+    background: none repeat scroll 0 0 #EDF2F5;
     border-color: -moz-use-text-color -moz-use-text-color #C8C7B4;
     border-image: none;
     border-radius: 5px 5px 5px 5px;
@@ -840,7 +840,7 @@ textarea#comment {
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    background: none repeat scroll 0 0 #68584C;
+    background: none repeat scroll 0 0 #58C3DE;
     border-color: -moz-use-text-color -moz-use-text-color #55473B;
     border-image: none;
     border-radius: 5px 5px 5px 5px;
@@ -1128,6 +1128,12 @@ div.nomargin{	/* our special nomargin class */
     padding: 0 5px;
 }
 
+.btnor.active {
+	background-image: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    outline: 0 none;
+}
+
 
 /***********************  theme ********************/
 .btn-orange {
@@ -1174,4 +1180,10 @@ div.nomargin{	/* our special nomargin class */
 
 .btn-orange {
     background: -moz-linear-gradient(center top , #FFB91C, #FFA700) repeat scroll 0 0 / cover transparent;
+}
+
+.btn-orange.active {
+	background-image: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    outline: 0 none;
 }

@@ -182,7 +182,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 	<p>已成功提交了申请表 >o< </p>
 	</div>
 	<div class="modal-footer">
-	<a class="btn" href="<c:url value="/activities/${activity.id}" />">确定</a>
+	<a class="btn-or" href="<c:url value="/activities/${activity.id}" />">确定</a>
 	</div>
 	</div>
 
@@ -195,7 +195,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 	<p id="modal_text"></p>
 	</div>
 	<div class="modal-footer">
-	<a class="btn" href="<c:url value="/activities/${activity.id}" />">确定</a>
+	<a class="btn-or" href="<c:url value="/activities/${activity.id}" />">确定</a>
 	</div>
 	</div>
 					

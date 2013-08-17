@@ -61,32 +61,15 @@
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
+	<jsp:include page="/WEB-INF/views/comp/side.nav.jsp" />
 	<c:import url="../modal/sendPM.jsp"/>
-	<div class="outer" id="header_wrap">
-        <header class="inner" >
-          <h1 id="project_title" class="pb-20">${activity.title}</h1>
-		  <h2 id="project_tagline">在 这 里 的 我 们 —— 在 这 里 的 流 年</h2>
-	      <span id="act_nav">
-			  <ul>
-				<li><a href="<c:url value="/activities/${activity.id}"/>" >活动主页</a></li>
-				<c:choose>
-				<c:when test="${signInUser.id == activity.createdBy.id}">
-				<li><a href="<c:url value="/activity/${activity.id}/edit"/>" >活动编辑</a></li>
-				<li><a href="<c:url value="/activity/${activity.id}/applications"/>" >申请处理</a></li>
-				</c:when>
-				<c:otherwise>
-				<li><a href="<c:url value="/activity/${activity.id}/joiners"/>" >参加人员</a></li>		
-				</c:otherwise>
-				</c:choose>
-				<li><a href="<c:url value="/activity/${activity.id}/gallery"/>" >活动图库</a></li>
-			  </ul>
-		  </span>
- 		</header> 
-    </div>
     <div id="main-content"> 
 	   <div class="inside-main-content cf">
 		    <section class="jobs-top" id="jobs"> 
 			     <article class="job-panel"> 
+			     	  <header class="job-panel-header cf"> 
+				       	<h2 class="job-title">${activity.title}</h2> 
+				      </header>
 				      <div class="content cf"> 
 				       <c:choose>
 						<c:when test="${activity.image.orgSize[1]>=720}">
@@ -141,7 +124,7 @@
 			     </div> 
 		    </section> 
 		    <div class="page"> 
-		     <header class="team-header cf" style="background-color:#343131"> 
+		     <header class="team-header cf" style="background-color:#FDBC4C"> 
 		      	<div class="team-logo">
 			       <a  href="<c:url value="/profiles/${activity.createdBy.id}" />">
 					  <img class="team-page-avatar" width=104 height=104 src="${f:avatarUrl(activity.createdBy.avatar, activity.createdBy.gender)}" />
@@ -184,7 +167,7 @@
 				</div>
 				<br>
 		       <div class="box half"> 
-		       <div class="icon" style="background-color:#343131"></div> 
+		       <div class="icon" style="background-color:#FDBC4C"></div> 
 		       <header> 
 		          <h3>活 动 细 节</h3> 
 		       </header>
@@ -194,7 +177,7 @@
 		       <p>当前人数：${activity.currentNum}</p> 
 		      </div> 
 		      <div class="box half"> 
-		       <div class="icon blub" style="background-color:#343131"></div> 
+		       <div class="icon blub" style="background-color:#FDBC4C"></div> 
 		       <header> 
 		        <h3>活 动 情 况</h3> 
 		       </header> 
@@ -207,7 +190,7 @@
 		       <p>追踪：${activity.trackCount}</p> 
 		      </div> 
 		     </section> 
-     <section class="cf" id="favourite-benefits" style="background-color:#343131">
+     <section class="cf" id="favourite-benefits" style="background-color:#B6ECFE">
      	<div style="padding-left:80px; padding-right:80px;">
      	<h3>活 动 补 充</h3>  
    			${activity.content}
@@ -221,7 +204,7 @@
       <ol class="reasons"> 
        	<c:import url="/activity/${activity.id}/comments/${no}"></c:import>	
 
-	</div>
+	  </div>
 		<form action="<c:url value="/activity/addcmt" />" method="post" id="commentform">
 		   	<p><textarea name="content" id="comment" cols="58" rows="10"   required="true"></textarea></p>
 		
@@ -258,7 +241,7 @@
 		<p id="modal_text">确定要退出此活动？</p>
 		</div>
 		<div class="modal-footer">
-		<a id="sure" class="btn" act="<c:url value="/activity/${activity.id}/quit"/>"  >确定</a>
+		<a id="sure" class="btn-or" act="<c:url value="/activity/${activity.id}/quit"/>"  >确定</a>
 		<a  data-dismiss="modal"  class="btn btn-primary">取消</a>
 		</div>
 	</div>

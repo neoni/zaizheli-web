@@ -89,10 +89,14 @@ public class SearchActivitiesController {
 	
 	private Iterable<Activity> doSearch(HttpServletRequest request, boolean isMarker){
 		String city = request.getParameter("city");
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
 		String category = request.getParameter("category");
 		String summaryLike = request.getParameter("keyword");
 		String no = request.getParameter("no");
 		logger.info("city:" + city);
+		logger.info("startTime:" + startTime);
+		logger.info("endTime:" + endTime);
 		logger.info("category:" + category);
 		logger.info("keyword:" + summaryLike);
 		logger.info("no:" + no);
@@ -112,11 +116,11 @@ public class SearchActivitiesController {
 		Iterable<Activity> activities = null;
 		if(!isMarker){
 			activities = activityRepository.search(StringUtils.trimWhitespace(city), 
-					StringUtils.trimWhitespace(category), 
+					StringUtils.trimWhitespace(category), startTime, endTime,
 						StringUtils.trimWhitespace(summaryLike), pageable);
 		}else{
 			activities = activityRepository.searchMarker( StringUtils.trimWhitespace(city), 
-					StringUtils.trimWhitespace(category), 
+					StringUtils.trimWhitespace(category), startTime, endTime,
 						StringUtils.trimWhitespace(summaryLike), pageable);
 		}
 		return activities;

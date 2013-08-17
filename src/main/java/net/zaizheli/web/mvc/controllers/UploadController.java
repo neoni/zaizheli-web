@@ -181,6 +181,7 @@ public class UploadController implements ApplicationContextAware {
     		re.setTmpUrl(ApplicationConfig.uploadTempRepository + "/"+file.getName());
     		resourceRepository.save(re); 
     		activityRepository.inc(id, "galleryCount", 1);
+    		activityRepository.inc(id, "hot", 0.1);
     		Action action = new Action();
             action.setOwner(uid);
     		action.setCreatedAt(new Date());

@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-
-import net.zaizheli.constants.ApplicationConfig;
-import net.zaizheli.domains.CityMeta;
 import net.zaizheli.repositories.CityMetaRepository;
 import net.zaizheli.vo.FilterElementVo;
 import net.zaizheli.web.utils.SessionUtil;
@@ -28,24 +24,12 @@ public class MapViewController {
 	@Autowired
 	private SessionUtil sessionUtil;
 	
-	@RequestMapping(value = "/map", method = RequestMethod.GET)
-	public String view(Model model, 
-			HttpServletRequest request,
-			HttpSession session){
-		CityMeta city = sessionUtil.getGeoCityMeta(session);
-		String pinyin = ApplicationConfig.defaultCityPinyin;
-		if(city!= null){
-			pinyin = city.getPinyin();
-		}
-		return toMap(pinyin, model, request);
-	}
-	
-	private String toMap(String cityPinyin, Model model, 
+	@RequestMapping(value = "/map", method = RequestMethod.GET)	
+	private String toMap( Model model, 
 			HttpServletRequest request) {
 		String city = request.getParameter("city");
-		if(!StringUtils.hasText(city)){
-			city = cityPinyin;
-		}
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
 		String category = request.getParameter("category");
 		String keyword = request.getParameter("keyword");
 		Collection<FilterElementVo> filters = new ArrayList<FilterElementVo>();
@@ -55,20 +39,12 @@ public class MapViewController {
 		// set city filter
 		filter = new FilterElementVo();
 		filter.setType("city");
-		filter.setTypeLabel("城市");
+		filter.setTypeLabel("在哪里");
 		filter.setValue("");
-		filter.setLabel("全国");
-		if(StringUtils.hasText(city)){
-			CityMeta cityMeta = cityMetaRepository
-				.getByPinyin(city.toLowerCase());
-			if(cityMeta==null){
-				cityMeta = cityMetaRepository.getByPinyin(
-					ApplicationConfig.defaultCityPinyin);
-			}
-			if(cityMeta!=null){
-				filter.setLabel(cityMeta.getName());
-				filter.setValue(cityMeta.getPinyin());
-			}
+		filter.setLabel("无所谓");
+		if (StringUtils.hasText(city)) {
+			filter.setLabel(city);
+			filter.setValue(city);
 		}
 		filters.add(filter);
 		sb.append("city=").append(filter.getValue()).append("&");
@@ -85,6 +61,32 @@ public class MapViewController {
 		}
 		filters.add(filter);
 		sb.append("category=").append(filter.getValue()).append("&");
+		
+		//set startTime filter
+		filter = new FilterElementVo();
+		filter.setType("startTime");
+		filter.setTypeLabel("起始时间");
+		filter.setValue("");
+		filter.setLabel("");
+		if (StringUtils.hasText(startTime)) {
+			filter.setLabel(startTime);
+			filter.setValue(startTime);
+		}
+		filters.add(filter);
+		sb.append("startTime=").append(filter.getValue()).append("&");
+		
+		//set endTime filter
+		filter = new FilterElementVo();
+		filter.setType("endTime");
+		filter.setTypeLabel("终止时间");
+		filter.setValue("");
+		filter.setLabel("");
+		if (StringUtils.hasText(endTime)) {
+			filter.setLabel(endTime);
+			filter.setValue(endTime);
+		}
+		filters.add(filter);
+		sb.append("endTime=").append(filter.getValue()).append("&");
 		
 		// set keyword filter
 		filter = new FilterElementVo();

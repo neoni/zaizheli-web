@@ -2596,7 +2596,6 @@ h4 {
 
 #main-content {
 	min-width: 1220px;
-	background: #CCCCCC;
 	font-size: 10px;
 }
 
@@ -12291,7 +12290,6 @@ input[type=file].safari5-upload-hack {
 .pagination a {
 	color: #D99B59;
 	font-weight: 600;
-	background-color:#EFECBB;
 	font-size: 13px;
 	height: 32px;
 	line-height: 32px;

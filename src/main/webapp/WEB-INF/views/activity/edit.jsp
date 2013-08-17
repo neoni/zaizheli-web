@@ -35,7 +35,7 @@
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
-	
+	<jsp:include page="/WEB-INF/views/comp/side.nav.jsp" />
 	<c:import url="../modal/upload.jsp"/>
 	<c:import url="../modal/locate.jsp"/>
 	<form id="createactivity-form" modelAttribute="activityCreationVo" method="post">
@@ -67,7 +67,7 @@
                				 href="#upload-image-modal" data-toggle="modal" title="上传,引用图片" style="margin-left: 60px;">+</a>
 					</div>
 				</li>
-				<li id="活动细节" >
+				<li id="活动细节" style="height:600px;">
 					<div class="row-fluid">
 							<div class="control-group " >
 								<label class="control-label fs-15 lh-20 c-ffc" for="title">* 给你的活动取个名称吧</label>
@@ -252,7 +252,7 @@
 								<label class="control-label fs-15 lh-15 c-ffc" for="status">* 活动状态</label>
 								<div class="input-prepend controls">
 									<span class="add-on"> <i class="icon-heart"></i></span>
-		<input value="${activity.status}" type="hidden">
+									<input value="${activity.status}" type="hidden">
 									<select id="status" class=" span5" name="status" value="${activity.status}" style="width:280px">
 											<option <c:if test="${activity.status eq '征集成员中'}"> selected="selected" </c:if> >征集成员中</option>								
 											<option <c:if test="${activity.status eq '晒活动'}"> selected="selected" </c:if>>晒活动</option>
@@ -265,7 +265,7 @@
 					</div>
 				</li>
 
-				<li id="活动规划" >
+				<li id="活动规划" style="height:640px;">
 					<div class="row-fluid">
 						<div class="control-group mt-20" >
 							<div class="input-append">
@@ -297,8 +297,8 @@
 		    					<input id="fee" class="" type="hidden" 
 		    					data-prompt-position="centerRight:0,-4" name="fee" value="${activity.fee}" >
 			    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="fee">
-			    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val="1">是</button>
-			    					<button id="gender_target" class="btn btn-large btn-info fs-16" type="button" data-val="0">无</button>
+			    					<button id="inputMale" class="btn btn-large fs-16" type="button" data-val="1">是</button>
+			    					<button id="gender_target" class="btn btn-large  fs-16" type="button" data-val="0">无</button>
 			    				</div>
 							</div>
 					    </div>
@@ -308,15 +308,15 @@
 			    				<input id="apply" class="" type="hidden" 
 			    					data-prompt-position="centerRight:0,-4" name="apply" value="${activity.apply}" >
 			    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="apply">
-			    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val="1">是</button>
-			    					<button id="gender_target" class="btn btn-large btn-info fs-16" type="button" data-val="0">否</button>
+			    					<button id="inputMale" class="btn btn-large fs-16" type="button" data-val="1">是</button>
+			    					<button id="gender_target" class="btn btn-large fs-16" type="button" data-val="0">否</button>
 			    				</div>
 							</div>
 					    </div>
 					
 					<div class="control-group mt-20">
 					    	<label class="control-label fs-15 lh-20 c-ffc" for="apply_req">若需申请表,请选择需要的信息（邮箱、昵称、性别默认个人基本信息）：</label><br>
-							<div class="controls fs-16 lh-18" style="color:#FFCC66 ">
+							<div class="controls fs-16 lh-18" style="color:#FF0000 ">
 			    				<label class="checkbox inline">
 								<input <c:if test="${activity.realNameReq == true}"> checked </c:if> type="checkbox" id="realNameReq" name="realNameReq" value=true >
 									真实姓名
@@ -363,10 +363,10 @@
 					<input id="err" name="err" data-prompt-position="centerRight:0,-4" style="display:none"/>
 					<div style="float:right; margin-top:5px;">
 						    
-							<button  id="submit-btn" type="submit" class=" btn btn-primary btn-large" data-loading-text="更新中..." onclick="editor()">
+							<button  id="submit-btn" type="submit" class=" btn-orange btn-large" data-loading-text="更新中..." onclick="editor()">
 								提交该活动</button>
 						
-						<a id="return-btn" class="btn btn-success btn-large ml-10" href="<c:url value="/activities/${activity.id}" />">返回活动界面</a>
+						<a id="return-btn" class="btn btn-large ml-10" href="<c:url value="/activities/${activity.id}" />">返回活动界面</a>
 					</div>	
 								
 				</li>

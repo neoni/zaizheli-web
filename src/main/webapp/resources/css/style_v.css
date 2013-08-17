@@ -3,7 +3,7 @@ body {
 
 	font-size: 14px;
 }
-a {
+#next,#prev {
 	/*color: #ffffcc;*/
 	text-decoration: none;
 	-webkit-transition: 0.5s;
@@ -14,7 +14,7 @@ a {
 }
 	a:hover,
 	a.selected {
-		color: #ffcc00;
+		color: #FFA40F;
 		text-decoration: none;
 	}
 
@@ -64,7 +64,7 @@ a {
 		}	
 			#issues li {
 				width: 600px;
-				height: 650px;
+				height: 620px;
 				list-style: none;
 				overflow: hidden;
 
@@ -133,7 +133,7 @@ a {
 				background-position:  0 0;
 			}
 			#next {
-				bottom: 20px;
+				bottom: 40px;
 				background-image: url('../img/next_v.png');
 			}
 			#prev {

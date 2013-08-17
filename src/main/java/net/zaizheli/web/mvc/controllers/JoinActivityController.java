@@ -106,6 +106,8 @@ public class JoinActivityController {
 		Activity activity=activityRepository.findOne(id);
 		activityRepository.inc(id, "applicationCount", -1);
 		activityRepository.inc(activity.getId(),"currentNum",-1);
+		activity.updateHot();
+		activityRepository.save(activity);
 		Join join = joinRepository.findByActivityAndjoiner(activity.getId(),app.getApplicant().getId());
 		Action action = new Action();
 		action.setOwner(user.getId());

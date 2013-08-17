@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +64,7 @@
                				 href="#upload-image-modal" data-toggle="modal" title="上传,引用图片" style="margin-left: 60px;">+</a>
 					</div>
 				</li>
-				<li id="活动细节" >
+				<li id="活动细节" style="height:600px;">
 					<div class="row-fluid">
 							<div class="control-group " >
 								<label class="control-label fs-15 lh-20 c-ffc" for="title">* 给你的活动取个名称吧</label>
@@ -99,7 +100,7 @@
 							<div class="control-group " >
 								<label class="control-label fs-15 lh-20 c-ffc" for="startDate">* 活动开始时间</label>
 								<div>
-									<div class="bfh-datepicker controls fs-16 lh-18" data-format="y-m-d" style="float:left">
+									<div class="bfh-datepicker controls fs-16 lh-18" data-format="y-m-d" style="float:left" data-date="<fmt:formatDate value="<%= new java.util.Date() %>" pattern="yyyy-MM-dd"/>">
 										<div class="input-prepend bfh-datepicker-toggle" data-toggle="bfh-datepicker" >
 											<span class="add-on">
 												<i class="icon-calendar"></i>
@@ -169,7 +170,7 @@
 							<div class="control-group mt-20" >
 								<label class="control-label fs-15 lh-20 c-ffc" for="endDate">* 活动结束时间</label>
 								<div>
-									<div class="bfh-datepicker controls fs-16 lh-18" data-format="y-m-d" style="float:left">
+									<div class="bfh-datepicker controls fs-16 lh-18" data-format="y-m-d" style="float:left" data-date="<fmt:formatDate value="<%= new java.util.Date() %>" pattern="yyyy-MM-dd"/>">
 										<div class="input-prepend bfh-datepicker-toggle" data-toggle="bfh-datepicker" >
 											<span class="add-on">
 												<i class="icon-calendar"></i>
@@ -260,7 +261,7 @@
 					</div>
 				</li>
 
-				<li id="活动规划" >
+				<li id="活动规划" style="height:600px;">
 					<div class="row-fluid">
 						<div class="control-group mt-20" >
 							<div class="input-append">
@@ -291,8 +292,8 @@
 		    					<input id="fee" class="validate[required]" type="hidden" 
 		    					data-prompt-position="centerRight:0,-4" name="fee" value="${activityCreationVo.fee}" >
 			    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="fee">
-			    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val="1">是</button>
-			    					<button id="gender_target" class="btn btn-large btn-info fs-16" type="button" data-val="0">无</button>
+			    					<button id="inputMale" class="btn btn-large  fs-16" type="button" data-val="1">是</button>
+			    					<button id="gender_target" class="btn btn-large fs-16" type="button" data-val="0">无</button>
 			    				</div>
 							</div>
 					    </div>
@@ -302,14 +303,14 @@
 			    				<input id="apply" class="validate[required]" type="hidden" 
 			    					data-prompt-position="centerRight:0,-4" name="apply" value="${activityCreationVo.apply}" >
 			    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="apply">
-			    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val="1">是</button>
-			    					<button id="gender_target" class="btn btn-large btn-info fs-16" type="button" data-val="0">否</button>
+			    					<button id="inputMale" class="btn btn-large  fs-16" type="button" data-val="1">是</button>
+			    					<button id="gender_target" class="btn btn-large  fs-16" type="button" data-val="0">否</button>
 			    				</div>
 							</div>
 					    
 					    <div class="control-group mt-20">
 					    	<label class="control-label fs-15 lh-20 c-ffc" for="apply_req">若需申请表,请选择需要的信息（邮箱、昵称、性别默认个人基本信息）：</label><br>
-							<div class="controls fs-16 lh-18" style="color:#FFCC66 ">
+							<div class="controls fs-16 lh-18" style="color:#FF0000 ">
 			    				<label class="checkbox inline">
 								<input type="checkbox" id="realNameReq" name="realNameReq" value=true>
 									真实姓名
@@ -358,10 +359,10 @@
 			
 					<div style="float:right; margin-top:5px;">
 						    
-							<button  id="submit-btn" type="submit" class=" btn btn-primary btn-large" data-loading-text="创建中..." onclick="editor()">
+							<button  id="submit-btn" type="submit" class="btn-orange btn-large" data-loading-text="创建中..." onclick="editor()">
 								提交该活动</button>
 						
-						<a id="return-btn" class="btn btn-success btn-large ml-10" href="<c:url value="/" />">返回主页</a>
+						<a id="return-btn" class="btn btn-large ml-10" href="<c:url value="/" />">返回主页</a>
 					</div>	
 								
 				</li>

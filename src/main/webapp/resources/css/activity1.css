@@ -25,7 +25,7 @@ body#signed-out .inside-main-content {
 }
 
 .jobs-top {
-	background: url(https://d3levm2kxut31z.cloudfront.net/assets/team/struts-5c5d64699d9d7af4411ae6f6f726bb79.png) no-repeat top center;
+	/*background: url(https://d3levm2kxut31z.cloudfront.net/assets/team/struts-5c5d64699d9d7af4411ae6f6f726bb79.png) no-repeat top center;*/
 	padding-top: 40px;
 	margin-top: -50px;
 	margin-bottom: 10px
@@ -43,7 +43,8 @@ body#signed-out .inside-main-content {
 	text-align: center;
 	text-transform: uppercase;
 	font-family: 微软雅黑,"MuseoSans-500";
-	color: #6e8597
+	color: #CC99FF;
+	font-weight: 500;
 }
 
 .jobs-top .job-panel {
@@ -236,7 +237,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 
 .jobs-top .job-panel .job-panel-footer .apply ,.jobs-top .job-panel .job-panel-footer .learn-more {
 	margin: 0 auto 15px auto;
-	background: #358cce;
+	background: #77D8FA;
 	display: block;
 	width: 320px;
 	padding: 12px;
@@ -253,7 +254,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 }
 
 .jobs-top .job-panel .job-panel-footer .apply:hover,.jobs-top .job-panel .job-panel-footer .learn-more:hover {
-	background: #52b327
+	background: #FFA40F;
 }
 
 .jobs-top .job-panel .job-panel-footer .btn {
@@ -518,7 +519,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 }
 
 .join-us-banner {
-	background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/banner-dots-251e1587d72af8c1b33b50b676ca6bd4.png) 0px 8px repeat-x,url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/banner-dots-251e1587d72af8c1b33b50b676ca6bd4.png) 0px 50px repeat-x,#343131;
+	background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/banner-dots-251e1587d72af8c1b33b50b676ca6bd4.png) 0px 8px repeat-x,url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/banner-dots-251e1587d72af8c1b33b50b676ca6bd4.png) 0px 50px repeat-x,#78756D;
 	padding-top: 18px;
 	height: 40px;
 	width: 1000px;
@@ -532,7 +533,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 	content: " ";
 	width: 0;
 	height: 0;
-	border-top: 20px solid #000;
+	border-top: 20px solid #78756D;
 	border-left: 20px solid transparent;
 	bottom: -20px;
 	left: 0px;
@@ -543,7 +544,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 	content: " ";
 	width: 0;
 	height: 0;
-	border-top: 20px solid #000;
+	border-top: 20px solid #78756D;
 	border-right: 20px solid transparent;
 	bottom: -20px;
 	right: 0px;
@@ -569,7 +570,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 }
 
 .join-us-banner .view-jobs {
-	background: #000;
+	background: #4B4A48;
 	color: #fff;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -602,6 +603,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 }
 
 .page-footer {
+	background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper-texture-78e81f14f426b1043da12ae2e3894487.jpg) repeat;
 	height: 20px;
 	padding: 20px 70px;
 	border-top: 1px solid #eaeaea
@@ -676,7 +678,6 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 }
 
 .team-header {
-	background: #555 url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/pattern-9b343c69d49d77de7c574865c9e6a4c9.png) repeat;
 	height: 150px;
 	padding: 35px 70px 0 70px
 }
@@ -723,7 +724,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 	text-transform: uppercase;
 	float: right;
 	display: block;
-	background: rgba(0,0,0,0.2);
+	background: #78756D;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-ms-border-radius: 4px;
@@ -755,7 +756,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 }
 
 .team-header .follow-team:hover {
-	background: rgba(0,0,0,0.4)
+	background: #78756D
 }
 
 .team-header .connections {
@@ -1230,6 +1231,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 }
 
 #challenges {
+	
 	padding: 30px 70px
 }
 
@@ -1272,7 +1274,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 }
 
 #favourite-benefits {
-	background: #555 url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/pattern-9b343c69d49d77de7c574865c9e6a4c9.png) repeat;
+	
 	padding: 30px 70px 30px 0px;
 	color: #fff;
 	position: relative
@@ -1700,7 +1702,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 }
 
 #why-work {
-	background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper-texture-78e81f14f426b1043da12ae2e3894487.jpg) repeat;
+	
 	padding-bottom: 40px
 }
 
@@ -1762,7 +1764,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 	text-align: center;
 	font-family: "MuseoSans-900";
 	color: #fff;
-	background: #398CCE url("../img/number.png") no-repeat top;
+	background: #FDBC4C url("../img/number.png") no-repeat top;
 }
 
 #why-work .reasons li .two {
