@@ -125,7 +125,7 @@
 			     </div> 
 		    </section> 
 		    <div class="page"> 
-		     <header class="team-header cf" style="background-color:#FDBC4C"> 
+		     <header class="team-header cf" style="background-color:#FCBF5C"> 
 		      	<div class="team-logo">
 			       <a  href="<c:url value="/profiles/${activity.createdBy.id}" />">
 					  <img class="team-page-avatar" width=104 height=104 src="${f:avatarUrl(activity.createdBy.avatar, activity.createdBy.gender)}" />
@@ -191,7 +191,7 @@
 		       <p>追踪：${activity.trackCount}</p> 
 		      </div> 
 		     </section> 
-     <section class="cf" id="favourite-benefits" style="background-color:#B6ECFE">
+     <section class="cf" id="favourite-benefits" style="background-color:#BBE2F0">
      	<div style="padding-left:80px; padding-right:80px;">
      	<h3>活 动 补 充</h3>  
    			${activity.content}

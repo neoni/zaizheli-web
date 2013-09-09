@@ -24,9 +24,10 @@
 			<li><a class="btn mb-5 btn-info" act="<c:url value="/ops/share/${activity.id}" />"
 				style="margin-bottom:5px;" onclick="op.show_forward(event.currentTarget); event.preventDefault();">
 				<i class="icon-share-alt icon-white"></i>&nbsp;<span>转发(${pin.shareCount})</span></a></li>
+				<!-- <div class="bshare-custom" style=""><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script> -->
 			<li><a class="btn mb-5 btn-danger" act="<c:url value="/ops/agree/${pin.activityId}" />"
 				style="margin-bottom:5px;" onclick="op.give_agreement(event.currentTarget); event.preventDefault(); ">
-				<i class="icon-heart icon-white"></i>&nbsp;&nbsp;<span>赞(${pin.agreeCount})&nbsp;</span></a></li>
+				<i class="icon-heart icon-white"></i>&nbsp;&nbsp;&nbsp;<span>赞(${pin.agreeCount})&nbsp;</span></a></li>
 		</ul></div>
 	</div>
 	<div class="caption">

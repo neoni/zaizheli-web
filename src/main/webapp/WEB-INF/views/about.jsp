@@ -48,6 +48,11 @@
 				</p>
 				<h3>联系及反馈邮箱</h3>
 					<h4> blue.snow13@163.com </h4>
+					<br>
+			<h3>有空多来踩踩吧~ 即使喂喂鱼也挺好的</h3>
+			<div style="margin-bottom:70px">
+				
+				<CENTER><EMBED height=300 type=application/x-shockwave-flash width=660 src=http://fishgadget.googlecode.com/svn/trunk/fish.swf FLASHVARS="up_numFish=6&amp;up_fishColor4=#FFFFFF&amp;up_backgroundColor=F6F6F6&amp;up_fishColor1=F4A61C&amp;up_fishColor7=F45540&amp;up_fishColor6=F45540&amp;up_fishColor8=F45540&amp;up_fishColor2=C4C4C4&amp;up_fishColor9=F45540&amp;up_fishColor3=#600000&amp;up_fishName=Fish&amp;up_fishColor5=F45540&amp;up_fishColor10=F45540&amp;up_backgroundImage=http://&amp;up_foodColor=FCB347&amp;" BGCOLOR="#F6F6F6" WMODE="opaque" ></EMBED></CENTER></div>
 			</div>
 		</div>
 		</div>

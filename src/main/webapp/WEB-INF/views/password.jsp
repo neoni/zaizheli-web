@@ -36,12 +36,12 @@
 						</div>						
 						<div class="row-fluid mt-10">
 							 <div class="span6">
-							 	<button type="submit" class="btn btn-primary btn-large">提交</button>
+							 	<button type="submit" class="btn btn-warning btn-large">提交</button>
 							 	<a class="btn btn-large ml-10" href="<c:url value="/" />" />返回</a>
 							</div>
 						</div>
 					</form:form>
-					<p><a href="<c:url value="/signup" />">还没有在浙里的账号？立即注册！</a></p>
+					<p><a href="<c:url value="/signup" />"><font>还没有在浙里的账号？立即注册！</font></a></p>
 				</div>
 			</div>
 		</div>

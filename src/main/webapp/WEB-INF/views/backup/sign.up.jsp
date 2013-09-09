@@ -69,13 +69,13 @@
 						</div>
 						<div class="row-fluid mt-10">
 							<div class="span8">
-							 	<button type="submit" class="btn-orange btn-or-large">注册</button>
+							 	<button type="submit" class="btn btn-primary btn-large">注册</button>
 							 	<a class="btn btn-large ml-10" href="<c:url value="/" />">返回</a>
 								<p><font size="2"><br>
-								一旦点击"注册"意味着您同意"在浙里"的 <a href="<c:url value="/resources/login/terms.html" />"><font >服务条款</font></a>。<br> 
-								另请参阅我们的 <a href="<c:url value="/resources/login/privacy.html" />"><font>隐私政策。</font></a></font></p>
+								一旦点击"注册"意味着您同意"在浙里"的 <a href="<c:url value="/resources/login/terms.html" />">服务条款</a>。<br> 
+								另请参阅我们的 <a href="<c:url value="/resources/login/privacy.html" />">隐私政策。</a></font></p>
 							 </div>
-							<a class="span4 ta-r"><a href="<c:url value="/signin" />"><font >我有账号了，立即去登录！</font></a></a>
+							<a class="span4 ta-r"><a href="<c:url value="/signin" />">我有账号了，立即去登录！</a></a>
 						</div>
 					</form:form>
 				</div>
