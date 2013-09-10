@@ -36,7 +36,7 @@
 			data-city="${pin.city}" data-lngLat="${pin.lngLat[1]},${pin.lngLat[0]}">
 			<i class="icon-map-marker"></i>${pin.placeAddr}</a></p>
 		
-		<h5>${pin.title}</h5>
+		<a href="<c:url value="/activities/${pin.activityId}" />"><h4 style="color:#757575" >${pin.title}</h4></a>
 	</div>
 	
 	<div class="convo clear">

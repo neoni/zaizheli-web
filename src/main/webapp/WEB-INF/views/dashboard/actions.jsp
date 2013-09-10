@@ -93,17 +93,17 @@
 					<c:otherwise>
 					<p><a href="<c:url value="/profiles/${action.owner.id}" />">
 								${action.owner.name}</a>
-							评论了</p>
+							对&nbsp;</p>
 							<p>
 							<c:if test="${not empty action.basedOn}">
-							<a href="<c:url value="/profiles/${action.basedOn.owner.id}" /> ">@${action.basedOn.owner.name}</a>:
+							<a href="<c:url value="/profiles/${action.basedOn.owner.id}" /> ">@${action.basedOn.owner.name} </a>回复了:&nbsp;
 							<span>${action.basedOn.content}</span>
 							</c:if>
 							<c:if test="${not empty action.targetActivity}">
 								<a href="<c:url value="/activities/${action.targetActivity.id}" /> ">${action.targetActivity.title} @ 
 										${action.targetActivity.place.fullAddr}</a><br/>
 								
-							</c:if>
+							</c:if>评论了:&nbsp;
 							</p>
 							<p>${action.content}</p>	
 					</c:otherwise>

@@ -128,7 +128,7 @@
 				<span style="margin-left:12px;">${filter.typeLabel}: &nbsp;</span>
 				<input class="search-query search-input span3" name="${filter.type}" 
 					type="text" placeholder="请输入想要搜索的关键词..." value="${filter.value}"
-					style="display:inline-block; width:180px; border-radius:8px 8px 8px 8px;">				
+					style="display:inline-block; width:160px; border-radius:8px 8px 8px 8px;">				
 			</div>
 			<div class="f-l"><a class="icon-search " style=" margin-top: 8px; margin-left:18px;" id="toSearch">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Go</a></div>
 			</c:otherwise>

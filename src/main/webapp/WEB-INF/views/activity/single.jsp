@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>在浙里 在浙里——分享你我的社交</title>
-	
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />

@@ -935,7 +935,7 @@ div.nomargin{	/* our special nomargin class */
 	border-width : 4px;
 	border-color : #A0522D;
 	border-style : inset;
-	background-image : url("../img/board.jpg");
+	background-image : url("../img/board-1.jpg");
 	filter:alpha(opacity=90); /*IE滤镜，透明度90%*/
 	-moz-opacity:0.9; /*Firefox私有，透明度90%*/
 	opacity:0.9;/*其他，透明度90%*/
@@ -948,7 +948,7 @@ div.nomargin{	/* our special nomargin class */
 	border-width : 4px;
 	border-color : #A0522D;
 	border-style : inset;
-	background-image : url("../img/board.jpg");
+	background-image : url("../img/board-1.jpg");
 	filter:alpha(opacity=90); /*IE滤镜，透明度90%*/
 	-moz-opacity:0.9; /*Firefox私有，透明度90%*/
 	opacity:0.9;/*其他，透明度90%*/
@@ -962,13 +962,23 @@ div.nomargin{	/* our special nomargin class */
 	border-width : 4px;
 	border-color : #A0522D;
 	border-style : inset;
-	filter:alpha(opacity=90); /*IE滤镜，透明度90%*/
-	-moz-opacity:0.9; /*Firefox私有，透明度90%*/
-	opacity:0.9;/*其他，透明度90%*/
+	background-color: #ffffff;
 	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
 	behavior: url(PIE.htc);
 	width: 800px;
 
+}
+
+.board-4 {
+	border-width : 4px;
+	border-color : #A0522D;
+	border-style : inset;
+	background-image : url("../img/board-2.jpg");
+	filter:alpha(opacity=90); /*IE滤镜，透明度90%*/
+	-moz-opacity:0.9; /*Firefox私有，透明度90%*/
+	opacity:0.9;/*其他，透明度90%*/
+	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+	behavior: url(PIE.htc);	
 }
 /****************** application **********************/
 .app_tab {
@@ -1206,8 +1216,8 @@ body #content-wrapper .site {
 }
 
 .markdown-format h3 {
-    border-bottom: 1px dotted #3399FF;
-    color: #325D72;
+    border-bottom: 1px dotted #FFA40F;
+    color: #FFA40F;
     font-size: 24px;
     font-weight: bold;
     margin: 1.5em 0 1em;
@@ -1217,6 +1227,7 @@ body #content-wrapper .site {
 .markdown-format .intro {
 }
 .markdown-format p {
+	color:#757575;
     margin: 2em 0;
     font-size: 16px;
     line-height: 24px;
@@ -1224,6 +1235,7 @@ body #content-wrapper .site {
 }
 
 .markdown-format li {
+	color:#757575;
     margin: 1em 0;
     font-size: 14px;
     line-height: 22px;
@@ -1231,7 +1243,7 @@ body #content-wrapper .site {
 }
 
 .markdown-format h4 {
-    color: #333333;
+    color:#757575;
     font-size: 1.2em;
     font-weight: bold;
     margin: 1em 0;

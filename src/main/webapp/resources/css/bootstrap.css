@@ -4336,18 +4336,18 @@ div.subnav .nav > li.dropdown.open > .dropdown-toggle:hover {
 }
 
 .btn-warning {
-  background-color: #fbd627;
-  background-image: -moz-linear-gradient(top, #ffde42, #f4ca00);
-  background-image: -ms-linear-gradient(top, #ffde42, #f4ca00);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffde42), to(#f4ca00));
-  background-image: -webkit-linear-gradient(top, #ffde42, #f4ca00);
-  background-image: -o-linear-gradient(top, #ffde42, #f4ca00);
-  background-image: linear-gradient(top, #ffde42, #f4ca00);
+  background-color: #ff942e;
+  background-image: -moz-linear-gradient(top, #ffa44d, #ff7d00);
+  background-image: -ms-linear-gradient(top, #ffa44d, #ff7d00);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffa44d), to(#ff7d00));
+  background-image: -webkit-linear-gradient(top, #ffa44d, #ff7d00);
+  background-image: -o-linear-gradient(top, #ffa44d, #ff7d00);
+  background-image: linear-gradient(top, #ffa44d, #ff7d00);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffde42', endColorstr='#f4ca00', GradientType=0);
-  border-color: #f4ca00 #f4ca00 #a88b00;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa44d', endColorstr='#ff7d00', GradientType=0);
+  border-color: #ff7d00 #ff7d00 #b35800;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #f4ca00;
+  *background-color: #ff7d00;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
@@ -4357,12 +4357,12 @@ div.subnav .nav > li.dropdown.open > .dropdown-toggle:hover {
 .btn-warning.active,
 .btn-warning.disabled,
 .btn-warning[disabled] {
-  background-color: #f4ca00;
-  *background-color: #dbb500;
+  background-color: #ff7d00;
+  *background-color: #e67100;
 }
 .btn-warning:active,
 .btn-warning.active {
-  background-color: #c1a000 \9;
+  background-color: #cc6400 \9;
 }
 .btn-danger {
   background-color: #e15454;

@@ -8,6 +8,7 @@
 	<meta charset=utf-8>
     <title>忘记密码 在浙里 分享你我的社交</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
@@ -20,9 +21,9 @@
     <div class="container">
 		<div class="row mt-30" >
 			<div class="span8 offset2 mt-20">
-				<div class="hero-unit board-2">
+				<div class="hero-unit board-4">
 				<form:form id="passForm" cssClass="sign-in" modelAttribute="forgetPasswordVo" method="post">
-					<img src="<c:url value="/resources/img/zaizheli-icon.png" />" /><hr>					
+					<img src="<c:url value="/resources/img/logo.jpg" />" /><hr>					
 						<div class="row-fluid ">
 						<div class="control-group">
 							<div class="controls">
@@ -41,6 +42,7 @@
 							</div>
 						</div>
 					</form:form>
+					<br>
 					<p><a href="<c:url value="/signup" />"><font>还没有在浙里的账号？立即注册！</font></a></p>
 				</div>
 			</div>

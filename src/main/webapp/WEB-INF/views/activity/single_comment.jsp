@@ -17,7 +17,7 @@
 		src="${f:avatarUrl(comment.createdBy.avatar, comment.createdBy.gender)}" /></a>
 	<p class="fs-20"><a href="<c:url value="/profiles/${comment.createdBy.id}" />">${comment.createdBy.name}</a></p>
 	<p class="fs-14 mb-0">
-		<span> <fmt:formatDate value="${comment.createdAt}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
+		<span style="color:#757575"> <fmt:formatDate value="${comment.createdAt}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
 	</p>
 	<br>
 	<div  style="background-color:#343131 float:right;"></div> 

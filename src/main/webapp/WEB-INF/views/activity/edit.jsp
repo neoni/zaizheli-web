@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>我在浙里 在浙里——分享你我的社交</title>
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />	
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />	
@@ -270,12 +271,13 @@
 						<div class="control-group mt-20" >
 							<div class="input-append">
 								<label class="control-label fs-15 lh-20 c-ffc" for="fullAddr">* 活动地点</label>
-								<input id="full-addr-input" name="fullAddr" type="text" class="controls input-xlarge"
-										placeholder="点击右边的图标选择地点吧" autocomplete="off" value="<c:out value="${signUpUserVo.fullAddr}" />" />
 								<span class="add-on">
 									<a id="place-locate-btn" class="" 
 											href="#place-locate-modal" data-toggle="modal" title="手动定位地址">
 									<i class="icon-map-marker"></i></a></span>
+								<input id="full-addr-input" name="fullAddr" type="text" class="controls input-xlarge"
+										placeholder="点击右边的图标选择地点吧" autocomplete="off" value="<c:out value="${signUpUserVo.fullAddr}" />" />
+								
 							</div>
 							<div><form:errors path="fullAddr" cssClass="alert alert-error"/></div>
 					    </div>

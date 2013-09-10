@@ -8,6 +8,7 @@
 	<meta charset=utf-8>
     <title>注册 在浙里 分享你我的社交</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
@@ -23,7 +24,7 @@
 			<div class="span8 offset2 mt-20">
 				<div class="hero-unit board-1">
 					<form:form id="signUpForm" cssClass="sign-in" modelAttribute="signUpUserVo" method="post">
-					<img src="<c:url value="/resources/img/zaizheli-icon.png" />" /><hr>					
+					<img src="<c:url value="/resources/img/logo.jpg" />" /><hr>					
 						<div class="row-fluid ">
 						<div class="control-group">
 							<div class="controls">
@@ -69,7 +70,7 @@
 						</div>
 						<div class="row-fluid mt-10">
 							<div class="span8">
-							 	<button type="submit" class="btn-orange btn-or-large">注册</button>
+							 	<button type="submit" class="btn btn-warning btn-large">注册</button>
 							 	<a class="btn btn-large ml-10" href="<c:url value="/" />">返回</a>
 								<p><font size="2"><br>
 								一旦点击"注册"意味着您同意"在浙里"的 <a href="<c:url value="/resources/login/terms.html" />"><font >服务条款</font></a>。<br> 
