@@ -16,7 +16,7 @@
                             <div> </div>
                             <ul class="nav">
                               <li id="nav-profiles">
-                                <a href="<c:url value="/profiles" />">在这里的人们</a>
+                                <a href="<c:url value="/profiles" />">这里的人</a>
                               </li>
                               <li id="nav-create">
                                 <a href="<c:url value="/activities/create" />">晒活动</a>
@@ -70,7 +70,7 @@
                                   </a>
                                   <ul class="dropdown-menu">
                                     <li><a href="<c:url value="/dashboard" />">我的关注</a></li>
-                                    <li><a href="<c:url value="/profiles/${signInUser.id}" />">在这里的我</a></li>
+                                    <li><a href="<c:url value="/profiles/${signInUser.id}" />">我在这里</a></li>
                                     <li><a href="<c:url value="/setting" />">账号设置</a></li>
                                     <li class="divider"></li>
                                     <li><a href="<c:url value="/signout" />">退出登录</a></li>
