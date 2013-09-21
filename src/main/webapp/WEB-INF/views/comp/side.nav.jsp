@@ -3,11 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://zaizheli.net/functions" prefix="f" %>
 <ul id="side-nav" class="dis-n">
-	<li class="about"><a class ="btn-info" href="<c:url value="/activities/${activity.id}" />" title="活动主页" >活动主页 &nbsp;&nbsp;&nbsp;<i class="icon-home icon-white"></i></a></li>
+	<li class="about"><a class ="btn-ora" href="<c:url value="/activities/${activity.id}" />" title="活动主页" >活动主页 &nbsp;&nbsp;&nbsp;<i class="icon-home icon-white"></i></a></li>
 	<c:choose>
 	<c:when test="${signInUser.id == activity.createdBy.id}">
-		<li class="code"><a class="btn-primary" href="<c:url value="/activity/${activity.id}/edit"/>" title="活动编辑">活动编辑&nbsp;&nbsp;&nbsp;<i class="icon-edit icon-white"></i></a></li>
-		<li class="code"><a class="btn-success" href="<c:url value="/activity/${activity.id}/applications"/>" title="申请处理">申请处理&nbsp;&nbsp;&nbsp;<i class="icon-file icon-white"></i></a></li>
+		<li class="code"><a class="btn-blue-2" href="<c:url value="/activity/${activity.id}/edit"/>" title="活动编辑">活动编辑&nbsp;&nbsp;&nbsp;<i class="icon-edit icon-white"></i></a></li>
+		<li class="code"><a class="btn-green-2" href="<c:url value="/activity/${activity.id}/applications"/>" title="申请处理">申请处理&nbsp;&nbsp;&nbsp;<i class="icon-file icon-white"></i></a></li>
 	</c:when>
 	<c:otherwise>
 		 <c:if test="${activity.status eq '征集成员中'}"> 	
@@ -18,7 +18,7 @@
 		<li class="code"><a class="btn-success" href="<c:url value="/activity/${activity.id}/joiners"/>" title="参加人员">参加人员&nbsp;&nbsp;&nbsp;<i class="icon-user icon-white"></i></a></li>                                     
 	</c:otherwise>
 	</c:choose>
-	<li class="vote"><a class="btn-inverse" href="<c:url value="/activity/${activity.id}/gallery"/>"  title="活动图库">活动图库&nbsp;&nbsp;&nbsp;<i class=" icon-picture icon-white"></i></a></li>
+	<li class="vote"><a class="btn-red" href="<c:url value="/activity/${activity.id}/gallery"/>"  title="活动图库">活动图库&nbsp;&nbsp;&nbsp;<i class=" icon-picture icon-white"></i></a></li>
 </ul>
 <script type="text/javascript">
 	$(function() {

@@ -3,7 +3,7 @@ html {
 }
 
 #login_html {
-	background: url("../img/bg_grid.png") repeat scroll 0 0 #F7F5F5;
+	background: url("../img/bg10.jpg") repeat scroll 0 0 #F7F5F5;
 }
 
 body {
@@ -932,8 +932,8 @@ div.nomargin{	/* our special nomargin class */
 
 /* 登陆注册界面的的board*/
 .board-1{
-	border-width : 4px;
-	border-color : #A0522D;
+	border-width : 6px;
+	border-color : #00a2e8;
 	border-style : inset;
 	background-image : url("../img/board-1.jpg");
 	filter:alpha(opacity=90); /*IE滤镜，透明度90%*/
@@ -945,8 +945,8 @@ div.nomargin{	/* our special nomargin class */
 }
 
 .board-2 {
-	border-width : 4px;
-	border-color : #A0522D;
+	border-width : 6px;
+	border-color : #00a2e8;
 	border-style : inset;
 	background-image : url("../img/board-1.jpg");
 	filter:alpha(opacity=90); /*IE滤镜，透明度90%*/
@@ -959,8 +959,8 @@ div.nomargin{	/* our special nomargin class */
 
 
 .board-3 {
-	border-width : 4px;
-	border-color : #A0522D;
+	border-width : 6px;
+	border-color : #00a2e8;
 	border-style : inset;
 	background-color: #ffffff;
 	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
@@ -1247,5 +1247,34 @@ body #content-wrapper .site {
     font-size: 1.2em;
     font-weight: bold;
     margin: 1em 0;
+}
+
+
+/*关联第三方账号，按钮*/
+.connect
+.connect .hd{ padding:15px 0 20px 18px; font-size:12px; border-top:1px solid #ebebeb;}
+.connect .bd{ padding:0 0 30px 18px; width:480px;}
+.connect a{ width:53px; height:54px; text-align:center; font-size:12px; color:#999; display:block; margin-right:25px; float:left;}
+.connect a:hover{ color:#666; text-decoration:none;}
+.connect a i{ width:49px; height:50.5px; background:url("../img/connect-icon.png") no-repeat; display:block; margin:0 0 4px 4px; cursor:pointer;}
+.connect a.weibo i{ background-position:0 0;}
+.connect a.weibo:hover i{ background-position:0 -51px;}
+.connect a.qq i{ background-position:-49px 0;}
+.connect a.qq:hover i{ background-position:-49px -51px;}
+.connect a.renren i{ background-position:-98px 0;}
+.connect a.renren:hover i{ background-position:-98px -51px;}
+.connect a.douban i{ background-position:-147px 0;}
+.connect a.douban:hover i{ background-position:-147px -51px;}
+
+
+/*一键分享隐藏窗口设置*/
+#share-choice{
+position: absolute;
+visibility: hidden;
+overflow: hidden;
+border:1px solid #CCC;
+background-color:#F9F9F9;
+border:1px solid #333;
+padding:5px;
 }
 

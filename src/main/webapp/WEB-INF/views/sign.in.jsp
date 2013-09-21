@@ -23,7 +23,7 @@
 			<div class="span8 offset2 mt-20">
 				<div class="hero-unit board-2">
 					<form:form id="signInForm"  cssClass="sign-in" modelAttribute="signInCredentialVo" method="post">
-					<img src="<c:url value="/resources/img/logo.jpg" />" /><hr>					
+					<img src="<c:url value="/resources/img/logo.jpg" />" /><br><br>				
 						<div class="row-fluid">
 						<div class="control-group">
 							<div class="controls">
@@ -46,15 +46,26 @@
 							</div>
 						</div>
 						</div>
-						<div class="row-fluid" style="margin-top:50px;">
+						<div class="row-fluid" style="margin-top:20px;">
 							 <div class="span6">
-							 	<button type="submit" class="btn btn-warning btn-large">登 录</button>
+							 	<button type="submit" class="btn btn-ora btn-large">登 录</button>
 							 	<a class="btn btn-large ml-10" href="<c:url value="/" />">返回</a>&nbsp;&nbsp;&nbsp;
 								<a class="span6 ta-r"><a href="<c:url value="/password" />"><font>忘记密码？</font></a></a>
 							</div>
 						</div>
 					</form:form>
 					<p><a href="<c:url value="/signup" />"><font>还没有在浙里的账号？立即注册！</font></a></p>
+					<hr>
+					<div class="connect">
+                        <p class="hd">用合作网站账户直接登录</p>
+                        <div class="bd">
+                            <a  class="weibo"><i></i>新浪微博</a>
+                            <a  class="qq"><i></i>QQ</a>
+                            <a  class="renren"><i></i>人人网</a>
+                            <a  class="douban"><i></i>豆瓣</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
 				</div>
 			</div>
 		</div>

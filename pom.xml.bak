@@ -17,6 +17,7 @@
 		<spring.framework.version>3.2.2.RELEASE</spring.framework.version>
 		<spring.data.mongodb.version>1.0.1.RELEASE</spring.data.mongodb.version>
 		<spring.data.jpa.version>1.0.1.RELEASE</spring.data.jpa.version>
+		<cloudfoundry.runtime.version>0.8.1</cloudfoundry.runtime.version>
 		<slf4j.verison>1.6.4</slf4j.verison>
 	</properties>
 	<dependencies>
@@ -32,14 +33,14 @@
 			<version>${spring.framework.version}</version>
 		</dependency>
 		<dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>2.11.1</version>
-        </dependency>
-		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
 			<version>${spring.data.mongodb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cloudfoundry</groupId>
+			<artifactId>cloudfoundry-runtime</artifactId>
+			<version>${cloudfoundry.runtime.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -133,14 +134,6 @@
 		</dependency>	
 	</dependencies>
 	<repositories>
-		 <repository>
-            <id>baemaven</id>
-            <name>BAE Maven</name>
-            <url>http://maven.duapp.com/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
 		<repository>
 			<id>spring-release</id>
 			<name>Spring Maven Release Repository</name>
@@ -160,46 +153,8 @@
 			<url>https://src.springsource.org/svn/spring-flex/tags/spring-flex-1.5.0.RELEASE/local-repo/</url>
 		</repository>
 	</repositories>
-	<pluginRepositories>
-        <pluginRepository>
-            <id>baemaven</id>
-            <name>BAE Maven</name>
-            <url>http://maven.duapp.com/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
 	<build>
+		<defaultGoal>compile</defaultGoal>
 		<finalName>zaizheli-web</finalName>
-		 <plugins>
-        <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-compiler-plugin</artifactId>
-              <configuration>
-                  <source>1.6</source>
-                  <target>1.6</target>
-              </configuration>
-        </plugin>
-            <plugin>
-                <groupId>com.baidu.bae.maven</groupId>
-                <artifactId>bae-maven-plugin</artifactId>
-                <version>1.0.0.0</version>
-                <executions>
-                  <execution>
-                      <id>baedeploy</id>
-                      <phase>install</phase>
-                      <goals>
-                          <goal>baedeploy</goal>
-                      </goals>
-                      <configuration>
-                          <changepass>false</changepass>
-                          <appid>appidpoi1o4aq30</appid>
-                          <version>0</version>
-                      </configuration>
-                  </execution>
-                </executions>
-            </plugin>
-        </plugins>
 	</build>
 </project>

@@ -24,8 +24,8 @@
 	<p style="padding-left:100px;">${comment.content}</p> 
 </li> 
 <p class="f-r"> 
-	<a href="#" act="<c:url value="/comment/agree/${comment.id}" />" onclick="op.give_cagreement(event.currentTarget); event.preventDefault(); " class="cmt_tool btn-danger btn-mini" ><i class="icon-heart icon-white"></i>&nbsp;&nbsp;<span>赞(${comment.agreeCount})&nbsp;</span></a>
-	<a  href="#comment" user-id="${comment.createdBy.id}" class="reply cmt_tool btn-info btn-mini" style="padding-left:5px;" onclick="op.replyto('${comment.createdBy.id}','${comment.createdBy.name}','${comment.id}');"><i class="icon-comment icon-white"></i>&nbsp;<span>&nbsp;回复&nbsp;</span></a> 
+	<a href="#" act="<c:url value="/comment/agree/${comment.id}" />" onclick="op.give_cagreement(event.currentTarget); event.preventDefault(); " class="cmt_tool btn-pink btn-mini" ><i class="icon-heart icon-white"></i>&nbsp;&nbsp;<span>赞(${comment.agreeCount})&nbsp;</span></a>
+	<a  href="#comment" user-id="${comment.createdBy.id}" class="reply cmt_tool btn-purple btn-mini" style="padding-left:5px;" onclick="op.replyto('${comment.createdBy.id}','${comment.createdBy.name}','${comment.id}');"><i class="icon-comment icon-white"></i>&nbsp;<span>&nbsp;回复&nbsp;</span></a> 
 </p>
 </div>
 </c:forEach>

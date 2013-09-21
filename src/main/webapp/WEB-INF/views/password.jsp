@@ -23,7 +23,7 @@
 			<div class="span8 offset2 mt-20">
 				<div class="hero-unit board-4">
 				<form:form id="passForm" cssClass="sign-in" modelAttribute="forgetPasswordVo" method="post">
-					<img src="<c:url value="/resources/img/logo.jpg" />" /><hr>					
+					<img src="<c:url value="/resources/img/logo.jpg" />" /><br><br>					
 						<div class="row-fluid ">
 						<div class="control-group">
 							<div class="controls">
@@ -35,14 +35,14 @@
 							</div>
 						</div>
 						</div>						
-						<div class="row-fluid mt-10">
+						<div class="row-fluid mt-20">
 							 <div class="span6">
-							 	<button type="submit" class="btn btn-warning btn-large">提交</button>
+							 	<button type="submit" class="btn btn-ora btn-large">提交</button>
 							 	<a class="btn btn-large ml-10" href="<c:url value="/" />" />返回</a>
 							</div>
 						</div>
 					</form:form>
-					<br>
+					<br><br><br>
 					<p><a href="<c:url value="/signup" />"><font>还没有在浙里的账号？立即注册！</font></a></p>
 				</div>
 			</div>

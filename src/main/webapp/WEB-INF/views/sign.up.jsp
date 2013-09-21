@@ -24,7 +24,7 @@
 			<div class="span8 offset2 mt-20">
 				<div class="hero-unit board-1">
 					<form:form id="signUpForm" cssClass="sign-in" modelAttribute="signUpUserVo" method="post">
-					<img src="<c:url value="/resources/img/logo.jpg" />" /><hr>					
+					<img src="<c:url value="/resources/img/logo.jpg" />" />				
 						<div class="row-fluid ">
 						<div class="control-group">
 							<div class="controls">
@@ -70,7 +70,7 @@
 						</div>
 						<div class="row-fluid mt-10">
 							<div class="span8">
-							 	<button type="submit" class="btn btn-warning btn-large">注册</button>
+							 	<button type="submit" class="btn btn-ora btn-large">注册</button>
 							 	<a class="btn btn-large ml-10" href="<c:url value="/" />">返回</a>
 								<p><font size="2"><br>
 								一旦点击"注册"意味着您同意"在浙里"的 <a href="<c:url value="/resources/login/terms.html" />"><font >服务条款</font></a>。<br> 
@@ -79,6 +79,17 @@
 							<a class="span4 ta-r"><a href="<c:url value="/signin" />"><font >我有账号了，立即去登录！</font></a></a>
 						</div>
 					</form:form>
+					<hr>
+					<div class="connect">
+                        <p class="hd">用合作网站账户直接登录</p>
+                        <div class="bd">
+                            <a  class="weibo"><i></i>新浪微博</a>
+                            <a  class="qq"><i></i>QQ</a>
+                            <a  class="renren"><i></i>人人网</a>
+                            <a  class="douban"><i></i>豆瓣</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
 				</div>
 			</div>
 		</div>

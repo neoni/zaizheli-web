@@ -9,11 +9,11 @@
 			href="<c:url value="/profiles/${pin.userId}" />">
 			<img alt="${pin.name}" width=192 height=192 src="${pin.avatarUrl}"></a>
 		<div class="op-list p-a dis-n " style="top:8px; right: 2px"><ul class="ls-n ta-r">
-			<li><a class="btn mb-5 btn-success follow" style="margin-bottom:5px;" act="<c:url value="/ops/follow/${pin.userId}" />"
+			<li><a class="btn mb-5 btn-pink follow" style="margin-bottom:5px;" act="<c:url value="/ops/follow/${pin.userId}" />"
 				onclick="op.change_follow(event.currentTarget); event.preventDefault();">
 				<i class="icon-heart icon-white" ></i>&nbsp;<span>关注Ta</span></a></li>
-			<li><a class="btn" style="margin-bottom:5px;" onclick="op.pm('${pin.userId}','${pin.name}'); event.preventDefault();" >
-				<i class="icon-envelope"></i>&nbsp;私信Ta</a></li>
+			<li><a class="btn btn-purple" style="margin-bottom:5px;" onclick="op.pm('${pin.userId}','${pin.name}'); event.preventDefault();" >
+				<i class="icon-envelope icon-white"></i>&nbsp;私信Ta</a></li>
 		</ul></div>
 	</div>
 	<div class="caption">

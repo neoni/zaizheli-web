@@ -68,14 +68,14 @@ body#signed-out .inside-main-content {
 }
 
 .jobs-top .job-panel .job-panel-header .job-title {
-	font-size: 2.4em;
+	font-size: 2.7em;
 	float: left;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	-o-text-overflow: ellipsis;
 	-ms-text-overflow: ellipsis;
-	width: 489px
+	width: 680px
 }
 
 .jobs-top .job-panel .apply-section {
@@ -519,7 +519,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 }
 
 .join-us-banner {
-	background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/banner-dots-251e1587d72af8c1b33b50b676ca6bd4.png) 0px 8px repeat-x,url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/banner-dots-251e1587d72af8c1b33b50b676ca6bd4.png) 0px 50px repeat-x,#78756D;
+	background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/banner-dots-251e1587d72af8c1b33b50b676ca6bd4.png) 0px 8px repeat-x,url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/banner-dots-251e1587d72af8c1b33b50b676ca6bd4.png) 0px 50px repeat-x,#ffca00;
 	padding-top: 18px;
 	height: 40px;
 	width: 1000px;
@@ -527,6 +527,9 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 	position: relative;
 	color: #fff;
 	font-size: 13px;
+	filter:alpha(opacity=50); /*IE滤镜，透明度90%*/
+	-moz-opacity:0.5; /*Firefox私有，透明度90%*/
+	opacity:0.5;/*其他，透明度90%*/
 }
 
 .join-us-banner:before {
@@ -569,8 +572,8 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 	display: inline-block
 }
 
-.join-us-banner .view-jobs {
-	background: #4B4A48;
+.join-us-banner .view-jobs-status {
+	background: #df8faa;
 	color: #fff;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -578,13 +581,31 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 	-o-border-radius: 4px;
 	border-radius: 4px;
 	display: inline-block;
-	padding: 6px 12px;
+	padding: 2px 12px;
+	margin-left: 10px;
+	font-size: 1em
+}
+
+.join-us-banner .view-jobs-status:hover {
+	opacity: 0.7
+}
+
+.join-us-banner .view-jobs {
+	background: #a0d4ae;
+	color: #fff;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	display: inline-block;
+	padding: 2px 12px;
 	margin-left: 15px;
 	font-size: 0.8em
 }
 
 .join-us-banner .view-jobs:hover {
-	opacity: 0.5
+	opacity: 0.7
 }
 
 #prem-team .inside-main-content {
@@ -678,6 +699,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 }
 
 .team-header {
+	background: url("../img/join-us.png") no-repeat;
 	height: 150px;
 	padding: 35px 70px 0 70px
 }
@@ -1764,7 +1786,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 	text-align: center;
 	font-family: "MuseoSans-900";
 	color: #fff;
-	background: #FDBC4C url("../img/number.png") no-repeat top;
+	background: #ffd737 url("../img/number.png") no-repeat top;
 }
 
 #why-work .reasons li .two {

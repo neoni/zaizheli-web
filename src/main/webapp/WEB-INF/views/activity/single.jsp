@@ -69,7 +69,7 @@
 		    <section class="jobs-top" id="jobs"> 
 			     <article class="job-panel"> 
 			     	  <header class="job-panel-header cf"> 
-				       	<h2 class="job-title">${activity.title}</h2> 
+				       	<h2 class="job-title"><img src="<c:url value="/resources/img/colorful-logo.png" />" />        ${activity.title}</h2> 
 				      </header>
 				      <div class="content cf"> 
 				       <c:choose>
@@ -121,33 +121,32 @@
 				      </footer> 
 			     </article> 
 			     <div class="learn-more-about fs-14"> 
-			      <p>关 于 活 动 的 更 多 细 节</p> 
+			      <p><font color="#000000">关 于 活 动 的 更 多 细 节</p> 
 			     </div> 
 		    </section> 
 		    <div class="page"> 
-		     <header class="team-header cf" style="background-color:#FCBF5C"> 
+		     <header class="team-header cf"> 
 		      	<div class="team-logo">
 			       <a  href="<c:url value="/profiles/${activity.createdBy.id}" />">
 					  <img class="team-page-avatar" width=104 height=104 src="${f:avatarUrl(activity.createdBy.avatar, activity.createdBy.gender)}" />
 				   </a>
-			      </div>    
-			      <h1>${activity.createdBy.name}</h1> 
-			      <h4><a  data-idr="#fans-idr" class="follow-team add-to-network noauth pr-20">${activity.status}</a></h4>
-			      <div class="op-list pl-40  pb-10 pt-10 f-r">
-					<a class="btn btn-success mr-5 track" act="<c:url value="/ops/track/${activity.id}" />"
+			    </div>    
+			    <h1 style="color:#ffca00">${activity.createdBy.name}</h1><br><br><br><br><br><br><br>			      
+			    <div calss="op-list pl-40  pb-10 pt-10 f-r">
+					<a class="btn btn-green-1 mr-5 track" act="<c:url value="/ops/track/${activity.id}" />"
 						onclick="op.change_track(event.currentTarget); event.preventDefault();">
 						<i class="icon-star icon-white"></i>&nbsp;<span>追踪(${activity.trackCount})</span></a></li>
-					<a class="btn" act="<c:url value="/ops/share/${activity.id}" />"
-						 onclick="op.show_forward(event.currentTarget); event.preventDefault();">
-						<i class="icon-share-alt"></i>&nbsp;<span>转发(${activity.shareCount})</span></a></li>&nbsp;&nbsp;
-					<a class="btn btn-danger" act="<c:url value="/ops/agree/${activity.id}" />"
+					<a class="btn btn-pink" act="<c:url value="/ops/agree/${activity.id}" />"
 						 onclick="op.give_agreement(event.currentTarget); event.preventDefault(); ">
-						<i class="icon-heart icon-white"></i>&nbsp;&nbsp;<span>赞(${activity.agreeCount})&nbsp;</span></a></li>
+						<i class="icon-heart icon-white"></i>&nbsp;&nbsp;<span>赞(${activity.agreeCount})&nbsp;</span></a></li>&nbsp;&nbsp;
 					</a>
-				</div> 
+					<a class="btn btn-purple" act="<c:url value="/ops/share/${activity.id}" />"
+						 onclick="op.show_forward(event.currentTarget); event.preventDefault();">
+						<i class="icon-share-alt icon-white"></i>&nbsp;<span>转发(${activity.shareCount})</span></a></li>
+				</div>
 		     </header> 
 		     <div class="join-us-banner"> 
-		      <p> <span> </span>一 起 来 吧&nbsp;&nbsp;&nbsp;&nbsp;  
+		      <p><a class="view-jobs-status">${activity.status}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
 		      	<a class="view-jobs" href="<c:url value="/activity/${activity.id}/joiners"/>" >查看参与人员</a>
 		      	<a class="view-jobs" href="#comment">去评论吧</a> </p>
 		      	 </p> 
@@ -168,7 +167,7 @@
 				</div>
 				<br>
 		       <div class="box half"> 
-		       <div class="icon" style="background-color:#FDBC4C"></div> 
+		       <div class="icon" style="background-color:#a0d4ae"></div> 
 		       <header> 
 		          <h3>活 动 细 节</h3> 
 		       </header>
@@ -178,7 +177,7 @@
 		       <p>当前人数：${activity.currentNum}</p> 
 		      </div> 
 		      <div class="box half"> 
-		       <div class="icon blub" style="background-color:#FDBC4C"></div> 
+		       <div class="icon blub" style="background-color:#a0d4ae"></div> 
 		       <header> 
 		        <h3>活 动 情 况</h3> 
 		       </header> 
@@ -191,7 +190,7 @@
 		       <p>追踪：${activity.trackCount}</p> 
 		      </div> 
 		     </section> 
-     <section class="cf" id="favourite-benefits" style="background-color:#BBE2F0">
+     <section class="cf" id="favourite-benefits" style="background-color:#ffca00;filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5">
      	<div style="padding-left:80px; padding-right:80px;">
      	<h3>活 动 补 充</h3>  
    			${activity.content}
