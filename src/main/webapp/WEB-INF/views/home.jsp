@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
 	<title>在浙里 分享你我的社交</title>
-	
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/component.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
@@ -41,6 +41,8 @@
 		<a href="<c:url value="/spots/search/list?${qStr}no=0" />"></a>
 	</div>
 	<jsp:include page="/WEB-INF/views/comp/back.top.jsp" />
+
+
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap-formhelpers-datepicker.en_US.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap-formhelpers-datepicker.js" />" ></script>

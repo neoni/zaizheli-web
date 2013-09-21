@@ -36,7 +36,7 @@
 		    	<li class="active"  style="margin-left:30px">
 		   			<a data-toggle="tab" href="#basic-info">基本信息</a></li>
 		   		<li class="ml-10">
-	   				<a data-toggle="tab" href="#specific-info">详细资料</a></li>
+	   				<a data-toggle="tab" href="#specific-info">申请表信息</a></li>
 		   		<li class="ml-10">
 	   				<a data-toggle="tab" href="#change-avatar">修改头像</a></li>
 	   			<li class="ml-10">

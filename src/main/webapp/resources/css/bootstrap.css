@@ -345,6 +345,9 @@ a:hover {
 }
 p {
   margin: 0 0 9px;
+  font-family: "Microsoft Jhenghei",微软雅黑;
+  letter-spacing: 0.08em;
+  line-height: 1.7em;
 }
 p small {
   font-size: 11px;

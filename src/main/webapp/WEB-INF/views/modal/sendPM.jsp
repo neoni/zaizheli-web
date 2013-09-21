@@ -24,6 +24,7 @@
 </div>
 <div class="modal-footer">
 <button class="btn-or" type="submit" id="send">发 送</button>
+<button type="reset" style="display:none"></button>
 </div>
 </form>
 </div>
@@ -48,6 +49,7 @@
 						  }
 						  if(data && data.resultCode == 'SUCCESS'){
 						   		$('#pmModal').modal('hide');
+						   		$("button[type=reset]").trigger("click");
 						  }
 				}
 	    	}); 	 

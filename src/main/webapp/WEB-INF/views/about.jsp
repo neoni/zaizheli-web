@@ -14,7 +14,6 @@
 		<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.init.js" />" ></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.op.js" />" ></script>
-		
 	</head>
 	<body>
 		<jsp:include page="/WEB-INF/views/comp/header.jsp">
@@ -51,11 +50,12 @@
 				<h3>联系及反馈邮箱</h3>
 					<h4> <a target="_blank" href="mailto: blue.snow13@163.com">blue.snow13@163.com</a>  </h4>
 					<br>
-			<h3>有空多来踩踩吧~ 即使来喂喂鱼也挺好的</h3>
-			<div style="margin-bottom:70px">		
-				<center><embed height=300 type=application/x-shockwave-flash width=660 src=http://fishgadget.googlecode.com/svn/trunk/fish.swf FLASHVARS="up_numFish=6&amp;up_fishColor4=#FFFFFF&amp;up_backgroundColor=F6F6F6&amp;up_fishColor1=F4A61C&amp;up_fishColor7=F45540&amp;up_fishColor6=F45540&amp;up_fishColor8=F45540&amp;up_fishColor2=C4C4C4&amp;up_fishColor9=F45540&amp;up_fishColor3=#600000&amp;up_fishName=Fish&amp;up_fishColor5=F45540&amp;up_fishColor10=F45540&amp;up_backgroundImage=http://&amp;up_foodColor=FCB347&amp;" BGCOLOR="#F6F6F6" WMODE="zaizheli" ></embed></center></div>
+				<h3>有空多来踩踩吧~ 即使来喂喂鱼也挺好的</h3>
+				<div style="margin-bottom:70px">		
+					<center><embed height=300 type=application/x-shockwave-flash width=660 src=http://fishgadget.googlecode.com/svn/trunk/fish.swf FLASHVARS="up_numFish=6&amp;up_fishColor4=#FFFFFF&amp;up_backgroundColor=F6F6F6&amp;up_fishColor1=F4A61C&amp;up_fishColor7=F45540&amp;up_fishColor6=F45540&amp;up_fishColor8=F45540&amp;up_fishColor2=C4C4C4&amp;up_fishColor9=F45540&amp;up_fishColor3=#600000&amp;up_fishName=Fish&amp;up_fishColor5=F45540&amp;up_fishColor10=F45540&amp;up_backgroundImage=http://&amp;up_foodColor=FCB347&amp;" BGCOLOR="#F6F6F6" WMODE="zaizheli" ></embed></center>
+				</div>
 			</div>
-		</div>
+			</div>
 		</div>
 	</body>
 </html>
