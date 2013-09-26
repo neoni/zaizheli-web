@@ -154,6 +154,7 @@
 		</repository>
 	</repositories>
 	<build>
+		<defaultGoal>compile</defaultGoal>
 		<finalName>zaizheli-web</finalName>
 	</build>
 </project>

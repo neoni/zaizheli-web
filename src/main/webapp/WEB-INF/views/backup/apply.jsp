@@ -89,8 +89,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
     <div class="container" style="height: 756px">
-	<div><img style="margin-left:290px; margin-top:75px;" src="<c:url value="/resources/img/app_use.png" />"></div>
-		<div class="row mt-30" style="margin-top: 15px;" >
+		<div class="row mt-30" style="margin-top: 262px;" >
 			<div class="span8 offset4 mt-20" style="width: 569px">
 				<c:url value="/application/${activity.id}/create" var="url"/> 
 				<form id="requestForm"  modelAttribute="ApplicationVo" method="post" action="${url}">
@@ -159,11 +158,12 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 					<c:if test="${activity.noteReq eq true}">
 						<div class="control-group" style="margin-bottom: 10px;">
 						说点什么
-						<textarea class=" validate[required,maxSize[200]]" placeholder="限200字以内" cols=80 rows=3 type="text" name="note" id="note" style="margin-left:16px;"></textarea>
+						<textarea class=" validate[required,maxSize[200]]" placeholder="限200字以内" rows="3" cols="20" type="text" name="note" id="note" style="margin-left:16px;">		
+						</textarea>
 						</div>
 					</c:if>
 					<div class="control-group" style="margin-left: 75px; margin-top: 20px;">
-					<button id="go" type="submit" class="btn btn-ora" style="margin-left:100px;" >提交</button>
+					<button id="go" type="submit" class="btn btn-info">提交</button>
 							 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<a class="btn" href="<c:url value="/activities/${activity.id}" />">返回</a>
 							

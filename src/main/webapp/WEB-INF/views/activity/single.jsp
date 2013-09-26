@@ -141,8 +141,29 @@
 						<i class="icon-heart icon-white"></i>&nbsp;&nbsp;<span>赞(${activity.agreeCount})&nbsp;</span></a></li>&nbsp;&nbsp;
 					</a>
 					<a class="btn btn-purple" act="<c:url value="/ops/share/${activity.id}" />"
-						 onclick="op.show_forward(event.currentTarget); event.preventDefault();">
+						 onclick="toggle('div1')">
 						<i class="icon-share-alt icon-white"></i>&nbsp;<span>转发(${activity.shareCount})</span></a></li>
+
+					<!--一键分享——START-->
+					<script language="JavaScript" type="text/JavaScript">
+					<!--
+						function toggle(targetid){
+						     if (document.getElementById){
+						         target=document.getElementById(targetid);
+						             if (target.style.display=="block"){
+						                 target.style.display="none";
+						             } else {
+						                 target.style.display="block";
+						             }
+						     }
+						}
+					-->
+					</script>
+					<div id="div1" style="display:none">
+						<div class="bshare-custom"><div class="bsPromo bsPromo2"></div><a title="分享到新浪微博" class="bshare-sinaminiblog" style="padding-left:20px"></a><a title="分享到QQ好友" class="bshare-qqim" href="javascript:void(0);"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到豆瓣" class="bshare-douban" href="javascript:void(0);"></a></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+					</div>
+					<!--一键分享——END-->
+					
 				</div>
 		     </header> 
 		     <div class="join-us-banner"> 

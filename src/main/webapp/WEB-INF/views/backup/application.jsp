@@ -77,7 +77,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-
+}
 
 </style>	
 	
@@ -88,67 +88,64 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
     <div id="app_v" class="container">
-		<div><img style="margin-left:290px; margin-top:75px;" src="<c:url value="/resources/img/app_own.png" />"></div>
-		<div  class="row mt-30" style="margin-top: 15px;" >
+		<div  class="row mt-30" style="margin-top: 262px;" >
 			<div class="span8 offset4 mt-20" style="width: 569px">	
-					<div class="app_in control-group">
+					<div class="control-group" style="height: 20px;">
 					昵称
-				       <span class="app_uneditable-input" style="margin-left:40px; ">${application.applicant.name}</span></div>
-					   
-					<div class="control-group app_in" >
+				    <span style="margin-left:40px">${application.applicant.name}</span></div>	
+					<div class="control-group" style="height: 20px;">
 					性别
-					<span class="app_uneditable-input" style="margin-left:40px; ">${application.applicant.gender}</span></div>	
-					
-					<div class="control-group app_in">
+					<span style="margin-left:40px">${application.applicant.gender}</span></div>	
+					<div class="control-group" style="height: 20px;">
 					邮箱
-					<span class="app_uneditable-input" style="margin-left:40px; ">${application.applicant.email}</span></div>	
-					
+					<span style="margin-left:40px">${application.applicant.email}</span></div>	
+					<b>&nbsp;</b>
 					<c:if test="${activity.realNameReq eq true}">
-					<div class="control-group app_in" style="margin-bottom: 40px; ">
-					姓名
-					<span class="app_uneditable-input" style="margin-left:40px;">${application.realName}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						姓名
+						<span style="margin-left:40px">${application.realName}</span>
+						</div>
 					</c:if>
-					
 					<c:if test="${activity.ageReq eq true}" >
-					<div class="control-group app_in" style="margin-bottom: 10px; ">
-					年龄
-					<span class="app_uneditable-input" style="margin-left:40px;">${application.age}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						年龄
+						<span style="margin-left:40px">${application.age}</span>
+						</div>
 					</c:if>
-					
 					<c:if test="${activity.birthdayReq eq true}">
-					<div class="control-group app_in" style="margin-bottom: 10px;">
-					生日
-					<span class="app_uneditable-input" style="margin-left:40px;">${application.birthday}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						生日
+						<span style="margin-left:40px">${application.birthday}</span>
+						</div>
 					</c:if>
-					
 					<c:if test="${activity.telReq eq true}">
-					<div class="control-group app_in" style="margin-bottom: 10px;">
-					电话
-					<span class="app_uneditable-input" style="margin-left:40px;">${application.tel}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						电话
+						<span style="margin-left:40px">${application.tel}</span>
+						</div>
 					</c:if>
-					
 					<c:if test="${activity.schoolReq eq true}">					
-					<div class="app_in control-group" style="margin-bottom: 10px;">
-					学校
-					<span class="app_uneditable-input" style="margin-left:40px">${application.school}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						学校
+						<span style="margin-left:40px">${application.school}</span>
+						</div>
 					</c:if>
-					
 					<c:if test="${activity.addressReq eq true}">
-					<div class="control-group app_in" style="margin-bottom: 10px;">
-					地址
-					<span class="app_uneditable-input" style="margin-left:40px;">${application.address}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						地址
+						<span style="margin-left:40px">${application.address}</span>
+						</div>
 					</c:if>
-					
 					<c:if test="${activity.noteReq eq true}">
-					<div class="control-group app_in" style="margin-bottom: 10px;">
-					Ta的话
-					<span style="margin-left:25px">${application.note}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						Ta的话
+						<span style="margin-left:25px">${application.note}</span>
+						</div>
 					</c:if>	
-					
 					<c:choose>
 					<c:when test="${application.status eq '申请中'}">
-					<div style="margin-left:75px; margin-top:28px;">			    
-						<a  id="a_agree" class=" btn btn-ora" act="<c:url value="/application/${application.id}/agree" />" onclick="op.application_agree(event.currentTarget); event.preventDefault();" re="<c:url value="/activity/${application.activity.id}/applications"/>">
+					<div style="margin-left:160px; margin-top:28px;">			    
+						<a  id="a_agree" class=" btn btn-danger b" act="<c:url value="/application/${application.id}/agree" />" onclick="op.application_agree(event.currentTarget); event.preventDefault();" re="<c:url value="/activity/${application.activity.id}/applications"/>">
 								同意</a>
 						<a  id="a_refuse" class="btn btn-info ml-10" act="<c:url value="/application/${application.id}/refuse" />" onclick="op.application_refuse(event.currentTarget); event.preventDefault();" re="<c:url value="/activity/${application.activity.id}/applications"/>">拒绝</a>
 					</div>	
@@ -164,7 +161,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 					</c:otherwise>
 					</c:choose>
 			</div>
-		</div>
+	    </div>
 	</div>
 						
 <script type="text/javascript">

@@ -15,41 +15,34 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://schema.cloudfoundry.org/spring
         http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd">
-
-	<context:property-placeholder location="classpath:/mongo.properties" />
-
-
-<beans profile="default">
-	<mongo:mongo host="${mongo.host}" port="${mongo.port}">
-		<mongo:options connections-per-host="${mongo.connectionsPerHost}"
-			threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}"
-			connect-timeout="${mongo.connectTimeout}" max-wait-time="${mongo.maxWaitTime}"
-			auto-connect-retry="${mongo.autoConnectRetry}" socket-keep-alive="${mongo.socketKeepAlive}"
-			socket-timeout="${mongo.socketTimeout}" slave-ok="${mongo.slaveOk}"
-			write-number="1" write-timeout="0" write-fsync="true" />
-	</mongo:mongo>
-	<mongo:db-factory dbname="zaizheli" mongo-ref="mongo" />
-</beans>
-
-<beans profile="cloud">
-	<cloud:mongo-db-factory id="mongoDbFactory"
-		write-concern="FSYNC_SAFE">
-		<cloud:mongo-options connections-per-host="12"
-			max-wait-time="2000" />
-	</cloud:mongo-db-factory>
-	<cloud:service-scan />
-</beans>
-
-<beans profile="default, cloud">
-	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
-		<property name="writeResultChecking" value="EXCEPTION" />
-	</bean>
-	<mongo:mapping-converter id="converter"
-		db-factory-ref="mongoDbFactory" />
+  
+   <context:annotation-config/>
+		   	
+    <bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
+        <constructor-arg name="username" value="m0AjIgnMTDXhfgT5lGa8DRkG"/>
+        <constructor-arg name="password" value="D7ctZssREOhqG3kAdjymASDT4qS1derU"/>
+    </bean>
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongo" ref="mongo"/>
+        <constructor-arg name="databaseName" value="mnxyigmaejAxQsQXJsub"/>
+        <constructor-arg name="userCredentials" ref="userCredentials"/>
+    </bean> 
+    
+    <bean id="mongoOptions" class="com.mongodb.MongoOptions">
+        <property name="cursorFinalizerEnabled" value="false"/>
+    </bean>
+    <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+        <property name="mongoOptions" ref="mongoOptions"/> 
+        <property name="host" value="zaizheli.duapp.com"/>
+        <property name="port" value="8908"/>
+   </bean> 
+   <mongo:mapping-converter id="converter" db-factory-ref="mongo" />
 	<bean class="org.springframework.data.mongodb.gridfs.GridFsTemplate"> 
-		<constructor-arg ref="mongoDbFactory" /> <constructor-arg ref="converter" 
-		/> </bean>
+		<constructor-arg ref="mongo" /> 
+		<constructor-arg ref="converter" />
+	 </bean> 
+       
+	 
 	<context:component-scan base-package="net.zaizheli" />
 	<mongo:repositories base-package="net.zaizheli.repositories"
 		factory-class="net.zaizheli.repositories.AtomicOperationsRepositoryFactoryBean" />
@@ -57,8 +50,9 @@
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 	<bean
 		class="org.springframework.data.mongodb.core.mapping.event.LoggingEventListener" />
+		
 	<!-- import resource="applicationContext-flex.xml" / -->
 	<import resource="applicationContext-mvc.xml" />
-</beans>
+
 
 </beans>

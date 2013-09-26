@@ -8,7 +8,7 @@
                             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a>
                              <div><a class="brand"  href="<c:url value="/" />" ><img height="28" src="<c:url value="/resources/img/logo4.png" />">
                               <span class="label label-info p-0 fs-9 va-6 lh-14 ta-c">
-							                   <span class="version">Beta</span> 
+                                 <span class="version">Beta</span> 
                                 <i class="icon-home icon-white w-15 ml-5"></i>
                               </span></div>
                             </a>
@@ -74,6 +74,72 @@
                                 </li>
                                 <li><a href="<c:url value="/about" />">关于</a></li>
                               </ul>
+                              <script type="text/javascript">
+                                $(function () {  
+                                    SetMessages();
+                                    SetMessagesP();
+                                    SetMessagesI();
+                                    SetMessagesA();
+                                    setInterval("SetMessages()", 3000); //每隔3秒刷新消息数
+                                    setInterval("SetMessagesP()", 3000); //每隔3秒刷新消息数  
+                                    setInterval("SetMessagesI()", 3000); //每隔3秒刷新消息数  
+                                    setInterval("SetMessagesA()", 3000); //每隔3秒刷新消息数  
+                                });  
+                                function SetMessages() { //获取最新消息数   
+                                     var mes_url = $('#messages').attr('act');    
+                                    $.getJSON(mes_url, function(data){
+                                      if(data && data.resultCode == 'SUCCESS'){
+                                        if(data.exceptionMsg == '0') {
+                                          $('#messages').removeClass('pts');
+                                          $('#messages').text(''); 
+                                        }
+                                        else {
+                                          $('#messages').addClass('pts');
+                                          $('#messages').text(data.exceptionMsg); 
+                                        }
+                                      } 
+                                    });     
+                                } 
+                                function SetMessagesP() { //获取最新消息数   
+                                    var p_url = $('#messages_p').attr('act');    
+                                    $.getJSON(p_url, function(data){
+                                      if(data && data.resultCode == 'SUCCESS'){
+                                        if(data.exceptionMsg == '0') {
+                                          $('#messages_p').text(''); 
+                                        }
+                                        else {
+                                          $('#messages_p').text(data.exceptionMsg); 
+                                        }
+                                      } 
+                                    });     
+                                }
+                                function SetMessagesI() { //获取最新消息数 
+                                    var i_url = $('#messages_i').attr('act');      
+                                    $.getJSON(i_url, function(data){
+                                      if(data && data.resultCode == 'SUCCESS'){
+                                        if(data.exceptionMsg == '0') {
+                                          $('#messages_i').text(''); 
+                                        }
+                                        else {
+                                          $('#messages_i').text(data.exceptionMsg); 
+                                        }
+                                      } 
+                                    });     
+                                }
+                                function SetMessagesA() { //获取最新消息数       
+                                    var a_url = $('#messages_a').attr('act');   
+                                    $.getJSON(a_url, function(data){
+                                      if(data && data.resultCode == 'SUCCESS'){
+                                        if(data.exceptionMsg == '0') {
+                                          $('#messages_a').text(''); 
+                                        }
+                                        else {
+                                          $('#messages_a').text(data.exceptionMsg); 
+                                        }
+                                      } 
+                                    });     
+                                } 
+                              </script>
                             </c:otherwise> 
                           </c:choose>
                         </div>
@@ -83,6 +149,7 @@
                   <li><input name="signin-ts" type="hidden" value="${requestScope.signin_ts}"/></li>
                 </ul>
         </div>
+
     
     <div class="md-modal md-effect-4" id="modal-fb" >
       <div class="md-content">
@@ -100,7 +167,8 @@
               <label for="ipt-fdbc-content" style="float:left;font-size:16px">意见</label>
               <textarea class="validate[required]" style="margin-left:20px;width:88%" name="fb_content" rows="3" cols="20" id="fb_content"></textarea>
             </div>
-            <button type="submit" class="btn-ora" id="fb-send">通知我吧</button>
+            <br>
+            <button type="submit" class="btn-ora btn-large" style="padding:7px 12px" id="fb-send">通知我吧</button>
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
@@ -113,16 +181,16 @@
         <h3><img src="<c:url value="/resources/img/w_logo.png" />"></h3>
         <div>
           <ul style="font-family:'Microsoft Jhenghei';line-height: 1.7em;">
-            <li><strong >目的：</strong>大家可以在"在浙里"发布自己的活动，来组织一个自己的活动或寻找志同道合的小伙伴</li>
-            <li><strong>布局：</strong>在首页的搜索框的右边，大家可以在热门活动、瀑布布局、地图布局三者之前切换寻找最有效的查询活动的方式;
-            还可直接按在任意空白处按<span style="background-color:#FFA41D;padding:2">Ctrl</span>进行切换</li>
-            <li><strong>使用：</strong>发布活动可分为有申请表和无申请表；是否通过将由创建者决定；可在活动中发表评论、@、上传活动图片至活动图库；可对活动、用户进行关注、追踪、私信；可提前在账号设置中设置好自己的申请表信息</li>
-            <li><strong>浏览：</strong>使用 chrome 或 firefox 最新版本浏览会得到最棒的享受哦</li>
-            <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦</li>
-            <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的在'在浙里'因你更加美丽</li>
+            <li><strong >目的：</strong>大家可以在"在浙里"发布自己的活动，来组织一个自己的活动或寻找志同道合的小伙伴。</li>
+            <li><strong>布局：</strong>在首页的搜索框的右边，大家可以在热门活动、瀑布布局、地图布局三者之前切换寻找最有效的查询活动的方式；
+            还可直接按在任意空白处按<span style="background-color:#FFA41D;padding:2">Ctrl</span>进行切换。</li>
+            <li><strong>使用：</strong>发布活动可分为有申请表和无申请表；是否通过将由创建者决定；可在活动中发表评论、@、上传活动图片至活动图库；可对活动、用户进行关注、追踪、私信；可提前在账号设置中设置好自己的申请表信息。</li>
+            <li><strong>浏览：</strong>使用 firefox 或 chrome 最新版本浏览会得到最棒的享受哦。</li>
+            <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
+            <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
           
-          <button type="submit" class="md-close btn-ora">恩恩，了解了</button>
+          <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
     </div>
@@ -194,70 +262,7 @@
     $(this).find('.version').show();
     $(this).find('.icon-home').hide();
   });
-  $(function () {  
-      SetMessages();
-      SetMessagesP();
-      SetMessagesI();
-      SetMessagesA();
-      setInterval("SetMessages()", 3000); //每隔3秒刷新消息数
-      setInterval("SetMessagesP()", 3000); //每隔3秒刷新消息数  
-      setInterval("SetMessagesI()", 3000); //每隔3秒刷新消息数  
-      setInterval("SetMessagesA()", 3000); //每隔3秒刷新消息数  
-  });  
-  function SetMessages() { //获取最新消息数   
-       var mes_url = $('#messages').attr('act');    
-      $.getJSON(mes_url, function(data){
-        if(data && data.resultCode == 'SUCCESS'){
-          if(data.exceptionMsg == '0') {
-            $('#messages').removeClass('pts');
-            $('#messages').text(''); 
-          }
-          else {
-            $('#messages').addClass('pts');
-            $('#messages').text(data.exceptionMsg); 
-          }
-        } 
-      });     
-  } 
-  function SetMessagesP() { //获取最新消息数   
-      var p_url = $('#messages_p').attr('act');    
-      $.getJSON(p_url, function(data){
-        if(data && data.resultCode == 'SUCCESS'){
-          if(data.exceptionMsg == '0') {
-            $('#messages_p').text(''); 
-          }
-          else {
-            $('#messages_p').text(data.exceptionMsg); 
-          }
-        } 
-      });     
-  }
-  function SetMessagesI() { //获取最新消息数 
-      var i_url = $('#messages_i').attr('act');      
-      $.getJSON(i_url, function(data){
-        if(data && data.resultCode == 'SUCCESS'){
-          if(data.exceptionMsg == '0') {
-            $('#messages_i').text(''); 
-          }
-          else {
-            $('#messages_i').text(data.exceptionMsg); 
-          }
-        } 
-      });     
-  }
-  function SetMessagesA() { //获取最新消息数       
-      var a_url = $('#messages_a').attr('act');   
-      $.getJSON(a_url, function(data){
-        if(data && data.resultCode == 'SUCCESS'){
-          if(data.exceptionMsg == '0') {
-            $('#messages_a').text(''); 
-          }
-          else {
-            $('#messages_a').text(data.exceptionMsg); 
-          }
-        } 
-      });     
-  } 
+
   $("#form-feedback").validationEngine('attach', {
     promptPosition : "bottomRight", 
     scroll: false 

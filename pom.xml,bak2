@@ -14,7 +14,7 @@
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- version properties -->
-		<spring.framework.version>3.2.2.RELEASE</spring.framework.version>
+		<spring.framework.version>3.0.6.RELEASE</spring.framework.version>
 		<spring.data.mongodb.version>1.0.1.RELEASE</spring.data.mongodb.version>
 		<spring.data.jpa.version>1.0.1.RELEASE</spring.data.jpa.version>
 		<cloudfoundry.runtime.version>0.8.1</cloudfoundry.runtime.version>
@@ -32,6 +32,11 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.framework.version}</version>
 		</dependency>
+		<dependency>
+	        <groupId>org.mongodb</groupId>
+	        <artifactId>mongo-java-driver</artifactId>
+        	<version>2.11.1</version>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
