@@ -15,7 +15,6 @@ import net.zaizheli.exceptions.ResourceNotFoundException;
 import net.zaizheli.repositories.ActionRepository;
 import net.zaizheli.repositories.ActivityRepository;
 import net.zaizheli.repositories.CityMetaRepository;
-import net.zaizheli.repositories.CommentRepository;
 import net.zaizheli.repositories.UserRepository;
 import net.zaizheli.vo.AjaxResult;
 import net.zaizheli.vo.MarkerVo;
@@ -50,8 +49,6 @@ public class SearchActivitiesController {
 	private ActivityRepository activityRepository;
 	@Autowired
 	private ActionRepository actionRepository;
-	@Autowired
-	private CommentRepository commentRepository;
 	@Autowired
 	UserRepository userRepository;
 	@Autowired

@@ -3,6 +3,8 @@ package net.zaizheli.web.mvc.controllers;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;

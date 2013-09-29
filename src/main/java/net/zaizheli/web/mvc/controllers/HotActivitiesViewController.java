@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import net.zaizheli.constants.ApplicationConfig;
 import net.zaizheli.domains.Activity;
 import net.zaizheli.repositories.ActivityRepository;
-import net.zaizheli.web.utils.SessionUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,8 +23,6 @@ public class HotActivitiesViewController {
 	
 	@Autowired
 	private ActivityRepository activityRepository;
-	@Autowired
-	private SessionUtil sessionUtil;
 	
 	@RequestMapping(value = "/hot", method = RequestMethod.GET)	
 	private String toMap( Model model, 

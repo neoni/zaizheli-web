@@ -1,23 +1,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.zaizheli</groupId>
 	<artifactId>zaizheli-web</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>zaizheli Maven Webapp</name>
-	<url>http://maven.apache.org</url>
-
+	<url>https://github.com/neoni/zaizheli-web</url>
 	<properties>
 		<!-- maven options -->
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- version properties -->
-		<spring.framework.version>3.2.2.RELEASE</spring.framework.version>
+		<spring.framework.version>3.2.4.RELEASE</spring.framework.version>
 		<spring.data.mongodb.version>1.0.1.RELEASE</spring.data.mongodb.version>
-		<spring.data.jpa.version>1.0.1.RELEASE</spring.data.jpa.version>
-		<cloudfoundry.runtime.version>0.8.1</cloudfoundry.runtime.version>
+		<mongo.java.driver.version>2.11.1</mongo.java.driver.version>
 		<slf4j.verison>1.6.4</slf4j.verison>
 	</properties>
 	<dependencies>
@@ -33,14 +31,49 @@
 			<version>${spring.framework.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.framework.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
 			<version>${spring.data.mongodb.version}</version>
-		</dependency>
+		</dependency> 
 		<dependency>
-			<groupId>org.cloudfoundry</groupId>
-			<artifactId>cloudfoundry-runtime</artifactId>
-			<version>${cloudfoundry.runtime.version}</version>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>${mongo.java.driver.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -78,39 +111,34 @@
 			<version>2.5</version>
 		</dependency>
 		<dependency>
-			<groupId>org.glassfish.web</groupId>
-			<artifactId>jstl-impl</artifactId>
-			<version>1.2</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.servlet</groupId>
-					<artifactId>servlet-api</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.servlet.jsp</groupId>
-					<artifactId>jsp-api</artifactId>
-				</exclusion>
-			</exclusions>
+		    <groupId>org.glassfish.web</groupId>
+		    <artifactId>jstl-impl</artifactId>
+		    <version>1.2</version>
+		    <exclusions>
+		        <exclusion>
+		          <groupId>javax.servlet</groupId>
+		          <artifactId>servlet-api</artifactId>
+		        </exclusion>
+		        <exclusion>
+		          <groupId>javax.servlet.jsp</groupId>
+		          <artifactId>jsp-api</artifactId>
+		        </exclusion>
+		     </exclusions>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.verison}</version>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-api</artifactId>
+		    <version>${slf4j.verison}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.verison}</version>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-log4j12</artifactId>
+		    <version>${slf4j.verison}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4j.verison}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.flex</groupId>
-			<artifactId>spring-flex-core</artifactId>
-			<version>1.5.0.RELEASE</version>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>jcl-over-slf4j</artifactId>
+		    <version>${slf4j.verison}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -134,6 +162,10 @@
 		</dependency>	
 	</dependencies>
 	<repositories>
+	     <repository>
+		   <id>maven2</id>
+		   <url>http://repo1.maven.org/maven2</url>
+		</repository>
 		<repository>
 			<id>spring-release</id>
 			<name>Spring Maven Release Repository</name>
@@ -144,17 +176,16 @@
 			<name>Spring Maven Milestone Repository</name>
 			<url>http://maven.springframework.org/milestone</url>
 			<snapshots>
-				<enabled>false</enabled>
+			<enabled>false</enabled>
 			</snapshots>
 		</repository>
 		<repository>
-			<id>Spring Flex</id>
-			<name>Spring Flex Source Repo</name>
-			<url>https://src.springsource.org/svn/spring-flex/tags/spring-flex-1.5.0.RELEASE/local-repo/</url>
+		   <id>Spring Flex</id>
+		   <name>Spring Flex Source Repo</name>
+		   <url>https://src.springsource.org/svn/spring-flex/tags/spring-flex-1.5.0.RELEASE/local-repo/</url>
 		</repository>
 	</repositories>
 	<build>
-		<defaultGoal>compile</defaultGoal>
 		<finalName>zaizheli-web</finalName>
 	</build>
 </project>

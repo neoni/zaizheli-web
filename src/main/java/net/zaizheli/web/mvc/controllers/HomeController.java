@@ -6,12 +6,9 @@ import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import net.zaizheli.repositories.CityMetaRepository;
 import net.zaizheli.vo.FilterElementVo;
-import net.zaizheli.web.utils.SessionUtil;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -21,10 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-	@Autowired
-	private CityMetaRepository cityMetaRepository;
-	@Autowired
-	private SessionUtil sessionUtil;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	private String toHome(Model model,

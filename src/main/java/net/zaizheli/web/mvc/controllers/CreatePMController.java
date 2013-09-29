@@ -14,7 +14,6 @@ import net.zaizheli.repositories.MessageRepository;
 import net.zaizheli.repositories.UserRepository;
 import net.zaizheli.vo.AjaxResult;
 import net.zaizheli.vo.PMVo;
-import net.zaizheli.web.utils.AjaxUtil;
 import net.zaizheli.web.utils.SessionUtil;
 import net.zaizheli.web.utils.TextUtil;
 
@@ -32,8 +31,6 @@ public class CreatePMController {
 	
 	@Autowired
 	SessionUtil sessionUtil;
-	@Autowired
-	private AjaxUtil ajaxUtil;
 	@Autowired
 	private TextUtil textUtil;
 	@Autowired

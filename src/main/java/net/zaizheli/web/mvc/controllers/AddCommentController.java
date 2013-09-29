@@ -21,7 +21,6 @@ import net.zaizheli.repositories.CommentRepository;
 import net.zaizheli.repositories.MessageRepository;
 import net.zaizheli.repositories.UserRepository;
 import net.zaizheli.vo.CommentFormBean;
-import net.zaizheli.web.utils.AjaxUtil;
 import net.zaizheli.web.utils.SessionUtil;
 import net.zaizheli.web.utils.TextUtil;
 
@@ -49,8 +48,6 @@ public class AddCommentController {
 	ActivityRepository activityRepository;
 	@Autowired
 	SessionUtil sessionUtil;
-	@Autowired
-	private AjaxUtil ajaxUtil;
 	@Autowired
 	private TextUtil textUtil;
 	@Autowired

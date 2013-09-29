@@ -1,55 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:cloud="http://schema.cloudfoundry.org/spring"
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+    xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-        http://www.springframework.org/schema/data/jpa 
-        http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/data/mongo
         http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
-        http://www.springframework.org/schema/context 
-        http://www.springframework.org/schema/context/spring-context.xsd
-        http://schema.cloudfoundry.org/spring
-        http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd">
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
   
-   <context:annotation-config/>
-		   	
-    <bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
-        <constructor-arg name="username" value="m0AjIgnMTDXhfgT5lGa8DRkG"/>
-        <constructor-arg name="password" value="D7ctZssREOhqG3kAdjymASDT4qS1derU"/>
-    </bean>
+    <context:property-placeholder location="classpath:/env.bae.properties"/>
+	
+	    <bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
+    	    <constructor-arg name="username" value="${mongo.username}"/>
+    	    <constructor-arg name="password" value="${mongo.password}"/>
+        </bean>
+	    <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+	    	<property name="mongoOptions" ref="mongoOptions"/> 
+	    	<property name="host" value="${mongo.host}"/>
+	    	<property name="port" value="${mongo.port}"/>
+        </bean>
+        <bean id="mongoOptions" class="com.mongodb.MongoOptions">
+    	    <property name="cursorFinalizerEnabled" value="${mongo.cursorFinalizerEnabled}"/>
+    	    <property name="connectionsPerHost" value="${mongo.connectionsPerHost}" />
+    	    <property name="threadsAllowedToBlockForConnectionMultiplier" value="${mongo.threadsAllowedToBlockForConnectionMultiplier}" />
+    	    <property name="maxWaitTime" value="${mongo.maxWaitTime}" />
+    	    <property name="connectTimeout" value="${mongo.connectTimeout}" />
+    	    <property name="socketTimeout" value="${mongo.socketTimeout}" />
+    	    <property name="autoConnectRetry" value="${mongo.autoConnectRetry}" />
+    	    <property name="maxAutoConnectRetryTime" value="${mongo.maxAutoConnectRetryTime}" />
+    	    <property name="socketKeepAlive" value="${mongo.socketKeepAlive}" />
+        </bean>
+        <bean id="mongoDbFactory" class="org.springframework.data.mongodb.core.SimpleMongoDbFactory">
+        	<constructor-arg name="mongo" ref="mongo"/>
+        	<constructor-arg name="databaseName" value="${mongo.databaseName}"/>
+        	<constructor-arg name="userCredentials" ref="userCredentials"/>
+        </bean>
+
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-        <constructor-arg name="mongo" ref="mongo"/>
-        <constructor-arg name="databaseName" value="mnxyigmaejAxQsQXJsub"/>
-        <constructor-arg name="userCredentials" ref="userCredentials"/>
-    </bean> 
-    
-    <bean id="mongoOptions" class="com.mongodb.MongoOptions">
-        <property name="cursorFinalizerEnabled" value="false"/>
-    </bean>
-    <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
-        <property name="mongoOptions" ref="mongoOptions"/> 
-        <property name="host" value="zaizheli.duapp.com"/>
-        <property name="port" value="8908"/>
-   </bean> 
-   <mongo:mapping-converter id="converter" db-factory-ref="mongo" />
-	<bean class="org.springframework.data.mongodb.gridfs.GridFsTemplate"> 
-		<constructor-arg ref="mongo" /> 
+	    <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+	    <property name="writeResultChecking" value="EXCEPTION" />
+	</bean>
+	<mongo:mapping-converter id="converter" db-factory-ref="mongoDbFactory" />
+    <bean class="org.springframework.data.mongodb.gridfs.GridFsTemplate">
+      <constructor-arg ref="mongoDbFactory" />
 		<constructor-arg ref="converter" />
-	 </bean> 
-       
-	 
+    </bean>
+       	 
 	<context:component-scan base-package="net.zaizheli" />
 	<mongo:repositories base-package="net.zaizheli.repositories"
 		factory-class="net.zaizheli.repositories.AtomicOperationsRepositoryFactoryBean" />
-	<bean
-		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-	<bean
-		class="org.springframework.data.mongodb.core.mapping.event.LoggingEventListener" />
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<bean class="org.springframework.data.mongodb.core.mapping.event.LoggingEventListener" />
 		
 	<!-- import resource="applicationContext-flex.xml" / -->
 	<import resource="applicationContext-mvc.xml" />
