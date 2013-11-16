@@ -10,8 +10,8 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import net.zaizheli.web.utils.WebImageUtil;
 import net.zaizheli.constants.AjaxResultCode;
-import net.zaizheli.constants.ApplicationConfig;
 import net.zaizheli.constants.ApplicationConstants;
 import net.zaizheli.constants.Gender;
 import net.zaizheli.domains.Resource;
@@ -30,7 +30,6 @@ import net.zaizheli.web.utils.EncryptUtil;
 import net.zaizheli.web.utils.SessionUtil;
 import net.zaizheli.web.utils.TextUtil;
 
-import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -66,6 +65,8 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 	private EncryptUtil encryptUtil;
 	@Autowired
 	private TextUtil textUtil;
+	@Autowired
+	private WebImageUtil webImageUtil;
 
 	@RequestMapping(value = "/setting", method = RequestMethod.GET)
 	public String setting(Model model, HttpSession session) {
@@ -215,6 +216,31 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 					BindingErrors.from(result));
 		}
 		try {
+			String[] tokens = formBean.getImageUrl().split("/");
+			Resource res = resourceRepository.getByResId(tokens[tokens.length-1]);
+			if(res == null){
+				return new AjaxResult(AjaxResultCode.INVALID,
+						"resource " + formBean.getImageUrl() + " is invalid.");
+			}
+			File org = webImageUtil.getFile((new Date()).getTime()+"."+res.getExt());
+			org.createNewFile();
+			imageService.get(res.getResId(), new FileOutputStream(org));
+			BufferedImage orgImg = ImageIO.read(org);
+			signInUser.setAvatarOrg(res);
+			// save avatar file
+			BufferedImage avatarImg = orgImg.getSubimage((int)formBean.getX(),
+					(int)formBean.getY(), (int)formBean.getW(), (int)formBean.getH());
+			ImageIO.write(avatarImg, res.getExt(), org);
+			String resId = imageService.put(org);
+			res = new Resource();
+			res.setOrgSize(new Integer[] { avatarImg.getHeight(), avatarImg.getWidth() });
+			res.setResId(resId);
+			res.setExt(res.getExt());
+			resourceRepository.save(res);
+			signInUser.setAvatar(res);
+			userRepository.save(signInUser);			
+			
+/*			
 			int idx = formBean.getImageUrl().lastIndexOf("/");
 			org.springframework.core.io.Resource resource = ac
 					.getResource(ApplicationConfig.uploadTempRepository + "/"
@@ -251,7 +277,7 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 			resourceRepository.save(res);
 			
 			signInUser.setAvatar(res);
-			userRepository.save(signInUser);			
+			userRepository.save(signInUser);			*/
 		} catch (Exception e) {
 			return new AjaxResult(AjaxResultCode.EXCEPTION, e.getMessage());
 		}

@@ -415,7 +415,8 @@
 						form.ajaxSubmit({
 					        dataType:  'json', 
 					        beforeSubmit: function(formData, jqForm, options){
-					        	$('submit-btn').button('loading');					 
+					        	$('submit-btn').button('loading');
+					        	formData.imageUrl = $('#spot-image').attr('src');					 
 					        },
 					        success:  function(data){
 					        	if(!data || data.resultCode != 'SUCCESS' ) return;				      

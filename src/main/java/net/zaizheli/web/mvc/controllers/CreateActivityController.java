@@ -146,16 +146,46 @@ public class CreateActivityController {
 		vo.setAddr(textUtil.removeHtml(vo.getAddr()));
 		vo.setTitle(textUtil.removeHtml(vo.getTitle()));
 		Activity activity=Activity.from(vo,signInUser);
+//		try {
+//			// get image
+//			ImageReadyVo ir = webImageUtil
+//					.prepareImageFromUrl(vo.getImageUrl());
+//			String resId = imageService.put(ir.getFile());
+//			Resource res = new Resource();
+//			res.setOrgSize(ir.getOrgSize());
+//			res.setResId(resId);
+//			res.setExt(ir.getExt());
+//			resourceRepository.save(res);
+//			activity.setImage(res);
+//		} catch (Exception e) {
+//			throw new RuntimeException(e.getMessage(), e);
+//		}
 		try {
-			// get image
-			ImageReadyVo ir = webImageUtil
-					.prepareImageFromUrl(vo.getImageUrl());
-			String resId = imageService.put(ir.getFile());
-			Resource res = new Resource();
-			res.setOrgSize(ir.getOrgSize());
-			res.setResId(resId);
-			res.setExt(ir.getExt());
-			resourceRepository.save(res);
+			Resource res = null;
+			if(vo.getImageUrl().contains("http")){
+				// download image from url
+				ImageReadyVo ir = webImageUtil
+						.downloadImageFromLink(vo.getImageUrl());
+				if(ir == null){
+					return new AjaxResult(AjaxResultCode.INVALID, 
+							"image cannot be downloaded.");
+				}
+				String resId = imageService.put(ir.getFile());
+				res = new Resource();
+				res.setOrgSize(ir.getOrgSize());
+				res.setResId(resId);
+				res.setExt(ir.getExt());
+				res = resourceRepository.save(res);
+			}
+			else{
+				// get image from GridFS
+				String[] tokens = vo.getImageUrl().split("/");
+				res = resourceRepository.getByResId(tokens[tokens.length-1]);
+				if(res == null){
+					return new AjaxResult(AjaxResultCode.INVALID,
+							"resource " + vo.getImageUrl() + " is invalid.");
+				}
+			}
 			activity.setImage(res);
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage(), e);

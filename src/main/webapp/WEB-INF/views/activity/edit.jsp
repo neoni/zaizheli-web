@@ -411,7 +411,7 @@
 				ajaxFormValidationMethod: 'post',
 				ajaxFormValidationURL: '<c:url value="/activity/${activity.id}/edit/validate" />',
 				onBeforeAjaxFormValidation: function(form, options){
-					$(form).find('#submit-btn').button('loading');
+					$(form).find('#submit-btn').button('loading');					
 				},
 				onAjaxFormComplete: function(status, form, errors, options){
 					$('#submit-btn').button('reset');
@@ -420,7 +420,8 @@
 						form.ajaxSubmit({
 					        dataType:  'json', 
 					        beforeSubmit: function(formData, jqForm, options){
-					        	$('submit-btn').button('loading');					 
+					        	$('submit-btn').button('loading');	
+					        	formData.imageUrl = $('#spot-image').attr('src');				 
 					        },
 					        success:  function(data){
 					        	if(!data || data.resultCode != 'SUCCESS' ) return;				      

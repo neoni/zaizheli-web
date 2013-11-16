@@ -151,7 +151,7 @@
         </div>
 
     
-    <div class="md-modal md-effect-4" id="modal-fb" >
+    <div class="md-modal md-effect-1" id="modal-fb" >
       <div class="md-content">
         <h3><img src="<c:url value="/resources/img/w_logo.png" />"></h3>
         <div>
@@ -176,7 +176,7 @@
         </div>
       </div>
     </div>
-    <div class="md-modal md-effect-4" id="modal-an">
+    <div class="md-modal md-effect-1" id="modal-an">
       <div class="md-content">
         <h3><img src="<c:url value="/resources/img/w_logo.png" />"></h3>
         <div>

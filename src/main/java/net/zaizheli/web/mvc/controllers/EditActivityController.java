@@ -173,17 +173,47 @@ public class EditActivityController {
 						BindingErrors.from(result));
 			}
 			if(vo.getImageUrl()!=null && !vo.getImageUrl().equalsIgnoreCase("http://placehold.it/300&text=Upload+Image")) {
+//				try {
+//					// get image
+//					ImageReadyVo ir = webImageUtil
+//							.prepareImageFromUrl(vo.getImageUrl());
+//					String resId = imageService.put(ir.getFile());
+//					Resource res = new Resource();
+//					res.setOrgSize(ir.getOrgSize());
+//					res.setResId(resId);
+//					res.setExt(ir.getExt());
+//					resourceRepository.save(res);
+//					resourceRepository.delete(activity.getImage());
+//					activity.setImage(res);
+//				} catch (Exception e) {
+//					throw new RuntimeException(e.getMessage(), e);
+//				}
 				try {
-					// get image
-					ImageReadyVo ir = webImageUtil
-							.prepareImageFromUrl(vo.getImageUrl());
-					String resId = imageService.put(ir.getFile());
-					Resource res = new Resource();
-					res.setOrgSize(ir.getOrgSize());
-					res.setResId(resId);
-					res.setExt(ir.getExt());
-					resourceRepository.save(res);
-					resourceRepository.delete(activity.getImage());
+					Resource res = null;
+					if(vo.getImageUrl().contains("http")){
+						// download image from url
+						ImageReadyVo ir = webImageUtil
+								.downloadImageFromLink(vo.getImageUrl());
+						if(ir == null){
+							return new AjaxResult(AjaxResultCode.INVALID, 
+									"image cannot be downloaded.");
+						}
+						String resId = imageService.put(ir.getFile());
+						res = new Resource();
+						res.setOrgSize(ir.getOrgSize());
+						res.setResId(resId);
+						res.setExt(ir.getExt());
+						res = resourceRepository.save(res);
+					}
+					else{
+						// get image from GridFS
+						String[] tokens = vo.getImageUrl().split("/");
+						res = resourceRepository.getByResId(tokens[tokens.length-1]);
+						if(res == null){
+							return new AjaxResult(AjaxResultCode.INVALID,
+									"resource " + vo.getImageUrl() + " is invalid.");
+						}
+					}
 					activity.setImage(res);
 				} catch (Exception e) {
 					throw new RuntimeException(e.getMessage(), e);

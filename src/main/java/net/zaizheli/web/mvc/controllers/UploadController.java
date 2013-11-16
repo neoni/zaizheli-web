@@ -19,6 +19,7 @@ import net.zaizheli.constants.ActionType;
 import net.zaizheli.constants.AjaxResultCode;
 import net.zaizheli.constants.ApplicationConfig;
 import net.zaizheli.domains.Action;
+import net.zaizheli.domains.Resource;
 import net.zaizheli.repositories.ActionRepository;
 import net.zaizheli.repositories.ActivityRepository;
 import net.zaizheli.repositories.ResourceRepository;
@@ -27,11 +28,12 @@ import net.zaizheli.vo.AjaxResult;
 import net.zaizheli.web.utils.SessionUtil;
 import net.zaizheli.web.utils.WebImageUtil;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -48,6 +50,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 public class UploadController implements ApplicationContextAware {
+	private Logger logger = Logger.getLogger(UploadController.class);
 	
 	@Autowired
 	ImageService imageService;
@@ -74,17 +77,31 @@ public class UploadController implements ApplicationContextAware {
 	String uploadSpot(@RequestParam MultipartFile imageFile,
 			@ModelAttribute("tempRepositories") String tempRepositories,
 			Model model) throws IOException {
+		logger.info("***get uploaded spot image file***");
 		String orgName = imageFile.getOriginalFilename();
 		String newName = new StringBuilder().append(System.currentTimeMillis())
 				.append(orgName.substring(orgName.lastIndexOf('.'))).toString();
-		Resource res = ac.getResource(tempRepositories);
-		File file = res.getFile();
+		logger.info("orgName:" + orgName + ",newName:"+newName);
+		File file = webImageUtil.getTempFolder();
+		if(!file.exists()){
+			logger.info(file.getPath()+" does not exist, create a directory for it");
+			file.mkdir();
+		}
 		if (file.isDirectory()) {
 			file = new File(file.getPath() + File.separator + newName);
+			logger.info("create a file " + file.getPath());
 		}
 		imageFile.transferTo(file);
-		return ApplicationConfig.base + ApplicationConfig.uploadTempRefer + "/"
-				+ newName;
+		String resId = imageService.put(file);
+		logger.info("save the file as, get the resId:" + resId);
+		BufferedImage img = ImageIO.read(file);
+		Resource res = new Resource();
+		res.setOrgSize(new Integer[]{img.getHeight(), img.getWidth()});
+		res.setResId(resId);
+		res.setExt(FilenameUtils.getExtension(file.getName()));
+		resourceRepository.save(res);
+		logger.info("save the resource object: " + res);
+		return WebImageUtil.getImageUrl(resId);
 	}
 
 	@RequestMapping(value = "/avatar/upload", method = RequestMethod.POST)
@@ -92,14 +109,21 @@ public class UploadController implements ApplicationContextAware {
 	AjaxResult uploadAvatar(@RequestParam MultipartFile imageFile,
 			@ModelAttribute("tempRepositories") String tempRepositories,
 			Model model, HttpServletResponse response) throws IOException {
+		logger.info("***get uploaded avatar image file***");
 		String orgName = imageFile.getOriginalFilename();
 		String newName = new StringBuilder().append(System.currentTimeMillis())
 				.append(orgName.substring(orgName.lastIndexOf('.'))).toString();
 		String ext = orgName.substring(orgName.lastIndexOf('.'));
-		Resource res = ac.getResource(tempRepositories);
-		File file = res.getFile();
+//		Resource res = ac.getResource(tempRepositories);
+		logger.info("orgName:" + orgName + ",newName:"+newName);
+		File file = webImageUtil.getTempFolder();
+		if(!file.exists()){
+			logger.info(file.getPath()+" does not exist, create a directory for it");
+			file.mkdir();
+		}
 		if (file.isDirectory()) {
 			file = new File(file.getPath() + File.separator + newName);
+			logger.info("create a file " + file.getPath());
 		}
 		imageFile.transferTo(file);
 		BufferedImage orgImg = ImageIO.read(file);
@@ -109,6 +133,7 @@ public class UploadController implements ApplicationContextAware {
 		if (h < 200 || w < 200) {
 			result.setResultCode(AjaxResultCode.EXCEPTION);
 			result.setExceptionMsg("头像尺寸不小于200x200");
+			logger.info(result.getExceptionMsg());
 		} else {
 			if (w > 350) {
 				w = 350;
@@ -133,14 +158,23 @@ public class UploadController implements ApplicationContextAware {
 				newName = new StringBuilder()
 						.append(System.currentTimeMillis()).append(ext)
 						.toString();
-				file = res.getFile();
+				file = webImageUtil.getTempFolder();
 				if (file.isDirectory()) {
 					file = new File(file.getPath() + File.separator + newName);
+					logger.info("create a new file " + file.getPath());
 				}
 				ImageIO.write(newImg, ext.substring(1), file);
 			}
-			result.setResultData(ApplicationConfig.base+
-					 ApplicationConfig.uploadTempRefer + "/" + newName);
+			String resId = imageService.put(file);
+			logger.info("save the file as, get the resId:" + resId);
+			BufferedImage img = ImageIO.read(file);
+			Resource res = new Resource();
+			res.setOrgSize(new Integer[]{img.getHeight(), img.getWidth()});
+			res.setResId(resId);
+			res.setExt(FilenameUtils.getExtension(file.getName()));
+			resourceRepository.save(res);
+			logger.info("save the resource object: " + res);
+			result.setResultData(WebImageUtil.getAvatarUrl(resId));
 		}
 		response.setContentType("application/json;charset=UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
@@ -164,7 +198,7 @@ public class UploadController implements ApplicationContextAware {
     		String newName = new StringBuilder().append(System.currentTimeMillis())
     				.append(orgName.substring(orgName.lastIndexOf('.'))).toString();
     		String ext = orgName.substring(orgName.lastIndexOf('.'));
-    		Resource res = ac.getResource(tempRepositories);
+    		org.springframework.core.io.Resource res = ac.getResource(tempRepositories);
     		File file = res.getFile();
     		if (file.isDirectory()) {
     			file = new File(file.getPath() + File.separator + newName);
