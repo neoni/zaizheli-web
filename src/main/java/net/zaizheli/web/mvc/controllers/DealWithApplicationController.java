@@ -57,8 +57,8 @@ public class DealWithApplicationController {
 			if(activity.getCurrentNum() >= activity.getMaxNum()) {
 				return new AjaxResult(AjaxResultCode.INVALID, "不能再加了 -o- 已达到最大人数上限");
 			}
-			activityRepository.inc(activity.getId(),"inJudgingCount",-1);
-			activityRepository.inc(activity.getId(),"currentNum",1);
+			activity.setInJudgingCount(activity.getInJudgingCount()-1);
+			activity.setCurrentNum(activity.getCurrentNum()+1);
 			activity.updateHot();
 			activityRepository.save(activity);
 			application.setStatus(ApplicationStatus.已加入);
@@ -101,7 +101,7 @@ public class DealWithApplicationController {
 		Application application=applicationRepository.findOne(id);
 		Activity activity = application.getActivity();
 		if(application.getStatus() == ApplicationStatus.申请中) {
-			activityRepository.inc(activity.getId(),"inJudgingCount",-1);
+			activity.setInJudgingCount(activity.getInJudgingCount()-1);
 			activity.updateHot();
 			activityRepository.save(activity);
 			application.setStatus(ApplicationStatus.拒绝);
@@ -130,8 +130,8 @@ public class DealWithApplicationController {
 		Application application=applicationRepository.findOne(id);
 		Activity activity = application.getActivity();
 		if(application.getStatus() == ApplicationStatus.已加入) {
-			activityRepository.inc(activity.getId(),"applicationCount",-1);
-			activityRepository.inc(activity.getId(),"currentNum",-1);
+			activity.setApplicationCount(activity.getApplicationCount()-1);
+			activity.setCurrentNum(activity.getCurrentNum()-1);
 			activity.updateHot();
 			activityRepository.save(activity);
 			Join join = joinRepository.findByActivityAndjoiner(activity.getId(),application.getApplicant().getId());

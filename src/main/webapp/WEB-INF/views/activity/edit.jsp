@@ -438,7 +438,8 @@
     <script>
       // this is important for IEs
       var polyfilter_scriptpath = '/js/';
-    </script>
+    </script>						
+    
 <script type="text/javascript">adjustWebWidth();</script>
 
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>

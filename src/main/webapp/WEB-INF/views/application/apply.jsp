@@ -51,16 +51,14 @@ textarea,
 
 
 input[type=text], input[type=password], input[type=datetime], input[type=datetime-local], input[type=date], input[type=month], input[type=time], input[type=week], input[type=number], input[type=email], input[type=url], input[type=search], input[type=tel], input[type=color], .uneditable-input {
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  background: #ffffff;
+ -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
      -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
        -o-transition: border linear 0.2s, box-shadow linear 0.2s;
           transition: border linear 0.2s, box-shadow linear 0.2s;
-    color: #555555;
     display: inline-block;
     font-size: 13px;
     height: 30px;
@@ -70,7 +68,8 @@ input[type=text], input[type=password], input[type=datetime], input[type=datetim
 }
 
 textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=datetime]:focus, input[type=datetime-local]:focus, input[type=date]:focus, input[type=month]:focus, input[type=time]:focus, input[type=week]:focus, input[type=number]:focus, input[type=email]:focus, input[type=url]:focus, input[type=search]:focus, input[type=tel]:focus, input[type=color]:focus, .uneditable-input:focus {
-  border-color: #f39c12;
+  border-color: #E67E22;
+  border-width: 2px;
   outline: 0;
   outline: thin dotted \9;
   /* IE6-9 */
@@ -89,31 +88,31 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
     <div class="container" style="height: 756px">
-	<div><img style="margin-left:290px; margin-top:75px;" src="<c:url value="/resources/img/app_use.png" />"></div>
-		<div class="row mt-30" style="margin-top: 15px;" >
-			<div class="span8 offset4 mt-20" style="width: 569px">
+		<div class="row mt-30" style="margin-left: 250px;" >
+			<div class="appbg"></div>
+			<!--<div class="span8 offset4 mt-20" style="width: 569px"> -->
+			<div class="applogin-form" style="width:450px; vertical-align:middle;">
 				<c:url value="/application/${activity.id}/create" var="url"/> 
 				<form id="requestForm"  modelAttribute="ApplicationVo" method="post" action="${url}">
 				    <c:if test="${activity.realNameReq eq true}">
-						<div class="control-group" style="margin-bottom: 10px;">
+						<div class="control-group" style="margin-bottom: 6px;">
 						真实姓名
-						<input id="realName" name="realName" type="text" value="${user.realName}" class="span4 validate[required]" >
+						<input id="realName" name="realName" type="text" value="${user.realName}" class="applogin-field validate[required]" style="height: 40px;">
 						</div>
 					</c:if>
 					<c:if test="${activity.ageReq eq true}" >
-						<div class="control-group" style="margin-bottom: 10px;">
+						<div class="control-group" style="margin-bottom: 6px; margin-top:15px; ">
 						您的年龄
-						<input id="age" name="age" type="text" value="${user.age}" class="span4 validate[required,custom[integer],min[0],max[150]]">
+						<input id="age" name="age" type="text" value="${user.age}" class="applogin-field validate[required,custom[integer],min[0],max[150]]" style="height:40px;">
 						</div>
 					</c:if>
 					<c:if test="${activity.birthdayReq eq true}">
-						<div class="control-group" style="margin-bottom: 10px;">
-						您的生日
-						<div class="bfh-datepicker controls" data-format="y-m-d" data-date="${(!empty user.birthday)?user.birthday:'1993-01-01'} " style="margin-left:80px">     
-			    			<div class="input-prepend bfh-datepicker-toggle" data-toggle="bfh-datepicker" >
-			    				<span class="add-on" style="margin:-5px 0 2px 0px; padding:5px;"><i class="icon-calendar"></i></span>
-								<input id="birthday" class="validate[required,past[now]] " type="text" name="birthday" 
-									   value="${user.birthday}"  style="width:290px" readonly>
+						<div class="control-group" style="margin-bottom: 6px; margin-top:15px; width:600px;">
+						<div class="bfh-datepicker controls" data-format="y-m-d" data-date="${(!empty user.birthday)?user.birthday:'1993-01-01'}">
+
+							<div class="bfh-datepicker-toggle" data-toggle="bfh-datepicker" >
+								您的生日
+								<input id="birthday" class="applogin-field validate[required,past[now]] " type="text" name="birthday" value="${user.birthday}"  style="height:40px; readonly">
 							</div>
 							<div class="bfh-datepicker-calendar">
 							    <table class="calendar table table-bordered">
@@ -142,28 +141,32 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 					
 					</c:if>
 					<c:if test="${activity.telReq eq true}">
-						<div class="control-group" style="margin-bottom: 10px;">
-						联系电话<input  id="tel" name="tel" type="text" placeholder="长号或短号均可" value="${user.tel}" class="span4 validate[required,custom[integer],minSize[6],maxSize[17]]">
+						<div class="control-group" style="margin-bottom: 6px;margin-top:15px;">
+						联系电话
+						<input  id="tel" name="tel" type="text" placeholder="长号或短号均可" value="${user.tel}" class="applogin-field validate[required,custom[integer],minSize[6],maxSize[17]]" style="height: 40px;">
 						</div>
 					</c:if>
 					<c:if test="${activity.schoolReq eq true}">					
-						<div class="control-group" style="margin-bottom: 10px;">
-						您的学校<input id="school" name="school" type="text" value="${user.school}" placeholder="浙大/玉泉" class="span4">
+						<div class="control-group" style="margin-bottom: 6px; margin-top:15px;">
+						您的学校
+						<input id="school" name="school" type="text" value="${user.school}" placeholder="浙大/玉泉" class="applogin-field" style="height: 40px;">
 						</div>
 					</c:if>
 					<c:if test="${activity.addressReq eq true}">
-						<div class="control-group" style="margin-bottom: 10px;">
-						联系地址<input id="address" name="address" type="text" value="${user.address}" placeholder="浙江大学玉泉校区xx舍xx室" class="span4">
+						<div class="control-group" style="margin-bottom: 6px; margin-top:15px;">
+						联系地址
+						<input id="address" name="address" type="text" value="${user.address}" placeholder="浙江大学玉泉校区xx舍xx室" class="applogin-field" style="height: 40px;">
 						</div>
 					</c:if>
 					<c:if test="${activity.noteReq eq true}">
-						<div class="control-group" style="margin-bottom: 10px;">
+						<div class="control-group" style="margin-bottom: 6px; margin-top:15px; margin-bottom:10px;">
 						说点什么
-						<textarea class=" validate[required,maxSize[200]]" placeholder="限200字以内" cols=80 rows=3 type="text" name="note" id="note" style="margin-left:16px;"></textarea>
+						<textarea class="applogin-field validate[required,maxSize[200]]" placeholder="限200字以内" rows="3" cols="20" type="text" name="note" id="note" style="margin-left:5px;">		
+						</textarea>
 						</div>
 					</c:if>
 					<div class="control-group" style="margin-left: 75px; margin-top: 20px;">
-					<button id="go" type="submit" class="btn btn-ora" style="margin-left:100px;" >提交</button>
+					<button id="go" type="submit" class="btn btn-info">提交</button>
 							 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<a class="btn" href="<c:url value="/activities/${activity.id}" />">返回</a>
 							
@@ -173,31 +176,21 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 			</div>
 	    </div>
 	</div>
-	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	<h3 id="myModalLabel">提 示</h3>
+<div id="myModal" class="mymodal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="mymodal-content">
+		<h2 id="myModalLabel" style="text-align:center">提 示</h2>
+		<p style="text-align:center;font-size:1.2em;margin-top:20px" >已成功提交了申请表 >o< </p>
+		<a class="btn btn-ora btn-large" style="margin-left:45%;margin-bottom:20px;margin-top:20px" href="<c:url value="/activities/${activity.id}" />">确定</a>
 	</div>
-	<div class="modal-body">
-	<p>已成功提交了申请表 >o< </p>
-	</div>
-	<div class="modal-footer">
-	<a class="btn-or" href="<c:url value="/activities/${activity.id}" />">确定</a>
-	</div>
-	</div>
+</div>
 
-	<div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	<h3 id="myModalLabel">提 示</h3>
+<div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="mymodal-content">
+		<h2 id="myModalLabel" style="text-align:center">提 示</h2>
+		<p id="modal_text" style="text-align:center;font-size:1.2em;margin-top:20px"></p>
+		<a class="btn btn-ora btn-large" style="margin-left:45%;margin-bottom:20px;margin-top:20px" href="<c:url value="/activities/${activity.id}" />">确定</a>
 	</div>
-	<div class="modal-body">
-	<p id="modal_text"></p>
-	</div>
-	<div class="modal-footer">
-	<a class="btn-or" href="<c:url value="/activities/${activity.id}" />">确定</a>
-	</div>
-	</div>
+</div>
 	<div class="md-modal md-effect-4" id="modal-fb" >
       <div class="md-content">
         <h3><img src="<c:url value="/resources/img/w_logo.png" />"></h3>
@@ -257,12 +250,12 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
     <script>
       // this is important for IEs
       var polyfilter_scriptpath = '/js/';
-    </script>					
+    </script>						
 <script type="text/javascript" src="/resources/js/ga.js" ></script>
 <script type="text/javascript">
     adjustWebWidth();
 	$("#requestForm").validationEngine('attach', {
-		promptPosition : "centerRight", 
+		promptPosition : "bottomRight", 
 		scroll: false	
 	});
 	$(function(){

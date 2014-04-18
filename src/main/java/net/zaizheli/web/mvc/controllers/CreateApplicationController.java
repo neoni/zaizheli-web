@@ -11,14 +11,17 @@ import javax.validation.Valid;
 import net.zaizheli.constants.ActionType;
 import net.zaizheli.constants.AjaxResultCode;
 import net.zaizheli.constants.ApplicationStatus;
+import net.zaizheli.constants.MessageType;
 import net.zaizheli.domains.Action;
 import net.zaizheli.domains.Activity;
 import net.zaizheli.domains.Application;
+import net.zaizheli.domains.Message;
 import net.zaizheli.domains.User;
 import net.zaizheli.repositories.ActionRepository;
 import net.zaizheli.repositories.ActivityRepository;
 import net.zaizheli.repositories.ApplicationRepository;
 import net.zaizheli.repositories.JoinRepository;
+import net.zaizheli.repositories.MessageRepository;
 import net.zaizheli.repositories.UserRepository;
 import net.zaizheli.vo.AjaxResult;
 import net.zaizheli.vo.ApplicationVo;
@@ -54,6 +57,8 @@ public class CreateApplicationController {
 	ActionRepository actionRepository;
 	@Autowired 
 	TextUtil textUtil;
+	@Autowired
+	MessageRepository messageRepository;
 	
 	@ModelAttribute("ApplicationVo")
 	public ApplicationVo creatApplicationVo() {
@@ -115,6 +120,17 @@ public class CreateApplicationController {
 		action.setType(ActionType.APPLY);
 		action.setBy(sessionUtil.getBy(session));
 		actionRepository.save(action);
+		Message message = new Message();
+		message.setFrom(null);
+		User applicant = activity.getCreatedBy();
+		message.setTo(applicant);
+		message.setContent(user.getName()+" 申请参加活动 <a href='/activity/" + activity.getId() 
+				+ "/applications'>" +activity.getTitle());
+		message.setStatus(0);
+		message.setType(MessageType.INFORM);
+		message.setCreatedAt(new Date());
+		message.setActivity(activity);
+		messageRepository.save(message);
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}
 }

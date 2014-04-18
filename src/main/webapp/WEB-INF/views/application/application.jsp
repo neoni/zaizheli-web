@@ -28,10 +28,6 @@
 .offset4 {
   margin-left: 350px;
 }
-input.span4 {
-  margin-left: 20px;
-  width: 330px;
-}
 
 .span0 {
   margin-left: 20px;
@@ -58,7 +54,7 @@ cursor: default;
 
 textarea, input[type=text], input[type=password], input[type=datetime], input[type=datetime-local], input[type=date], input[type=month], input[type=time], input[type=week], input[type=number], input[type=email], input[type=url], input[type=search], input[type=tel], input[type=color], .uneditable-input {
   background-color: #ffffff;
-  border: 1px solid #cccccc;
+  border: 1px solid #E67E22;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -69,7 +65,7 @@ textarea, input[type=text], input[type=password], input[type=datetime], input[ty
 }
 
 textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=datetime]:focus, input[type=datetime-local]:focus, input[type=date]:focus, input[type=month]:focus, input[type=time]:focus, input[type=week]:focus, input[type=number]:focus, input[type=email]:focus, input[type=url]:focus, input[type=search]:focus, input[type=tel]:focus, input[type=color]:focus, .uneditable-input:focus {
-  border-color: #ffc554;
+  border-color: #E67E22;
   outline: 0;
   outline: thin dotted \9;
   /* IE6-9 */
@@ -77,8 +73,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-      }
-
+}
 
 </style>	
 	
@@ -89,69 +84,69 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
     <div id="app_v" class="container">
-		<div><img style="margin-left:290px; margin-top:75px;" src="<c:url value="/resources/img/app_own.png" />"></div>
-		<div  class="row mt-30" style="margin-top: 15px;" >
-			<div class="span8 offset4 mt-20" style="width: 569px">	
-					<div class="app_in control-group">
+		<div  class="row mt-30" style="font-size: 18" >
+			<div class="appbg" style="margin-left: 250px;"></div>
+			<div class="span8 offset4 mt-20" style="width: 569px; vertical-align: middle;">	
+					<div class="control-group" style="height: 20px;">
 					昵称
-				       <span class="app_uneditable-input" style="margin-left:40px; ">${application.applicant.name}</span></div>
-					   
-					<div class="control-group app_in" >
+				    <span style="margin-left:40px">${application.applicant.name}</span></div>	
+					<div class="control-group" style="height: 20px;">
 					性别
-					<span class="app_uneditable-input" style="margin-left:40px; ">${application.applicant.gender}</span></div>	
-					
-					<div class="control-group app_in">
+					<span style="margin-left:40px">${application.applicant.gender}</span></div>	
+					<div class="control-group" style="height: 20px;">
 					邮箱
-					<span class="app_uneditable-input" style="margin-left:40px; ">${application.applicant.email}</span></div>	
-					
+					<span style="margin-left:40px">${application.applicant.email}</span></div>	
+					<b>&nbsp;</b>
+					<br>
+					<br>
 					<c:if test="${activity.realNameReq eq true}">
-					<div class="control-group app_in" style="margin-bottom: 40px; ">
-					姓名
-					<span class="app_uneditable-input" style="margin-left:40px;">${application.realName}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						姓名
+						<span style="margin-left:40px">${application.realName}</span>
+						</div>
 					</c:if>
-					
 					<c:if test="${activity.ageReq eq true}" >
-					<div class="control-group app_in" style="margin-bottom: 10px; ">
-					年龄
-					<span class="app_uneditable-input" style="margin-left:40px;">${application.age}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						年龄
+						<span style="margin-left:40px">${application.age}</span>
+						</div>
 					</c:if>
-					
 					<c:if test="${activity.birthdayReq eq true}">
-					<div class="control-group app_in" style="margin-bottom: 10px;">
-					生日
-					<span class="app_uneditable-input" style="margin-left:40px;">${application.birthday}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						生日
+						<span style="margin-left:40px">${application.birthday}</span>
+						</div>
 					</c:if>
-					
 					<c:if test="${activity.telReq eq true}">
-					<div class="control-group app_in" style="margin-bottom: 10px;">
-					电话
-					<span class="app_uneditable-input" style="margin-left:40px;">${application.tel}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						电话
+						<span style="margin-left:40px">${application.tel}</span>
+						</div>
 					</c:if>
-					
 					<c:if test="${activity.schoolReq eq true}">					
-					<div class="app_in control-group" style="margin-bottom: 10px;">
-					学校
-					<span class="app_uneditable-input" style="margin-left:40px">${application.school}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						学校
+						<span style="margin-left:40px">${application.school}</span>
+						</div>
 					</c:if>
-					
 					<c:if test="${activity.addressReq eq true}">
-					<div class="control-group app_in" style="margin-bottom: 10px;">
-					地址
-					<span class="app_uneditable-input" style="margin-left:40px;">${application.address}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						地址
+						<span style="margin-left:40px">${application.address}</span>
+						</div>
 					</c:if>
-					
 					<c:if test="${activity.noteReq eq true}">
-					<div class="control-group app_in" style="margin-bottom: 10px;">
-					Ta的话
-					<span style="margin-left:25px">${application.note}</span></div>
+						<div class="control-group" style="margin-bottom: 10px;">
+						Ta的话
+						<br><span style="margin-left:25px">${application.note}</span>
+						</div>
 					</c:if>	
-					
 					<c:choose>
 					<c:when test="${application.status eq '申请中'}">
-					<div style="margin-left:75px; margin-top:28px;">			    
-						<a  id="a_agree" class=" btn btn-ora" act="<c:url value="/application/${application.id}/agree" />" onclick="op.application_agree(event.currentTarget); event.preventDefault();" re="<c:url value="/activity/${application.activity.id}/applications"/>">
+					<div style="margin-left:60px; margin-top:28px;">			    
+						<a  id="a_agree" class=" btn btn-danger b" act="<c:url value="/application/${application.id}/agree" />" onclick="op.application_agree(event.currentTarget); event.preventDefault();" re="<c:url value="/activity/${application.activity.id}/applications"/>" style="width:50px;">
 								同意</a>
-						<a  id="a_refuse" class="btn btn-info ml-10" act="<c:url value="/application/${application.id}/refuse" />" onclick="op.application_refuse(event.currentTarget); event.preventDefault();" re="<c:url value="/activity/${application.activity.id}/applications"/>">拒绝</a>
+						<a  id="a_refuse" class="btn btn-blue-2 ml-10" act="<c:url value="/application/${application.id}/refuse" />" onclick="op.application_refuse(event.currentTarget); event.preventDefault();" re="<c:url value="/activity/${application.activity.id}/applications"/>" style="width:50px; margin-left:20px;" >拒绝</a>
 					</div>	
 					</c:when>
 					<c:when test="${application.status eq '已加入'}">
@@ -165,7 +160,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 					</c:otherwise>
 					</c:choose>
 			</div>
-		</div>
+	    </div>
 	</div>
 	<div class="md-modal md-effect-4" id="modal-fb" >
       <div class="md-content">
@@ -226,7 +221,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
     <script>
       // this is important for IEs
       var polyfilter_scriptpath = '/js/';
-    </script>						
+    </script>							
 <script type="text/javascript">
 	$(function(){
 		 $('#app_v').each(function(){

@@ -172,7 +172,8 @@ public class EditActivityController {
 				return new AjaxResult(AjaxResultCode.INVALID, 
 						BindingErrors.from(result));
 			}
-			if(vo.getImageUrl()!=null && !vo.getImageUrl().equalsIgnoreCase("http://placehold.it/300&text=Upload+Image")) {
+			if(vo.getImageUrl()!=null && !vo.getImageUrl().equalsIgnoreCase("http://placehold.it/300&text=Upload+Image")
+				&& vo.getImageUrl().trim()!=null && !vo.getImageUrl().equals("")) {
 //				try {
 //					// get image
 //					ImageReadyVo ir = webImageUtil

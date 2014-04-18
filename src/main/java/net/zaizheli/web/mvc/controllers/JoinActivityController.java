@@ -80,8 +80,9 @@ public class JoinActivityController {
 		application.setCreatedAt(new Date());
 		application.setUpdatedAt(application.getCreatedAt());
 		applicationRepository.save(application);
-		activityRepository.inc(id, "applicationCount", 1);
-		activityRepository.inc(id, "inJudgingCount", 1);
+		activity.setApplicationCount(activity.getApplicationCount()+1);
+		activity.setInJudgingCount(activity.getInJudgingCount()+1);
+		activityRepository.save(activity);
 		Action action = new Action();
 		action.setOwner(user.getId());
 		action.setTargetActivity(id);
@@ -89,6 +90,17 @@ public class JoinActivityController {
 		action.setType(ActionType.APPLY);
 		action.setBy(sessionUtil.getBy(session));
 		actionRepository.save(action);
+		Message message = new Message();
+		message.setFrom(null);
+		User applicant = activity.getCreatedBy();
+		message.setTo(applicant);
+		message.setContent(user.getName()+" 申请参加活动 <a href='/activities/" + activity.getId() 
+				+ "/applications'>" +activity.getTitle());
+		message.setStatus(0);
+		message.setType(MessageType.INFORM);
+		message.setCreatedAt(new Date());
+		message.setActivity(activity);
+		messageRepository.save(message);
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}
 	
@@ -104,8 +116,8 @@ public class JoinActivityController {
         	return new AjaxResult(AjaxResultCode.INVALID,"您已不在活动成员行列中了");
         }
 		Activity activity=activityRepository.findOne(id);
-		activityRepository.inc(id, "applicationCount", -1);
-		activityRepository.inc(activity.getId(),"currentNum",-1);
+		activity.setApplicationCount(activity.getApplicationCount()-1);
+		activity.setCurrentNum(activity.getCurrentNum()-1);
 		activity.updateHot();
 		activityRepository.save(activity);
 		Join join = joinRepository.findByActivityAndjoiner(activity.getId(),app.getApplicant().getId());
@@ -123,6 +135,16 @@ public class JoinActivityController {
 		message.setContent("您退出了活动"+activity.getTitle());
 		message.setStatus(0);
 		message.setType(MessageType.INFORM);
+		messageRepository.save(message);
+		message = new Message();
+		message.setFrom(null);	
+		message.setTo(activity.getCreatedBy());
+		message.setContent(applicant.getName()+" 退出了活动 <a href='/activities/" + activity.getId() 
+				+ "'>" + activity.getTitle());
+		message.setStatus(0);
+		message.setType(MessageType.INFORM);
+		message.setCreatedAt(new Date());
+		message.setActivity(activity);
 		messageRepository.save(message);
 		applicationRepository.delete(app);
 		joinRepository.delete(join);

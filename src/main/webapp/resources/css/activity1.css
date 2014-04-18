@@ -520,7 +520,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 
 .join-us-banner {
 	background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/banner-dots-251e1587d72af8c1b33b50b676ca6bd4.png) 0px 8px repeat-x,url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/banner-dots-251e1587d72af8c1b33b50b676ca6bd4.png) 0px 50px repeat-x,#ffca00;
-	padding-top: 18px;
+	padding-top: 10px;
 	height: 40px;
 	width: 1000px;
 	margin-left: -20px;
@@ -582,8 +582,8 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 	border-radius: 4px;
 	display: inline-block;
 	padding: 2px 12px;
-	margin-left: 10px;
-	font-size: 1em
+	margin-left: 200px;
+	font-size: 1.5em
 }
 
 .join-us-banner .view-jobs-status:hover {
@@ -601,7 +601,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 	display: inline-block;
 	padding: 2px 12px;
 	margin-left: 15px;
-	font-size: 0.8em
+	font-size: 1.2em
 }
 
 .join-us-banner .view-jobs:hover {
@@ -1786,7 +1786,7 @@ background: url(https://d3levm2kxut31z.cloudfront.net/assets/premium-teams/paper
 	text-align: center;
 	font-family: "MuseoSans-900";
 	color: #fff;
-	background: #ffb600 url("../img/number.png") no-repeat top;
+	background: #ffd737 url("../img/number.png") no-repeat top;
 }
 
 #why-work .reasons li .two {
