@@ -47,15 +47,15 @@
 		<p><a href="#" data-id="${pin.placeId}" data-type="placemap" 
 			data-html="true" data-toggle="popoverx" data-original-title="详细地图"
 			data-city="${pin.city}" data-lngLat="${pin.lngLat[1]},${pin.lngLat[0]}">
-			<i class="icon-map-marker icon-my"></i>${pin.placeAddr}</a></p>
+			<i class="icon-map-marker"></i>${pin.placeAddr}</a></p>
 		
 		<a href="<c:url value="/activities/${pin.activityId}" />"><h4 style="color:#757575" >${pin.title}</h4></a>
 	</div>
 	
 	<div class="convo clear">
 		<p class="clear mb-0">
-			<span><font color="#856e7e"><i class="icon-bookmark icon-my"></i>&nbsp;&nbsp;参与人数(${pin.currentNum})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-			<span><font color="#856e7e"><i class="icon-comment icon-my"></i>评论(${pin.commentCount})</span> 
+			<span><font color="#856e7e"><i class="icon-bookmark"></i>&nbsp;&nbsp;参与人数(${pin.currentNum})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<span><font color="#856e7e"><i class="icon-comment"></i>评论(${pin.commentCount})</span> 
 		</p>
 	</div> 
 	<div class="convo clear" style="border-top:1px solid white; border-bottom:1px solid #EDEDED;">

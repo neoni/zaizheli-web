@@ -9,14 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import net.zaizheli.constants.ApplicationConstants;
 import net.zaizheli.constants.Gender;
-import net.zaizheli.repositories.CityMetaRepository;
 import net.zaizheli.vo.FilterElementVo;
 import net.zaizheli.web.utils.DomainObjectUtil;
-import net.zaizheli.web.utils.SessionUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -30,10 +27,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class ProfilesController {
 	private static Logger logger = LoggerFactory
 			.getLogger(ProfilesController.class);
-	@Autowired 
-	private CityMetaRepository cityMetaRepository;
-	@Autowired
-	private SessionUtil sessionUtil;
+
 
 	@RequestMapping(value = "/profiles", method = RequestMethod.GET)
 	public String profiles(Model model, HttpServletRequest request,

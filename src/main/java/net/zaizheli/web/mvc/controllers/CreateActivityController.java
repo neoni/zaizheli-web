@@ -49,8 +49,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/activities")
 public class CreateActivityController {
-	
-	
+
+
 	@Autowired
 	ActionRepository actionRepository;
 	@Autowired
@@ -73,13 +73,13 @@ public class CreateActivityController {
 	SessionUtil sessionUtil;
 	@Autowired
 	TextUtil textUtil;
-	
+
 	@ModelAttribute("activityCreationVo")
 	public ActivityCreationVo creatActivityCreationVo() {
 		ActivityCreationVo vo = new ActivityCreationVo();
 		return vo;
 	}
-	
+
 	@RequestMapping(value="/create", method=RequestMethod.GET)
 	public String create(Model model, HttpSession session){
 		if (sessionUtil.getSignInUser(session) == null) {
@@ -87,7 +87,7 @@ public class CreateActivityController {
 		}
 		return "activity/create";
 	}
-	
+
 	@RequestMapping(value="create/validate", method=RequestMethod.POST)
 	public @ResponseBody Object[] createValidate(@Valid ActivityCreationVo vo,
 			BindingResult result, ModelAndView mav, HttpSession session) {
@@ -114,9 +114,9 @@ public class CreateActivityController {
 			return new ValidationEngineError[] {};
 		}
 	}
-	
+
 	@RequestMapping(value="/create", method=RequestMethod.POST)
-	public @ResponseBody AjaxResult create(@Valid ActivityCreationVo vo, 
+	public @ResponseBody AjaxResult create(@Valid ActivityCreationVo vo,
 			BindingResult result, ModelAndView mav, HttpSession session) throws ParseException{
 		User signInUser = sessionUtil.getSignInUser(session);
 		String start=vo.getStartDate()+vo.getStartTime();
@@ -139,7 +139,7 @@ public class CreateActivityController {
 		if(result.hasErrors()){
 			result.addError(new FieldError("vo", "err",
 					"前面的信息有误，去看看吧~"));
-			return new AjaxResult(AjaxResultCode.INVALID, 
+			return new AjaxResult(AjaxResultCode.INVALID,
 					BindingErrors.from(result));
 		}
 		// save activity
@@ -167,7 +167,7 @@ public class CreateActivityController {
 				if(city!=null){
 					activity.setCity(city.getPinyin());
 				}
-				activity.setLngLat(place.getLngLat());				
+				activity.setLngLat(place.getLngLat());
 //				if(place.getNation() == "中国") {
 //					activity.setLocation(ActivityLocation.国外);
 //				}
@@ -221,7 +221,7 @@ public class CreateActivityController {
 		action.setType(ActionType.ACTIVITY);
 		action.setBy(sessionUtil.getBy(session));
 		actionRepository.save(action);
-		
+
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}
 }

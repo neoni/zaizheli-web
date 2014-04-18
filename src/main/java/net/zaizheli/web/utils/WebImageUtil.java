@@ -27,14 +27,14 @@ import org.springframework.util.StringUtils;
 
 @Component
 public class WebImageUtil implements ApplicationContextAware {
-	
+
 	private ApplicationContext ac;
-	
+
 	public WebImageUtil(){
 //		System.setProperty("http.proxyHost", ApplicationConfig.httpProxyHost);
 //		System.setProperty("http.proxyPort", ApplicationConfig.httpProxyPort + "");
 	}
-	
+
 	public static String getImageUrl(String resId){
 		return new StringBuilder()
 			.append(ApplicationConfig.base)
@@ -43,7 +43,7 @@ public class WebImageUtil implements ApplicationContextAware {
 			.append(resId)
 			.toString();
 	}
-	
+
 	public static String getAvatarUrl(String resId){
 		return new StringBuilder()
 			.append(ApplicationConfig.base)
@@ -52,10 +52,10 @@ public class WebImageUtil implements ApplicationContextAware {
 			.append(resId)
 			.toString();
 	}
-	
+
 	public ImageReadyVo prepareImageFromUrl(String url) throws Exception{
 		if(url==null) return null;
-		
+
 		String addr = StringUtils.trimWhitespace(url);
 		URL u = null;
 		BufferedImage img = null;
@@ -91,8 +91,8 @@ public class WebImageUtil implements ApplicationContextAware {
 			res = ac.getResource(ApplicationConfig.uploadTempRepository);
 			file = res.getFile();
 			if(file.isDirectory()){
-				file = new File(file.getPath() + 
-						File.separator + 
+				file = new File(file.getPath() +
+						File.separator +
 						fileName);
 			}
 			if(!"gif".equalsIgnoreCase(ext)){
@@ -133,7 +133,7 @@ public class WebImageUtil implements ApplicationContextAware {
 		ir.setOrgSize(new Integer[] { img.getHeight(), img.getWidth() });
 		return ir;
 	}
-	
+
 	// Returns the format of the image in the file 'f'.
 	// Returns null if the format is not known.
 	public String getFormatInFile(File f) {
@@ -145,7 +145,7 @@ public class WebImageUtil implements ApplicationContextAware {
 	public String getFormatFromStream(InputStream is) {
 	    return getFormatName(is);
 	}
-	
+
 	// Returns the format name of the image in the object 'o'.
 	// 'o' can be either a File or InputStream object.
 	// Returns null if the format is not known.

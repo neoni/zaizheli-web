@@ -18,36 +18,31 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.validationEngine.js" />" ></script>
 </head>
 <body>	
-    <div class="container">
-		<div class="row mt-30" >
-			<div class="span8 offset2 mt-20">
-				<div class="hero-unit board-4">
-				<form:form id="passForm" cssClass="sign-in" modelAttribute="forgetPasswordVo" method="post">
-					<img src="<c:url value="/resources/img/logo.jpg" />" /><br><br>					
-						<div class="row-fluid ">
-						<div class="control-group">
-							<div class="controls">
-								<div class="input-prepend">
-									<span class="add-on"><i class="icon-envelope"></i></span>
-									<input id="user-name" class="validate[required,custom[email]] input-xlarge" name="email" type="email" placeholder="在浙里注册邮箱" autocomplete="off" value="<c:out value="${forgetPasswordVo.email}" />" />
-									<div class="f-l hint" ><form:errors path="email" cssClass="alert alert-error" style="padding-right:0px; margin-top:5px;"/></div>
-								</div>
-							</div>
-						</div>
-						</div>						
-						<div class="row-fluid mt-20">
-							 <div class="span6">
-							 	<button type="submit" class="btn btn-ora btn-large">提交</button>
-							 	<a class="btn btn-large ml-10" href="<c:url value="/" />" />返回</a>
-							</div>
-						</div>
-					</form:form>
-					<br><br><br>
-					<p><a href="<c:url value="/signup" />"><font>还没有在浙里的账号？立即注册！</font></a></p>
+	<div style="width:380px;margin-left:700px;margin-top:200px;">
+	<div class="hero-unit board-1">
+	<form:form id="passForm" cssClass="sign-in" modelAttribute="forgetPasswordVo" method="post">
+		<div class="row-fluid ">
+			<div class="control-group">
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-envelope"></i></span>
+						<input id="user-name" class="validate[required,custom[email]] input-xlarge" name="email" type="email" placeholder="在浙里注册邮箱" autocomplete="off" value="<c:out value="${forgetPasswordVo.email}" />" />
+						<div class="f-l hint" ><form:errors path="email" cssClass="alert alert-error" style="padding-right:0px; margin-top:5px;"/></div>
+					</div>
 				</div>
 			</div>
+		</div>						
+		<div class="row-fluid mt-20">
+			<div class="span6">
+				<button type="submit" class="btn btn-ora btn-large">提交</button>
+				<a class="btn btn-large ml-10" href="<c:url value="/" />" />返回</a>
+			</div>
 		</div>
-	</div>		
+	</form:form>
+	<br>
+	<p><a href="<c:url value="/signup" />"><font>还没有在浙里的账号？立即注册！</font></a></p>
+	</div>
+	</div>
 <script type="text/javascript" src="<c:url value="/resources/js/ga.js" />" ></script>
 <script type="text/javascript">
 	$("#passForm").validationEngine('attach', {promptPosition : "bottomRight", scroll: false});	

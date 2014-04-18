@@ -67,13 +67,13 @@ public class EditActivityController {
 		SessionUtil sessionUtil;
 		@Autowired
 		TextUtil textUtil;
-		
+
 		@ModelAttribute("activityCreationVo")
 		public ActivityCreationVo creatActivityCreationVo() {
 			ActivityCreationVo vo = new ActivityCreationVo();
 			return vo;
 		}
-		
+
 		@RequestMapping(value="/{id}/edit", method=RequestMethod.GET)
 		public String edit(@PathVariable String id, Model model, HttpSession session){
 			if (sessionUtil.getSignInUser(session) == null) {
@@ -83,21 +83,21 @@ public class EditActivityController {
 			model.addAttribute("activity",activity);
 			return "activity/edit";
 		}
-		
+
 		@RequestMapping(value="/{id}/edit/validate", method=RequestMethod.POST)
-		public @ResponseBody Object[] createValidate(@PathVariable String id, 
-				@Valid ActivityCreationVo vo,BindingResult result, 
+		public @ResponseBody Object[] createValidate(@PathVariable String id,
+				@Valid ActivityCreationVo vo,BindingResult result,
 				ModelAndView mav, HttpSession session) {
 			Activity activity=activityRepository.findOne(id);
 			String start,end;
 			if(vo.getStartDate()!=null && !vo.getStartDate().equals("")){
-				start=vo.getStartDate();				
+				start=vo.getStartDate();
 			}
 			else {
 				start=activity.getStartDate();
 			}
 			if(vo.getStartTime()!=null && !vo.getStartTime().equals("")){
-				start+=vo.getStartTime();				
+				start+=vo.getStartTime();
 			}
 			else {
 				start+=activity.getStartTime();
@@ -127,10 +127,10 @@ public class EditActivityController {
 				return new ValidationEngineError[] {};
 			}
 		}
-		
+
 		@RequestMapping(value="/{id}/edit", method=RequestMethod.POST)
 		public @ResponseBody AjaxResult create(@PathVariable String id,
-				@Valid ActivityCreationVo vo, BindingResult result, 
+				@Valid ActivityCreationVo vo, BindingResult result,
 				ModelAndView mav, HttpSession session) throws ParseException{
 			Activity activity=activityRepository.findOne(id);
 			User signInUser = sessionUtil.getSignInUser(session);
@@ -139,13 +139,13 @@ public class EditActivityController {
 			}
 			String start,end;
 			if(vo.getStartDate()!=null && !vo.getStartDate().equals("")){
-				start=vo.getStartDate();				
+				start=vo.getStartDate();
 			}
 			else {
 				start=activity.getStartDate();
 			}
 			if(vo.getStartTime()!=null && !vo.getStartTime().equals("")){
-				start+=vo.getStartTime();				
+				start+=vo.getStartTime();
 			}
 			else {
 				start+=activity.getStartTime();
@@ -165,14 +165,15 @@ public class EditActivityController {
 			if(start.compareTo(end)>0) {
 				result.addError(new FieldError("vo", "endTime",
 						"时间不对吧，再仔细想想吧~"));
-			}		
+			}
 			if(result.hasErrors()){
 				result.addError(new FieldError("vo", "err",
 						"前面的信息有误，去看看吧~"));
-				return new AjaxResult(AjaxResultCode.INVALID, 
+				return new AjaxResult(AjaxResultCode.INVALID,
 						BindingErrors.from(result));
 			}
-			if(vo.getImageUrl()!=null && !vo.getImageUrl().equalsIgnoreCase("http://placehold.it/300&text=Upload+Image")) {
+			if(vo.getImageUrl()!=null && !vo.getImageUrl().equalsIgnoreCase("http://placehold.it/300&text=Upload+Image")
+				&& vo.getImageUrl().trim()!=null && !vo.getImageUrl().equals("")) {
 				try {
 					// get image
 					ImageReadyVo ir = webImageUtil
@@ -235,10 +236,10 @@ public class EditActivityController {
 				activity.setType(vo.getType());
 			}
 			activity.setMaxNum(vo.getNum());
-			activity.setStatus(vo.getStatus());	
-			activity.setAddr(textUtil.removeHtml(vo.getAddr()));	
-			activity.setFee(vo.getFee());	
-			activity.setApply(vo.getApply());	
+			activity.setStatus(vo.getStatus());
+			activity.setAddr(textUtil.removeHtml(vo.getAddr()));
+			activity.setFee(vo.getFee());
+			activity.setApply(vo.getApply());
 			activity.setContent(vo.getEditor1());
 			activity.setUpdatedAt(new Date());
 			activity.setAddressReq(vo.isAddressReq());
@@ -258,7 +259,7 @@ public class EditActivityController {
 			action.setType(ActionType.SETTING);
 			action.setBy(sessionUtil.getBy(session));
 			actionRepository.save(action);
-			
+
 			return new AjaxResult(AjaxResultCode.SUCCESS);
 		}
 	}

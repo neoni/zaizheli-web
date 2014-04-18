@@ -3,6 +3,8 @@ package net.zaizheli.web.mvc.controllers;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
@@ -72,7 +74,7 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 		}
 		return "profiles/setting";
 	}
-	
+
 
 	@RequestMapping(value = "/setting/basic", method = RequestMethod.POST)
 	public @ResponseBody
@@ -101,8 +103,8 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 		userRepository.save(signInUser);
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}
-	
-	
+
+
 	@RequestMapping(value = "/setting/basic/validate", method = RequestMethod.POST)
 	public @ResponseBody
 	Object[] validateSubmitBasic(@Valid UserBasicInfoFormBean formBean,
@@ -123,7 +125,7 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 			return new ValidationEngineError[] {};
 		}
 	}
-	
+
 	@RequestMapping(value = "/setting/specific", method = RequestMethod.POST)
 	public @ResponseBody
 	AjaxResult submitSpecific(@Valid UserInfoFormBean formBean,
@@ -143,12 +145,12 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 		signInUser.setAge(formBean.getAge());
 		signInUser.setBirthday(formBean.getBirthday());
 		signInUser.setTel(formBean.getTel());
-		signInUser.setSchool(formBean.getSchool());	
-		signInUser.setAddress(formBean.getAddress());	
+		signInUser.setSchool(formBean.getSchool());
+		signInUser.setAddress(formBean.getAddress());
 		userRepository.save(signInUser);
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}
-	
+
 	@RequestMapping(value = "/setting/specific/validate", method = RequestMethod.POST)
 	public @ResponseBody
 	Object[] validateSubmitSpecific(@Valid UserInfoFormBean formBean,
@@ -199,7 +201,7 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 		}
 	}
 
-	
+
 	@RequestMapping(value ="/setting/avatar", method = RequestMethod.POST)
 	public @ResponseBody
 	AjaxResult changeAvatar(@Valid UserAvatarFormBean formBean,
@@ -220,7 +222,7 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 			File file = resource.getFile();
 			String ext = null;
 			if (file != null && ext == null) {
-				ext = FilenameUtils.getExtension(file.getName());			
+				ext = FilenameUtils.getExtension(file.getName());
 			}
 			BufferedImage orgImg = ImageIO.read(file);
 			// save original avatar file
@@ -230,7 +232,7 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 			res.setResId(resId);
 			res.setExt(ext);
 			res.setTmpUrl(ApplicationConfig.uploadTempRepository + "/"+file.getName());
-			resourceRepository.save(res);			
+			resourceRepository.save(res);
 			if(signInUser.getAvatarOrg()!=null) {
 				imageService.delete(signInUser.getAvatarOrg().getResId());
 				resourceRepository.delete(signInUser.getAvatarOrg());
@@ -240,22 +242,22 @@ public class ChangeUserSettingController implements ApplicationContextAware {
 			BufferedImage avatarImg = orgImg.getSubimage((int)formBean.getX(),
 					(int)formBean.getY(), (int)formBean.getW(), (int)formBean.getH());
 			ImageIO.write(avatarImg, ext, file);
-			resId = imageService.put(file);			
+			resId = imageService.put(file);
 			res = new Resource();
 			res.setOrgSize(new Integer[] { avatarImg.getHeight(), avatarImg.getWidth() });
 			res.setResId(resId);
 			res.setExt(ext);
 			res.setTmpUrl(ApplicationConfig.uploadTempRepository + "/"+file.getName());
 			resourceRepository.save(res);
-			
+
 			signInUser.setAvatar(res);
-			userRepository.save(signInUser);			
+			userRepository.save(signInUser);
 		} catch (Exception e) {
 			return new AjaxResult(AjaxResultCode.EXCEPTION, e.getMessage());
 		}
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}
-	
+
 //	@Override
 	public void setApplicationContext(ApplicationContext ac)
 			throws BeansException {

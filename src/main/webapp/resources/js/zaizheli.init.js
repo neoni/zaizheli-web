@@ -14,5 +14,6 @@ $(function(){
 		$.pnotify.defaults.pnotify_sticker = false;
 		$.pnotify.defaults.pnotify_history = false;
 		$.pnotify.defaults.pnotify_addclass = 'zaizheli';
+                $.pnotify.defaults.pnotify_min_height = '';
 	}
 });

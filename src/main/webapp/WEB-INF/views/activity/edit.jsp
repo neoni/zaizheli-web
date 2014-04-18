@@ -8,10 +8,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>我在浙里 在浙里——分享你我的社交</title>
-	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />	
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />	
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/uploadify.css" />" />
 	<link rel="stylesheet" href="<c:url value="/resources/css/style_v.css" />" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/validationEngine.bootstrap.css" />" />
@@ -20,19 +20,19 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.timelinr-0.9.53.js" />"></script>
 	<script src="/ckeditor/ckeditor.js"></script>
 	<script>
-	    window.onload = function() {	     
+	    window.onload = function() {
 	        CKEDITOR.replace( 'editor1' );
 	        var str = $("#editor_data").text();
 	        CKEDITOR.instances.editor1.setData(str);
-	        document.getElementById("type").value="${activity.type}";		
-	    }; 
+	        document.getElementById("type").value="${activity.type}";
+	    };
 	    function editor() {
 	   		jQuery('#editor1').val(CKEDITOR.instances.editor1.getData());
 	   	}
 	</script>
 </head>
 <body>
-	
+
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
@@ -40,7 +40,7 @@
 	<c:import url="../modal/upload.jsp"/>
 	<c:import url="../modal/locate.jsp"/>
 	<form id="createactivity-form" modelAttribute="activityCreationVo" method="post">
-		<div id="timeline">	
+		<div id="timeline">
 			<input id="image-url-hid" data-prompt-position="centerRight:0,-4" name="imageUrl" type="hidden" />
 			<input id="place-id-hid" name="placeId" type="hidden" />
 			<ul id="dates">
@@ -64,7 +64,7 @@
 					<div class="upload-img p-r row-fluid">
 					<div class="upload-img p-r row-fluid">
 						<img id="spot-image" class="" alt="" width=300 src="http://placehold.it/300&text=Upload+Image">
-						<a id="upload-image-btn" class="p-a upload-btn mt-20" 
+						<a id="upload-image-btn" class="p-a upload-btn mt-20"
                				 href="#upload-image-modal" data-toggle="modal" title="上传,引用图片" style="margin-left: 60px;">+</a>
 					</div>
 				</li>
@@ -76,7 +76,7 @@
 									<div class="input-prepend">
 										<span class="add-on"> <i class="icon-leaf"></i>
 										</span>
-										<input id="title" class="validate[maxSize[15]] input-xlarge" type="text" name="title" 
+										<input id="title" class="validate[maxSize[15]] input-xlarge" type="text" name="title"
 	              							data-prompt-position="centerRight:0,-4" value="${activity.title}"  />
 									</div>
 								</div>
@@ -87,7 +87,7 @@
 									<span class="add-on"> <i class="icon-th"></i></span>
 									<select id="type" class="span5" name="type" value="${activity.type}" style="width:280px">
 											<option <%if("${activity.type}"=="聚餐") {%> selected='selected'<%}%> >聚餐</option>
-											<option <%if("${activity.type}"=="出游") {%> selected='selected'<%}%> >出游</option>											
+											<option <%if("${activity.type}"=="出游") {%> selected='selected'<%}%> >出游</option>
 											<option <%if("${activity.type}"=="电影") {%> selected='selected'<%}%>  >电影</option>
 											<option <%if("${activity.type}"=="逛街") {%> selected='selected'<%}%> >逛街</option>
 											<option <%if("${activity.type}"=="讨论") {%> selected='selected'<%}%> >讨论</option>
@@ -100,7 +100,7 @@
 								</div>
 							</div>
 
-							
+
 							<div class="control-group " >
 								<label class="control-label fs-15 lh-20 c-ffc" for="startDate">* 活动开始时间</label>
 								<div>
@@ -109,9 +109,9 @@
 											<span class="add-on">
 												<i class="icon-calendar"></i>
 											</span>
-											<input id="startDate" class=" input-small" type="text" name="startDate" 
+											<input id="startDate" class=" input-small" type="text" name="startDate"
 	             							value="${activity.startDate}"  readonly>
-	             						</div>																		
+	             						</div>
 										<div class="bfh-datepicker-calendar">
 											<table class="calendar table table-bordered">
 												<thead>
@@ -144,7 +144,7 @@
 									<div class="bfh-timepicker ml-90" data-time="${activity.startTime}">
 									  <div class="input-prepend bfh-timepicker-toggle ml-90" data-toggle="bfh-timepicker">
 									    <span class="add-on"><i class="icon-time"></i></span>
-									    <input id="startTime" name="startTime" type="text" class=" input-small" 
+									    <input id="startTime" name="startTime" type="text" class=" input-small"
 									    value= "${activity.startTime}" readonly>
 									  </div>
 									  <div class="bfh-timepicker-popover ml-90">
@@ -169,7 +169,7 @@
 									</div>
 								</div>
 							</div>
-					
+
 
 							<div class="control-group mt-20" >
 								<label class="control-label fs-15 lh-20 c-ffc" for="endDate">* 活动结束时间</label>
@@ -179,9 +179,9 @@
 											<span class="add-on">
 												<i class="icon-calendar"></i>
 											</span>
-											<input id="endDate" class="validate[future[#startDate]] input-small" type="text" name="endDate" 
+											<input id="endDate" class="validate[future[#startDate]] input-small" type="text" name="endDate"
 	             							value="${activity.endDate}"  readonly>
-	             						</div>																		
+	             						</div>
 										<div class="bfh-datepicker-calendar">
 											<table class="calendar table table-bordered">
 												<thead>
@@ -214,7 +214,7 @@
 									<div class="bfh-timepicker ml-90" data-time="${activity.endTime}">
 									  <div class="input-prepend bfh-timepicker-toggle ml-90" data-toggle="bfh-timepicker">
 									    <span class="add-on"><i class="icon-time"></i></span>
-									    <input id="endTime" name="endTime" type="text" class=" input-small" 
+									    <input id="endTime" name="endTime" type="text" class=" input-small"
 									     value= "${activity.endTime}" readonly>
 									  </div>
 									  <div class="bfh-timepicker-popover ml-90">
@@ -255,14 +255,14 @@
 									<span class="add-on"> <i class="icon-heart"></i></span>
 									<input value="${activity.status}" type="hidden">
 									<select id="status" class=" span5" name="status" value="${activity.status}" style="width:280px">
-											<option <c:if test="${activity.status eq '征集成员中'}"> selected="selected" </c:if> >征集成员中</option>								
+											<option <c:if test="${activity.status eq '征集成员中'}"> selected="selected" </c:if> >征集成员中</option>
 											<option <c:if test="${activity.status eq '晒活动'}"> selected="selected" </c:if>>晒活动</option>
 											<option <c:if test="${activity.status eq '放弃'}"> selected="selected" </c:if>>放弃</option>
 											<option <c:if test="${activity.status eq '已结束'}"> selected="selected" </c:if>>已结束</option>
 									</select>
 								</div>
 							</div>
-						
+
 					</div>
 				</li>
 
@@ -272,12 +272,12 @@
 							<div class="input-append">
 								<label class="control-label fs-15 lh-20 c-ffc" for="fullAddr">* 活动地点</label>
 								<span class="add-on">
-									<a id="place-locate-btn" class="" 
+									<a id="place-locate-btn" class=""
 											href="#place-locate-modal" data-toggle="modal" title="手动定位地址">
 									<i class="icon-map-marker"></i></a></span>
 								<input id="full-addr-input" name="fullAddr" type="text" class="controls input-xlarge"
 										placeholder="点击右边的图标选择地点吧" autocomplete="off" value="<c:out value="${signUpUserVo.fullAddr}" />" />
-								
+
 							</div>
 							<div><form:errors path="fullAddr" cssClass="alert alert-error"/></div>
 					    </div>
@@ -288,7 +288,7 @@
 								<div class="input-prepend">
 									<span class="add-on"> <i class="icon-tint"></i>
 									</span>
-									<input id="addr" name="addr" class="input-xlarge" type="text"  
+									<input id="addr" name="addr" class="input-xlarge" type="text"
           									data-prompt-position="centerRight:0,-4"  value="${activity.addr}"  />
 								</div>
 							</div>
@@ -296,7 +296,7 @@
 					    <div class="control-group mt-20">
 					    	<label class="control-label fs-15 lh-20 c-ffc" for="fee" >费用</label>
 							<div class="controls fs-16 lh-18">
-		    					<input id="fee" class="" type="hidden" 
+		    					<input id="fee" class="" type="hidden"
 		    					data-prompt-position="centerRight:0,-4" name="fee" value="${activity.fee}" >
 			    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="fee">
 			    					<button id="inputMale" class="btn btn-large fs-16" type="button" data-val="1">是</button>
@@ -307,7 +307,7 @@
 					    <div class="control-group mt-20">
 					    	<label class="control-label fs-15 lh-20 c-ffc" for="apply">是否需要参与者提供详细个人申请资料</label>
 							<div class="controls fs-16 lh-18">
-			    				<input id="apply" class="" type="hidden" 
+			    				<input id="apply" class="" type="hidden"
 			    					data-prompt-position="centerRight:0,-4" name="apply" value="${activity.apply}" >
 			    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="apply">
 			    					<button id="inputMale" class="btn btn-large fs-16" type="button" data-val="1">是</button>
@@ -315,7 +315,7 @@
 			    				</div>
 							</div>
 					    </div>
-					
+
 					<div class="control-group mt-20">
 					    	<label class="control-label fs-15 lh-20 c-ffc" for="apply_req">若需申请表,请选择需要的信息（邮箱、昵称、性别默认个人基本信息）：</label><br>
 							<div class="controls fs-16 lh-18" style="color:#FF0000 ">
@@ -360,25 +360,85 @@
 							<textarea id="editor1" name="editor1" value="${activity.content}"
 							data-prompt-position="centerRight:0,-4" type="text"></textarea>
 						</div>
-						
+
 					</div>
 					<input id="err" name="err" data-prompt-position="centerRight:0,-4" style="display:none"/>
 					<div style="float:right; margin-top:5px;">
-						    
+
 							<button  id="submit-btn" type="submit" class=" btn-orange btn-large" data-loading-text="更新中..." onclick="editor()">
 								提交该活动</button>
-						
+
 						<a id="return-btn" class="btn btn-large ml-10" href="<c:url value="/activities/${activity.id}" />">返回活动界面</a>
-					</div>	
-								
+					</div>
+
 				</li>
 			</ul>
-			
+
 			<a href="#" id="next">+</a>
 			<a href="#" id="prev">-</a>
 		</div>
-	</form>	
+	</form>
 	<div id="editor_data" type="hidden"> ${activity.content} </div>
+	<div class="md-modal md-effect-4" id="modal-fb" >
+      <div class="md-content">
+        <h3><img src="<c:url value="/resources/img/w_logo.png" />"></h3>
+        <div>
+          <p style="font-size:16px;letter-spacing:0.25em">感谢您对"在浙里"的支持！希望能得到您的反馈与建议，愿意与我们进行长期交流沟通，可留下您的邮箱。</p>
+          <br>
+          <form id="form-feedback" modelAttribute="FBVo" method="post" action="<c:url value="/feedback/create" />">
+            <div>
+              <label for="ipt-fdbc-mail" style="float:left;font-size:16px">邮箱</label>
+              <input type="email" style="margin-left:20px;height:25px;width:88%" name="fb_mail" id="fb_mail">
+            </div>
+            <br>
+            <div>
+              <label for="ipt-fdbc-content" style="float:left;font-size:16px">意见</label>
+              <textarea class="validate[required]" style="margin-left:20px;width:88%" name="fb_content" rows="3" cols="20" id="fb_content"></textarea>
+            </div>
+            <br>
+            <button type="submit" class="btn-ora btn-large" style="padding:7px 12px" id="fb-send">通知我吧</button>
+            <button type="reset" style="display:none"></button>
+            <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+    <div class="md-modal md-effect-4" id="modal-an">
+      <div class="md-content">
+        <h3><img src="<c:url value="/resources/img/w_logo.png" />"></h3>
+        <div>
+          <ul style="font-family:'Microsoft Jhenghei';line-height: 1.7em;">
+            <li><strong >目的：</strong>大家可以在"在浙里"发布自己的活动，来组织一个自己的活动或寻找志同道合的小伙伴。</li>
+            <li><strong>布局：</strong>在首页的搜索框的右边，大家可以在热门活动、瀑布布局、地图布局三者之前切换寻找最有效的查询活动的方式；
+            还可直接按在任意空白处按<span style="background-color:#FFA41D;padding:2">Ctrl</span>进行切换。</li>
+            <li><strong>使用：</strong>发布活动可分为有申请表和无申请表；是否通过将由创建者决定；可在活动中发表评论、@、上传活动图片至活动图库；可对活动、用户进行关注、追踪、私信；可提前在账号设置中设置好自己的申请表信息。</li>
+            <li><strong>浏览：</strong>使用 firefox 或 chrome 最新版本浏览会得到最棒的享受哦。</li>
+            <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
+            <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
+          </ul>
+
+          <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
+        </div>
+      </div>
+    </div>
+	<div class="md-overlay"></div><!-- the overlay element -->
+
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/component.css" />" />
+    <!-- <link rel="stylesheet" type="text/css"href="<c:url value="/resources/css/font-awesome.min.css" />" /> -->
+    <link rel="stylesheet" type="text/css"href="<c:url value="/resources/css/hovermenu.css" />" />
+    <script type="text/javascript" src="<c:url value="/resources/js/hovermenu.js" />" charset="utf-8"></script>
+    <script type="text/javascript" src="<c:url value="/resources/languages/zh-cn/jquery.validationEngine.lang.js" />" ></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/jquery.validationEngine.js" />" ></script>
+    <!-- classie.js by @desandro: https://github.com/desandro/classie -->
+    <script type="text/javascript" src="<c:url value="/resources/js/classie.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/resources/js/modalEffects.js" />"></script>
+    <!-- for the blur effect -->
+    <!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
+    <script>
+      // this is important for IEs
+      var polyfilter_scriptpath = '/js/';
+    </script>
 
 <script type="text/javascript">adjustWebWidth();</script>
 
@@ -394,7 +454,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		
+
 		$().timelinr({
 	        orientation:  'vertical',
 	        issuesSpeed:  200,
@@ -404,7 +464,7 @@
 	      });
 		function attachValidationForForm(){
 			$('#createactivity-form').validationEngine({
-				prettySelect: true,				
+				prettySelect: true,
 				promptPosition: 'centerRight',
 				autoPositionUpdate: true,
 				ajaxFormValidation: true,
@@ -418,21 +478,21 @@
 					if(status == true){
 						form.validationEngine('detach');
 						form.ajaxSubmit({
-					        dataType:  'json', 
+					        dataType:  'json',
 					        beforeSubmit: function(formData, jqForm, options){
-					        	$('submit-btn').button('loading');					 
+					        	$('submit-btn').button('loading');
 					        },
 					        success:  function(data){
-					        	if(!data || data.resultCode != 'SUCCESS' ) return;				      
+					        	if(!data || data.resultCode != 'SUCCESS' ) return;
 					        	window.location.href = $('#return-btn').attr('href');
 					        },
-					        complete: function(jqXHR, textStatus){	
+					        complete: function(jqXHR, textStatus){
 					        	$('#submit-btn').button('reset');
-					        	attachValidationForForm();			          	
+					        	attachValidationForForm();
 				          	}
 					    });
 					}
-				}	
+				}
 			});
 		}
 		attachValidationForForm();
@@ -459,10 +519,10 @@
 		    	}
 		    });
 		});
-	   
+
 	});
 	function getLocateObj(){
-		return {fullAddr : $('#full-addr-input').val(), 
+		return {fullAddr : $('#full-addr-input').val(),
 			lngLat: $('#full-addr-input').data('lngLat'),
 			placeId: $('#place-id-hid').val()};
 	}
@@ -471,7 +531,7 @@
 		$('#full-addr-input').val(place.fullAddr);
 		$('#full-addr-input').data('lngLat', place.lngLat);
 	}
-	
+
 </script>
 </body>
 </html>
