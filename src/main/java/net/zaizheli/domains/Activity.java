@@ -22,7 +22,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @SuppressWarnings("serial")
 @Document
 public class Activity implements Serializable {
-	
+
 	@Id
 	private String id;
 	@NotNull
@@ -58,15 +58,15 @@ public class Activity implements Serializable {
 	private int fee;      //0:不需要费用     1: 需要
 	private int apply;   // 0:不需要申请资料         1:需要
 	private String title;
-	private String content;	
-	//图片		
+	private String content;
+	//图片
 	@NotNull
 	@DBRef
 	private Resource image;
 	@NotNull
 	private String status;
 	private ActivityLocation location;
-	
+
 	@NotNull
 	private int maxNum;
 	private int currentNum;           //当前参与人数
@@ -78,18 +78,18 @@ public class Activity implements Serializable {
 	private int galleryCount;
 	private int applicationCount;
 	private int inJudgingCount;   //未处理的申请请求
-	
-	private boolean realNameReq;	
+
+	private boolean realNameReq;
 	private boolean ageReq;
 	private boolean birthdayReq;
 	private boolean telReq;
 	private boolean addressReq;
-	private boolean schoolReq;	
+	private boolean schoolReq;
 	private boolean noteReq;
-	
+
 	private double hot;           //活动热门程度
-	
-	
+
+
 	public double getHot() {
 		return hot;
 	}
@@ -336,7 +336,7 @@ public class Activity implements Serializable {
 	public void setDisagreeCount(int disagreeCount) {
 		this.disagreeCount = disagreeCount;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
@@ -362,13 +362,13 @@ public class Activity implements Serializable {
 				.append(content)
 				.toString();
 	}
-	
+
 	public void updateHot() {
 		hot = agreeCount * 0.1 + commentCount  + shareCount + trackCount +
 			       currentNum / maxNum * 100 * 1.5 + galleryCount * 0.1 +
 			       applicationCount * 0.3 ;
 	}
-	
+
 	public static Activity from(ActivityCreationVo vo, User signInUser) throws ParseException {
 		if(vo==null || signInUser==null) return null;
 		Activity activity=new Activity();
@@ -387,7 +387,7 @@ public class Activity implements Serializable {
 		activity.setStartDate(vo.getStartDate());
 		activity.setStartTime(vo.getStartTime());
 		activity.setEndDate(vo.getEndDate());
-		activity.setEndTime(vo.getEndTime());		
+		activity.setEndTime(vo.getEndTime());
 		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String start=vo.getStartDate()+" "+vo.getStartTime();
 		activity.setStartedAt(format.parse(start));
@@ -400,14 +400,14 @@ public class Activity implements Serializable {
 		activity.setSchoolReq(vo.isSchoolReq());
 		activity.setTelReq(vo.isTelReq());
 		activity.setNoteReq(vo.isNoteReq());
-		Date date = new Date();	
-		if(activity.getEndedAt().getTime() <= date.getTime() && activity.getStatus() == "征集成员中") {
+		Date date = new Date();
+		if(activity.getEndedAt().getTime() <= date.getTime() && activity.getStatus().equals("征集成员中")) {
 			activity.setStatus("已结束");
 		}
 		activity.hot = activity.agreeCount * 0.1 + activity.commentCount  + activity.shareCount + activity.trackCount +
 				       activity.currentNum / activity.maxNum * 100 * 1.5 + activity.galleryCount * 0.1 +
 				       activity.applicationCount * 0.3 ;
-		return activity;		
-	
+		return activity;
+
 	}
 }

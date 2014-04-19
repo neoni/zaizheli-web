@@ -41,7 +41,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/application")
-public class CreateApplicationController {  
+public class CreateApplicationController {
 
 	@Autowired
 	ActivityRepository activityRepository;
@@ -55,17 +55,17 @@ public class CreateApplicationController {
 	ApplicationRepository applicationRepository;
 	@Autowired
 	ActionRepository actionRepository;
-	@Autowired 
+	@Autowired
 	TextUtil textUtil;
 	@Autowired
 	MessageRepository messageRepository;
-	
+
 	@ModelAttribute("ApplicationVo")
 	public ApplicationVo creatApplicationVo() {
 		ApplicationVo vo = new ApplicationVo();
 		return vo;
 	}
-	
+
 	@RequestMapping(value="/{id}/create", method=RequestMethod.GET)
 	public String create(@PathVariable String id, Model model, HttpSession session){
 		if (sessionUtil.getSignInUser(session) == null) {
@@ -77,9 +77,9 @@ public class CreateApplicationController {
 		model.addAttribute("user",signInuser);
 		return "application/apply";
 	}
-		
+
 	@RequestMapping(value="/{id}/create", method=RequestMethod.POST)
-	public @ResponseBody AjaxResult create(@PathVariable String id, @Valid ApplicationVo vo, 
+	public @ResponseBody AjaxResult create(@PathVariable String id, @Valid ApplicationVo vo,
 			BindingResult result, ModelAndView mav, HttpSession session) throws ParseException{
 		User user = sessionUtil.getSignInUser(session);
 		List<String> types = new ArrayList<String>();
@@ -93,7 +93,7 @@ public class CreateApplicationController {
         	if(ap.getStatus()==ApplicationStatus.已加入) {
         		return new AjaxResult(AjaxResultCode.INVALID, "不用提交申请了，你已经是成员了哦 >o<");
         	}
-        }       
+        }
 		Activity act=activityRepository.findOne(id);
 		if(act.getCurrentNum() >= act.getMaxNum()) {
 			return new AjaxResult(AjaxResultCode.INVALID, "抱歉，活动已经满员了  >o<");
@@ -124,7 +124,7 @@ public class CreateApplicationController {
 		message.setFrom(null);
 		User applicant = activity.getCreatedBy();
 		message.setTo(applicant);
-		message.setContent(user.getName()+" 申请参加活动 <a href='/activity/" + activity.getId() 
+		message.setContent(user.getName()+" 申请参加活动 <a href='/activity/" + activity.getId()
 				+ "/applications'>" +activity.getTitle());
 		message.setStatus(0);
 		message.setType(MessageType.INFORM);

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.1.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+
+  <http auto-config="true" >
+    <!-- 指定url使用https通道 -->
+    <intercept-url pattern="/signin*" requires-channel="https"/>
+    <intercept-url pattern="/signup*" requires-channel="https"/>
+    <intercept-url pattern="/password*" requires-channel="https"/>
+     <!-- 未指定的url一致用http通道 -->
+    <intercept-url pattern="/**" requires-channel="http"/>
+  </http>
+
+  <authentication-manager></authentication-manager>
+
+</beans:beans>

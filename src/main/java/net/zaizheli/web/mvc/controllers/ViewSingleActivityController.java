@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 
 import net.zaizheli.constants.ApplicationStatus;
+import net.zaizheli.constants.ActivityStatus;
 import net.zaizheli.domains.Activity;
 import net.zaizheli.domains.Application;
 import net.zaizheli.domains.FollowShip;
@@ -37,9 +38,9 @@ public class ViewSingleActivityController {
 	ApplicationRepository applicationRepository;
 	@Autowired
 	FollowShipRepository followShipRepository;
-	
+
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public String view(@PathVariable String id, Model model, 
+	public String view(@PathVariable String id, Model model,
 			HttpServletRequest request, HttpSession session){
 		int status = 0;
 		User user = sessionUtil.getSignInUser(session);
@@ -48,7 +49,7 @@ public class ViewSingleActivityController {
 			List<String> types = new ArrayList<String>();
 			types.add(ApplicationStatus.已加入.name());
 			types.add(ApplicationStatus.申请中.name());
-			Application app = applicationRepository.findByActivityAndapplicant(id, user.getId(), types);		
+			Application app = applicationRepository.findByActivityAndapplicant(id, user.getId(), types);
 			if (app != null) {
 				if(app.getStatus() == ApplicationStatus.已加入)
 					status = 2;
@@ -61,11 +62,11 @@ public class ViewSingleActivityController {
 					String name = "\"" + fs.getTarget().getName() + "\"";
 					myUsers.add(name);
 				}
-			}	
+			}
 		}
 		Activity activity = activityRepository.findOne(id);
-		Date date = new Date();		
-		if(activity.getEndedAt().getTime() <= date.getTime() && activity.getStatus() == "征集成员中") {
+		Date date = new Date();
+		if(activity.getEndedAt().getTime() <= date.getTime() && activity.getStatus().equals("征集成员中")) {
 			activity.setStatus("已结束");
 			activityRepository.save(activity);
 		}
@@ -73,12 +74,12 @@ public class ViewSingleActivityController {
 		model.addAttribute("status",status);
 		model.addAttribute("activity", activity);
 		model.addAttribute("no", 1);
-		return "activity/single";	
+		return "activity/single";
 	}
-	
+
 	@RequestMapping(value="/{id}/{no}", method=RequestMethod.GET)
-	public String viewP(@PathVariable String id, @PathVariable int no ,Model model, 
-			HttpServletRequest request, HttpSession session){	
+	public String viewP(@PathVariable String id, @PathVariable int no ,Model model,
+			HttpServletRequest request, HttpSession session){
 		int status = 0;
 		User user = sessionUtil.getSignInUser(session);
 		List<String> myUsers = new ArrayList<String> ();
@@ -92,7 +93,7 @@ public class ViewSingleActivityController {
 					status = 2;
 				else status = 1;
 			}
-			List<FollowShip> fss = followShipRepository.findByFollowedAndStatus(user.getId(), 0);		
+			List<FollowShip> fss = followShipRepository.findByFollowedAndStatus(user.getId(), 0);
 			if(fss!=null){
 				for(FollowShip fs : fss){
 					if(fs.getTarget()==null) continue;
@@ -100,11 +101,12 @@ public class ViewSingleActivityController {
 					myUsers.add(name);
 				}
 			}
-			
+
 		}
 		Activity activity = activityRepository.findOne(id);
-		Date date = new Date();	
-		if(activity.getEndedAt().getTime() <= date.getTime() && activity.getStatus() == "征集成员中") {
+		Date date = new Date();
+		if(activity.getEndedAt().getTime() <= date.getTime() && activity.getStatus().equals("征集成员中")) {
+
 			activity.setStatus("已结束");
 			activityRepository.save(activity);
 		}
@@ -114,5 +116,5 @@ public class ViewSingleActivityController {
 		model.addAttribute("no", no);
 		return "activity/single";
 	}
-	
+
 }
