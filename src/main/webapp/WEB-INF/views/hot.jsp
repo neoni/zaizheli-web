@@ -5,10 +5,10 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
-	<title>热门活动 在浙里——分享你我的社交</title>	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
+	<title>热门活动 在浙里——分享你我的社交</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
@@ -44,8 +44,8 @@
 									<c:otherwise>
 										 <img src="${f:imageUrl(activity.image.resId)}" alt="${activity.title}"/>
 									</c:otherwise>
-								</c:choose> 
-								
+								</c:choose>
+
 								<div class="sb-description" >
 									<h3>${activity.title}</h3>
 								</div>
@@ -96,7 +96,7 @@
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
-          
+
         </div>
       </div>
     </div>
@@ -113,7 +113,7 @@
             <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
             <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
-          
+
           <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
@@ -139,6 +139,9 @@
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 <script type="text/javascript">
 	$(function() {
+        $("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
 		var Page = (function() {
 			var $navArrows = $( '#nav-arrows' ).hide(),
 				$navOptions = $( '#nav-options' ).hide(),
@@ -159,9 +162,9 @@
 					orientation : 'r',
 					cuboidsCount : 3,
 					autoplay : true
-				} ),				
+				} ),
 				init = function() {
-					initEvents();					
+					initEvents();
 				},
 				initEvents = function() {
 					// add navigation events
@@ -169,28 +172,28 @@
 						slicebox.next();
 						return false;
 					} );
-					$navArrows.children( ':last' ).on( 'click', function() {					
+					$navArrows.children( ':last' ).on( 'click', function() {
 						slicebox.previous();
 						return false;
 					} );
-					$( '#navPlay' ).on( 'click', function() {						
+					$( '#navPlay' ).on( 'click', function() {
 						slicebox.play();
 						return false;
 					} );
-					$( '#navPause' ).on( 'click', function() {						
+					$( '#navPause' ).on( 'click', function() {
 						slicebox.pause();
 						return false;
 					} );
-					$nav.each( function( i ) {				
-						$( this ).on( 'click', function( event ) {							
-							var $dot = $( this );							
+					$nav.each( function( i ) {
+						$( this ).on( 'click', function( event ) {
+							var $dot = $( this );
 							if( !slicebox.isActive() ) {
 								$nav.removeClass( 'nav-dot-current' );
-								$dot.addClass( 'nav-dot-current' );							
-							}							
+								$dot.addClass( 'nav-dot-current' );
+							}
 							slicebox.jump( i + 1 );
-							return false;						
-						} );						
+							return false;
+						} );
 					} );
 				};
 				return { init : init };

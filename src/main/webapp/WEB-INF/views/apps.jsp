@@ -6,23 +6,24 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>在浙里——分享你我的社交</title>
-		<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
+		<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
 		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
-		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />	
-		<style>	
+		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/validationEngine.bootstrap.css" />" />
+		<style>
 		   @font-face {
 			  font-family: 'Creepster';
 			  font-style: normal;
 			  font-weight: 400;
 			  src: local('Creepster'), local('Creepster-Regular'), url(http://themes.googleusercontent.com/static/fonts/creepster/v2/un014as1qOcrVg1hrkn_UT8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
-			}		
+			}
 			*{
 				margin:0;
 				padding:0;
 			}
 			body{
-				
+
 				color:white;
 				padding-bottom:20px;
 			}
@@ -72,13 +73,13 @@
 			}
 
 		</style>
-		
+
 
 		<script type="text/javascript" src="<c:url value="/resources/js/jquery.js" />" ></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.init.js" />" ></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.op.js" />" ></script>
-		
+
 	</head>
 	<body>
 		<jsp:include page="/WEB-INF/views/comp/header.jsp">
@@ -114,7 +115,7 @@
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
-          
+
         </div>
       </div>
     </div>
@@ -131,7 +132,7 @@
             <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
             <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
-          
+
           <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
@@ -151,6 +152,9 @@
     <!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
     <script>
       // this is important for IEs
+      $("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
       var polyfilter_scriptpath = '/js/';
     </script>
 	</body>

@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>在浙里 在浙里——分享你我的社交</title>
-	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
@@ -50,29 +50,29 @@
         		},
         		onUploadSuccess : function(file) {
         			op.notify_header('上传成功！ o@o');
-           	    }  
-			    
-		    }); 
+           	    }
+
+		    });
 
 	    });
-	    </script> 
+	    </script>
 </head>
 <body class="front" style="padding-top:46px;">
-	
+
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
 	<jsp:include page="/WEB-INF/views/comp/side.nav.jsp" />
 	<c:import url="../modal/sendPM.jsp"/>
-    <div id="main-content"> 
+    <div id="main-content">
 	   <div class="inside-main-content cf">
-		    <div class="page"> 
-		    <header class="team-header cf"> 
+		    <div class="page">
+		    <header class="team-header cf">
 		      	<div class="team-logo">
 			       <a  href="<c:url value="/profiles/${activity.createdBy.id}" />">
 					  <img class="team-page-avatar" width=104 height=104 src="${f:avatarUrl(activity.createdBy.avatar, activity.createdBy.gender)}" />
 				   </a>
-			    </div>    
+			    </div>
 			    <h1 style="color:#ffca00">${activity.createdBy.name}</h1><br><br><br><br><br><br><br>
 			    <div calss="span6">
 			    	<div class="span3-5">
@@ -102,151 +102,164 @@
 					<div id="div1" style="display:none;margin-top:5px" class="span2">
 						<div class="bshare-custom"><div class="bsPromo bsPromo2"></div><a title="分享到新浪微博" class="bshare-sinaminiblog" style="padding-left:20px"></a><a title="分享到QQ好友" class="bshare-qqim" href="javascript:void(0);"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到豆瓣" class="bshare-douban" href="javascript:void(0);"></a></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
 					</div>
-					<!--一键分享——END-->					
+					<!--一键分享——END-->
 				</div>
-		    </header> 
+		    </header>
 		    <div class="join-us-banner">
-		      	<a class="view-jobs-status">${activity.status}</a> 
+		      	<a class="view-jobs-status">${activity.status}</a>
 		      	<a class="view-jobs" style="margin-left:200px" href="<c:url value="/activity/${activity.id}/joiners"/>" ><font color="#a76745">查看参与人员</font></a>
 		      	<a class="view-jobs" href="#comment"><font color="#a76745">去评论吧</font></a>
-	     	</div>  
+	     	</div>
 		    <section class="cf" id="challenges">
 		    	<div>
-		    		<header class="job-panel-header cf"> 
-				       	<p size="8px" style="text-align: center;font-size:36px;font-weight:bold;">${activity.title}</p> 
+		    		<header class="job-panel-header cf">
+				       	<p size="8px" style="text-align: center;font-size:36px;font-weight:bold;">${activity.title}</p>
 				    </header>
 		    	</div>
-		       	<div class="member-details" style="margin-left:50px"> 
-			       <h3>活动 基本信息</h3> 
-			       <p class=""> </p> 
-		       	</div> 
+		       	<div class="member-details" style="margin-left:50px">
+			       <h3>活动 基本信息</h3>
+			       <p class=""> </p>
+		       	</div>
 		       	<div class="caption" style="margin-left:50px">
-					<p><a href="#" data-id="${activity.place.id}" data-type="placemap" 
+					<p><a href="#" data-id="${activity.place.id}" data-type="placemap"
 						data-html="true" data-toggle="popoverx" data-original-title="详细地图"
 						data-city="${activity.city}" data-lngLat="${activity.place.lngLat[1]},${activity.place.lngLat[0]}">
 						<i class="icon-map-marker"></i>${activity.place.fullAddr}</a></p>
-					<c:if test="${not empty activity.addr}">			
+					<c:if test="${not empty activity.addr}">
 						<h4>地址备注：${activity.addr}</h4>
 					</c:if>
 				</div>
 				<br>
-		       	<div class="box half" style="margin-left:50px"> 
-		       		<div class="icon" style="background-color:#a0d4ae"></div> 
-			       	<header> 
-			          	<h3>活 动 细 节</h3> 
+		       	<div class="box half" style="margin-left:50px">
+		       		<div class="icon" style="background-color:#a0d4ae"></div>
+			       	<header>
+			          	<h3>活 动 细 节</h3>
 			       	</header>
-		       		<p>类别：${activity.type}</p> 
+		       		<p>类别：${activity.type}</p>
 		       		<p>开始时间：<fmt:formatDate value="${activity.startedAt}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 		       		<p>结束时间：<fmt:formatDate value="${activity.endedAt}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
-		       		<p>参与的最大人数：${activity.maxNum}</p> 
-		       		<p>当前人数：${activity.currentNum}</p> 
-		      	</div> 
-		      	<div class="box half" style="width:230px"> 
-		      		<div class="icon blub" style="background-color:#a0d4ae"></div> 
-			       	<header> 
-			        <h3>活 动 情 况</h3> 
-			       	</header> 
+		       		<p>参与的最大人数：${activity.maxNum}</p>
+		       		<p>当前人数：${activity.currentNum}</p>
+		      	</div>
+		      	<div class="box half" style="width:230px">
+		      		<div class="icon blub" style="background-color:#a0d4ae"></div>
+			       	<header>
+			        <h3>活 动 情 况</h3>
+			       	</header>
 				       	<p>是否需要费用：<c:choose> <c:when test="${activity.fee eq 0}">否 </c:when>
-				                                   	<c:when test="${activity.fee eq 1}">是 </c:when>	
+				                                   	<c:when test="${activity.fee eq 1}">是 </c:when>
 				                        </c:choose>
-				       	<p>被赞：${activity.agreeCount}</p> 
+				       	<p>被赞：${activity.agreeCount}</p>
 				       	<p>转发：${activity.shareCount}</p>
-				      	<p>评论：${activity.commentCount}</p> 
-				       	<p>追踪：${activity.trackCount}</p> 
-		      	</div> 
-		     </section> 
+				      	<p>评论：${activity.commentCount}</p>
+				       	<p>追踪：${activity.trackCount}</p>
+		      	</div>
+		     </section>
 		<div>
-			<section class="jobs-top" id="jobs"> 
-			     <article class="job-panel"> 
-			     	  
-				      <div class="content cf"> 
+			<section class="jobs-top" id="jobs">
+			     <article class="job-panel">
+
+				      <div class="content cf">
 				       <c:choose>
 						<c:when test="${activity.image.orgSize[1]>=720}">
 							<a class="img" href="#">
-								<img class="block-h-c" width="720" height="${(720*activity.image.orgSize[0])/activity.image.orgSize[1]}" 
+								<img class="block-h-c" width="720" height="${(720*activity.image.orgSize[0])/activity.image.orgSize[1]}"
 									src="${f:imageUrl(activity.image.resId)}" alt="${activity.title}"/>
 							</a>
 						</c:when>
 						<c:otherwise>
 							 <a class="img" href="#" style="text-align:center;display:block">
-								<img class="block-h-c" width="${activity.image.orgSize[1]}" height="${activity.image.orgSize[0]}" 
+								<img class="block-h-c" width="${activity.image.orgSize[1]}" height="${activity.image.orgSize[0]}"
 									src="${f:imageUrl(activity.image.resId)}" alt="${activity.title}"/>
 							</a>
 						</c:otherwise>
-						</c:choose> 
-				      </div> 
+						</c:choose>
+				      </div>
 				      <footer class="job-panel-footer cf">
 				      <c:choose>
 				      	<c:when test="${activity.status eq '放弃'}">
-                        	<a  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">此 活 动 已 被 放 弃 </a> 
+                        	<a  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">此 活 动 已 被 放 弃 </a>
                         </c:when>
                         <c:when test="${signInUser.id == activity.createdBy.id}">
-					       <input type="file" id="image_upload" name="image_upload">    
+					       <input type="file" id="image_upload" name="image_upload">
 					     </c:when>
 				      	<c:when test="${activity.status eq '已结束'}">
-                        	<a  data-action="view job application" class="track apply noauth record-exit" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">已 结 束 </a> 
+                        	<a  data-action="view job application" class="track apply noauth record-exit" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">已 结 束 </a>
                         </c:when>
                         <c:when test="${activity.status eq '晒活动'}">
-                        	<a href="<c:url value="/activity/${activity.id}/gallery"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">晒 活 动 中 </a> 
-                        </c:when>                        
-                        <c:when test="${activity.status eq '征集成员中'}"> 
+                            <c:choose>
+                            <c:when test="${status eq 0}">
+                                <a act="<c:url value="/activity/${activity.id}/join"/>" onclick="op.apply(event.currentTarget); event.preventDefault();"  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>加 入 活 动</span> </a>
+                               <c:if test="${activity.apply==1}">
+                                    <a class="other-jobs">加入该活动需要填写申请表</a>
+                               </c:if>
+                            </c:when>
+                            <c:when test="${status eq 1}">
+                                <a  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>等待审核中</span> </a>
+                            </c:when>
+                            <c:otherwise>
+                        	   <a href="<c:url value="/activity/${activity.id}/gallery"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">晒 活 动 中 </a>
+                            </c:otherwise>
+                            </c:choose>
+                        </c:when>
+                        <c:when test="${activity.status eq '征集成员中'}">
                         	<c:choose>
-                        	<c:when test="${status eq 0}">                                         
-	                        	<a act="<c:url value="/activity/${activity.id}/join"/>" onclick="op.apply(event.currentTarget); event.preventDefault();"  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>加 入 活 动</span> </a> 					   
+                        	<c:when test="${status eq 0}">
+	                        	<a act="<c:url value="/activity/${activity.id}/join"/>" onclick="op.apply(event.currentTarget); event.preventDefault();"  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>加 入 活 动</span> </a>
 			                   <c:if test="${activity.apply==1}">
-						       		<a class="other-jobs">加入该活动需要填写申请表</a> 
+						       		<a class="other-jobs">加入该活动需要填写申请表</a>
 						       </c:if>
 						    </c:when>
-						    <c:when test="${status eq 1}"> 
-						    	<a  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>等待审核中</span> </a> 
+						    <c:when test="${status eq 1}">
+						    	<a  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>等待审核中</span> </a>
 						    </c:when>
-						    <c:otherwise>					   
-			                 	<a  id="quit_act" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>退 出 活 动</span> </a>   
+						    <c:otherwise>
+			                 	<a  id="quit_act" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>退 出 活 动</span> </a>
 			                </c:otherwise>
 			            	</c:choose>
 					     </c:when>
 					    </c:choose>
-				      </footer> 
+				      </footer>
 			    </article>
-		    </section> 
+		    </section>
 		</div>
-    <section class="cf" id="favourite-benefits" style="background-color:#ffca00;filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5">
+    <section class="cf" id="favourite-benefits" style="background-color:#FFE47F;-moz-opacity:0.5;opacity:0.5">
      	<div style="margin-left:50px;padding-left:80px; padding-right:80px;">
-	     	<font size="5px" color="#2894ff" ><strong>活 动 补 充</strong></font>  
-	   			<font size="2px" color="#000000" >${activity.content}</font>
+	     	<font size="5px" color="#2894ff" ><strong>活 动 补 充</strong></font><br>
+	   			<font size="1px" color="#000000" >${activity.content}</font>
   		</div>
-    </section> 
-    <section class="cf" id="why-work"> 
-      <header class="header"> 
-       <h2 class="heading">一 共 ${activity.commentCount} 条 评 论</h2> 
+    </section>
+    <section class="cf" id="why-work">
+      <header class="header">
+       <h2 class="heading">一 共 ${activity.commentCount} 条 评 论</h2>
       </header>
-      <div class="inside">  
-      <ol class="reasons"> 
-       	<c:import url="/activity/${activity.id}/comments/${no}"></c:import>	
+      <div class="inside">
+      <ol class="reasons">
+       	<c:import url="/activity/${activity.id}/comments/${no}"></c:import>
 
 	  </div>
 		<form action="<c:url value="/activity/addcmt" />" method="post" id="commentform">
 		   	<p><textarea name="content" id="comment" cols="58" rows="10"   required="true"></textarea></p>
-		
+
 		   	<p>
 		   		<input name="submit" id="cmt_submit" tabindex="5" value="提交评论" type="submit">
 				<input name="actId" value="${activity.id}" id="actId" type="hidden">
 				<input name="replyToId" value="" id="replyToId" type="hidden">
 				<input name="cmtId" value="" id="cmtId" type="hidden">
 		 	</p>
-		 	
-	 	</form>
-       
-     
-     </section>
-     <footer class="page-footer"> 
 
-      <p class="watermark">Zai Zhe Li</p> 
-     </footer> 
-    </div> 
-    <div id="dimmer"></div> 
-   </div> 
-  </div> 
+	 	</form>
+
+
+     </section>
+     <footer class="page-footer">
+
+      <p class="watermark">Zai Zhe Li</p>
+     </footer>
+    </div>
+    <div id="dimmer"></div>
+   </div>
+  </div>
 	</div>
 	<jsp:include page="/WEB-INF/views/comp/back.top.jsp"></jsp:include>
 	<script type="text/javascript">
@@ -286,7 +299,7 @@
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
-          
+
         </div>
       </div>
     </div>
@@ -303,7 +316,7 @@
             <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
             <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
-          
+
           <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
@@ -324,7 +337,7 @@
     <script>
       // this is important for IEs
       var polyfilter_scriptpath = '/js/';
-    </script>		
+    </script>
 
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrapx-popoverx.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.timeago.js" />" ></script>
@@ -336,13 +349,16 @@
 <script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" />"></script>
 <script type="text/javascript">
 	$(function(){
+        $("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
 		var names = $.map(${myUsers},function(value,i) {
            return {'name':value};
          });
 		 $(".timeago").timeago();
 		 $('#main-content').each(function(){
 			op.pin_bind_event($(this));
-		});	
+		});
 		 $('#comment')
 		  .atwho({
 		    at: "@",
@@ -353,7 +369,7 @@
 		 });
 		 $('#sure').click(function(){
 		 	op.apply_quit(event.currentTarget);
-		 	event.preventDefault(); 
+		 	event.preventDefault();
 		 	setTimeout(function(){window.location.reload();}, 1500);
 		 });
 

@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/profiles")
 public class ViewUserActivityController {
-	
+
 	@Autowired
 	CityMetaRepository cityMetaRepository;
 	@Autowired
@@ -47,15 +47,15 @@ public class ViewUserActivityController {
 	ActionRepository actionRepository;
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@RequestMapping(value="/{id}/c_activitys/{no}", method=RequestMethod.GET)
 	public String c_activities(@PathVariable String id,
-			@PathVariable int no, Model model, 
+			@PathVariable int no, Model model,
 			HttpServletRequest request, HttpSession session){
 		User user = userRepository.findOne(id);
 		model.addAttribute("user", user);
-		Pageable pageable = new PageRequest(no >= 0 ? no : 0, 
-				ApplicationConfig.masonryPageSize, 
+		Pageable pageable = new PageRequest(no >= 0 ? no : 0,
+				ApplicationConfig.masonryPageSize,
 				new Sort(new Order(Direction.DESC, "createdAt")));
 		Iterable<Activity> activities = activityRepository.findByCreatedBy(id, pageable);
 		Collection<PinVo> pins = new ArrayList<PinVo>();
@@ -75,16 +75,16 @@ public class ViewUserActivityController {
 		model.addAttribute("pins", pins);
 		return "activity/list";
 	}
-	
-	
+
+
 	@RequestMapping(value="/{id}/activitys/{no}", method=RequestMethod.GET)
 	public String activities(@PathVariable String id,
-			@PathVariable int no, Model model, 
+			@PathVariable int no, Model model,
 			HttpServletRequest request, HttpSession session){
 		User user = userRepository.findOne(id);
 		model.addAttribute("user", user);
-		Pageable pageable = new PageRequest(no >= 0 ? no : 0, 
-				ApplicationConfig.masonryPageSize, 
+		Pageable pageable = new PageRequest(no >= 0 ? no : 0,
+				ApplicationConfig.masonryPageSize,
 				new Sort(new Order(Direction.DESC, "createdAt")));
 		Iterable<Join> joins = joinRepository.findByJoiner(id, pageable);
 		Collection<PinVo> pins = new ArrayList<PinVo>();
@@ -105,6 +105,6 @@ public class ViewUserActivityController {
 		model.addAttribute("pins", pins);
 		return "activity/list";
 	}
-	
-	
+
+
 }

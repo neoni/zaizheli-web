@@ -454,7 +454,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		$("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
 		$().timelinr({
 	        orientation:  'vertical',
 	        issuesSpeed:  200,

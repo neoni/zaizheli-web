@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>在浙里 在浙里——分享你我的社交</title>
-	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
@@ -46,16 +46,16 @@
 			    	op.notify_header('啊啊，上传失败了 >o<');
         		},
         		onUploadSuccess : function(file) {
-        			op.notify_header('上传成功！ o@o');		
-           	    },  
+        			op.notify_header('上传成功！ o@o');
+           	    },
            	    onQueueComplete : function(queueData) {
             		window.location.reload();
-        		} 
-			    
-		    }); 
+        		}
+
+		    });
 
 	    });
-	    </script> 
+	    </script>
 </head>
 <body class="front" >
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
@@ -78,9 +78,9 @@
 			</div>
 		</c:if>
 		<div id="Gallery_heading">
-		<h1 style="color:#FFFFFF;">在 这 里, <a href="<c:url value="/activities/${activity.id}" />" ><i style="color:#FFA50B">&nbsp;${activity.title}&nbsp;</i></a>  的 世 界			
-		</h1>		
-		</div>		
+		<h1 style="color:#FFFFFF;">在 这 里, <a href="<c:url value="/activities/${activity.id}" />" ><i style="color:#FFA50B">&nbsp;${activity.title}&nbsp;</i></a>  的 世 界
+		</h1>
+		</div>
 		<div id="links">
 			<c:if test="${not empty resources}">
 			<c:forEach var="resource" items="${resources}">
@@ -89,9 +89,9 @@
 				</a>
 			</c:forEach>
 			</c:if>
-		</div>	
-	</div>	
-	<jsp:include page="/WEB-INF/views/comp/back.top.jsp"></jsp:include>    
+		</div>
+	</div>
+	<jsp:include page="/WEB-INF/views/comp/back.top.jsp"></jsp:include>
 	<script type="text/javascript">
 		adjustWebWidth();
 	</script>
@@ -116,7 +116,7 @@
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
-          
+
         </div>
       </div>
     </div>
@@ -133,7 +133,7 @@
             <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
             <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
-          
+
           <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
@@ -154,7 +154,7 @@
     <script>
       // this is important for IEs
       var polyfilter_scriptpath = '/js/';
-    </script>	
+    </script>
 <script type="text/javascript" src="<c:url value="/resources/js/blueimp-gallery.min.js"/>" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrapx-popoverx.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.timeago.js" />" ></script>
@@ -169,10 +169,13 @@
 <script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" />"></script>
 <script type="text/javascript">
 	$(function(){
+        $("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
 		 $(".timeago").timeago();
 		 $('#main-content').each(function(){
 			op.pin_bind_event($(this));
-		});	
+		});
 		 document.getElementById('links').onclick = function (event) {
 		    event = event || window.event;
 		    var target = event.target || event.srcElement,

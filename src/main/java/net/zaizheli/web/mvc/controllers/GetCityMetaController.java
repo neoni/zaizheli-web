@@ -24,25 +24,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GetCityMetaController {
-	
+
 	@Autowired
 	CityMetaRepository cityMetaRepository;
 	@Autowired
 	AjaxUtil ajaxUtil;
 	@Autowired
 	SessionUtil sessionUtil;
-	
+
 	@RequestMapping(value="/citymeta", method=RequestMethod.GET)
-	public @ResponseBody AjaxResult meta(HttpServletRequest request, 
+	public @ResponseBody AjaxResult meta(HttpServletRequest request,
 			ModelAndView mav, HttpSession session){
 		if(!ajaxUtil.isAjaxRequest(request)){
 			throw new ResourceNotFoundException();
 		}
 		CityMeta city = sessionUtil.getGeoCityMeta(session);
-		return city != null ? new AjaxResult(AjaxResultCode.SUCCESS, city) : 
+		return city != null ? new AjaxResult(AjaxResultCode.SUCCESS, city) :
 			meta(null, request, mav, session);
 	}
-	
+
 	@RequestMapping(value="/citymeta/{pinyin}", method=RequestMethod.GET)
 	public @ResponseBody AjaxResult meta(@PathVariable String pinyin,
 			HttpServletRequest request, ModelAndView mav, HttpSession session){
@@ -60,10 +60,10 @@ public class GetCityMetaController {
 		}
 		if(cityMeta != null && cityMeta.getPinyin().equals(ApplicationConfig.defaultCityPinyin) &&
 		  (cityMeta.getLngLat()==null || cityMeta.getLngLat().length==0)){
-		   Double[] lngLat = new Double[]{118.270087125, 33.504408779};
+		   Double[] lngLat = new Double[]{120.17189024999996,30.261621415769714};
 		   cityMeta.setLngLat(lngLat);
-		} 
+		}
 		return new AjaxResult(AjaxResultCode.SUCCESS, cityMeta);
 	}
-	
+
 }

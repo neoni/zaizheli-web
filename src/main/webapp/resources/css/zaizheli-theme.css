@@ -3,7 +3,7 @@ html {
 }
 
 #login_html {
-	background: url("../img/bg13.jpg") no-repeat scroll 0 0 #F7F5F5; 
+	background: url("../img/bg13.jpg") repeat scroll 0 0 #F7F5F5;
 
 }
 
@@ -194,7 +194,7 @@ a.img img:hover,a.img img:active {
 }
 
 .upload-img.thumbnail {
-	
+
 }
 
 #image-file-inputUploader {
@@ -293,7 +293,7 @@ a.img img:hover,a.img img:active {
 }
 
 .content-wrapper {
-	
+
 }
 
 .navbar .content-wrapper {
@@ -736,10 +736,10 @@ ul#side-nav li a {
 
 /*** for back top link *********/
 #back-top{
-	position:fixed; 
-	right:5px; 
-	bottom:10px; 
-	_position:absolute; 
+	position:fixed;
+	right:5px;
+	bottom:10px;
+	_position:absolute;
 	_top:expression(eval(documentElement.scrollTop+documentElement.clientHeight-this.clientHeight-30)+'px')
 }
 .version {
@@ -1162,7 +1162,7 @@ div.nomargin{	/* our special nomargin class */
 	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
 	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
 	box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
-	
+
 }
 
 .btn-orange {

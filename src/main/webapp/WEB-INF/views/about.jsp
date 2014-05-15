@@ -6,10 +6,11 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>在浙里——分享你我的社交</title>
-		<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
+		<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
 		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
-		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />	
+		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/validationEngine.bootstrap.css" />" />
 		<script type="text/javascript" src="<c:url value="/resources/js/jquery.js" />" ></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/zaizheli.init.js" />" ></script>
@@ -21,7 +22,7 @@
 		</jsp:include>
 		<div id="content-wrapper">
 			<div class="site">
-			<div class="markdown-format"> 
+			<div class="markdown-format">
 				<h3>在浙里</h3>
 				<p class="intro">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“在浙里”社交化活动应用主要为人们提供了一个活动发布、参与、分享的平台，其分类包括聚餐，运动，班级活动，线上讨论等人们常做的活动。用户所需要的就是发布活动的名称，时间，地点.，其他用户科方便地寻找“志同道合”的人，共同参与一项活动，丰富生活;当活动结束后，还可上传活动图片，与大家一起分享。<br><br>
@@ -51,7 +52,7 @@
 					<h4> <a target="_blank" href="mailto: blue.snow13@163.com">blue.snow13@163.com</a>  </h4>
 					<br>
 				<h3>有空多来踩踩吧~ 即使来喂喂鱼也挺好的</h3>
-				<div style="margin-bottom:70px">		
+				<div style="margin-bottom:70px">
 					<center><embed height=300 type=application/x-shockwave-flash width=660 src=http://fishgadget.googlecode.com/svn/trunk/fish.swf FLASHVARS="up_numFish=6&amp;up_fishColor4=#FFFFFF&amp;up_backgroundColor=F6F6F6&amp;up_fishColor1=F4A61C&amp;up_fishColor7=F45540&amp;up_fishColor6=F45540&amp;up_fishColor8=F45540&amp;up_fishColor2=C4C4C4&amp;up_fishColor9=F45540&amp;up_fishColor3=#600000&amp;up_fishName=Fish&amp;up_fishColor5=F45540&amp;up_fishColor10=F45540&amp;up_backgroundImage=http://&amp;up_foodColor=FCB347&amp;" BGCOLOR="#F6F6F6" WMODE="zaizheli" ></embed></center>
 				</div>
 			</div>
@@ -78,7 +79,7 @@
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
-          
+
         </div>
       </div>
     </div>
@@ -95,7 +96,7 @@
             <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
             <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
-          
+
           <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
@@ -115,6 +116,9 @@
     <!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
     <script>
       // this is important for IEs
+      $("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
       var polyfilter_scriptpath = '/js/';
     </script>
 	</body>

@@ -5,8 +5,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
-	<title>地图布局 在浙里——分享你我的社交</title>	
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
+	<title>地图布局 在浙里——分享你我的社交</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
@@ -28,7 +28,7 @@
 			<div id="explore-map" style="width: 100%; height:600px;">
 				<jsp:include page="/WEB-INF/views/comp/marker.tip.jsp"/>
 				<div id="map-loading" class="p-a z-99 dis-n" style="top: 250px; width:100%">
-					<div class="bg-black ta-c br-5 c-eee fs-16 fw-b p-15" 
+					<div class="bg-black ta-c br-5 c-eee fs-16 fw-b p-15"
 						style="width:48px; height:48px; margin: 0 auto;">
 						<p class="bg-big-loading-white" style="width:48px; height:48px;"></p>
 					</div>
@@ -68,7 +68,7 @@
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
-          
+
         </div>
       </div>
     </div>
@@ -85,7 +85,7 @@
             <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
             <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
-          
+
           <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
@@ -117,9 +117,11 @@
 <script type="text/javascript" src="<c:url value="/resources/js/marker.overlay.manager.js" />"></script>
 <script type="text/javascript">
 	$(function(){
-		
+		$("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
 		var cityMeta = null;
-		
+
 		$.getJSON( '<c:url value="/citymeta" />', function(data){
 			if(data && data.resultData){
 				cityMeta = data.resultData;
@@ -145,13 +147,13 @@
 				});
 			}
 		});
-		
+
 		$('#map-view #more-btn').click(function(){
 			getMore();
 		});
-		
+
 		function getMore(){
-			if($('#map-loading').css('display') 
+			if($('#map-loading').css('display')
 					== 'block'){
 				return;
 			}
@@ -178,9 +180,9 @@
 				$('#map-loading').hide();
 			});
 		}
-		
+
 		var noti_timer = null;
-		
+
 		function mapNoti(msg){
 			if(noti_timer!=null){
 				clearTimeout(noti_timer);
@@ -191,7 +193,7 @@
 				$('#map-noti').fadeOut('slow');
 			}, 1500);
 		}
-		
+
 		function incrPageNo(isEnd){
 			var url = $('#page-nav a').attr('href');
 			var lastIdx = url.lastIndexOf('=');

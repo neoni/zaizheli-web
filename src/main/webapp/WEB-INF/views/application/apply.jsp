@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>活动申请 在浙里——分享你我的社交</title>
-<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
+<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
@@ -79,8 +79,8 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
 
-</style>	
-	
+</style>
+
 </head>
 
 <body class="app_back">
@@ -92,7 +92,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 			<div class="appbg"></div>
 			<!--<div class="span8 offset4 mt-20" style="width: 569px"> -->
 			<div class="applogin-form" style="width:450px; vertical-align:middle;">
-				<c:url value="/application/${activity.id}/create" var="url"/> 
+				<c:url value="/application/${activity.id}/create" var="url"/>
 				<form id="requestForm"  modelAttribute="ApplicationVo" method="post" action="${url}">
 				    <c:if test="${activity.realNameReq eq true}">
 						<div class="control-group" style="margin-bottom: 6px;">
@@ -138,7 +138,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 							  </div>
 							</div>
 						</div>
-					
+
 					</c:if>
 					<c:if test="${activity.telReq eq true}">
 						<div class="control-group" style="margin-bottom: 6px;margin-top:15px;">
@@ -146,7 +146,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 						<input  id="tel" name="tel" type="text" placeholder="长号或短号均可" value="${user.tel}" class="applogin-field validate[required,custom[integer],minSize[6],maxSize[17]]" style="height: 40px;">
 						</div>
 					</c:if>
-					<c:if test="${activity.schoolReq eq true}">					
+					<c:if test="${activity.schoolReq eq true}">
 						<div class="control-group" style="margin-bottom: 6px; margin-top:15px;">
 						您的学校
 						<input id="school" name="school" type="text" value="${user.school}" placeholder="浙大/玉泉" class="applogin-field" style="height: 40px;">
@@ -161,7 +161,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 					<c:if test="${activity.noteReq eq true}">
 						<div class="control-group" style="margin-bottom: 6px; margin-top:15px; margin-bottom:10px;">
 						说点什么
-						<textarea class="applogin-field validate[required,maxSize[200]]" placeholder="限200字以内" rows="3" cols="20" type="text" name="note" id="note" style="margin-left:5px;">		
+						<textarea class="applogin-field validate[required,maxSize[200]]" placeholder="限200字以内" rows="3" cols="20" type="text" name="note" id="note" style="margin-left:5px;">
 						</textarea>
 						</div>
 					</c:if>
@@ -169,9 +169,9 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 					<button id="go" type="submit" class="btn btn-info">提交</button>
 							 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<a class="btn" href="<c:url value="/activities/${activity.id}" />">返回</a>
-							
+
 					</div>
-			
+
 				</form>
 			</div>
 	    </div>
@@ -212,7 +212,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
-          
+
         </div>
       </div>
     </div>
@@ -229,7 +229,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
             <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
             <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
-          
+
           <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
@@ -250,29 +250,32 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
     <script>
       // this is important for IEs
       var polyfilter_scriptpath = '/js/';
-    </script>						
+    </script>
 <script type="text/javascript" src="/resources/js/ga.js" ></script>
 <script type="text/javascript">
     adjustWebWidth();
 	$("#requestForm").validationEngine('attach', {
-		promptPosition : "bottomRight", 
-		scroll: false	
+		promptPosition : "bottomRight",
+		scroll: false
 	});
 	$(function(){
+        $("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
 	    $('#go').click(function(){
-	    	$('#requestForm').ajaxForm({ 
-	        	dataType:  'json', 
+	    	$('#requestForm').ajaxForm({
+	        	dataType:  'json',
 	        	success: function(data){
 						  if(!data) return;
 						  if(data && data.resultCode == 'INVALID'){
-						  	    $('#modal_text').text(data.exceptionMsg);	  	
+						  	    $('#modal_text').text(data.exceptionMsg);
 								$('#myModal2').modal('show');
 						  }
 						  if(data && data.resultCode == 'SUCCESS'){
 						   		$('#myModal').modal('show');
 						  }
 				}
-	    	}); 	 
+	    	});
 	    })
 	});
 </script>

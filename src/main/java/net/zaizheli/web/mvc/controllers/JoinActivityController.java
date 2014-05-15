@@ -36,10 +36,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/activity")
 public class JoinActivityController {
-	
+
 	@Autowired
 	ActivityRepository activityRepository;
-	@Autowired 
+	@Autowired
 	SessionUtil sessionUtil;
 	@Autowired
 	JoinRepository joinRepository;
@@ -49,9 +49,9 @@ public class JoinActivityController {
 	ActionRepository actionRepository;
 	@Autowired
 	MessageRepository messageRepository;
-		
+
 	@RequestMapping(value="/{id}/join", method=RequestMethod.GET)
-	public @ResponseBody AjaxResult join(@PathVariable String id, Model model, 
+	public @ResponseBody AjaxResult join(@PathVariable String id, Model model,
 			HttpServletRequest request, HttpSession session){
 		User user = sessionUtil.getSignInUser(session);
 		List<String> types = new ArrayList<String>();
@@ -65,14 +65,14 @@ public class JoinActivityController {
         	if(app.getStatus()==ApplicationStatus.已加入) {
         		return new AjaxResult(AjaxResultCode.INVALID, "不用提交申请了，你已经是成员了哦 >o<");
         	}
-        }       
+        }
 		Activity activity=activityRepository.findOne(id);
 		if(activity.getCurrentNum() >= activity.getMaxNum()) {
 			return new AjaxResult(AjaxResultCode.INVALID, "抱歉，活动已经满员了  >o<");
 		}
 		if(activity.getApply()==1) {
 			return new AjaxResult(AjaxResultCode.NEED_APP,id);
-		}    		
+		}
 		Application application = new Application();
 		application.setActivity(activity);
 		application.setApplicant(user);
@@ -94,7 +94,7 @@ public class JoinActivityController {
 		message.setFrom(null);
 		User applicant = activity.getCreatedBy();
 		message.setTo(applicant);
-		message.setContent(user.getName()+" 申请参加活动 <a href='/activities/" + activity.getId() 
+		message.setContent(user.getName()+" 申请参加活动 <a href='/activity/" + activity.getId()
 				+ "/applications'>" +activity.getTitle());
 		message.setStatus(0);
 		message.setType(MessageType.INFORM);
@@ -103,15 +103,15 @@ public class JoinActivityController {
 		messageRepository.save(message);
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}
-	
+
 	@RequestMapping(value="/{id}/quit", method=RequestMethod.GET)
-	public @ResponseBody AjaxResult quit(@PathVariable String id, Model model, 
+	public @ResponseBody AjaxResult quit(@PathVariable String id, Model model,
 			HttpServletRequest request, HttpSession session){
 		User user = sessionUtil.getSignInUser(session);
 		List<String> types = new ArrayList<String>();
 		types.add(ApplicationStatus.已加入.name());
 		types.add(ApplicationStatus.申请中.name());
-        Application app = applicationRepository.findByActivityAndapplicant(id, user.getId(), types);     
+        Application app = applicationRepository.findByActivityAndapplicant(id, user.getId(), types);
         if (app == null) {
         	return new AjaxResult(AjaxResultCode.INVALID,"您已不在活动成员行列中了");
         }
@@ -137,9 +137,9 @@ public class JoinActivityController {
 		message.setType(MessageType.INFORM);
 		messageRepository.save(message);
 		message = new Message();
-		message.setFrom(null);	
+		message.setFrom(null);
 		message.setTo(activity.getCreatedBy());
-		message.setContent(applicant.getName()+" 退出了活动 <a href='/activities/" + activity.getId() 
+		message.setContent(applicant.getName()+" 退出了活动 <a href='/activities/" + activity.getId()
 				+ "'>" + activity.getTitle());
 		message.setStatus(0);
 		message.setType(MessageType.INFORM);
@@ -150,6 +150,6 @@ public class JoinActivityController {
 		joinRepository.delete(join);
 		return new AjaxResult(AjaxResultCode.SUCCESS);
 	}
-	
+
 
 }

@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>在浙里 在浙里——分享你我的社交</title>
-	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
@@ -47,12 +47,12 @@
         		},
         		onUploadSuccess : function(file) {
         			op.notify_header('上传成功！ o@o');
-           	    }  
-			    
-		    }); 
+           	    }
+
+		    });
 
 	    });
-	    </script> 
+	    </script>
 </head>
 <body class="front" style="padding-top:46px;">
 	<jsp:include page="/WEB-INF/views/comp/header.jsp">
@@ -60,14 +60,14 @@
 	</jsp:include>
 	<jsp:include page="/WEB-INF/views/comp/side.nav.jsp" />
 	<c:import url="../modal/sendPM.jsp"/>
-    <div id="main-content"> 
+    <div id="main-content">
 	   <div class="inside-main-content cf">
-		    <section class="jobs-top" id="jobs"> 
-			     <article class="job-panel" style="width:1000px;"> 
-				      <header class="job-panel-header cf"> 
-				       	<h2 class="job-title">加 入 的 成 员 ( 一 共 ${activity.currentNum} 位 )</h2> 
-				      </header> 
-				      <div class="content cf" style="padding:0px;"> 
+		    <section class="jobs-top" id="jobs">
+			     <article class="job-panel" style="width:1000px;">
+				      <header class="job-panel-header cf">
+				       	<h2 class="job-title">加 入 的 成 员 ( 一 共 ${activity.currentNum} 位 )</h2>
+				      </header>
+				      <div class="content cf" style="padding:0px;">
 				       <div class="tab-content bg-gray p-20" id="water-fall-wrapper" style="background:#DDDFEF;">
 						    <div class="tab-pane active" id="water-fall">
 						    	<c:import url="/activity/${activity.id}/getJoiners"></c:import>
@@ -76,45 +76,45 @@
 					    <div id="page-nav">
 							<a href="<c:url value="/activity/${activity.id}/getJoiners" />"></a>
 						</div>
-				      </div> 
+				      </div>
 				      <footer class="job-panel-footer cf">
 				      <c:choose>
 				      	<c:when test="${activity.status eq '放弃'}">
-                        	<a  href="<c:url value="/activities/${activity.id}"/>"  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">此 活 动 已 被 放 弃 </a> 
+                        	<a  href="<c:url value="/activities/${activity.id}"/>"  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">此 活 动 已 被 放 弃 </a>
                         </c:when>
                         <c:when test="${signInUser.id == activity.createdBy.id}">
-					       <input type="file" id="image_upload" name="image_upload">    
+					       <input type="file" id="image_upload" name="image_upload">
 					     </c:when>
 				      	<c:when test="${activity.status eq '已结束'}">
-                        	<a  href="<c:url value="/activities/${activity.id}"/>" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">已 结 束 </a> 
+                        	<a  href="<c:url value="/activities/${activity.id}"/>" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">已 结 束 </a>
                         </c:when>
                         <c:when test="${activity.status eq '晒活动'}">
-                        	<a href="<c:url value="/activity/${activity.id}/gallery"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">晒 活 动 中 </a> 
-                        </c:when>                        
+                        	<a href="<c:url value="/activity/${activity.id}/gallery"/>" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity">晒 活 动 中 </a>
+                        </c:when>
                         <c:when test="${activity.status eq '征集成员中'}">
 					       <c:choose>
-                        	<c:when test="${status eq 0}">                                         
-	                        	<a act="<c:url value="/activity/${activity.id}/join"/>" onclick="op.apply(event.currentTarget); event.preventDefault();"  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>加 入 活 动</span> </a> 					   
+                        	<c:when test="${status eq 0}">
+	                        	<a act="<c:url value="/activity/${activity.id}/join"/>" onclick="op.apply(event.currentTarget); event.preventDefault();"  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>加 入 活 动</span> </a>
 			                   <c:if test="${activity.apply==1}">
-						       		<a class="other-jobs">加入该活动需要填写申请表</a> 
+						       		<a class="other-jobs">加入该活动需要填写申请表</a>
 						       </c:if>
 						    </c:when>
-						    <c:when test="${status eq 1}"> 
-						    	<a  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>等待审核中</span> </a> 
+						    <c:when test="${status eq 1}">
+						    	<a  class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>等待审核中</span> </a>
 						    </c:when>
-						    <c:otherwise>					   
-			                 	<a  id="quit_act" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>退 出 活 动</span> </a>   
+						    <c:otherwise>
+			                 	<a  id="quit_act" class="track apply noauth record-exit" data-action="view job application" data-from="job on team page" data-opportunity-visit-path="/teams/4f57ea5e8617b7000d000002/opportunities/176/visit" data-target-type="job-opportunity"><span>退 出 活 动</span> </a>
 			                </c:otherwise>
 			            	</c:choose>
 					     </c:when>
 					    </c:choose>
-				      </footer> 
-			    </article> 
-			      
-		    </section> 
+				      </footer>
+			    </article>
+
+		    </section>
 		 </div>
 	</div>
-		    
+
 	<jsp:include page="/WEB-INF/views/comp/back.top.jsp" />
 	<script type="text/javascript">
 		adjustWebWidth();
@@ -153,7 +153,7 @@
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
-          
+
         </div>
       </div>
     </div>
@@ -170,7 +170,7 @@
             <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
             <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
-          
+
           <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
@@ -202,7 +202,9 @@
 <script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" />"></script>
 <script type="text/javascript">
 	$(function(){
-		
+		$("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
 		$('.pin').each(function(){
 			op.pin_bind_event($(this));
 		});
@@ -211,11 +213,11 @@
 		 });
 		 $('#sure').click(function(){
 		 	op.apply_quit(event.currentTarget);
-		 	event.preventDefault(); 
+		 	event.preventDefault();
 		 	setTimeout(function(){window.location.reload();}, 1500);
 		 });
 		var $wf = $('#water-fall');
-		
+
 		$wf.masonry({
 			itemSelector : '.pin',
 		    columnWidth : 222,
@@ -226,7 +228,7 @@
 		    },
 		    isFitWidth: false
 		});
-		
+
 		$wf.infinitescroll(
 			{
 				navSelector  : '#page-nav', // selector for the paged navigation
@@ -264,11 +266,11 @@
 				// ensure that images load before adding to masonry layout
 				//$newElems.imagesLoaded(function(){
 					// show elems now they're ready
-					$wf.append( $newElems ).masonry( 'appended', 
+					$wf.append( $newElems ).masonry( 'appended',
 							$newElems, false, function(){
 						$newElems.fadeIn('slow');
 					});
-				//}); 
+				//});
 			}
 		);
 	});

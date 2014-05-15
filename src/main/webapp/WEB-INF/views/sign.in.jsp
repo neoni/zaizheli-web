@@ -8,7 +8,7 @@
 	<meta charset=utf-8>
     <title>登陆 在浙里 分享你我的社交</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
@@ -21,7 +21,7 @@
 <body>
 	<div class="mt-80" style="width:380px;margin-left:700px;">
 	<div class="hero-unit board-1">
-	<form:form id="signInForm"  cssClass="sign-in" modelAttribute="signInCredentialVo" method="post">	
+	<form:form id="signInForm"  cssClass="sign-in" modelAttribute="signInCredentialVo" method="post">
 		<div class="row-fluid">
 			<div class="control-group">
 				<div class="controls">
@@ -43,7 +43,7 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<div class="row-fluid" style="margin-top:15px;">
 			<div class="span8">
 				<button type="submit" class="btn btn-ora btn-large">登 录</button>
@@ -59,10 +59,10 @@
         <font size="4px" class="third-signin">用合作网站账户直接登录：</font>
         <br><br>
         <div class="bd">
-	        <a class="weibo" href="<c:url value="/connect/weibo_connect" />"><i></i>新浪微博</a>
-	        <a class="qq" href="<c:url value="/connect/qq_connect" />"><i></i>QQ</a>
-	        <a class="renren" href="<c:url value="/connect/renren_connect" />"><i></i>人人网</a>
-	        <a class="douban" href="<c:url value="/connect/douban_connect" />"><i></i>豆瓣</a>
+	        <a  class="weibo"><i></i>新浪微博</a>
+	        <a  class="qq"><i></i>QQ</a>
+	        <a  class="renren"><i></i>人人网</a>
+	        <a  class="douban"><i></i>豆瓣</a>
 	        <div class="clear"></div>
         </div>
     </div>

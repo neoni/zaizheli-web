@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @RequestMapping("/activity")
 @SessionAttributes(ApplicationConstants.SESSION_SIGNIN_USER)
 public class AddCommentController {
-	
+
 	@Autowired
 	CommentRepository commentRepository;
 	@Autowired
@@ -52,7 +52,7 @@ public class AddCommentController {
 	private TextUtil textUtil;
 	@Autowired
 	MessageRepository messageRepository;
-	
+
 	@ModelAttribute("cmtFormBean")
 	public CommentFormBean creatFormBean() {
 		CommentFormBean bean = new CommentFormBean();
@@ -62,7 +62,7 @@ public class AddCommentController {
 	@RequestMapping(value="/addcmt", method=RequestMethod.POST)
 	public String add(@Valid CommentFormBean bean,
 			BindingResult result,
-			Model model, HttpServletRequest request, HttpSession session){	
+			Model model, HttpServletRequest request, HttpSession session){
 		User signInUser=sessionUtil.getSignInUser(session);
 		if(signInUser==null) {
 			return "redirect:/signin";
@@ -73,7 +73,7 @@ public class AddCommentController {
 		}
 		// save comment
 		Comment cmt = Comment.from(bean, signInUser);
-		String con=bean.getContent();		
+		String con=bean.getContent();
 		con = textUtil.removeHtml(con);
 		con = At(con, signInUser, activity);
 		con = textUtil.turn(con);
@@ -90,17 +90,17 @@ public class AddCommentController {
 			if(context.substring(index+1,index+2) == "\n")
 					content = content + context.substring(index+2);
 			else content = content + context.substring(index+1);
-			cmt.setContent(content);	
-		}	
+			cmt.setContent(content);
+		}
 		cmt.setActivity(activity);
-		cmt.setFloor(activity.getCommentCount()+1);				
+		cmt.setFloor(activity.getCommentCount()+1);
 		// inc commented count of orignal activity
 		activityRepository.inc(activity.getId(), "commentCount", 1);
 		activityRepository.inc(activity.getId(), "hot", 1);
 		// incr comment count of sign in user
-		userRepository.inc(signInUser.getId(), "commentCount", 1);	
+		userRepository.inc(signInUser.getId(), "commentCount", 1);
 		cmt = commentRepository.save(cmt);
-		
+
 		int size = commentRepository.findByActivity(activity.getId()).size();
 		int total = 0 ;
 		if (size % ApplicationConfig.cmtPageSize == 0)
@@ -111,18 +111,18 @@ public class AddCommentController {
 		StringBuilder url = new StringBuilder();
 		url.append("/activities/").append(activity.getId());
 		url.append("/").append(total).append("#").append(cmt.getId());
-		
+
 		// save cmt activity
 		Action action= new Action();
 		action.setOwner(signInUser.getId());
 		action.setCreatedAt(new Date());
 		action.setTargetActivity(activity.getId());
 		if (baseCmt!=null && user != null && bean.getContent().indexOf("回复 "+user.getName()+":")==0 ) {
-			action.setTargetUser(user.getId());	
+			action.setTargetUser(user.getId());
 			Message message = new Message();
 			message.setFrom(signInUser);
 			message.setTo(user);
-			message.setContent(signInUser.getName()+"在活动  <a href='/activities/" + activity.getId() 
+			message.setContent(signInUser.getName()+"在活动  <a href='/activities/" + activity.getId()
 					+ "'>" + activity.getTitle()+"</a> 中回复了您");
 			message.setStatus(0);
 			message.setType(MessageType.INFORM);
@@ -136,24 +136,26 @@ public class AddCommentController {
 		actionRepository.save(action);
 		return "redirect:" + url.toString();
 	}
-	
+
 	public String At(String content, User signInUser, Activity activity) {
 		int start=0, end;
         while ((start = content.indexOf("@", start)) != -1) {
         	end = content.indexOf(" ", start);
+        	if (end == -1)
+        		break;
         	String name = content.substring(start+1, end);
         	User user = userRepository.getByName(name);
         	if( user != null) {
-        		String html = content.substring(0, start) + "<ahref='/profiles/" + user.getId() 
+        		String html = content.substring(0, start) + "<ahref='/profiles/" + user.getId()
     					+ "'>";
         		int index = start;
         		start = html.length();
-        		content = html + content.substring(index,end) + 
+        		content = html + content.substring(index,end) +
         				  "</a>" + content.substring(end);
         		Message message = new Message();
         		message.setFrom(signInUser);
     			message.setTo(user);
-    			message.setContent(signInUser.getName()+" 在活动 <a href='/activities/" + activity.getId() 
+    			message.setContent(signInUser.getName()+" 在活动 <a href='/activities/" + activity.getId()
     					+ "'>" + activity.getTitle()+"</a> 中@了您");
     			message.setStatus(0);
     			message.setType(MessageType.AT);
@@ -162,12 +164,12 @@ public class AddCommentController {
         		messageRepository.save(message);
         	}
         	start += 1;
-        }       
-        return content;  
+        }
+        return content;
 	}
-	
+
 	public String link(String content) {
-		content = content.replaceAll("<ahref='/profiles/", "<a href='/profiles/");    
-        return content;		
+		content = content.replaceAll("<ahref='/profiles/", "<a href='/profiles/");
+        return content;
 	}
 }

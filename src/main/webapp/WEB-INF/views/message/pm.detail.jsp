@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>私信 ${user.name}的在浙里 在浙里——分享你我的社交</title>
-	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
@@ -25,10 +25,10 @@
 	</jsp:include>
 	<c:import url="../modal/sendPM.jsp"/>
 	<div class="main-wrapper mt-20 mb-30">
-		<div class="main block-h-c content-wrapper row-fluid p-r">			
+		<div class="main block-h-c content-wrapper row-fluid p-r">
 			<div class="span8 board">
 				<div class="pl-30 pr-30 pt-20">
-				    <ul id="profile-nav-tabs" class="nav nav-tabs fs-14" 
+				    <ul id="profile-nav-tabs" class="nav nav-tabs fs-14"
 				    	style="margin-left: -30px; margin-right: -30px;  margin-bottom:0px">
 			    		<li class="cmt-me active" style="margin-left:30px;">
 			    			<a data-toggle="tab" href="#cmt-me-act-list">标题：   ${message.title}</a></li>
@@ -45,7 +45,7 @@
 								<img width=60 src="${f:avatarUrl(message.from.avatar, message.from.gender)}" />
 							</a>
 						</dt>
-						<dd class="msgcontent" style="margin-left: 100px;margin-top: 6px;">	
+						<dd class="msgcontent" style="margin-left: 100px;margin-top: 6px;">
 							${message.content}
 						</dd>
 					</dl>
@@ -57,15 +57,15 @@
 									<img width=60 src="${f:avatarUrl(message.base.from.avatar, message.base.from.gender)}" />
 								</a>
 							</dt>
-							<dd class="msgcontent" style="margin-left: 200px;margin-top: 6px;">	
+							<dd class="msgcontent" style="margin-left: 200px;margin-top: 6px;">
 								${message.base.content}
 							</dd>
 						</dl>
 					</c:if>
-				</div>    
+				</div>
 			</div>
 			<div class="span4">
-				<jsp:include page="/WEB-INF/views/message/info.jsp" />					
+				<jsp:include page="/WEB-INF/views/message/info.jsp" />
 				<jsp:include page="/WEB-INF/views/message/nav.jsp">
 					<jsp:param name="tab" value="pm"/>
 				</jsp:include>
@@ -96,7 +96,7 @@
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
-          
+
         </div>
       </div>
     </div>
@@ -113,7 +113,7 @@
             <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
             <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
-          
+
           <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
@@ -144,6 +144,9 @@
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.infinitescroll.js" />" ></script>
 <script type="text/javascript">
 $(function(){
+    $("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
 	$('#act-list-wrapper').each(function(){
 		op.pin_bind_event($(this));
 	});

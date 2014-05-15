@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>在浙里 在浙里——分享你我的社交</title>
-	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
@@ -23,7 +23,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.8.18.custom.min.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.form.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.pnotify.js" />" ></script>
-		
+
 <style type="text/css">
 .offset4 {
   margin-left: 350px;
@@ -75,8 +75,8 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
 
-</style>	
-	
+</style>
+
 </head>
 
 <body >
@@ -86,16 +86,16 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
     <div id="app_v" class="container">
 		<div  class="row mt-30" style="font-size: 18" >
 			<div class="appbg" style="margin-left: 250px;"></div>
-			<div class="span8 offset4 mt-20" style="width: 569px; vertical-align: middle;">	
+			<div class="span8 offset4 mt-20" style="width: 569px; vertical-align: middle;">
 					<div class="control-group" style="height: 20px;">
 					昵称
-				    <span style="margin-left:40px">${application.applicant.name}</span></div>	
+				    <span style="margin-left:40px">${application.applicant.name}</span></div>
 					<div class="control-group" style="height: 20px;">
 					性别
-					<span style="margin-left:40px">${application.applicant.gender}</span></div>	
+					<span style="margin-left:40px">${application.applicant.gender}</span></div>
 					<div class="control-group" style="height: 20px;">
 					邮箱
-					<span style="margin-left:40px">${application.applicant.email}</span></div>	
+					<span style="margin-left:40px">${application.applicant.email}</span></div>
 					<b>&nbsp;</b>
 					<br>
 					<br>
@@ -123,7 +123,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 						<span style="margin-left:40px">${application.tel}</span>
 						</div>
 					</c:if>
-					<c:if test="${activity.schoolReq eq true}">					
+					<c:if test="${activity.schoolReq eq true}">
 						<div class="control-group" style="margin-bottom: 10px;">
 						学校
 						<span style="margin-left:40px">${application.school}</span>
@@ -140,20 +140,20 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
 						Ta的话
 						<br><span style="margin-left:25px">${application.note}</span>
 						</div>
-					</c:if>	
+					</c:if>
 					<c:choose>
 					<c:when test="${application.status eq '申请中'}">
-					<div style="margin-left:60px; margin-top:28px;">			    
+					<div style="margin-left:60px; margin-top:28px;">
 						<a  id="a_agree" class=" btn btn-danger b" act="<c:url value="/application/${application.id}/agree" />" onclick="op.application_agree(event.currentTarget); event.preventDefault();" re="<c:url value="/activity/${application.activity.id}/applications"/>" style="width:50px;">
 								同意</a>
 						<a  id="a_refuse" class="btn btn-blue-2 ml-10" act="<c:url value="/application/${application.id}/refuse" />" onclick="op.application_refuse(event.currentTarget); event.preventDefault();" re="<c:url value="/activity/${application.activity.id}/applications"/>" style="width:50px; margin-left:20px;" >拒绝</a>
-					</div>	
+					</div>
 					</c:when>
 					<c:when test="${application.status eq '已加入'}">
-					<div style="margin-left:200px; margin-top:28px;">			    
+					<div style="margin-left:200px; margin-top:28px;">
 						<a  id="a_kickout" class="btn btn-inverse ml-10" act="<c:url value="/application/${application.id}/kickout" />" onclick="op.application_kickout(event.currentTarget); event.preventDefault();" re="<c:url value="/activity/${application.activity.id}/applications"/>">踢出此活动</a>
-						<a  class="btn ml-10" href="<c:url value="/activity/${application.activity.id}/applications"/>">返回</a>	
-					</div>	
+						<a  class="btn ml-10" href="<c:url value="/activity/${application.activity.id}/applications"/>">返回</a>
+					</div>
 					</c:when>
 					<c:otherwise>
 						<a  class="btn" style="margin-left:240px" href="<c:url value="/activity/${application.activity.id}/applications"/>">返回</a>
@@ -183,7 +183,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
-          
+
         </div>
       </div>
     </div>
@@ -200,7 +200,7 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
             <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
             <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
-          
+
           <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
@@ -221,12 +221,15 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=d
     <script>
       // this is important for IEs
       var polyfilter_scriptpath = '/js/';
-    </script>							
+    </script>
 <script type="text/javascript">
 	$(function(){
+        $("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
 		 $('#app_v').each(function(){
 			op.pin_bind_event($(this));
-		});	
+		});
 
 	});
 </script>

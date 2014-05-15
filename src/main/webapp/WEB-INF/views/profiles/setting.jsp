@@ -9,8 +9,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>${signInUser.name} 设置账号 在浙里——分享你我的社交</title>
-	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-responsive.css" />" />	
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-responsive.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
@@ -27,11 +27,11 @@
 		<jsp:param name="noNeed" value="true"/>
 		<jsp:param name="tab" value="none"/>
 	</jsp:include>
-	
+
 
 	<div class="container mt-25 mb-30 board">
 		<div class="pl-30 pr-30 pt-20 bg-gray">
-		    <ul class="nav nav-tabs fs-14" 
+		    <ul class="nav nav-tabs fs-14"
 		    	style="margin-left: -30px; margin-right: -30px;  margin-bottom:0px">
 		    	<li class="active"  style="margin-left:30px">
 		   			<a data-toggle="tab" href="#basic-info">基本信息</a></li>
@@ -40,26 +40,26 @@
 		   		<li class="ml-10">
 	   				<a data-toggle="tab" href="#change-avatar">修改头像</a></li>
 	   			<li class="ml-10">
-	   				<a data-toggle="tab" href="#change-pwd">修改密码</a></li>		
+	   				<a data-toggle="tab" href="#change-pwd">修改密码</a></li>
 	   			<li class="">
-	   				<a data-toggle="tab" href="#binding-weibo">关联三方账号</a></li>				    
+	   				<a data-toggle="tab" href="#binding-weibo">关联三方账号</a></li>
 			</ul>
 	    </div>
 	    <div class="tab-content p-20 of-v">
 		    <div id="basic-info" class="tab-pane active fade in">
-		    	<c:url value="/setting/basic" var="ub_url"/> 
+		    	<c:url value="/setting/basic" var="ub_url"/>
 		    	<form:form id="basicInfoForm" action="${ub_url}" method="post" class="form-horizontal mt-20 mb-0">
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-25 c-888" for="name">请叫我</label>
 		    			<div class="controls fs-16 lh-18">
-							<input id="name" class="validate[required,minSize[2]] input-xlarge" type="text" name="name" 
+							<input id="name" class="validate[required,minSize[2]] input-xlarge" type="text" name="name"
 								data-prompt-position="centerRight:0,-4" value="${signInUser.name}" style="height: 25px;" >
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-30 c-888" for="gender">我是</label>
 		    			<div class="controls fs-16 lh-18">
-		    				<input id="gender" class="validate[required]" type="hidden" 
+		    				<input id="gender" class="validate[required]" type="hidden"
 		    					data-prompt-position="centerRight:0,-4" name="gender" value="${signInUser.gender}" >
 		    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="gender">
 		    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val="FEMALE">美女</button>
@@ -71,7 +71,7 @@
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-30 c-888" for="city">居住在</label>
 		    			<div class="controls fs-16 lh-18">
-		    				<input id="city" class="validate[required]" type="hidden" 
+		    				<input id="city" class="validate[required]" type="hidden"
 		    					data-prompt-position="centerRight:0,-4" name="city" placeholder="" value="${signInUser.city}" >
 		    				<div class="btn-group">
 								<a id="city_target" class="btn btn-large dropdown-toggle fs-16" data-toggle="dropdown" href="#">
@@ -99,28 +99,28 @@
 		    	</form:form>
 		    </div>
 		    <div id="specific-info" class="tab-pane fade">
-		    	<c:url value="/setting/specific" var="sb_url"/> 
+		    	<c:url value="/setting/specific" var="sb_url"/>
 		    	<form:form id="specificInfoForm" action="${sb_url}" method="post" class="form-horizontal mt-20 mb-0">
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-25 c-888" for="realName">我的真名</label>
 		    			<div class="controls fs-16 lh-18">
-							<input id="realName" class="input-xlarge" type="text" name="realName" 
+							<input id="realName" class="input-xlarge" type="text" name="realName"
 								   value="${signInUser.realName}" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-25 c-888" for="age">今年多少岁了</label>
 		    			<div class="controls fs-16 lh-18">
-							<input id="age" class="validate[custom[integer],min[0],max[150]] input-xlarge" type="number"  name="age" 
+							<input id="age" class="validate[custom[integer],min[0],max[150]] input-xlarge" type="number"  name="age"
 								   value="${signInUser.age}" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-25 c-888" for="birthday">我的破壳日</label>
-		    			<div class="bfh-datepicker controls fs-16 lh-18" data-format="y-m-d" data-date="${(!empty signInUser.birthday)?signInUser.birthday:'1993-01-01'} ">     
+		    			<div class="bfh-datepicker controls fs-16 lh-18" data-format="y-m-d" data-date="${(!empty signInUser.birthday)?signInUser.birthday:'1993-01-01'} ">
 		    			<div class="input-prepend bfh-datepicker-toggle" data-toggle="bfh-datepicker" >
 		    				<span class="add-on"><i class="icon-calendar"></i></span>
-							<input id="birthday" class="validate[past[now]] input-large" type="text" name="birthday" 
+							<input id="birthday" class="validate[past[now]] input-large" type="text" name="birthday"
 								   value="${signInUser.birthday}" style="height: 25px;" readonly>
 						</div>
 						<div class="bfh-datepicker-calendar">
@@ -150,28 +150,28 @@
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-25 c-888" for="tel">call me (电话）</label>
 		    			<div class="controls fs-16 lh-18">
-							<input id="tel" class="input-xlarge validate[custom[integer],minSize[6],maxSize[17]]" type="number" name="tel" 
+							<input id="tel" class="input-xlarge validate[custom[integer],minSize[6],maxSize[17]]" type="number" name="tel"
 								   value="${signInUser.tel}" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-25 c-888" for="school">学校</label>
 		    			<div class="controls fs-16 lh-18">
-							<input id="school" class="input-xlarge" type="text" name="school" 
+							<input id="school" class="input-xlarge" type="text" name="school"
 								   value="${signInUser.school}" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-25 c-888" for="address">能找到我的地址</label>
 		    			<div class="controls fs-16 lh-18">
-							<input id="address" class="input-xlarge" type="text" name="address" 
+							<input id="address" class="input-xlarge" type="text" name="address"
 								   value="${signInUser.address}" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="" style="margin-bottom: 30px;">
 		    			<label class="fs-14 lh-30 c-888" style="margin-left:160px">提示： 此页信息可用作活动申请表</label>
 		    			<!-- <div class="controls fs-16 lh-18">
-		    				<input id="privateset" class="validate[required]" type="hidden" 
+		    				<input id="privateset" class="validate[required]" type="hidden"
 		    					data-prompt-position="centerRight:0,-4" name="privateset" value="${signInUser.privateset}">
 		    				<div class="btn-group" data-toggle="buttons-radio" data-toggle-name="privateset">
 		    					<button id="inputMale" class="btn btn-large btn-info fs-16" type="button" data-val=0 >是</button>
@@ -193,22 +193,22 @@
 						<div class="controls fs-14 lh-18">
 							<div class="clear mb-10">
 								<div id="avatarContainer" class="f-l">
-									<img id="avatarImg" 
+									<img id="avatarImg"
 										src="<c:choose><c:when test="${not empty signInUser.avatar}"><c:url value="/images/avatars/${signInUser.avatar.resId}" /></c:when>
 												<c:otherwise>http://placehold.it/350&text=Upload+Avatar</c:otherwise></c:choose>"></div>
 								<div id="avatarPreview" class="ml-10 f-l">
 									<div class="mb-10" style="width:100px;height:100px;overflow:hidden;">
-										<img id="preview100" class="jcrop-preview" alt="Preview" 
+										<img id="preview100" class="jcrop-preview" alt="Preview"
 											src="<c:choose><c:when test="${not empty signInUser.avatar}"><c:url value="/images/avatars/${signInUser.avatar.resId}" /></c:when>
 												<c:otherwise>http://placehold.it/100&text=Upload+Avatar</c:otherwise></c:choose>">
 									</div>
 									<div class="mb-10" style="width:60px;height:60px;overflow:hidden;">
-										<img id="preview60" class="jcrop-preview" alt="Preview" 
+										<img id="preview60" class="jcrop-preview" alt="Preview"
 											src="<c:choose><c:when test="${not empty signInUser.avatar}"><c:url value="/images/avatars/${signInUser.avatar.resId}" /></c:when>
 												<c:otherwise>http://placehold.it/60&text=Upload+Avatar</c:otherwise></c:choose>">
 									</div>
 									<div class="" style="width:30px;height:30px;overflow:hidden;">
-										<img id="preview30" class="jcrop-preview" alt="Preview" 
+										<img id="preview30" class="jcrop-preview" alt="Preview"
 											src="<c:choose><c:when test="${not empty signInUser.avatar}"><c:url value="/images/avatars/${signInUser.avatar.resId}" /></c:when>
 												<c:otherwise>http://placehold.it/30&text=Upload+Avatar</c:otherwise></c:choose>">
 									</div>
@@ -228,7 +228,7 @@
 		                </div>
 					</div>
 			    </form>
-		    	<c:url value="/setting/avatar" var="ua_url"/> 
+		    	<c:url value="/setting/avatar" var="ua_url"/>
 		    	<form:form id="avatarChangeForm" action="${ua_url}" method="post" class="form-horizontal mt-20 mb-0">
 		    		<input type="hidden" id="imageUrl" name="imageUrl"/>
 	    			<input type="hidden" id="x" name="x" />
@@ -244,26 +244,26 @@
 		    	</form:form>
 		    </div>
 		    <div id="change-pwd" class="tab-pane fade">
-		    	<c:url value="/setting/changepwd" var="cp_url"/> 
+		    	<c:url value="/setting/changepwd" var="cp_url"/>
 		    	<form:form id="changePwdForm" action="${cp_url}" method="post" class="form-horizontal mt-20 mb-0">
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-25 c-888" for="inputOldPwd">旧密码</label>
 		    			<div class="controls fs-16 lh-18">
-							<input id="oldPwd" autocomplete="off" class="validate[required] input-xlarge" type="password" name="oldPwd" 
+							<input id="oldPwd" autocomplete="off" class="validate[required] input-xlarge" type="password" name="oldPwd"
 								 data-prompt-position="centerRight:0,-4" value="" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-25 c-888" for="inputNewPwd">新密码</label>
 		    			<div class="controls fs-16 lh-18">
-							<input id="newPwd" autocomplete="off" class="validate[required,minSize[6],maxSize[30]] input-xlarge" type="password" name="newPwd" 
+							<input id="newPwd" autocomplete="off" class="validate[required,minSize[6],maxSize[30]] input-xlarge" type="password" name="newPwd"
 								data-prompt-position="centerRight:0,-4" value="" style="height: 25px;">
 						</div>
 		    		</div>
 		    		<div class="control-group" style="margin-bottom: 30px;">
 		    			<label class="control-label fs-15 lh-25 c-888" for="inputNewPwdRe">确认新密码</label>
 		    			<div class="controls fs-16 lh-18">
-							<input id="newPwdRe" autocomplete="off" class="validate[required,equals[newPwd]] input-xlarge" type="password" name="newPwdRe" 
+							<input id="newPwdRe" autocomplete="off" class="validate[required,equals[newPwd]] input-xlarge" type="password" name="newPwdRe"
 								data-prompt-position="centerRight:0,-4" value="" style="height: 25px;">
 						</div>
 		    		</div>
@@ -276,7 +276,7 @@
 		    	</form:form>
 		    </div>
 		    <div id="binding-weibo" class="tab-pane fade">
-		    	<c:url value="/setting/binding" var="bw_url"/> 
+		    	<c:url value="/setting/binding" var="bw_url"/>
 		    	<form:form id="bindingForm" action="${bw_url}" method="post" class="form-horizontal mt-10">
 		    		<div class="control-group" style="margin-bottom: 20px;">
 		    			<!-- <label class="control-label fs-15 lh-25 c-888" for="inputName">新浪微博</label>-->
@@ -343,7 +343,7 @@
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
-          
+
         </div>
       </div>
     </div>
@@ -360,7 +360,7 @@
             <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
             <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
-          
+
           <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
@@ -391,6 +391,9 @@
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.Jcrop.js" />" ></script>
 <script type="text/javascript">
 	$(function(){
+		$("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
 		function attachValidationForBasicInfoForm(){
 			$('#basicInfoForm').validationEngine({
 				prettySelect: true,
@@ -409,7 +412,7 @@
 					if(status == true){
 						form.validationEngine('detach');
 						form.ajaxSubmit({
-					        dataType:  'json', 
+					        dataType:  'json',
 					        beforeSubmit: function(formData, jqForm, options){
 					        	$('#basicInfoForm .form-actions button').button('loading');
 					        	$('#basicInfoForm .icon-ok').hide();
@@ -445,7 +448,7 @@
 					if(status == true){
 						form.validationEngine('detach');
 						form.ajaxSubmit({
-					        dataType:  'json', 
+					        dataType:  'json',
 					        beforeSubmit: function(formData, jqForm, options){
 					        	$('#specificInfoForm .form-actions button').button('loading');
 					        	$('#specificInfoForm .icon-ok').hide();
@@ -478,7 +481,7 @@
 					if(status == true){
 						form.validationEngine('detach');
 						form.ajaxSubmit({
-					        dataType:  'json', 
+					        dataType:  'json',
 					        beforeSubmit: function(formData, jqForm, options){
 					        	$('#changePwdForm .form-actions button').button('loading');
 					        	$('#changePwdForm .icon-ok').hide();
@@ -502,7 +505,7 @@
 		attachValidationForChangPwdForm();
 		var jcrop_api, boundx, boundy;;
 		$('#avatarUploadForm').ajaxForm({
-			dataType:  'json', 
+			dataType:  'json',
 	        beforeSubmit: function(formData, jqForm, options){
 	        	$('#avatarUploadForm .loading-box').show();
 	        	$('#avatarUploadForm .alert-error').hide();
@@ -563,7 +566,7 @@
 					marginLeft: '-' + Math.round(rx * c.x) + 'px',
 					marginTop: '-' + Math.round(ry * c.y) + 'px'
 				});
-			} 
+			}
 		}
 		var avatarSrc = $('#avatarContainer img').attr('src');
 		function setupJcrop($pic){
@@ -577,7 +580,7 @@
 			function(){
 				var bounds = this.getBounds();
 				boundx = bounds[0];
-				boundy = bounds[1]; 
+				boundy = bounds[1];
 				imgW = $pic.width();
 				imgH = $pic.height();
 				p1.x = Math.floor((imgW-192)/2);
@@ -595,7 +598,7 @@
 			jcrop_api.setImage(imgSrc, function(){
 				var bounds = this.getBounds();
 				boundx = bounds[0];
-				boundy = bounds[1]; 
+				boundy = bounds[1];
 				imgW = $pic.width();
 				imgH = $pic.height();
 				p1.x = Math.floor((imgW-192)/2);
@@ -610,7 +613,7 @@
 			setupJcrop($('#avatarContainer img'));
 		}
 		$('#avatarChangeForm').ajaxForm({
-	        dataType:  'json', 
+	        dataType:  'json',
 	        beforeSubmit: function(formData, jqForm, options){
 	        	$('#avatarChangeForm .form-actions button').button('loading');
 	        	$('#avatarChangeForm .icon-ok').hide();

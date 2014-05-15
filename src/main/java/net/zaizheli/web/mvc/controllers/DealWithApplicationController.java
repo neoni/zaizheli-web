@@ -20,6 +20,7 @@ import net.zaizheli.repositories.ActivityRepository;
 import net.zaizheli.repositories.ApplicationRepository;
 import net.zaizheli.repositories.JoinRepository;
 import net.zaizheli.repositories.MessageRepository;
+import net.zaizheli.repositories.UserRepository;
 import net.zaizheli.vo.AjaxResult;
 import net.zaizheli.web.utils.SessionUtil;
 
@@ -34,10 +35,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/application")
 public class DealWithApplicationController {
-	
+
 	@Autowired
 	ActivityRepository activityRepository;
-	@Autowired 
+	@Autowired
 	SessionUtil sessionUtil;
 	@Autowired
 	JoinRepository joinRepository;
@@ -47,13 +48,15 @@ public class DealWithApplicationController {
 	ActionRepository actionRepository;
 	@Autowired
 	MessageRepository messageRepository;
-	
+	@Autowired
+	UserRepository userRepository;
+
 	@RequestMapping(value="/{id}/agree", method=RequestMethod.GET)
-	public @ResponseBody AjaxResult agree(@PathVariable String id, Model model, 
+	public @ResponseBody AjaxResult agree(@PathVariable String id, Model model,
 			HttpServletRequest request, HttpSession session){
 		Application application=applicationRepository.findOne(id);
 		Activity activity = application.getActivity();
-		if(application.getStatus() == ApplicationStatus.申请中) {	
+		if(application.getStatus() == ApplicationStatus.申请中) {
 			if(activity.getCurrentNum() >= activity.getMaxNum()) {
 				return new AjaxResult(AjaxResultCode.INVALID, "不能再加了 -o- 已达到最大人数上限");
 			}
@@ -81,6 +84,8 @@ public class DealWithApplicationController {
 			Message message = new Message();
 			message.setFrom(user);
 			User applicant = application.getApplicant();
+			applicant.setActivityCount(applicant.getActivityCount()+1);
+			userRepository.save(applicant);
 			message.setTo(applicant);
 			message.setContent("恭喜您，加入了活动"+activity.getTitle());
 			message.setStatus(0);
@@ -94,9 +99,9 @@ public class DealWithApplicationController {
 			return new AjaxResult(AjaxResultCode.INVALID,"此人已不在申请行列中了");
 		}
 	}
-	
+
 	@RequestMapping(value="/{id}/refuse", method=RequestMethod.GET)
-	public @ResponseBody AjaxResult refuse(@PathVariable String id, Model model, 
+	public @ResponseBody AjaxResult refuse(@PathVariable String id, Model model,
 			HttpServletRequest request, HttpSession session){
 		Application application=applicationRepository.findOne(id);
 		Activity activity = application.getActivity();
@@ -123,9 +128,9 @@ public class DealWithApplicationController {
 			return new AjaxResult(AjaxResultCode.INVALID,"此人已不在申请行列中了");
 		}
 	}
-	
+
 	@RequestMapping(value="/{id}/kickout", method=RequestMethod.GET)
-	public @ResponseBody AjaxResult kickout(@PathVariable String id, Model model, 
+	public @ResponseBody AjaxResult kickout(@PathVariable String id, Model model,
 			HttpServletRequest request, HttpSession session){
 		Application application=applicationRepository.findOne(id);
 		Activity activity = application.getActivity();
@@ -141,6 +146,8 @@ public class DealWithApplicationController {
 			Message message = new Message();
 			message.setFrom(user);
 			User applicant = application.getApplicant();
+			applicant.setActivityCount(applicant.getActivityCount()-1);
+			userRepository.save(applicant);
 			message.setTo(applicant);
 			message.setContent("您被踢出了活动"+activity.getTitle());
 			message.setStatus(0);

@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>${user.name} 在浙里——分享你我的社交</title>
-	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" /> 
+	<link rel="SHORTCUT ICON" href= "<c:url value="/resources/img/head-logo.png" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-base.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/zaizheli-theme.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />" />
@@ -38,7 +38,7 @@
 		<div class="main block-h-c content-wrapper row-fluid p-r">
 			<div class="span8 board">
 				<div class="pl-30 pr-30 pt-20">
-				    <ul id="profile-nav-tabs" class="nav nav-tabs fs-14" 
+				    <ul id="profile-nav-tabs" class="nav nav-tabs fs-14"
 				    	style="margin-left: -30px; margin-right: -30px;  margin-bottom:0px">
 				    		<li class="c_activity <c:if test="${view eq 'c_activity'}">active</c:if>"  style="margin-left:30px">
 				   				<a href="<c:url value="/profiles/${user.id}/c_activity"/>">创建的活动( ${user.activityCreationCount} )</a></li>
@@ -71,7 +71,7 @@
 				</c:otherwise>
 				</c:choose>
 				<c:import url="/profiles/action/${user.id}/0"></c:import>
-				
+
 			</div>
 		</div>
 	</div>
@@ -100,7 +100,7 @@
             <button type="reset" style="display:none"></button>
             <button id="fb-close" class="md-close btn-ora" style="display:none"></button>
           </form>
-          
+
         </div>
       </div>
     </div>
@@ -117,7 +117,7 @@
             <li><strong>收藏：</strong>大家可以通过<span style="background-color:#FFA41D;padding:2">Ctrl + D</span>来收藏网站哦。</li>
             <li><strong>有你：</strong>希望大家都能上传一个自己特色的头像，让我们的'在浙里'因你更加美丽。</li>
           </ul>
-          
+
           <button type="submit" class="md-close btn-ora btn-large" style="padding:7px 12px">恩恩，了解了</button>
         </div>
       </div>
@@ -153,13 +153,16 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" />"></script>
 	<script type="text/javascript">
 	$(function(){
+        $("#form-feedback").validationEngine('attach', {
+            promptPosition : "bottomRight", scroll: false
+        });
 		$(".timeago").timeago();
 		$('.pin').each(function(){
 			op.pin_bind_event($(this));
 		});
 
 		var $wf = $('#water-fall');
-			
+
 		$wf.masonry({
 			itemSelector : '.pin',
 		    columnWidth : 222,
@@ -170,7 +173,7 @@
 		    },
 		    isFitWidth: true
 		});
-			
+
 		$wf.infinitescroll(
 			{
 				navSelector  : '#page-nav', // selector for the paged navigation
@@ -208,11 +211,11 @@
 				// ensure that images load before adding to masonry layout
 				//$newElems.imagesLoaded(function(){
 					// show elems now they're ready
-					$wf.append( $newElems ).masonry( 'appended', 
+					$wf.append( $newElems ).masonry( 'appended',
 							$newElems, false, function(){
 						$newElems.fadeIn('slow');
 					});
-				//}); 
+				//});
 			}
 		);
 	});
