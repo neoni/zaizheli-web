@@ -15,7 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- version properties -->
 		<spring.framework.version>3.2.2.RELEASE</spring.framework.version>
-		<spring.data.mongodb.version>1.0.1.RELEASE</spring.data.mongodb.version>
+		<spring.data.mongodb.version>3.3.5</spring.data.mongodb.version>
 		<spring.data.jpa.version>1.0.1.RELEASE</spring.data.jpa.version>
 		<cloudfoundry.runtime.version>0.8.1</cloudfoundry.runtime.version>
 		<slf4j.verison>1.6.4</slf4j.verison>
